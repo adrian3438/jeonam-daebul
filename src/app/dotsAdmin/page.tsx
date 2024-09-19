@@ -1,10 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
 import '../assets/login.scss'
 import AdminLoginPage from "../components/Pages/AdminLoginPage";
+import api from "@/lib/api";
 
 export default function AdminLogin() {
-  
+  console.log(api.defaults.headers.common['Authorization']);
   return (
       <div className="login">
         <section className="bg-section">

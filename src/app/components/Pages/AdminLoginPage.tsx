@@ -1,9 +1,10 @@
 'use client'
 import api from "@/lib/api";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 interface LoginType {email:string,password:string}
 export default function AdminLoginPage () {
     const router = useRouter()
@@ -14,13 +15,25 @@ export default function AdminLoginPage () {
         const {name, value} = e.target;
         setData((prev) => ({...prev, [name] : value}))
     }
-    async function Login (e:React.MouseEvent<HTMLInputElement>) {
+    async function Login (e:React.MouseEvent<HTMLInputElement> | any) {
         e.preventDefault();
+        if(!data?.email) {alert('이메일을 입력해 주세요.'); return;}
+        if(!data?.password) {alert('비밀번호를 입력해 주세요.'); return;}
         const formData = new FormData()
         formData.append('managerLoginId', data?.email)
         formData.append('managerPass', data?.password)
-        const response = await api.post(`/admin/adminLogin.php`, formData)
+        const response = await api.post(`/admin/adminLogin2.php`, formData)
+        if(response?.data?.result === true) {
+            router.push('/main')
+        }else {
+            alert(response?.data?.resultMsg);
+            setData((prev) => ({...prev, password : ''}))
+        }
     }
+    function Enter (e : React.KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter') Login(e)
+    }
+    
     return(
         <>
         <section className="login-section">
@@ -29,16 +42,16 @@ export default function AdminLoginPage () {
             <form id="login">
               <fieldset className="input-email">
                 <label htmlFor="email">이메일</label>
-                <input id="email" name="email" onChange={handleChange} type="text" required/>
+                <input id="email" name="email" onKeyDown={Enter} onChange={handleChange} type="text" required/>
               </fieldset>
               <fieldset className="input-password">
-                <label htmlFor="password">이메일</label>
-                <input id="password" name="password" onChange={handleChange} type="password" required/>
+                <label htmlFor="password">비밀번호</label>
+                <input id="password" name="password" onKeyDown={Enter} onChange={handleChange} type="password" required/>
               </fieldset>
               <fieldset className="join">
                 <Link href="#">회원가입</Link> | <Link href="#">비밀번호 찾기</Link>
               </fieldset>
-              <input type="submit" onClick={(e)=>Login(e)} value="로그인" className="login-btn"/>
+              <input type="submit" onClick={(e)=>Login(e)} style={{cursor:'pointer'}} value="로그인" className="login-btn"/>
             </form>
             <p><Image src="/images/login/img_logo.svg" alt="전남대불산학융합원" width={295} height={43}/></p>
             <p className="phone">061)469-7000</p>
