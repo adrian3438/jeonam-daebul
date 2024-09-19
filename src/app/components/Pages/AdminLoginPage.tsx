@@ -24,7 +24,7 @@ export default function AdminLoginPage () {
         formData.append('managerPass', data?.password)
         const response = await api.post(`/admin/adminLogin2.php`, formData)
         if(response?.data?.result === true) {
-            router.push('/main')
+            router.push('/ship-type')
         }else {
             alert(response?.data?.resultMsg);
             setData((prev) => ({...prev, password : ''}))
