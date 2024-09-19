@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import '../assets/login.scss'
+import AdminLoginPage from "../components/Pages/AdminLoginPage";
 
 export default function AdminLogin() {
+  
   return (
       <div className="login">
         <section className="bg-section">
@@ -14,28 +16,9 @@ export default function AdminLogin() {
             </p>
           </div>
         </section>
-        <section className="login-section">
-          <div>
-            <h2>로그인</h2>
-            <form id="login">
-              <fieldset className="input-email">
-                <label htmlFor="email">이메일</label>
-                <input id="email" type="text"/>
-              </fieldset>
-              <fieldset className="input-password">
-                <label htmlFor="password">이메일</label>
-                <input id="password" type="password"/>
-              </fieldset>
-              <fieldset className="join">
-                <Link href="#">회원가입</Link> | <Link href="#">비밀번호 찾기</Link>
-              </fieldset>
-              <input type="submit" value="로그인" className="login-btn"/>
-            </form>
-            <p><Image src="/images/login/img_logo.svg" alt="전남대불산학융합원" width={295} height={43}/></p>
-            <p className="phone">061)469-7000</p>
-            <address>(58457) 전남 영암군 삼호읍 대불주거 3로 75,<br/>산학융합센터(B동)</address>
-          </div>
-        </section>
+        <AdminLoginPage
+
+        />
       </div>
   );
 }
