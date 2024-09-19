@@ -1,6 +1,11 @@
 import React from "react";
-import Script from "next/script";
 import '../globals.css'
+import localFont from "next/font/local";
+
+const pretendard = localFont({
+    src: "../fonts/Pretendard-Regular.woff",
+    variable: "--font-pretendard-sans",
+});
 export default function AdminLayout({
   children,
 }: Readonly<{
@@ -9,7 +14,7 @@ export default function AdminLayout({
   return (
     <html lang="en">
       
-      <body>
+      <body className={`${pretendard.variable}`}>
           {children}
       </body>
       
