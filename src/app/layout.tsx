@@ -4,8 +4,7 @@ import "./globals.css";
 
 const pretendard = localFont({
   src: "./fonts/Pretendard-Regular.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  variable: "--font-pretendard-sans",
 });
 
 export const metadata: Metadata = {

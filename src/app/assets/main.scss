@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+.snb {
+  position: relative;
+  width: 240px;
+  height:100%;
+  padding: 0 20px;
+  background-color: #F1F2F7;
+  box-sizing: border-box;
+  h1 {
+    margin:35px -10px 0;
+  }
+
+  .menus {
+    margin-top: 50px;
+    section {
+      &:first-child {
+        margin-bottom: 40px;
+      }
+      > p {
+        margin-bottom: 15px;
+        color: #082431;
+        font-weight: bold;
+      }
+
+      &.menu {
+        > ul {
+          > li {
+            &.ship-type {
+              a {
+                display: block;
+                padding: 15px 0 15px 70px;
+                background: url('/images/chart.svg') no-repeat 30px 50%;
+                border-radius: 5px;
+                color: #273240;
+              }
+              &.active {
+                a {
+                  background-color: #E4E7F5;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.settings {
+        > ul {
+          > li {
+            > p {
+              padding: 0 0 0 70px;
+              background: url('/images/setting.svg') no-repeat 30px 50%;
+            }
+            > ul {
+              > li {
+                > a {
+                  position: relative;
+                  display: block;
+                  color: #273240;
+                  text-decoration: none;
+                  padding: 15px 0 15px 70px;
+                  &:before {
+                    width:5px;
+                    height:5px;
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    border-radius:5px;
+                    background-color: #273240;
+                    display: block;
+                    content: "";
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .snb-footer-text {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    transform: translateY(-35px);
+    color: #5A6ACF;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+main {
+  flex-grow: 1;
+}
