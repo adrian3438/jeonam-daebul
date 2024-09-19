@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import "@/app/assets/main.scss";
 import "@/app/assets/shipList.scss";
 
 export default function Main() {

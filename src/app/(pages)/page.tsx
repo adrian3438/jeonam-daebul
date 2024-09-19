@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import './assets/login.scss'
-
+import '../assets/login.scss'
 export default function Home() {
   return (
     <div className="login">

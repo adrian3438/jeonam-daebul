@@ -1,18 +1,26 @@
 import Header from "@/app/components/Header";
 import Navigation from "@/app/components/Navigation";
-import "@/app/assets/main.scss";
-
+import '../globals.css'
+// import "@/app/assets/main.scss";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import Container from "../components/Container";
+const pretendard = localFont({
+    src: "../fonts/Pretendard-Regular.woff",
+    variable: "--font-pretendard-sans",
+  });
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     
     return (
         <>
-            <div className="snb">
-                <Navigation/>
-            </div>
-            <main>
-                <Header/>
+        <html lang="ko">
+        <body className={`${pretendard.variable}`}>
+            <Container>
                 {children}
-            </main>
+            </Container>
+        </body>
+        </html>
+            
         </>
     );
 }
