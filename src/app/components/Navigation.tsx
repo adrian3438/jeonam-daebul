@@ -9,7 +9,7 @@ export default function Navigation() {
                 <section className="menu">
                     <p>MENU</p>
                     <ul>
-                        <li className="ship-type active"><Link href="/main">선종</Link></li>
+                        <li className="ship-type active"><Link href="/ship-type">선종</Link></li>
                     </ul>
                 </section>
                 <section className="settings">
