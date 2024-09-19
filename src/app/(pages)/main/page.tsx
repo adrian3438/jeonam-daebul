@@ -53,7 +53,7 @@ export default function Main() {
                             </div>
                             <div className="bop-info-area">
                                 <p>S11C</p>
-                                <p>BOP <Link href="#">등록</Link></p>
+                                <p className="no-registed">BOP <Link href="#">등록</Link></p>
                             </div>
                         </div>
                     </li>

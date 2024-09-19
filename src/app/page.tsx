@@ -23,7 +23,7 @@ export default function Home() {
               <input id="email" type="text"/>
             </fieldset>
             <fieldset className="input-password">
-              <label htmlFor="password">이메일</label>
+              <label htmlFor="password">비밀번호</label>
               <input id="password" type="password"/>
             </fieldset>
             <fieldset className="join">

@@ -1,9 +1,23 @@
+'use client';
+
+import { useState } from "react";
+
 export default function Footer() {
+    const [activeItem, setActiveItem] = useState<number | null>(null);
+
+    const toggleActive = (index: number) => {
+        if (activeItem === index) {
+            setActiveItem(null);
+        } else {
+            setActiveItem(index);
+        }
+    };
+
     return (
         <footer>
             <ul>
-                <li className="bom">
-                    <button>BOM</button>
+                <li className={`bom ${activeItem === 0 ? 'active' : ''}`}>
+                    <button onClick={() => toggleActive(0)}>BOM</button>
                     <ul>
                         <li>
                             <button>부자재</button>
@@ -13,8 +27,8 @@ export default function Footer() {
                         </li>
                     </ul>
                 </li>
-                <li className="manage">
-                    <button>도면관리</button>
+                <li className={`manage ${activeItem === 1 ? 'active' : ''}`}>
+                    <button onClick={() => toggleActive(1)}>도면관리</button>
                     <ul>
                         <li>
                             <button>가공도</button>

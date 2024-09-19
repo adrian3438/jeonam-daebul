@@ -109,6 +109,30 @@
             display: flex;
             padding: 20px;
             justify-content: space-between;
+            font-weight: 600;
+            align-items: center;
+            p {
+              display: flex;
+              align-items: center;
+              > a {
+                display: inline-block;
+                overflow:hidden;
+                text-indent: -9999px;
+                width:22px;
+                height:22px;
+                margin-left:10px;
+              }
+            }
+            .no-registed {
+              > a {
+                background: url("/images/bop-register.svg") no-repeat 50% 50%;
+              }
+            }
+            .registed {
+              > a {
+                background: url("/images/bop-modify.svg") no-repeat 50% 50%;
+              }
+            }
           }
         }
       }
