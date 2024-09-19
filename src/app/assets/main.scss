@@ -14,7 +14,7 @@ body {
   }
 
   .menus {
-    margin-top: 50px;
+    margin: 50px 0 50px;
     section {
       &:first-child {
         margin-bottom: 40px;
@@ -31,7 +31,7 @@ body {
             &.ship-type {
               a {
                 display: block;
-                padding: 15px 0 15px 70px;
+                padding: 15px 0 15px 60px;
                 background: url('/images/chart.svg') no-repeat 30px 50%;
                 border-radius: 5px;
                 color: #273240;
@@ -49,8 +49,9 @@ body {
         > ul {
           > li {
             > p {
-              padding: 0 0 0 70px;
+              padding: 0 0 0 60px;
               background: url('/images/setting.svg') no-repeat 30px 50%;
+              margin-bottom:10px;
             }
             > ul {
               > li {
@@ -60,16 +61,21 @@ body {
                   color: #273240;
                   text-decoration: none;
                   padding: 15px 0 15px 70px;
+                  border-radius: 5px;
                   &:before {
                     width:5px;
                     height:5px;
                     position: absolute;
-                    top:0;
-                    left:0;
+                    top: 50%;
+                    left: 50px;
                     border-radius:5px;
                     background-color: #273240;
                     display: block;
                     content: "";
+                    transform: translateY(-50%);
+                  }
+                  &.active {
+                    background-color: #E4E7F5;
                   }
                 }
               }
@@ -80,6 +86,19 @@ body {
     }
     a {
       text-decoration: none;
+    }
+  }
+
+  .help {
+    > p {
+      > a {
+        display: block;
+        padding: 15px 0 15px 60px;
+        background: url('/images/infoSquare.svg') no-repeat 30px 50%;
+        border-radius: 5px;
+        color: #273240;
+        text-decoration: none;
+      }
     }
   }
 
@@ -97,5 +116,89 @@ body {
 }
 
 main {
+  position: relative;
   flex-grow: 1;
+}
+
+/* Header */
+header {
+  padding:30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: #8d8d8d 3px 1px 4px;
+  .header-title {
+    display: flex;
+    align-items: center;
+    h2 {
+      margin-right: 30px;
+    }
+  }
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border:1px solid #e1e1e1;
+  border-bottom: none;
+  border-radius: 50px 50px 0 0;
+  padding:20px 80px 20px 100px;
+  transform: translateX(-50%);
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  > ul {
+    display: flex;
+    align-items: center;
+    > li {
+      position: relative;
+      flex-grow: 1;
+      &.bom {
+        > button {
+          border-left: none;
+          background: url('/images/bom.svg') no-repeat 20px 50%;
+        }
+      }
+      &.manage {
+        > button {
+          background: url('/images/manage.svg') no-repeat 20px 50%;
+        }
+      }
+      &.camera {
+        > button {
+          background: url('/images/camera.svg') no-repeat 20px 50%;
+        }
+      }
+      > button {
+        height: 26px;
+        line-height: 26px;
+        font-size:18px;
+        padding:0 20px 0 60px;
+        border-left:1px solid #ddd;
+      }
+      &.active {
+        > ul {
+          display: block;
+        }
+      }
+      > ul {
+        display: none;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        border: 1px solid #ddd;
+        transform: translateX(-50%);
+        > li {
+          > button {
+            font-size:16px;
+            min-width: 100px;
+          }
+        }
+      }
+    }
+  }
 }
