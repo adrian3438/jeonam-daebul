@@ -13,10 +13,12 @@ export default function Header({info} : Props) {
     function Logout (e : React.MouseEvent) {
         e.preventDefault()
         logout();
-        if(authData?.isAdmin){
-            router.push('/dotsAdmin')
-            Cookies.remove('jdassid', {path : '/'})
-        }
+        router.push('/dotsAdmin')
+        Cookies.remove('jdassid', {path : '/'})
+        // if(authData?.isAdmin){
+        //     router.push('/dotsAdmin')
+        //     Cookies.remove('jdassid', {path : '/'})
+        // }
     }
     return (
         <header>
