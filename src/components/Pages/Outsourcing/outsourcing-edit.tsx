@@ -23,22 +23,25 @@ export default function OutsourcingEdit ({id} : Props) {
         setData((prev) => ({...prev, [name] : value}))
     }
     async function Save () {
-        const formData = new FormData()
-        formData.append('userLoginId', data?.loginId)
-        formData.append('userName', data?.name)
-        formData.append('userPass', data?.pass)
-        formData.append('userCompanyName', data?.companyName)
-        formData.append('userMobile ', data?.mobile)
-        formData.append('userPhone', data?.phone)
-        formData.append('userEmail', data?.email)
-        formData.append('userDept', data?.dept)
-        formData.append('userPosition', data?.position)
-        formData.append('userNotes', data?.note)
-        const response = await api.post(`/admin/user/setUser.php`, formData)
-        if(response?.data?.result === true) {
-            alert(response?.data?.resultMsg); 
-            router.push(`/outsourcing`)
-        }else{alert(response?.data?.resultMsg)}
+        try{
+            const formData = new FormData()
+            formData.append('userLoginId', data?.loginId)
+            formData.append('userName', data?.name)
+            formData.append('userPass', data?.pass)
+            formData.append('userCompanyName', data?.companyName)
+            formData.append('userMobile ', data?.mobile)
+            formData.append('userPhone', data?.phone)
+            formData.append('userEmail', data?.email)
+            formData.append('userDept', data?.dept)
+            formData.append('userPosition', data?.position)
+            formData.append('userNotes', data?.note)
+            const response = await api.post(`/admin/user/setUser.php`, formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg); 
+                router.push(`/outsourcing`);
+            }else{alert(response?.data?.resultMsg)}
+        }catch{ alert('Server Error')
+        }
     }
     return(
         <>
@@ -56,7 +59,7 @@ export default function OutsourcingEdit ({id} : Props) {
                     <th scope="row">로그인 아이디</th>
                     <td><input type="text" name="loginId" value={data?.loginId} onChange={handleChange}/></td>
                     <th scope="row">임시 비밀번호</th>
-                    <td><input type="text" name="pass" value={data?.pass} onChange={handleChange}/></td>
+                    <td><input type="password" name="pass" value={data?.pass} onChange={handleChange}/></td>
                 </tr>
                 <tr>
                     <th scope="row">담당자 핸드폰</th>
@@ -85,7 +88,7 @@ export default function OutsourcingEdit ({id} : Props) {
         </section>
         <section>
             <button>이전으로</button>
-            <button>{id === 'regist' ? '저장하기' : '수정하기'}</button>
+            <button onClick={Save}>{id === 'regist' ? '저장하기' : '수정하기'}</button>
         </section>
         </>
     )

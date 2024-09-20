@@ -13,7 +13,7 @@ export default async function Main({searchParams : {s}} : MainProps) {
     const cookie = cookies();
     const cookieValue : any = cookie.get('jdassid') || '';
     const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
-    console.log(response?.data)
+    // console.log(response?.data)
     const data = response?.data?.result === true ? response?.data?.List : []
     const shipid = s || response?.data?.List[0]?.ID?.toString() || '';
     return (
