@@ -2,8 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import "@/app/assets/main.scss";
 import "@/app/assets/shipList.scss";
+import { cookies } from "next/headers";
+import api from "@/lib/api";
 
-export default function Main() {
+export default async function Main() {
+    const cookie = cookies();
+    const cookieValue : any = cookie.get('jdassid') || '';
+    const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
+    
     return (
         <div className="ship-list">
             <section className="ship-type">
