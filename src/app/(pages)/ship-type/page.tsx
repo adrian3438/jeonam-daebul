@@ -8,7 +8,7 @@ import api from "@/lib/api";
 export default async function Main() {
     const cookie = cookies();
     const cookieValue : any = cookie.get('jdassid') || '';
-    // const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
+    const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
     
     return (
         <div className="ship-list">
