@@ -29,7 +29,7 @@ export default function OutsourcingEdit ({id, list} : Props) {
             if(id !== 'regist') {formData.append('ID', id)}
             formData.append('userLoginId', data?.loginId)
             formData.append('userName', data?.name)
-            formData.append('userPass', data?.pass)
+            if(id === 'regist'){formData.append('userPass', data?.pass)}
             formData.append('userCompanyName', data?.companyName)
             formData.append('userMobile ', data?.mobile)
             formData.append('userPhone', data?.phone)
@@ -46,19 +46,21 @@ export default function OutsourcingEdit ({id, list} : Props) {
             }else{
                 const response = await api.post(`/admin/user/updUser.php`, formData)
                 if(response?.data?.result === true) {
-                    alert(response?.data?.resultMsg); 
-                    // router.back();
+                    alert(response?.data?.resultMsg);
+                    router.push(`/outsourcing`);
                 }else{alert(response?.data?.resultMsg)}
             }
         }catch{ alert('Server Error')
         }
     }
     useEffect(()=> {
-        // if(id !== 'regist') {
-        //     setData((prev) => ({ ...prev,
-        //         loginId : '123'
-        //     }))
-        // }
+        if(id !== 'regist') {
+            setData((prev) => ({ ...prev,
+                loginId : list?.userLoginId, name : list?.userName, companyName : list?.userCompanyName,
+                mobile : list?.userMobile, phone : list?.userPhone, email : list?.userEmail,
+                dept : list?.userDept, position : list?.userPosition, note : list?.userNotes
+            }))
+        }
     }, [])
     return(
         <>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Paginate from "@/components/Paginate/pagination";
 import useCalCulateIndex from "@/components/useCalculateIndex";
 import api from "@/lib/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 interface DataType {
     ID : string | Blob , userLoginId : string, userName : string, userCompanyName : string,
@@ -42,6 +42,9 @@ export default function OutsourcingListBox ({
             alert(response?.data?.resultMsg)
         }
     }
+    useEffect(()=>{
+        getList()
+    }, [])
     return(
         <>
         <table className="table">
