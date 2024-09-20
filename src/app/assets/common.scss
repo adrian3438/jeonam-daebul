@@ -1,0 +1,106 @@
+/* 공통 Table */
+.table {
+  width: 100%;
+  border-top: 2px solid #444;
+  thead {
+    border-bottom: 1px solid #ddd;
+    th {
+      padding: 15px 10px;
+      font-size: 18px;
+    }
+  }
+  tbody {
+    td {
+      padding: 20px 10px 0;
+      text-align: center;
+      &.change {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width:200px;
+      }
+      &.action {
+        a {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.table2 {
+  width: 100%;
+  tbody {
+    th {
+      padding: 15px 0;
+      font-weight: bold;
+      width: 15%;
+      vertical-align: middle;
+      font-size: 18px;
+    }
+    td {
+      padding: 15px 0;
+      width: 35%;
+      vertical-align: middle;
+      font-size: 18px;
+      a {
+
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+/* Toggle Switch */
+.toggle_switch {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  input[type="checkbox"] {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    font-size: initial;
+    clip: rect(0 0 0 0);
+  }
+  input[type="checkbox"]:checked + .slider {
+    background-color: #007bff;
+  }
+  .slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.4s;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 4px;
+      width: 14px;
+      height: 14px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+  }
+  input[type="checkbox"]:checked + .slider::before {
+    transform: translateX(18px);
+  }
+}
+
+
+
+
+
+
+
+
+

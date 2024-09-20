@@ -4,6 +4,7 @@ import api from '@/lib/api';
 import Container from '@/components/Container';
 import { cookies } from 'next/headers';
 import AuthProvider, { useAuth } from '@/components/Context/AuthContext';
+import '@/app/assets/common.scss';
 const pretendard = localFont({
     src: "../fonts/Pretendard-Regular.woff",
     variable: "--font-pretendard-sans",

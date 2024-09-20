@@ -1,0 +1,111 @@
+.modal-wrapper {
+  position: relative;
+  height: 100%;
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:30px;
+    h2 {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      font-weight: 600;
+
+      button {
+        margin-left: 10px;
+        height: 25px;
+        background: none;
+        border: none;
+      }
+    }
+
+    .modal-search {
+      background-color: #E4E7F5;
+      input[type='text'] {
+        border: none;
+        background: none;
+        padding: 10px 10px;
+        width: 250px;
+      }
+      .search-btn {
+        border: none;
+        text-indent: -9999px;
+        overflow: hidden;
+        padding: 0 0 0 30px;
+        background: url('/images/search-icon.svg') no-repeat center center;
+        cursor: pointer;
+      }
+    }
+
+    .modal-close-button {
+      cursor: pointer;
+      position: relative;
+      background: none;
+      border: none;
+      display: inline-block;
+      *display: inline;
+      text-indent: -9999px;
+      overflow: hidden;
+      width: 40px;
+      height: 40px;
+
+      &::after {
+        position: absolute;
+        top:0;
+        right:0;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        content: "\00d7";
+        font-size: 40px;
+        font-weight: bold;
+        color: #000;
+        text-indent: 0;
+      }
+    }
+  }
+
+  .modal-content {
+    .change-reason {
+      padding: 20px;
+      h3 {
+        font-weight: bold;
+        margin:40px 0 20px;
+        font-size: 20px;
+      }
+      textarea {
+        resize: none;
+        width: 100%;
+        border: 1px solid #ddd;
+        height: 300px;
+        padding: 20px;
+        font-family: var(--font-pretendard-sans);
+        font-size: 16px;
+      }
+    }
+  }
+
+  .modal-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border:1px solid #ddd;
+    a {
+      text-decoration: none;
+      background-color: #efefef;
+      color: #000;
+      display: inline-block;
+      padding: 10px 15px;
+      border-left: 1px solid #ddd;
+      &.active {
+
+      }
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+}
+
