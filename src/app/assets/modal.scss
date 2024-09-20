@@ -1,3 +1,7 @@
+.ReactModalPortal {
+  z-index:1000
+}
+
 .modal-wrapper {
   position: relative;
   height: 100%;
@@ -17,6 +21,7 @@
         height: 25px;
         background: none;
         border: none;
+        cursor: pointer;
       }
     }
 
@@ -99,9 +104,6 @@
       display: inline-block;
       padding: 10px 15px;
       border-left: 1px solid #ddd;
-      &.active {
-
-      }
       &:first-child {
         border-left: none;
       }
