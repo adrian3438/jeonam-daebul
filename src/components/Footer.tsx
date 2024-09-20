@@ -1,6 +1,6 @@
 'use client';
 
-import CustomModal from "@/app/components/CustomModal";
+import CustomModal from "@/components/CustomModal";
 import { useState } from "react";
 
 export default function Footer() {
