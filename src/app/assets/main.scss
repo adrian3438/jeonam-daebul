@@ -138,6 +138,7 @@ header {
 
 /* Footer */
 footer {
+  background-color: #fff;
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -182,6 +183,7 @@ footer {
       }
       &.active {
         > ul {
+          background: #fff;
           display: block;
         }
       }

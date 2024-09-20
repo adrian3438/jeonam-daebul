@@ -1,0 +1,49 @@
+.outsourcing {
+  position: relative;
+  padding: 60px;
+  height: calc(100% - 120px);
+  box-sizing: border-box;
+  section {
+    margin-top: 80px;
+    &:first-child {
+      margin-top: 0;
+    }
+    h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      span {
+        color: #1F75CB;
+      }
+    }
+    textarea {
+      resize: none;
+      width: 100%;
+      border: 1px solid #ddd;
+      height: 200px;
+      padding: 20px;
+      font-family: var(--font-pretendard-sans);
+      font-size: 16px;
+    }
+  }
+
+  .pagination {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    .btns {
+      display: block;
+      text-align: center;
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #1F75CB;
+        font-size:18px;
+        padding: 10px 30px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
