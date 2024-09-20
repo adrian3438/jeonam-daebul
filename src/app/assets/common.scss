@@ -125,7 +125,22 @@
   }
 }
 
-
+/* Buttons */
+.btns2 {
+  text-align: right;
+  button {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #1F75CB;
+    font-size:18px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    transform: translateX(-60px);
+  }
+}
 
 
 

@@ -1,0 +1,379 @@
+.ship-manage {
+  position: relative;
+  padding: 60px;
+  height: calc(100% - 120px);
+  box-sizing: border-box;
+  ul {
+    display: flex;
+    gap: 20px;
+    > li {
+      width: 25%;
+      margin-bottom: 30px;
+      button {
+        display: block;
+        width: 100%;
+        border: 1px solid #ddd;
+        background: none;
+        cursor: pointer;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        overflow: hidden;
+        > img {
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+      > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 10px;
+        > p {
+          position: relative;
+          font-size: 14px;
+          padding-left: 20px;
+          &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 15px;
+            background-color: #273240;
+            transform: translateY(-50%);
+          }
+        }
+        > div {
+          > a {
+            margin-left: 10px;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      &.active {
+        > div {
+          > p {
+            color: #707FDD;
+            &:before {
+              background-color: #707FDD;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* BOP 관리 */
+.ship-bop-manage-list {
+  overflow-y: scroll;
+  padding: 60px;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh - 160px);
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #707FDD;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 5px;
+  }
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    > li {
+      width: calc(25% - 30px);
+      box-sizing: border-box;
+      > div {
+        box-shadow: #ddd 0 2px 7px;
+        border-radius: 15px;
+        .bop-image-area {
+          border-bottom: 1px solid #eee;
+          height: 200px;
+          > img {
+            width: auto !important;
+            height: 100% !important;
+          }
+        }
+        .bop-info-area {
+          display: flex;
+          padding: 20px;
+          justify-content: space-between;
+          font-weight: 600;
+          align-items: center;
+          p {
+            display: flex;
+            align-items: center;
+            > a {
+              display: inline-block;
+              overflow:hidden;
+              text-indent: -9999px;
+              width:22px;
+              height:22px;
+              margin-left:10px;
+            }
+          }
+          .subsidary-regist {
+            > a {
+              background: url("/images/write.svg") no-repeat 50% 50%;
+            }
+          }
+          .no-registed {
+            > a {
+              background: url("/images/upload.svg") no-repeat 50% 50%;
+            }
+          }
+          .registed {
+            > a {
+              background: url("/images/write.svg") no-repeat 50% 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  .btns {
+    display: block;
+    text-align: center;
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background-color: #1F75CB;
+      font-size:18px;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+  }
+}
+
+/* 대조 등록/수정 */
+.subsidary-manage-regist {
+  padding: 60px;
+  display: flex;
+  height: calc(100vh - 300px);
+  > section {
+    width: 50%;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      span {
+        color: #f00;
+      }
+    }
+    textarea {
+      resize: none;
+      width: 100%;
+      border: 1px solid #ddd;
+      height: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: var(--font-pretendard-sans);
+      font-size: 16px;
+    }
+    &:first-child {
+      > div {
+        margin-bottom: 40px;
+        .ship-name {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          padding: 5px 10px;
+        }
+      }
+    }
+    &:last-child {
+      h2 {
+        margin-bottom: 30px;
+      }
+      > div {
+        margin-bottom: 40px;
+        &:first-child {
+          margin-bottom: 50px;
+          padding-bottom: 50px;
+
+          > div {
+            > p {
+              display: flex;
+              margin-top:20px;
+              align-items: center;
+              gap: 20px;
+              &:first-child {
+                margin-top:0;
+              }
+              label {
+                width: 100px;
+                text-align: right;
+              }
+              input {
+                width: 100%;
+                border: 1px solid #ddd;
+              }
+            }
+          }
+        }
+        &:last-child {
+          > div {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            label {
+              width: 33%;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* BOP 등록/수정 */
+.bop-manage-regist {
+  padding: 60px;
+  display: flex;
+  height: calc(100vh - 300px);
+  > section {
+    width: 50%;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      span {
+        color: #f00;
+      }
+    }
+    textarea {
+      resize: none;
+      width: 100%;
+      border: 1px solid #ddd;
+      height: 200px;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: var(--font-pretendard-sans);
+      font-size: 16px;
+    }
+    &:first-child {
+      > div {
+        margin-bottom: 40px;
+        .ship-name {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          padding: 5px 10px;
+        }
+      }
+    }
+    &:last-child {
+      h2 {
+        margin-bottom: 30px;
+      }
+      > div {
+        margin-bottom: 40px;
+        &:first-child {
+          margin-bottom: 50px;
+          padding-bottom: 50px;
+
+          > div {
+            > p {
+              display: flex;
+              margin-top:20px;
+              align-items: center;
+              gap: 20px;
+              &:first-child {
+                margin-top:0;
+              }
+              label {
+                width: 100px;
+                text-align: right;
+              }
+              input {
+                width: 100%;
+                border: 1px solid #ddd;
+              }
+            }
+          }
+        }
+        &:last-child {
+          > div {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            label {
+              width: 33%;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ship-manage-regist {
+  padding: 60px;
+  display: flex;
+  height: calc(100vh - 300px);
+  > section {
+    width: 50%;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      span {
+        color: #f00;
+      }
+    }
+    &:first-child {
+      > div {
+        margin-bottom: 40px;
+        .ship-name {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          padding: 5px 10px;
+        }
+      }
+    }
+    &:last-child {
+      h2 {
+        margin-bottom: 30px;
+      }
+      > div {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        label {
+          width: 33%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
