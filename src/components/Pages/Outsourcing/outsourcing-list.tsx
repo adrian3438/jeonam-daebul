@@ -61,7 +61,7 @@ export default function OutsourcingListBox ({
             <tbody>
                 {list?.map((list:DataType, index:number) => (
                     <tr key={index}>
-                        {/* <td>{useCalCulateIndex(page, size, totalCount, index)}</td> */}
+                        <td>{useCalCulateIndex((page), size, totalCount, index)}</td>
                         <td>-</td>
                         <td style={{textAlign: 'left'}}>{list?.userCompanyName}</td>
                         <td>{list?.userName}</td>
@@ -88,7 +88,7 @@ export default function OutsourcingListBox ({
         </table>
 
         <div className="pagination">
-            <Paginate page={page || 1} size={size || 10} totalCount={totalCount}/>
+            <Paginate page={page} size={size} totalCount={totalCount}/>
             <div className='btns'>
                 <Link href='/outsourcing/regist'>등록</Link>
             </div>

@@ -9,7 +9,7 @@ interface Props {info : any}
 export default function Header({info} : Props) {
     const router = useRouter()
     const {authData, logout} = useAuth()
-    console.log(authData)
+    // console.log(authData)
     function Logout (e : React.MouseEvent) {
         e.preventDefault()
         logout();

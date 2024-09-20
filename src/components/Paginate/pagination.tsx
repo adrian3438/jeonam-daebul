@@ -1,5 +1,7 @@
+'use client'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface Props {
     page : number
@@ -11,15 +13,23 @@ export default function Paginate ({
     page, size, totalCount
 
 } : Props) {
-
+    const router = useRouter()
+    const path = usePathname()
+    const query = useSearchParams()
     function handleChange (e:React.ChangeEvent<unknown>, pageNumber : number){
-       
+
+        if(page !== pageNumber){
+            const newParams : number | any = new URLSearchParams(query.toString())
+            newParams.set('page', pageNumber)
+            router.push(`${path}?${newParams?.toString()}`)
+        }
+        
     }
     
     return(
         <>
         <Stack spacing={2}>
-            <Pagination page={1} count={Math.ceil(totalCount/size)} shape="rounded" onChange={handleChange} boundaryCount={1} showFirstButton showLastButton/>
+            <Pagination page={page} count={Math.ceil(totalCount/size)} shape="rounded" onChange={handleChange} boundaryCount={1} showFirstButton showLastButton/>
         </Stack>
         </>
     )

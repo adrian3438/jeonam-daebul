@@ -25,8 +25,8 @@ export default async function OutsourcingList({searchParams : {
             <OutsourcingListBox
                 data={data}
                 totalCount={totalCount}
-                page={page}
-                size={size}
+                page={page||1}
+                size={size||10}
                 sortColumn={sortColumn}
                 sortOrder={sortOrder}
             />

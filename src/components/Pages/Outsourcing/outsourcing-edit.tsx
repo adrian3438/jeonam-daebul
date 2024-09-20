@@ -2,17 +2,18 @@
 
 import api from "@/lib/api"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface Props {
-    id : string | undefined
+    id : string | Blob,
+    list : any
 }
 interface DataType {
     loginId : string, name : string, pass : string, 
     companyName : string, mobile : string, phone : string,
     email : string, dept : string, position : string, note : string
 }
-export default function OutsourcingEdit ({id} : Props) {
+export default function OutsourcingEdit ({id, list} : Props) {
     const router = useRouter()
     const [data, setData] = useState<DataType>({
         loginId : '', name : '', pass : '', companyName : '', mobile : '',
@@ -25,6 +26,7 @@ export default function OutsourcingEdit ({id} : Props) {
     async function Save () {
         try{
             const formData = new FormData()
+            if(id !== 'regist') {formData.append('ID', id)}
             formData.append('userLoginId', data?.loginId)
             formData.append('userName', data?.name)
             formData.append('userPass', data?.pass)
@@ -35,14 +37,29 @@ export default function OutsourcingEdit ({id} : Props) {
             formData.append('userDept', data?.dept)
             formData.append('userPosition', data?.position)
             formData.append('userNotes', data?.note)
-            const response = await api.post(`/admin/user/setUser.php`, formData)
-            if(response?.data?.result === true) {
-                alert(response?.data?.resultMsg); 
-                router.push(`/outsourcing`);
-            }else{alert(response?.data?.resultMsg)}
+            if(id === 'regist') {
+                const response = await api.post(`/admin/user/setUser.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); 
+                    router.push(`/outsourcing`);
+                }else{alert(response?.data?.resultMsg)}
+            }else{
+                const response = await api.post(`/admin/user/updUser.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); 
+                    // router.back();
+                }else{alert(response?.data?.resultMsg)}
+            }
         }catch{ alert('Server Error')
         }
     }
+    useEffect(()=> {
+        // if(id !== 'regist') {
+        //     setData((prev) => ({ ...prev,
+        //         loginId : '123'
+        //     }))
+        // }
+    }, [])
     return(
         <>
         <section>
