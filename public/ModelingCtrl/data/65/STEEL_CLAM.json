@@ -1,0 +1,798 @@
+{
+    "XVLWeb3DProfile": {
+        "convParameters": {
+            "camsnap": 0,
+            "draco": 0,
+            "encode": 1,
+            "geom": 1,
+            "gzip": 0,
+            "in": "E:\\C-0 DOTs3D Conversion\\KOMERI\\신화하이텍\\STEEL_CLAM.xv2",
+            "mpri": 0,
+            "out": "E:\\C-0 DOTs3D Conversion\\KOMERI\\ConversionFile\\STEEL_CLAM.json",
+            "quality": 1,
+            "shlgrp": 0
+        },
+        "transmission": "batch",
+        "version": "8.0"
+    },
+    "accessors": {
+        "accessor_mesh_S10_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 9674256,
+            "byteStride": 0,
+            "componentType": 5125,
+            "count": 672129,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S10_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 0,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 1209282,
+            "max": [
+                1.9625986814498901,
+                5.2046146392822266,
+                10.500179290771484
+            ],
+            "min": [
+                -4.0377597808837891,
+                -23.8818359375,
+                4.4996676445007324
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S10_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 7255692,
+            "componentType": 5121,
+            "count": 1209282,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S11_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 12475820,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 15114,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S11_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 12362772,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 14131,
+            "max": [
+                29.735982894897461,
+                9.8846149444580078,
+                12.5
+            ],
+            "min": [
+                18.18897819519043,
+                -24.495386123657227,
+                2.5
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S11_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 12447558,
+            "componentType": 5121,
+            "count": 14131,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S12_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 17795640,
+            "byteStride": 0,
+            "componentType": 5125,
+            "count": 672141,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S12_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 12506048,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 661199,
+            "max": [
+                26.962804794311523,
+                5.2046146392822266,
+                10.500205039978027
+            ],
+            "min": [
+                20.962221145629883,
+                -23.8818359375,
+                4.5
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S12_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 16473242,
+            "componentType": 5121,
+            "count": 661199,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S7_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20600932,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 14742,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S7_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20484204,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 14591,
+            "max": [
+                31.462480545043945,
+                -15.24538516998291,
+                15
+            ],
+            "min": [
+                -8.5375194549560547,
+                -34.495384216308594,
+                0
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S7_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20571750,
+            "componentType": 5121,
+            "count": 14591,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S8_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20779984,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 19596,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S8_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20630416,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 18696,
+            "max": [
+                31.462480545043945,
+                5.5046143531799316,
+                15
+            ],
+            "min": [
+                -8.5375194549560547,
+                -13.74538516998291,
+                0
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S8_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20742592,
+            "componentType": 5121,
+            "count": 18696,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S9_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20928064,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 15114,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S9_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20819176,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 13611,
+            "max": [
+                4.7359838485717773,
+                9.8846149444580078,
+                12.5
+            ],
+            "min": [
+                -6.8110218048095703,
+                -24.495386123657227,
+                2.4999997615814209
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S9_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 20900842,
+            "componentType": 5121,
+            "count": 13611,
+            "type": "VEC2"
+        },
+        "sign_accessor_sdk_published": {
+            "bufferView": "bufferView_Sign",
+            "byteOffset": 0,
+            "componentType": 5120,
+            "count": 1,
+            "type": "SCALAR"
+        }
+    },
+    "asset": {
+        "generator": "XVL Web3D Publisher Ver. 8.0",
+        "premultipliedAlpha": true,
+        "version": "2.0"
+    },
+    "bufferViews": {
+        "bufferView_Main": {
+            "buffer": "STEEL_CLAM.bin",
+            "byteLength": 20958292,
+            "byteOffset": 1
+        },
+        "bufferView_Sign": {
+            "buffer": "STEEL_CLAM.bin",
+            "byteLength": 1,
+            "byteOffset": 0
+        }
+    },
+    "buffers": {
+        "STEEL_CLAM.bin": {
+            "byteLength": 20958293,
+            "type": "arraybuffer",
+            "uri": "STEEL_CLAM.bin"
+        }
+    },
+    "extensionsUsed": [
+        "KHR_materials_common"
+    ],
+    "materials": {
+        "aux_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "CONSTANT",
+                    "values": {
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "aux_material"
+        },
+        "edge_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "edge_material"
+        },
+        "face_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "face_material"
+        },
+        "vertex_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "vertex_material"
+        }
+    },
+    "meshes": {
+        "mesh_S10": {
+            "name": "mesh_S10",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S10_0_2",
+                        "POSITION": "accessor_mesh_S10_0_1"
+                    },
+                    "indices": "accessor_mesh_S10_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        },
+        "mesh_S11": {
+            "name": "mesh_S11",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S11_0_2",
+                        "POSITION": "accessor_mesh_S11_0_1"
+                    },
+                    "indices": "accessor_mesh_S11_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        },
+        "mesh_S12": {
+            "name": "mesh_S12",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S12_0_2",
+                        "POSITION": "accessor_mesh_S12_0_1"
+                    },
+                    "indices": "accessor_mesh_S12_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        },
+        "mesh_S7": {
+            "name": "mesh_S7",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S7_0_2",
+                        "POSITION": "accessor_mesh_S7_0_1"
+                    },
+                    "indices": "accessor_mesh_S7_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        },
+        "mesh_S8": {
+            "name": "mesh_S8",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S8_0_2",
+                        "POSITION": "accessor_mesh_S8_0_1"
+                    },
+                    "indices": "accessor_mesh_S8_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        },
+        "mesh_S9": {
+            "name": "mesh_S9",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S9_0_2",
+                        "POSITION": "accessor_mesh_S9_0_1"
+                    },
+                    "indices": "accessor_mesh_S9_0_0",
+                    "material": "face_material",
+                    "mode": 4
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "STEEL CLAM": {
+            "children": [
+                "_G6",
+                "_G4",
+                "_G3",
+                "_G2",
+                "_G1",
+                "_G7"
+            ],
+            "extras": {
+                "elid": 5,
+                "visible": true
+            },
+            "name": "STEEL CLAM"
+        },
+        "_G1": {
+            "extras": {
+                "elid": 1,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S11"
+            ],
+            "name": "_G1"
+        },
+        "_G2": {
+            "extras": {
+                "elid": 2,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S10"
+            ],
+            "name": "_G2"
+        },
+        "_G3": {
+            "extras": {
+                "elid": 3,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S9"
+            ],
+            "name": "_G3"
+        },
+        "_G4": {
+            "extras": {
+                "elid": 4,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S8"
+            ],
+            "name": "_G4"
+        },
+        "_G6": {
+            "extras": {
+                "elid": 6,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S7"
+            ],
+            "name": "_G6"
+        },
+        "_G7": {
+            "extras": {
+                "elid": 7,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S12"
+            ],
+            "name": "_G7"
+        }
+    },
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "extras": {
+                "attributes": {
+                    "M+_AxisDisplay": {
+                        "type": "Int",
+                        "value": 16
+                    },
+                    "M+_BGColor": {
+                        "type": "Vector",
+                        "value": [
+                            1,
+                            1,
+                            1
+                        ]
+                    },
+                    "M+_BGColor2": {
+                        "type": "Vector",
+                        "value": [
+                            1,
+                            1,
+                            1
+                        ]
+                    },
+                    "M+_CSPlaneColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_CSWireColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_CommentFontBold": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_CommentFontItalic": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_CommentFontName": {
+                        "type": "Char",
+                        "value": "Terminal"
+                    },
+                    "M+_CommentFontSize": {
+                        "type": "Int",
+                        "value": 14
+                    },
+                    "M+_CoordSys": {
+                        "type": "Char",
+                        "value": "CAD"
+                    },
+                    "M+_CurrentAxisDisp": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_CurrentAxisPos": {
+                        "type": "Int",
+                        "value": 2
+                    },
+                    "M+_CurveBoundColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_CurveInsideColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_CurveWireColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_DimTipShape": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DimensionColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_DimensionFontBold": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_DimensionFontItalic": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_DimensionFontName": {
+                        "type": "Char",
+                        "value": "Terminal"
+                    },
+                    "M+_DimensionFontSize": {
+                        "type": "Int",
+                        "value": 14
+                    },
+                    "M+_DimensionLineBorder": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_DimensionLineBorderWidth": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_Display": {
+                        "type": "Int",
+                        "value": 14
+                    },
+                    "M+_DisplayEx": {
+                        "type": "Int",
+                        "value": 254
+                    },
+                    "M+_DrawBack": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DrawBackEx": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_DrawCSLineColor": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DrawCSPartColor": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DrawComment": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DrawCrossSection": {
+                        "type": "Vector",
+                        "value": [
+                            20,
+                            96
+                        ]
+                    },
+                    "M+_DrawDimension": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_DrawTraceLine": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_ExamineMode": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_Gradation": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_LinkColor": {
+                        "type": "Vector",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "M+_LinkLineBorder": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_LinkLineBorderWidth": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_LinkTipShape": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_MarkupBorder": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_MarkupBorderWidth": {
+                        "type": "Int",
+                        "value": 1
+                    },
+                    "M+_Projection": {
+                        "type": "Char",
+                        "value": "parallel"
+                    },
+                    "M+_SurfaceColor": {
+                        "type": "Vector",
+                        "value": [
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            0.75294099999999997
+                        ]
+                    },
+                    "M+_TraceLineBorder": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_TraceLineBorderWidth": {
+                        "type": "Int",
+                        "value": 1
+                    }
+                },
+                "sdkPublished": "sign_accessor_sdk_published"
+            },
+            "nodes": [
+                "STEEL CLAM"
+            ]
+        }
+    }
+}
+

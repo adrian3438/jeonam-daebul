@@ -9,11 +9,14 @@ interface Props {info : any}
 export default function Header({info} : Props) {
     const router = useRouter()
     const {authData, logout} = useAuth()
+    console.log(authData)
     function Logout (e : React.MouseEvent) {
         e.preventDefault()
         logout();
-        router.push('/dotsAdmin')
-        Cookies.remove('jdassid', {path : '/'})
+        if(authData?.isAdmin){
+            router.push('/dotsAdmin')
+            Cookies.remove('jdassid', {path : '/'})
+        }
     }
     return (
         <header>

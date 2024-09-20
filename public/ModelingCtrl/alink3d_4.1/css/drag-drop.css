@@ -1,0 +1,6 @@
+.drag-drop {
+	position: absolute; z-index: 1000; cursor: move;
+}
+.drag {
+	z-index: 1001;
+}

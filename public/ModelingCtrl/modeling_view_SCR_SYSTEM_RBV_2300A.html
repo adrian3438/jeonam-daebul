@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <title>ui</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="common/css/jquery-ui.min.css" media="all">
+        <link rel="stylesheet" type="text/css" href="common/css/drag-drop.css"/>
+        <link rel="stylesheet" type="text/css" href="common/css/modeling.css"/>
+        <link rel="stylesheet" type="text/css" href="common/css/web3d.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="common/css/dots3d.css"/> -->
+        <link rel="stylesheet" type="text/css" href="dynatree/css/dynatree/ui.dynatree.css">    
+        <link rel="stylesheet" type="text/css" href="dynatree/css/perfect-scrollbar/perfect-scrollbar.min.css">
+        <link rel="stylesheet" type="text/css" href="dynatree/css/dynatree/dynatree-custom.css">
+        <link rel="stylesheet" type="text/css" href="dynatree/css/perfect-scrollbar/perfect-scrollbar-custom.css">
+       
+        <link rel="stylesheet" href="toolbar/css/toolbar.css"/>
+        <script src="common/js/jquery-1.10.2.min.js"></script>
+        <script src="common/js/jquery-ui-1.10.3.min.js"></script>
+        
+        <script src="common/js/util.js"></script>
+        <script src="dynatree/js/dynatree/jquery.dynatree_ver2.js"></script>
+        <script src="dynatree/js/perfect-scrollbar/perfect-scrollbar.jquery.min.js"></script>
+
+        <script>
+            const searchParams = new URLSearchParams(location.search);
+            // console.log(searchParams)
+            // console.log(window.location.search)
+            // for(const param of searchParams){
+            //     console.log(param)
+            //     if(param[0] === 'modelingName'){
+            //         id = param[1];
+            //         url = `./data/${param[1]}.json`;
+            //     }
+            // }
+            // url = './data/' + searchParams.get("model");
+            // url = './data/ToyTractor-V10.json';
+id='SCR_SYSTEM_RBV_2300A';
+url='./data/30/SCR_SYSTEM_RBV_2300A.json';
+        </script>
+       
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: beige;
+                color: #000000;
+                margin: 0px;
+                overflow: hidden;
+                font-family: "Segoe UI",Arial,sans-serif;
+                font-size: 15px;
+            }
+
+            #web3dPlayer_main {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width:100%;
+                height:100%;
+                z-index: -1;
+            }
+           
+            #container {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width:100%;
+                height:100%;
+                z-index: -1;
+            }
+           
+            #progress_waku {
+                z-index: 1000;
+                position: absolute;
+                top: 51px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                display: none;
+            }
+            #progress {
+                height: 15px;
+                width: 250px;
+                position: relative;
+                top: 50%;
+                margin: -10px auto 0 auto;
+                border-radius: 0;
+            }
+            #progress.ui-widget-content {
+                background: #46454D;
+                border: 2px solid #46454D;
+            }
+            #progress_waku span {
+                display: block;
+                position: relative;
+                top: 50%;
+                margin: 5px auto 0 auto;
+                width: 100px;
+                text-align: center;
+            }
+
+            #progress .ui-corner-left {
+                border-radius: 0 2px 2px 0;
+            }
+            #progress .ui-widget-header {
+                background: #F1C447;
+                border: none;
+                margin-top: 0;
+            }
+           
+            #tool_bar_property {
+                position: absolute;
+                width:280px;
+                left:10px;
+                height: 100px;
+                bottom:20px;
+                background-color:rgba(255, 255, 255, 0.7);
+                font-size: 12px;
+                color: #000000;
+                padding: 10px;
+            }
+            #tool_bar_property td {
+                font-weight: bold;
+            }            
+        </style>            
+
+    </head>
+
+    <body>
+        <div id="center" style="float: left; width: 100%; height: 100%; position: absolute; margin: 0px; left: auto; right: auto; top: auto; bottom: auto; z-index: 0; display: block; visibility: visible;;">
+            <div id="container">
+                <div id="web3dPlayer_main"></div>
+            </div>
+            <div id="assyTree" style="position: absolute;"></div>
+        </div>
+        <div id="progress_waku">
+            <div id="progress"></div>
+            <span>0%</span>
+        </div>
+        
+        <script src="ltplayer_ver2.js"></script>
+        <script src="assytree.js"></script>
+        <script src="controller.js"></script>
+        <script src="view3D.js"></script>
+        <script src="resource.js"></script>
+        <script src="main.js"></script>
+        <!-- <script src="Web3dV2.js"></script> -->
+        <script src="toolbar.js"></script>
+        <script src="common/js/drag-drop.js"></script>
+        <script>
+            // 좌측 트리 리스트 내, 부품 선택 시 클릭 이벤트
+        </script>
+    </body>
+</html>

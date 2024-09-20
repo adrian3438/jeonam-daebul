@@ -21,7 +21,10 @@ export default function Container ({children , info} : any) {
     useEffect(()=> {
         if(info?.result) {
             if(info?.list?.length > 0) {
-                login(info?.list[0])
+                if(splitPath[1] === 'dotsAdmin'){
+                    router.push(`/ship-type`)
+                }
+                login({isAdmin : true , data : info?.list[0]})
             }
         }else{
             if(splitPath[1] !== '' && splitPath[1] !== 'dotsAdmin'){

@@ -1,0 +1,588 @@
+{
+    "XVLWeb3DProfile": {
+        "LODLevels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+        ],
+        "convParameters": {
+            "camsnap": 0,
+            "encode": 1,
+            "geom": 1,
+            "gzip": 0,
+            "in": "D:\\OneDrive-2021-01-07\\149-150_(주)대광금속\\V-Lock_볼트-v2+일반너트.xv2",
+            "log": "D:\\OneDrive-2021-01-07\\149-150_(주)대광금속\\V-Lock_볼트-v2+일반너트.xv2.log",
+            "mpri": 0,
+            "out": "D:\\OneDrive-2021-01-07\\149-150_(주)대광금속\\V-Lock_볼트-v2+일반너트.xv2.json",
+            "quality": 1,
+            "shlgrp": 1
+        },
+        "transmission": "batch",
+        "version": "4.1"
+    },
+    "accessors": {
+        "accessor_mesh_S3_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 61912,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 26040,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S3_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 0,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 7739,
+            "max": [
+                95,
+                109.69840240478516,
+                367.9251708984375
+            ],
+            "min": [
+                -95,
+                -109.69840240478516,
+                -8.3266726846886741e-15
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S3_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 46434,
+            "componentType": 5121,
+            "count": 7739,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S3_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 113992,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 6930,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S4_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 154828,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 16680,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S4_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 127852,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 3372,
+            "max": [
+                103.91954803466797,
+                119.99596405029297,
+                100
+            ],
+            "min": [
+                -103.91954803466797,
+                -119.99596405029297,
+                0
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S4_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 148084,
+            "componentType": 5121,
+            "count": 3372,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S4_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 188188,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 1242,
+            "type": "SCALAR"
+        },
+        "sign_accessor_sdk_published": {
+            "bufferView": "bufferView_Sign",
+            "byteOffset": 0,
+            "componentType": 5120,
+            "count": 1,
+            "type": "SCALAR"
+        }
+    },
+    "asset": {
+        "generator": "XVL Web3D Publisher Ver. 4.1",
+        "premultipliedAlpha": true,
+        "version": "2.0"
+    },
+    "bufferViews": {
+        "bufferView_Main": {
+            "buffer": "V-Lock_볼트-v2+일반너트.xv2.bin",
+            "byteLength": 190672,
+            "byteOffset": 1
+        },
+        "bufferView_Sign": {
+            "buffer": "V-Lock_볼트-v2+일반너트.xv2.bin",
+            "byteLength": 1,
+            "byteOffset": 0
+        }
+    },
+    "buffers": {
+        "V-Lock_볼트-v2+일반너트.xv2.bin": {
+            "byteLength": 190673,
+            "type": "arraybuffer",
+            "uri": "V-Lock_볼트-v2+일반너트.xv2.bin"
+        }
+    },
+    "extensionsUsed": [
+        "KHR_materials_common"
+    ],
+    "materials": {
+        "aux_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "CONSTANT",
+                    "values": {
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "aux_material"
+        },
+        "edge_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "edge_material"
+        },
+        "face_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "face_material"
+        },
+        "material_1": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.62745100000000009,
+                            0.62745100000000009,
+                            0.62745100000000009,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "1",
+                "textureName": null
+            },
+            "name": "material_1"
+        },
+        "material_2": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "2",
+                "textureName": null
+            },
+            "name": "material_2"
+        },
+        "material_Material-1": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.20000000000000001,
+                            0.60000000000000009,
+                            0.40000000000000002,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "Material-1",
+                "textureName": null
+            },
+            "name": "material_Material-1"
+        },
+        "vertex_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "vertex_material"
+        }
+    },
+    "meshes": {
+        "mesh_S3": {
+            "name": "mesh_S3",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S3_0_2",
+                        "POSITION": "accessor_mesh_S3_0_1"
+                    },
+                    "indices": "accessor_mesh_S3_0_0",
+                    "material": "material_Material-1",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S3_0_1"
+                    },
+                    "indices": "accessor_mesh_S3_1_0",
+                    "material": "material_1",
+                    "mode": 1
+                }
+            ]
+        },
+        "mesh_S4": {
+            "name": "mesh_S4",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S4_0_2",
+                        "POSITION": "accessor_mesh_S4_0_1"
+                    },
+                    "indices": "accessor_mesh_S4_0_0",
+                    "material": "material_1",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S4_0_1"
+                    },
+                    "indices": "accessor_mesh_S4_1_0",
+                    "material": "material_1",
+                    "mode": 1
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "Body1": {
+            "children": [
+                "_G6"
+            ],
+            "extras": {
+                "elid": 2,
+                "visible": true
+            },
+            "name": "Body1"
+        },
+        "Body4": {
+            "children": [
+                "_G7"
+            ],
+            "extras": {
+                "elid": 5,
+                "visible": true
+            },
+            "name": "Body4"
+        },
+        "V-Lock 볼트-v2+일반 너트": {
+            "children": [
+                "Body1"
+            ],
+            "extras": {
+                "elid": 3,
+                "visible": true
+            },
+            "name": "V-Lock 볼트-v2+일반 너트"
+        },
+        "V-Lock 볼트-v2+일반 너트 #1": {
+            "children": [
+                "V-Lock 볼트-v2+일반 너트",
+                "일반너트 v10"
+            ],
+            "extras": {
+                "elid": 4,
+                "visible": true
+            },
+            "name": "V-Lock 볼트-v2+일반 너트 #1"
+        },
+        "_G6": {
+            "extras": {
+                "elid": 3,
+                "shellType": "solid",
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S3"
+            ],
+            "name": "_S3"
+        },
+        "_G7": {
+            "extras": {
+                "elid": 4,
+                "shellType": "solid",
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S4"
+            ],
+            "name": "_S4"
+        },
+        "일반너트 v10": {
+            "children": [
+                "Body4"
+            ],
+            "extras": {
+                "elid": 1,
+                "visible": true
+            },
+            "matrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                203.84399999999999,
+                1
+            ],
+            "name": "일반너트 v10"
+        }
+    },
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "extras": {
+                "attributes": {
+                    "M+_CoordSys": {
+                        "type": "Char",
+                        "value": "CAD"
+                    },
+                    "M+_ExamineMode": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_Projection": {
+                        "type": "Char",
+                        "value": "parallel"
+                    }
+                },
+                "sdkPublished": "sign_accessor_sdk_published"
+            },
+            "nodes": [
+                "V-Lock 볼트-v2+일반 너트 #1"
+            ]
+        }
+    }
+}
+

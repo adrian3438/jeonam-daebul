@@ -1,0 +1,647 @@
+{
+    "XVLWeb3DProfile": {
+        "LODLevels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+        ],
+        "convParameters": {
+            "camsnap": 0,
+            "encode": 1,
+            "geom": 1,
+            "gzip": 0,
+            "in": "D:\\OneDrive-2020-12-03\\임진에스티\\SP16.xv2",
+            "log": "D:\\OneDrive-2020-12-03\\임진에스티\\SP16.log",
+            "mpri": 0,
+            "out": "D:\\OneDrive-2020-12-03\\임진에스티\\SP16.json",
+            "quality": 1,
+            "shlgrp": 1
+        },
+        "transmission": "batch",
+        "version": "4.1"
+    },
+    "accessors": {
+        "accessor_mesh_S3_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 14792,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 6459,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S3_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 0,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 1849,
+            "max": [
+                12.5625,
+                9.8000001907348633,
+                13.856406211853027
+            ],
+            "min": [
+                -12.5625,
+                -13,
+                -13.856406211853027
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S3_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 11094,
+            "componentType": 5121,
+            "count": 1849,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S3_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 27710,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 1800,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S5_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 35022,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 2223,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S5_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 31310,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 464,
+            "max": [
+                12.259807586669922,
+                7.9625000953674316,
+                10.997891426086426
+            ],
+            "min": [
+                -10.808897972106934,
+                -0.64999997615814209,
+                -11.002108573913574
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S5_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 34094,
+            "componentType": 5121,
+            "count": 464,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S5_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 39468,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 462,
+            "type": "SCALAR"
+        },
+        "sign_accessor_sdk_published": {
+            "bufferView": "bufferView_Sign",
+            "byteOffset": 0,
+            "componentType": 5120,
+            "count": 1,
+            "type": "SCALAR"
+        }
+    },
+    "asset": {
+        "generator": "XVL Web3D Publisher Ver. 4.1",
+        "premultipliedAlpha": true,
+        "version": "2.0"
+    },
+    "bufferViews": {
+        "bufferView_Main": {
+            "buffer": "SP16.bin",
+            "byteLength": 40392,
+            "byteOffset": 1
+        },
+        "bufferView_Sign": {
+            "buffer": "SP16.bin",
+            "byteLength": 1,
+            "byteOffset": 0
+        }
+    },
+    "buffers": {
+        "SP16.bin": {
+            "byteLength": 40393,
+            "type": "arraybuffer",
+            "uri": "SP16.bin"
+        }
+    },
+    "extensionsUsed": [
+        "KHR_materials_common"
+    ],
+    "materials": {
+        "aux_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "CONSTANT",
+                    "values": {
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "aux_material"
+        },
+        "edge_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "edge_material"
+        },
+        "face_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "face_material"
+        },
+        "material_1": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.74509800000000015,
+                            0.7372550000000001,
+                            0.72941199999999995,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "1",
+                "textureName": null
+            },
+            "name": "material_1"
+        },
+        "material_2": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.92156899999999997,
+                            0.92156899999999997,
+                            0.92156899999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "2",
+                "textureName": null
+            },
+            "name": "material_2"
+        },
+        "material_3": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "3",
+                "textureName": null
+            },
+            "name": "material_3"
+        },
+        "material_Material-1": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0.80000000000000004,
+                            1,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "Material-1",
+                "textureName": null
+            },
+            "name": "material_Material-1"
+        },
+        "vertex_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "vertex_material"
+        }
+    },
+    "meshes": {
+        "mesh_S3": {
+            "name": "mesh_S3",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S3_0_2",
+                        "POSITION": "accessor_mesh_S3_0_1"
+                    },
+                    "indices": "accessor_mesh_S3_0_0",
+                    "material": "material_Material-1",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S3_0_1"
+                    },
+                    "indices": "accessor_mesh_S3_1_0",
+                    "material": "material_1",
+                    "mode": 1
+                }
+            ]
+        },
+        "mesh_S5": {
+            "name": "mesh_S5",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S5_0_2",
+                        "POSITION": "accessor_mesh_S5_0_1"
+                    },
+                    "indices": "accessor_mesh_S5_0_0",
+                    "material": "material_Material-1",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S5_0_1"
+                    },
+                    "indices": "accessor_mesh_S5_1_0",
+                    "material": "material_2",
+                    "mode": 1
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "SP16_타원형 스프링": {
+            "children": [
+                "SP_Nut",
+                "SP_Spring"
+            ],
+            "extras": {
+                "elid": 4,
+                "visible": true
+            },
+            "name": "SP16_타원형 스프링"
+        },
+        "SP_Nut": {
+            "children": [
+                "솔리드1"
+            ],
+            "extras": {
+                "elid": 3,
+                "visible": true
+            },
+            "matrix": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                -11.776,
+                15.6738,
+                36.677399999999999,
+                1
+            ],
+            "name": "SP_Nut"
+        },
+        "SP_Spring": {
+            "children": [
+                "솔리드1 %1"
+            ],
+            "extras": {
+                "elid": 1,
+                "visible": true
+            },
+            "matrix": [
+                0.99999587686308677,
+                -1.2657898441275201e-15,
+                0.0028716296463804302,
+                0,
+                1.2620336167716065e-15,
+                1,
+                1.3098593330256065e-15,
+                0,
+                -0.0028716296463804302,
+                -1.3062298391475896e-15,
+                0.99999587686308677,
+                0,
+                -11.776,
+                16.723800000000001,
+                36.677399999999999,
+                1
+            ],
+            "name": "SP_Spring"
+        },
+        "_G6": {
+            "extras": {
+                "elid": 3,
+                "shellType": "solid",
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S3"
+            ],
+            "name": "_S3"
+        },
+        "_G7": {
+            "extras": {
+                "elid": 5,
+                "shellType": "solid",
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S5"
+            ],
+            "name": "_S5"
+        },
+        "솔리드1": {
+            "children": [
+                "_G6"
+            ],
+            "extras": {
+                "elid": 2,
+                "visible": true
+            },
+            "name": "솔리드1"
+        },
+        "솔리드1 %1": {
+            "children": [
+                "_G7"
+            ],
+            "extras": {
+                "elid": 5,
+                "visible": true
+            },
+            "name": "솔리드1 %1"
+        }
+    },
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "extras": {
+                "attributes": {
+                    "M+_CoordSys": {
+                        "type": "Char",
+                        "value": "CAD"
+                    },
+                    "M+_ExamineMode": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_Projection": {
+                        "type": "Char",
+                        "value": "parallel"
+                    }
+                },
+                "sdkPublished": "sign_accessor_sdk_published"
+            },
+            "nodes": [
+                "SP16_타원형 스프링"
+            ]
+        }
+    }
+}
+

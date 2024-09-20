@@ -1,0 +1,27 @@
+#tree {
+	margin: 5px 0px 0px 10px; height: calc(100% - 5px);
+}
+span.dynatree-connector {
+	
+}
+span.dynatree-checkbox {
+	margin-left: 0px;
+}
+ul.dynatree-container {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(192, 192, 192, 0.5);
+}
+ul.dynatree-container li {
+	padding: 0px;
+}
+span.dynatree-active a {
+	padding-right: 8px; background-color: rgb(77, 77, 77) !important;
+}
+span.dynatree-selected a {
+	color: black; font-style: normal; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width: 200px;
+}
+ul.dynatree-container a:hover {
+	background-color: transparent;
+}
+span.dynatree-active a {
+	color: white !important; background-color: rgb(51, 153, 255) !important;
+}

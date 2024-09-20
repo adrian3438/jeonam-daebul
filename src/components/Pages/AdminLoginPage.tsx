@@ -29,7 +29,11 @@ export default function AdminLoginPage () {
         formData.append('managerPass', data?.password)
         const response = await api.post(`/admin/adminLogin2.php`, formData)
         if(response?.data?.result === true) {
-          Cookies.set('jdassid', response?.data?.uuid, { expires: 7, path : '/' });
+          const cookiesData = {
+            ssid : response?.data?.uuid,
+            jdad : true
+          }
+          Cookies.set('jdassid',JSON.stringify(cookiesData), { expires: 7, path : '/' });
           router.push('/ship-type');
           login({isAdmin : true , data : response?.data})
         }else {

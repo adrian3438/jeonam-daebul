@@ -12,8 +12,9 @@ const pretendard = localFont({
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const cookie = cookies();
     const cookieValue : any = cookie.get('jdassid') || '';
+    const parseCookie = cookieValue && JSON.parse(cookieValue.value);
     const formData = new FormData()
-    formData.append('managerUuid', cookieValue.value)
+    formData.append('managerUuid', parseCookie?.ssid)
     const response = await api.post(`/admin/adminInfo.php`, formData)
     return (
         <html lang="ko">

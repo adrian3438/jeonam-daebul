@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <title>ui</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="common/css/jquery-ui.min.css" media="all">
+        <link rel="stylesheet" type="text/css" href="common/css/drag-drop.css"/>
+        <link rel="stylesheet" type="text/css" href="common/css/modeling.css"/>
+        <link rel="stylesheet" type="text/css" href="alink3d_4.1/css/web3d.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="common/css/dots3d.css"/> -->
+        <link rel="stylesheet" type="text/css" href="dynatree/css/dynatree/ui.dynatree.css">    
+        <link rel="stylesheet" type="text/css" href="dynatree/css/perfect-scrollbar/perfect-scrollbar.min.css">
+        <link rel="stylesheet" type="text/css" href="dynatree/css/dynatree/dynatree-custom.css">
+        <link rel="stylesheet" type="text/css" href="dynatree/css/perfect-scrollbar/perfect-scrollbar-custom.css">
+       
+        <link rel="stylesheet" href="toolbar/css/toolbar.css"/>
+        <script type="text/javascript" src="alink3d_4.1/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/jquery-ui-1.10.3.min.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/jquery.layout.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/util.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/drag-drop.js"></script>
+    <!-- <script type="text/javascript" src="/alink3d_4.1/js/jquery.dynatree.js"></script> -->
+        <script type="text/javascript" src="alink3d_4.1/js/jquery.dynatree_ver2.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/perfect-scrollbar.jquery.min.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/jquery.event.drag-2.2.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.core.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.rowselectionmodel.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.checkboxselectcolumn.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.buttonselectcolumn.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.editors.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/slick.grid.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/dat.gui.min.js"></script>
+        <script type="text/javascript" src="alink3d_4.1/js/ltplayer_ver2.js"></script>
+        <!-- <script type="text/javascript" src="/alink3d_4.1/js/captcha.jquery.js"></script> -->
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        <script>
+            id='FGSS-LP-BUFFER-TANK-SKID';
+            url='./data/FGSS-LP-BUFFER-TANK-SKID.json'; // LNG_Tanker
+            ver = 'alink3d_4.1';
+            ini = {"component":[{"component":[{"component":[{"draggable":true,"height":"40%","id":"web3dPlayer","positionRight":"8%","positionTop":"8%","property":[{"name":"type","value":"part"},{"name":"minimumFPS","value":"0"},{"name":"backgroundColor","value":"#FFFFFF"},{"name":"backgroundColor2","value":"#333399"}],"width":"20%"},{"draggable":false,"height":"65%","id":"assyTree","positionLeft":"1%","positionTop":"5%","property":[{"name":"altNameFormat","value":"${XVL_NAME}"}],"width":"20%"},{"draggable":true,"height":"10%","id":"propTable","positionLeft":"1%","positionTop":"75%","property":[{"name":"type","value":"top"},
+                                {"name":"name[1]","value":"Part_Name"},{"name":"format[1]","value":"${XVL_NAME}"}],"width":"20%"},{"draggable":true,"height":"40px","id":"toolbar","positionLeft":"21%","positionTop":"1%","property":[{"name":"type","value":"1"},{"name":"direction","value":"horizontal"},{"name":"button","value":"home"},
+                                {"name":"button","value":"pan"},{"name":"button","value":"examine"},{"name":"button","value":"zoom"},{"name":"button","value":"region"},{"name":"button","value":"wt_pan"},{"name":"button","value":"wt_walk"},{"name":"button","value":"wt_look_around"},{"name":"button","value":"wt_region"},{"name":"button","value":"wt_backAndForth"},{"name":"button","value":"area_fit"},{"name":"button","value":"view_target"},{"name":"button","value":"rotate_left"},{"name":"button","value":"rotate_right"},{"name":"button","value":"sel_trans_sel"},{"name":"button","value":"sel_trans_nosel"},{"name":"button","value":"fixUp"},{"name":"button","value":"fit_selection"},{"name":"button","value":"change_display"}],"width":"650px"},{"draggable":true,"height":"450px","id":"toolbar","positionRight":"1%","positionTop":"5%","property":[{"name":"type","value":"2"},{"name":"direction","value":"vertical"},{"name":"button","value":"front"},{"name":"button","value":"back"},{"name":"button","value":"right"},{"name":"button","value":"left"},{"name":"button","value":"top"},{"name":"button","value":"bottom"},{"name":"button","value":"isometric1"},{"name":"button","value":"isometric2"},{"name":"button","value":"isometric3"},{"name":"button","value":"isometric4"}],"width":"40px"},{"draggable":true,"height":"25%","id":"partslist","positionLeft":"22%","positionTop":"75%","property":[{"name":"groupby","value":"${XVL_NAME}"},{"name":"sort","value":"2"},{"name":"order","value":"asc"},{"name":"levelFrom","value":"2"},{"name":"levelTo","value":"2"},
+                                {"name":"title[1]","value":"Product Name"},{"name":"type[1]","value":"prop"},{"name":"format[1]","value":"${XVL_NAME}"},{"name":"width[1]","value":"250"},
+                                {"name":"title[2]","value":"Company Name."},{"name":"type[2]","value":"prop"},{"name":"format[2]","value":"${XVL_CUSTOM_SECTION}.{Part No.}"},{"name":"width[2]","value":"200"},
+                                {"name":"title[3]","value":"SITE"},{"name":"type[3]","value":"prop"},{"name":"format[3]","value":"${XVL_NAME}"},{"name":"width[3]","value":"100"},
+                                {"name":"title[4]","value":"Homepage"},{"name":"type[4]","value":"prop"},{"name":"format[4]","value":"https://www.dkhoist.com/"},{"name":"width[4]","value":"250"},
+                                {"name":"formatter[3]","value":"link2web3dformatter"},{"name":"folderId[3]","value":""},{"name":"searchAttributeName[3]","value":""},
+                                {"name":"windowTarget[3]","value":"_self"}],"width":"77%"}],"draggable":false,"height":"100%","id":"web3dPlayer",
+                                "property":[{"name":"backgroundColor","value":"#FFFFFF"},{"name":"minimumFPS","value":"0"},{"name":"viewSelectionUnit","value":"level_2"},{"name":"selectionColor","value":"#FF8C00"}],"width":"100%"}],
+                                "draggable":false,"height":"100%","property":[],"region":"center","width":"100%"}]};
+            templatebaseurl = "";
+            player = null;
+            playerParam = {};
+            assyTreeParam = {};
+            partListParam = {};
+            toolbarParam = {};
+            formats = [];
+            propTableParam = [];
+            staticContents = {};
+            searchParam = {};
+            searchcacheurl = 'null';
+            searchData = null;
+            basexcmurl = 'null';
+            apiver = '4.3';
+        </script>
+	    <script type="text/javascript" src="alink3d_4.1/js/Web3dV2.js"></script>
+       
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: beige;
+                color: #000000;
+                margin: 0px;
+                overflow: hidden;
+                font-family: "Segoe UI",Arial,sans-serif;
+                font-size: 15px;
+            }
+
+            #web3dPlayer_main {
+                position: absolute;
+                top: 50px !important;
+                right: 0px;
+                width:100%;
+                height:100%;
+                z-index: -1;
+            }
+            
+            #container {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width:100%;
+                height:100%;
+                z-index: -1;
+            }
+           
+            #progress_waku {
+                z-index: 1000;
+                position: absolute;
+                top: 51px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                display: none;
+            }
+            #progress {
+                height: 15px;
+                width: 250px;
+                position: relative;
+                top: 50%;
+                margin: -10px auto 0 auto;
+                border-radius: 0;
+            }
+            #progress.ui-widget-content {
+                background: #46454D;
+                border: 2px solid #46454D;
+            }
+            #progress_waku span {
+                display: block;
+                position: relative;
+                top: 50%;
+                margin: 5px auto 0 auto;
+                width: 100px;
+                text-align: center;
+            }
+
+            #progress .ui-corner-left {
+                border-radius: 0 2px 2px 0;
+            }
+            #progress .ui-widget-header {
+                background: #F1C447;
+                border: none;
+                margin-top: 0;
+            }
+           
+            #tool_bar_property {
+                position: absolute;
+                width:280px;
+                left:10px;
+                height: 100px;
+                bottom:20px;
+                background-color:rgba(255, 255, 255, 0.7);
+                font-size: 12px;
+                color: #000000;
+                padding: 10px;
+            }
+            #tool_bar_property td {
+                font-weight: bold;
+            }            
+        </style>            
+
+    </head>
+
+    <body>
+        
+        <div class="modeling-header">
+			
+		</div>
+          
+    </body>
+</html>

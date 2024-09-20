@@ -1,0 +1,72 @@
+.ps-active-x.ps-container > .ps-scrollbar-x-rail {
+	background-color: transparent;
+}
+.ps-active-y.ps-container > .ps-scrollbar-y-rail {
+	background-color: transparent;
+}
+.ps-x.ps-in-scrolling.ps-container > .ps-scrollbar-x-rail {
+	opacity: 1; background-color: transparent;
+}
+.ps-x.ps-in-scrolling.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+	height: 6px; background-color: rgb(141, 150, 164);
+}
+.ps-y.ps-in-scrolling.ps-container > .ps-scrollbar-y-rail {
+	opacity: 1; background-color: transparent;
+}
+.ps-y.ps-in-scrolling.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+	width: 6px; background-color: rgb(141, 150, 164);
+}
+.ps-container > .ps-scrollbar-x-rail {
+	height: 6px; display: none;
+}
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+	border-radius: 6px; height: 6px; background-color: rgb(141, 150, 164); -webkit-border-radius: 6px; -moz-border-radius: 6px;
+}
+.ps-container > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
+	height: 6px;
+}
+.ps-container > .ps-scrollbar-x-rail:active > .ps-scrollbar-x {
+	height: 6px;
+}
+.ps-container > .ps-scrollbar-y-rail {
+	width: 6px; display: none;
+}
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+	border-radius: 6px; width: 6px; background-color: rgb(141, 150, 164); -webkit-border-radius: 6px; -moz-border-radius: 6px;
+}
+.ps-container > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+	width: 6px;
+}
+.ps-container > .ps-scrollbar-y-rail:active > .ps-scrollbar-y {
+	width: 6px;
+}
+.ps-x.ps-in-scrolling.ps-container:hover > .ps-scrollbar-x-rail {
+	opacity: 1; background-color: transparent;
+}
+.ps-x.ps-in-scrolling.ps-container:hover > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+	height: 6px; background-color: rgb(141, 150, 164);
+}
+.ps-y.ps-in-scrolling.ps-container:hover > .ps-scrollbar-y-rail {
+	opacity: 1; background-color: transparent;
+}
+.ps-y.ps-in-scrolling.ps-container:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+	width: 6px; background-color: rgb(141, 150, 164);
+}
+.ps-container:hover > .ps-scrollbar-x-rail {
+	opacity: 1;
+}
+.ps-container:hover > .ps-scrollbar-y-rail {
+	opacity: 1;
+}
+.ps-container:hover > .ps-scrollbar-x-rail:hover {
+	opacity: 1; background-color: transparent;
+}
+.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
+	background-color: rgb(141, 150, 164);
+}
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+	opacity: 1; background-color: transparent;
+}
+.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+	background-color: rgb(141, 150, 164);
+}

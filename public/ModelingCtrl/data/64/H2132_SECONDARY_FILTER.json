@@ -1,0 +1,758 @@
+{
+    "XVLWeb3DProfile": {
+        "LODLevels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+        ],
+        "convParameters": {
+            "camsnap": 0,
+            "encode": 1,
+            "geom": 1,
+            "gzip": 0,
+            "in": "D:\\JANG\\Company\\BMCNET\\2020\\marine plaza 3D data\\42-44_주식회사 세일\\H2132_SECONDARY_FILTER.xv2",
+            "log": "D:\\JANG\\Company\\BMCNET\\2020\\marine plaza 3D data\\42-44_주식회사 세일\\H2132_SECONDARY_FILTER.log",
+            "mpri": 0,
+            "out": "D:\\JANG\\Company\\BMCNET\\2020\\marine plaza 3D data\\42-44_주식회사 세일\\H2132_SECONDARY_FILTER.json",
+            "quality": 1,
+            "shlgrp": 0
+        },
+        "transmission": "batch",
+        "version": "4.1"
+    },
+    "accessors": {
+        "accessor_mesh_S5_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 3488,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 1848,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S5_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 0,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 436,
+            "max": [
+                42.25,
+                472.79998779296875,
+                42.25
+            ],
+            "min": [
+                -42.25,
+                461.79998779296875,
+                -42.25
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S5_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 2616,
+            "componentType": 5121,
+            "count": 436,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S5_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 7184,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 488,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S6_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 11616,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 1824,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S6_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 8160,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 432,
+            "max": [
+                42.25,
+                271,
+                42.25
+            ],
+            "min": [
+                -42.25,
+                260,
+                -42.25
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S6_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 10752,
+            "componentType": 5121,
+            "count": 432,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S6_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 15264,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 488,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S7_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 19696,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 1824,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S7_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 16240,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 432,
+            "max": [
+                42.25,
+                58.040000915527344,
+                42.25
+            ],
+            "min": [
+                -42.25,
+                47.040000915527344,
+                -42.25
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S7_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 18832,
+            "componentType": 5121,
+            "count": 432,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S7_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 23344,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 488,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S8_0_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 77696,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 19704,
+            "type": "SCALAR"
+        },
+        "accessor_mesh_S8_0_1": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 24320,
+            "byteStride": 6,
+            "componentType": 5123,
+            "count": 6672,
+            "max": [
+                52.8125,
+                509.79998779296875,
+                52.799999237060547
+            ],
+            "min": [
+                -52.8125,
+                0,
+                -52.799999237060547
+            ],
+            "type": "VEC3"
+        },
+        "accessor_mesh_S8_0_2": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 64352,
+            "componentType": 5121,
+            "count": 6672,
+            "type": "VEC2"
+        },
+        "accessor_mesh_S8_1_0": {
+            "bufferView": "bufferView_Main",
+            "byteOffset": 117104,
+            "byteStride": 0,
+            "componentType": 5123,
+            "count": 7360,
+            "type": "SCALAR"
+        },
+        "sign_accessor_sdk_published": {
+            "bufferView": "bufferView_Sign",
+            "byteOffset": 0,
+            "componentType": 5120,
+            "count": 1,
+            "type": "SCALAR"
+        }
+    },
+    "asset": {
+        "generator": "XVL Web3D Publisher Ver. 4.1",
+        "premultipliedAlpha": true,
+        "version": "2.0"
+    },
+    "bufferViews": {
+        "bufferView_Main": {
+            "buffer": "H2132_SECONDARY_FILTER.bin",
+            "byteLength": 131824,
+            "byteOffset": 1
+        },
+        "bufferView_Sign": {
+            "buffer": "H2132_SECONDARY_FILTER.bin",
+            "byteLength": 1,
+            "byteOffset": 0
+        }
+    },
+    "buffers": {
+        "H2132_SECONDARY_FILTER.bin": {
+            "byteLength": 131825,
+            "type": "arraybuffer",
+            "uri": "H2132_SECONDARY_FILTER.bin"
+        }
+    },
+    "extensionsUsed": [
+        "KHR_materials_common"
+    ],
+    "materials": {
+        "aux_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "CONSTANT",
+                    "values": {
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "aux_material"
+        },
+        "edge_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "edge_material"
+        },
+        "face_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            0.75294099999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "face_material"
+        },
+        "material_1": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.792157,
+                            0.81960800000000011,
+                            0.93333299999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "1",
+                "textureName": null
+            },
+            "name": "material_1"
+        },
+        "material_2": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "2",
+                "textureName": null
+            },
+            "name": "material_2"
+        },
+        "material_3": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "3",
+                "textureName": null
+            },
+            "name": "material_3"
+        },
+        "material_4": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            0.80000000000000004,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "4",
+                "textureName": null
+            },
+            "name": "material_4"
+        },
+        "material_5": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.84836599999999995,
+                            0.84836599999999995,
+                            0.84836599999999995,
+                            1
+                        ],
+                        "diffuse": [
+                            0.792157,
+                            0.81960800000000011,
+                            0.93333299999999997,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": "5",
+                "textureName": null
+            },
+            "name": "material_5"
+        },
+        "vertex_material": {
+            "extensions": {
+                "KHR_materials_common": {
+                    "doubleSided": true,
+                    "technique": "PHONG",
+                    "values": {
+                        "ambient": [
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            0.20000000000000001,
+                            1
+                        ],
+                        "diffuse": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "emission": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "shininess": 0.20000000000000001,
+                        "specular": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        "transparency": 0
+                    }
+                }
+            },
+            "extras": {
+                "materialName": null,
+                "textureName": null
+            },
+            "name": "vertex_material"
+        }
+    },
+    "meshes": {
+        "mesh_S5": {
+            "name": "mesh_S5",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S5_0_2",
+                        "POSITION": "accessor_mesh_S5_0_1"
+                    },
+                    "indices": "accessor_mesh_S5_0_0",
+                    "material": "material_5",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S5_0_1"
+                    },
+                    "indices": "accessor_mesh_S5_1_0",
+                    "material": "material_5",
+                    "mode": 1
+                }
+            ]
+        },
+        "mesh_S6": {
+            "name": "mesh_S6",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S6_0_2",
+                        "POSITION": "accessor_mesh_S6_0_1"
+                    },
+                    "indices": "accessor_mesh_S6_0_0",
+                    "material": "material_5",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S6_0_1"
+                    },
+                    "indices": "accessor_mesh_S6_1_0",
+                    "material": "material_5",
+                    "mode": 1
+                }
+            ]
+        },
+        "mesh_S7": {
+            "name": "mesh_S7",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S7_0_2",
+                        "POSITION": "accessor_mesh_S7_0_1"
+                    },
+                    "indices": "accessor_mesh_S7_0_0",
+                    "material": "material_5",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S7_0_1"
+                    },
+                    "indices": "accessor_mesh_S7_1_0",
+                    "material": "material_5",
+                    "mode": 1
+                }
+            ]
+        },
+        "mesh_S8": {
+            "name": "mesh_S8",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": "accessor_mesh_S8_0_2",
+                        "POSITION": "accessor_mesh_S8_0_1"
+                    },
+                    "indices": "accessor_mesh_S8_0_0",
+                    "material": "material_5",
+                    "mode": 4
+                },
+                {
+                    "attributes": {
+                        "POSITION": "accessor_mesh_S8_0_1"
+                    },
+                    "indices": "accessor_mesh_S8_1_0",
+                    "material": "material_5",
+                    "mode": 1
+                }
+            ]
+        }
+    },
+    "nodes": {
+        "H2132 SECONDARY FILTER": {
+            "children": [
+                "_G3",
+                "_G2",
+                "_G1",
+                "_G5"
+            ],
+            "extras": {
+                "elid": 4,
+                "visible": true
+            },
+            "name": "H2132 SECONDARY FILTER"
+        },
+        "_G1": {
+            "extras": {
+                "elid": 1,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S7"
+            ],
+            "name": "_G1"
+        },
+        "_G2": {
+            "extras": {
+                "elid": 2,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S6"
+            ],
+            "name": "_G2"
+        },
+        "_G3": {
+            "extras": {
+                "elid": 3,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S5"
+            ],
+            "name": "_G3"
+        },
+        "_G5": {
+            "extras": {
+                "elid": 5,
+                "visible": true
+            },
+            "meshes": [
+                "mesh_S8"
+            ],
+            "name": "_G5"
+        }
+    },
+    "scene": "defaultScene",
+    "scenes": {
+        "defaultScene": {
+            "extras": {
+                "attributes": {
+                    "M+_CoordSys": {
+                        "type": "Char",
+                        "value": "CAD"
+                    },
+                    "M+_ExamineMode": {
+                        "type": "Int",
+                        "value": 0
+                    },
+                    "M+_Projection": {
+                        "type": "Char",
+                        "value": "parallel"
+                    }
+                },
+                "sdkPublished": "sign_accessor_sdk_published"
+            },
+            "nodes": [
+                "H2132 SECONDARY FILTER"
+            ]
+        }
+    }
+}
+

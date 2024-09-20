@@ -1,0 +1,173 @@
+body {
+	margin: 0px; color: rgb(255, 255, 255); overflow: hidden; font-family: "Segoe UI", Arial, sans-serif; font-size: 15px; background-color: beige;
+}
+.ui-layout-pane {
+	background: rgb(255, 255, 255); padding: 0px; border: 0px solid rgb(187, 187, 187); border-image: none; height: 100%; overflow: hidden;
+}
+.ui-layout-resizer {
+	background: rgb(221, 221, 221);
+}
+.ui-layout-toggler {
+	background: rgb(170, 170, 170);
+}
+#web3dPlayer_main {
+	z-index: -2;
+}
+#assyTree {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(192, 192, 192, 0.5); left : 0 !important; top : 60px !important;
+}
+#assyTree_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#assyTree_body {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(192, 192, 192, 1); height: 600px !important;
+}
+#tree {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(192, 192, 192, 1);
+}
+#propTable_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#propTable .body {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(192, 192, 192, 0.5);
+}
+#toolbar_1 {
+	background-color: rgb(120, 128, 140);
+}
+#toolbar_1_header {
+	border: 1px solid rgb(255, 255, 255); border-image: none; display: inline-block; background-color: rgb(120, 128, 140);
+}
+#toolbar_1_body {
+	border: 1px solid rgb(255, 255, 255); border-image: none; background-color: rgba(255, 255, 255, 0.7);
+}
+#toolbar_2 {
+	background-color: rgb(120, 128, 140);
+}
+#toolbar_2_header {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; background-color: rgb(120, 128, 140);
+}
+#toolbar_2_body {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; background-color: rgba(255, 255, 255, 0.7);
+}
+#toolbar_3 {
+	background-color: rgb(120, 128, 140);
+}
+#toolbar_3_header {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; background-color: rgb(120, 128, 140); positon: relative;
+}
+#toolbar_3_body {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; z-index: 100; background-color: rgba(255, 255, 255, 0.7);
+}
+#toolbar_4 {
+	background-color: rgb(120, 128, 140);
+}
+#toolbar_4_header {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; background-color: rgb(120, 128, 140);
+}
+#toolbar_4_body {
+	border: 1px solid rgb(255, 255, 255); border-image: none; float: left; display: inline-block; z-index: 100; background-color: rgba(255, 255, 255, 0.7);
+}
+.button {
+	margin: 4px; padding: 3px; width: 28px; height: 28px; float: left; display: inline-block; cursor: pointer;
+}
+.button:hover {
+	border-radius: 10%; background-color: rgb(204, 204, 204);
+}
+.selected.button {
+	border-radius: 10%; border: 1px solid rgb(237, 190, 94); border-image: none; width: 26px; height: 26px;
+}
+#progress_waku {
+	background: rgba(0, 0, 0, 0.4); left: 0%; top: 0%; width: 100%; height: 100%; display: none; position: absolute; z-index: 1000;
+}
+#progress {
+	margin: -10px auto 0px; border-radius: 0px; left: 0%; top: 50%; width: 250px; height: 15px; position: relative;
+}
+.ui-widget-content#progress {
+	background: rgb(70, 69, 77); border: 2px solid rgb(70, 69, 77); border-image: none;
+}
+#progress_waku span {
+	margin: 5px auto 0px; top: 50%; width: 100px; text-align: center; display: block; position: relative;
+}
+#progress .ui-corner-left {
+	border-radius: 0px 2px 2px 0px;
+}
+#progress .ui-widget-header {
+	background: rgb(241, 196, 71); border: currentColor; border-image: none; margin-top: 0px;
+}
+.switch [type=checkbox] {
+	display: none;
+}
+.switch {
+	border-radius: 15px; width: 28px; height: 14px; overflow: hidden; display: inline-block; -ms-user-select: none; -webkit-user-select: none; user-select: none;
+}
+.switch .label {
+	transition:margin 0.1s; margin-left: -27px; white-space: nowrap; cursor: pointer; -webkit-transition: margin .1s;
+}
+.switch :checked + .label {
+	margin-left: 0px;
+}
+.switch .on {
+	width: 28px; height: 14px; text-align: center; line-height: 15px; display: inline-block;
+}
+.switch .off {
+	width: 28px; height: 14px; text-align: center; line-height: 15px; display: inline-block;
+}
+.switch .on {
+	background-color: rgb(237, 190, 94);
+}
+.switch .off {
+	background-color: rgb(174, 174, 174);
+}
+.switch .separator {
+	margin: 0px -13px 0px 0px; border-radius: 50%; transition:margin 0.1s; top: -1px; width: 12px; height: 12px; display: inline-block; position: relative; box-sizing: border-box; box-shadow: 1px 1px 1px 0px #444444; background-color: rgb(255, 255, 255); -webkit-transition: margin .1s;
+}
+.switch :checked + .label :nth-child(2).separator {
+	margin: 0px 0px 0px -14px;
+}
+.switch :checked + .label :nth-child(3).off {
+	margin-left: 2px;
+}
+.proptitle {
+	width: 30%; background-color: rgb(85, 85, 85);
+}
+.propval {
+	width: 70%; background-color: rgb(102, 102, 102);
+}
+#partslist_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#web3dPlayer_part_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#web3dPlayer_all_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#search_header {
+	padding: 0px; border: currentColor; border-image: none; overflow: visible; background-color: rgba(68, 102, 102, 0.5);
+}
+#search_body {
+	padding: 0px; border: currentColor; border-image: none; color: rgb(0, 0, 0); overflow: visible; font-size: 0.8em; font-weight: bold; background-color: rgba(192, 192, 192, 1);
+}
+#search_form {
+	padding: 4px;
+}
+#search_result {
+	padding: 4px;
+}
+#search_key {
+	margin-right: 4px;
+}
+
+
+/*#company_list_part {position: absolute;width: 349px;height: 343.6px;right: 8%;top:50%; z-index:1;}*/
+#company_list_part {position: absolute;width: 349px;height: 343.6px; left: 1%; top: 75%; z-index:1;}
+
+#web3d_post {position: absolute; width: 1322.86px; height: 321.75px; left: 22%; top: 75%; z-index:1;}
+.web3dTbl {width:100%; border-collapse: collapse; table-layout:fixed;}
+.web3dTbl * {font-size:13px; line-height:1.6; font-family: Arial,sans-serif; font-weight:400;}
+.web3dTbl th {background:#d7ebf9; text-align:center; height:40px; border-bottom:1px solid #d9d9d9; vertical-align: middle; color:rgb(39, 121, 170); font-weight:bold;}
+.web3dTbl td {background:#fff; line-height:26px; padding:7px 15px; border-bottom:1px solid #d9d9d9; vertical-align: middle; text-align:center; color: #232323;}
+.web3dTbl td a {color: #232323; text-decoration: none;}
+
+#propTable {display:none !important;}
+#partslist {display:none !important;}
