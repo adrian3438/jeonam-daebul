@@ -19,7 +19,7 @@ export default async function AdminLayout({
   const cookieValue : any = cookie.get('jdassid') || '';
   const parseCookie = cookieValue && JSON.parse(cookieValue.value);
   const formData = new FormData()
-  formData.append('managerUuid', parseCookie?.ssid)
+  formData.append('managerUuid', parseCookie ? parseCookie?.ssid : '') 
   const response = await api.post(`/admin/adminInfo.php`, formData)
   return (
     <html lang="en">
