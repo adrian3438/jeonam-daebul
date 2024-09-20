@@ -3,7 +3,6 @@ import '../assets/login.scss'
 import api from "@/lib/api";
 
 export default function AdminLogin() {
-  console.log(api.defaults.headers.common['Authorization']);
   return (
       <div className="login">
         <section className="bg-section">

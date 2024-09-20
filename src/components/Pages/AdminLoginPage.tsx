@@ -1,15 +1,18 @@
 'use client'
 import api from "@/lib/api";
-import { useAppDispatch } from "@/store/hooks";
-import axios from "axios";
+// import { useAppDispatch } from "@/store/hooks";
+// import { setAccount } from "@/store/slices/accountInfoSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Cookies from 'js-cookie'
+import { useAuth } from "../Context/AuthContext";
 interface LoginType {email:string,password:string}
 export default function AdminLoginPage () {
     const router = useRouter()
-    const dispatch = useAppDispatch()
+    const {login} = useAuth()
+    // const dispatch = useAppDispatch()
     const [data, setData] = useState<LoginType>({
         email : '', password : ''
     })
@@ -26,7 +29,9 @@ export default function AdminLoginPage () {
         formData.append('managerPass', data?.password)
         const response = await api.post(`/admin/adminLogin2.php`, formData)
         if(response?.data?.result === true) {
-            router.push('/ship-type')
+          Cookies.set('jdassid', response?.data?.uuid, { expires: 7, path : '/' });
+          router.push('/ship-type');
+          login(response?.data)
         }else {
             alert(response?.data?.resultMsg);
             setData((prev) => ({...prev, password : ''}))

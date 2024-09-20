@@ -1,20 +1,21 @@
 'use client'
-import api from "@/lib/api"
-import Providers from "@/redux/providers"
-import axios from "axios"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
 import Navigation from "./Navigation"
 import Header from "./Header"
+import { useAuth } from "./Context/AuthContext"
 interface Props {info : any}
 export default function Container ({children , info} : any) {
-    console.log(info)
+    console.log(info?.list[0])
     const router = useRouter()
     const pathname = usePathname()
     const splitPath = pathname.split('/')
+    const {login} = useAuth()
     useEffect(()=> {
         if(info?.result) {
-           
+            if(info?.list?.length > 0) {
+                login(info?.list[0])
+            }
         }else{
             // alert('로그인이 필요합니다.');
             router.push('/dotsAdmin')
@@ -25,22 +26,18 @@ export default function Container ({children , info} : any) {
             {splitPath[1] === '' || splitPath[1] === 'dotsAdmin' ?
 
             <>
-            <Providers>
                 {children}
-            </Providers>
             </>
             :
 
             <>
-            <Providers>
                 <div className="snb">
                     <Navigation/>
                 </div>
                 <main>
-                <Header/>
+                <Header info={info?.list?.length > 0 ? info?.list[0] : null}/>
                     {children}
                 </main>
-            </Providers>
             </>
             }
         
