@@ -1,5 +1,5 @@
+import AdminLoginPage from '@/components/Pages/AdminLoginPage';
 import '../assets/login.scss'
-import AdminLoginPage from "../components/Pages/AdminLoginPage";
 import api from "@/lib/api";
 
 export default function AdminLogin() {

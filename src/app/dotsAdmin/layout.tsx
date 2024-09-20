@@ -1,6 +1,7 @@
 import React from "react";
 import '../globals.css'
 import localFont from "next/font/local";
+import Container from "@/components/Container";
 
 const pretendard = localFont({
     src: "../fonts/Pretendard-Regular.woff",
@@ -15,7 +16,9 @@ export default function AdminLayout({
     <html lang="en">
       
       <body className={`${pretendard.variable}`}>
+        <Container>
           {children}
+        </Container>
       </body>
       
     </html>

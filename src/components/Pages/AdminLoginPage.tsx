@@ -1,5 +1,6 @@
 'use client'
 import api from "@/lib/api";
+import { useAppDispatch } from "@/store/hooks";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import React, { useEffect, useState } from "react";
 interface LoginType {email:string,password:string}
 export default function AdminLoginPage () {
     const router = useRouter()
+    const dispatch = useAppDispatch()
     const [data, setData] = useState<LoginType>({
         email : '', password : ''
     })

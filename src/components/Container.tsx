@@ -16,30 +16,34 @@ export default function Container ({children , info} : any) {
         if(info?.result) {
            
         }else{
-            // router.push('/')
+            // alert('로그인이 필요합니다.');
+            router.push('/dotsAdmin')
         }
     }, [info])
     return(
         <>
-        <Providers>
-            {splitPath[1] === '' ?
-            <>
-            {children}
-            </>
+            {splitPath[1] === '' || splitPath[1] === 'dotsAdmin' ?
 
+            <>
+            <Providers>
+                {children}
+            </Providers>
+            </>
             :
 
             <>
-            <div className="snb">
-                <Navigation/>
-            </div>
-            <main>
-            <Header/>
-                {children}
-            </main>
+            <Providers>
+                <div className="snb">
+                    <Navigation/>
+                </div>
+                <main>
+                <Header/>
+                    {children}
+                </main>
+            </Providers>
             </>
             }
-        </Providers>
+        
         </>
     )
 }
