@@ -7,7 +7,7 @@ import { useAuth } from "./Context/AuthContext"
 import api from "@/lib/api"
 interface Props {info : any}
 export default function Container ({children , info} : any) {
-    console.log(info?.list[0])
+    console.log(info?.list?.length > 0 ? info?.list[0] : '')
     const router = useRouter()
     const pathname = usePathname()
     const splitPath = pathname.split('/')
@@ -24,8 +24,10 @@ export default function Container ({children , info} : any) {
                 login(info?.list[0])
             }
         }else{
-            // alert('로그인이 필요합니다.');
-            router.push('/dotsAdmin')
+            if(splitPath[1] !== '' && splitPath[1] !== 'dotsAdmin'){
+                alert('로그인이 필요합니다.');
+                router.push('/dotsAdmin')
+            }
         }
     }, [info])
     return(

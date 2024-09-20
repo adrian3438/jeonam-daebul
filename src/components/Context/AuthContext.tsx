@@ -3,6 +3,7 @@ import { createContext, useState, useContext } from 'react';
 interface AuthContextType {
     authData : any;
     login : (data : any) => void;
+    logout : () => void;
 }
 const AuthContext = createContext<AuthContextType | any>(null);
 
@@ -15,7 +16,7 @@ export default function AuthProvider ({children} : any) {
         setAuthData(null)
     }
     return(
-        <AuthContext.Provider value={{authData, login}}>
+        <AuthContext.Provider value={{authData, login, logout}}>
             {children}
         </AuthContext.Provider>
     )

@@ -31,7 +31,7 @@ export default function AdminLoginPage () {
         if(response?.data?.result === true) {
           Cookies.set('jdassid', response?.data?.uuid, { expires: 7, path : '/' });
           router.push('/ship-type');
-          login(response?.data)
+          login({isAdmin : true , data : response?.data})
         }else {
             alert(response?.data?.resultMsg);
             setData((prev) => ({...prev, password : ''}))
