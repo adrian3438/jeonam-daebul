@@ -1,7 +1,8 @@
 'use client'
 import api from "@/lib/api"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import Image from "next/image";
 interface Props {
     id : string | Blob
 }
@@ -96,7 +97,10 @@ export default function ShipManageMentEditBox ({id} : Props) {
                 <div>
                     <h2>선종 대표 이미지 (<span>*</span>)</h2>
                     <input type="file" name="mainImage" onChange={handleChange}/>
-                    <img src={preview}/>
+                    <p className="uploaded-img">
+                        <Image src={preview} alt="대조" width={81} height={23}/>
+                        <span>{preview}</span>
+                    </p>
                 </div>
                 <div>
                     <h2>선종명 (<span>*</span>)</h2>

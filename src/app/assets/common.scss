@@ -263,3 +263,16 @@
     cursor: pointer;
   }
 }
+
+/* 수정 시 이미지 나오는 영역 */
+.uploaded-img {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  img {
+    width: 81px;
+    height: 53px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+  }
+}
