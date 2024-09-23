@@ -21,7 +21,7 @@ export default function ShipTypeBox ({data, shipid} : Props) {
                     onClick={() => SelectShip(list?.ID?.toString())}
                 >
                     <button>
-                        <Image src="/images/@temp/sample01.jpg" alt="sample" width={50} height={50}/>
+                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={50} height={50}/>
                     </button>
                     <p>{list?.shipTypeName}</p>
                 </li>

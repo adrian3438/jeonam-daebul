@@ -48,7 +48,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
         if(response?.data?.result === true) {
             if(response?.data?.List?.length > 0) {
                 const result = response?.data?.List[0]
-                setData((prev) => ({...prev, shipName : result?.shipTypeName, company : []}))
+                setData((prev) => ({...prev, shipName : result?.shipTypeName, company : result?.shipPartners?.split(',')}))
                 setPreview(result?.thumnailFile)
             }
         }
