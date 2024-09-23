@@ -27,31 +27,37 @@ export default function ShipManagementListBox ({list} : Props) {
     }, [])
     return(
         <>
-         <div className="ship-manage-list">
-            <ul>
-                {data?.map((list:DataType, index:number) => (
-                    <li className="active" key={index}>
-                        <button>
-                            <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={50} height={50}/>
-                        </button>
-                        <div>
-                            <p>{list?.shipTypeName}</p>
-                            <div>
-                                <Link href={`/ship-manage/${list?.ID}`}><Image src="/images/manage.svg" alt="수정" width={20} height={20}/></Link>
-                                <Link href={`/ship-manage/regist?id=${list?.ID}`}><Image src="/images/write.svg" alt="수정" width={20} height={20}/></Link>
-                            </div>
-                        </div>
-                    </li>
-                ))}
-                
-            </ul>
-        </div>
-
-        <div className="pagination">
-            <div className='btns'>
-                <Link href="/ship-manage/regist?id=0">등록</Link>
+            <div className="search-bar-area">
+                <div className="search-bar">
+                    <input type="text" maxLength={50}/>
+                    <input type="button" value={"검색"} className="search-btn"/>
+                </div>
             </div>
-        </div>
+            <div className="ship-manage-list">
+                <ul>
+                    {data?.map((list: DataType, index: number) => (
+                        <li className="active" key={index}>
+                            <button>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={50} height={50}/>
+                            </button>
+                            <div>
+                                <p>{list?.shipTypeName}</p>
+                                <div>
+                                    <Link href={`/ship-manage/${list?.ID}`}><Image src="/images/manage.svg" alt="수정" width={20} height={20}/></Link>
+                                    <Link href={`/ship-manage/regist?id=${list?.ID}`}><Image src="/images/write.svg" alt="수정" width={20} height={20}/></Link>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+
+                </ul>
+            </div>
+
+            <div className="pagination">
+                <div className='btns'>
+                    <Link href="/ship-manage/regist?id=0">등록</Link>
+                </div>
+            </div>
         </>
     )
 }

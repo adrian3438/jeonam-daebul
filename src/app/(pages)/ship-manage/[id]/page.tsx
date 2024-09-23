@@ -7,6 +7,12 @@ export default function ShipBopManage() {
     return (
         <>
             <section className="ship-bop-manage-list">
+                <div className="search-bar-area">
+                    <div className="search-bar">
+                        <input type="text" maxLength={50}/>
+                        <input type="button" value={"검색"} className="search-btn"/>
+                    </div>
+                </div>
                 <ul>
                     <li>
                         <div>
