@@ -1,4 +1,5 @@
 'use client'
+import Dropzone from "@/components/Dropzone";
 import api from "@/lib/api";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -37,17 +38,23 @@ export default function BopEditBox ({
             reader.readAsDataURL(files[0])
             reader.onload = () => {
                 setData((prev) => ({...prev, [name] : files[0]}))
-                if(name === 'mainImage') {
-                    setPreview(reader.result as string)
-                    setFileName((prev) => ({...prev, mainImage : files[0].name as string}))
-                }else{
-                    setFileName((prev) => ({...prev, [name] : files[0].name as string}))
-                }
+                setFileName((prev) => ({...prev, [name] : files[0].name as string}))
             }
         }else{
             setData((prev) => ({...prev, [name] : value}))
         }
     }
+
+    const handleFileAccepted = (acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        const reader = new FileReader()
+        if(file) { reader.readAsDataURL(file) }
+        reader.onload = () => {
+            setData((prev) => ({...prev, mainImage : acceptedFiles[0]}))
+            setPreview(reader.result as string)
+            setFileName((prev) => ({...prev, mainImage : acceptedFiles[0].name as string}))
+        }
+    };
 
     async function Save () {
         const formData = new FormData()
@@ -97,7 +104,8 @@ export default function BopEditBox ({
             <section>
                 <div>
                     <h2>BOP 대표 이미지 (<span>*</span>)</h2>
-                    <input type="file" name="mainImage" onChange={handleChange}/>
+                    {/* <input type="file" name="mainImage" onChange={handleChange}/> */}
+                    <Dropzone onFileAccepted={handleFileAccepted} />
                     <p className="uploaded-img">
                         {preview && <Image src={preview} alt="대조" width={81} height={23}/>}
                         <span>{fileName?.mainImage}</span>

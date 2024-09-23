@@ -2,35 +2,45 @@
 import api from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 interface Props {
     list : []
+    keyword : string | undefined
 }
 interface DataType {
     ID : number, activeStatus : string, createDate : string,
     shipTypeName : string, thumnailFile : string, thumnailFilename : string
 }
-export default function ShipManagementListBox ({list} : Props) {
+export default function ShipManagementListBox ({list, keyword} : Props) {
     const router = useRouter()
+    const path = usePathname()
+    const query = useSearchParams()
     const [data, setData] = useState<[]>(list)
     async function getList () {
-        const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
+        const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=${keyword || ''}`)
         if(response?.data?.result === true) {
             if(response?.data?.List?.length > 0){
                 setData(response?.data?.List);
             }else{setData([])}
         }
     }
+    function SearchKeyword (e:any) {
+        if(e.key === 'Enter') {
+            const newParams = new URLSearchParams(query.toString())
+            newParams.set('keyword', e.target.value)
+            router.push(`${path}?${newParams?.toString()}`)
+        }
+    }
     useEffect(() => {
         getList()
-    }, [])
+    }, [keyword])
     return(
         <>
             <div className="search-bar-area">
                 <div className="search-bar">
-                    <input type="text" maxLength={50}/>
-                    <input type="button" value={"검색"} className="search-btn"/>
+                    <input type="text" onKeyDown={(e)=>SearchKeyword(e)} defaultValue={keyword} maxLength={50}/>
+                    <input type="button" className="search-btn"/>
                 </div>
             </div>
             <div className="ship-manage-list">

@@ -23,6 +23,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
     })
     const [partnerCompany , setPartnerCompany] = useState<PartnerCompanyType[]>([])
     const [preview , setPreview] = useState<string>('')
+    const [fileName, setFileName] = useState<string>('')
     function handleChange (e : React.ChangeEvent<HTMLInputElement>) {
         const {type , name, value, files} = e.target;
         if(type === 'file' && files && files[0]) {
@@ -36,7 +37,17 @@ export default function ShipManageMentEditBox ({id} : Props) {
             setData((prev) => ({...prev , [name] : value}))
         }
     }
-     function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>, companyId: string) {
+    const handleFileAccepted = (acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        const reader = new FileReader()
+        if(file) { reader.readAsDataURL(file) }
+        reader.onload = () => {
+            setData((prev) => ({...prev, mainImage : acceptedFiles[0]}))
+            setPreview(reader.result as string)
+            setFileName(acceptedFiles[0].name as string)
+        }
+    };
+    function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>, companyId: string) {
         const isChecked = e.target.checked
         setData((prev) => {
             const updatedCompanies = isChecked
@@ -51,11 +62,10 @@ export default function ShipManageMentEditBox ({id} : Props) {
             if(response?.data?.List?.length > 0) {
                 const result = response?.data?.List[0]
                 setData((prev) => ({...prev, shipName : result?.shipTypeName, company : result?.shipPartners?.split(',')}))
-                setPreview(result?.thumnailFile)
+                setPreview(result?.thumnailFile); setFileName(result?.thumnailFilename)
             }
         }
     }
-    console.log(data?.company)
     async function getPartnerCompany () {
         const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=companyName&sortOrder=desc`)
         if(response?.data?.result === true){
@@ -93,9 +103,6 @@ export default function ShipManageMentEditBox ({id} : Props) {
         getPartnerCompany()
     }, [])
 
-    const handleFileAccepted = (acceptedFiles: File[]) => {
-        console.log('Accepted files: ', acceptedFiles);
-    };
     return(
         <>
         <div className="ship-manage-regist">
@@ -106,7 +113,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
                     <Dropzone onFileAccepted={handleFileAccepted} />
                     <p className="uploaded-img">
                         <Image src={preview} alt="대조" width={81} height={23}/>
-                        <span>{preview}</span>
+                        <span>{fileName}</span>
                     </p>
                 </div>
                 <div>

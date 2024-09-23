@@ -9,13 +9,15 @@ interface searchParamsType {
     }
 }
 export default async function ShipManage({searchParams : {keyword}} : searchParamsType) {
-    const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=${keyword || ''}`)
-    const data = response?.data?.result === true ? 
-    response?.data?.List : [];
+    // const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=${keyword || ''}`)
+    // const data = response?.data?.result === true ? 
+    // response?.data?.List : [];
+    const data : any = []
     return (
         <div className="ship-manage">
             <ShipManagementListBox
                 list={data}
+                keyword={keyword}
             />
         </div>
     )
