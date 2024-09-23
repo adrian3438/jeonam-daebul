@@ -2,10 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import Paginate from "@/components/Paginate/pagination";
-import useCalCulateIndex from "@/components/useCalculateIndex";
 import api from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import calCulateIndex from "@/components/calculateIndex";
 interface DataType {
     ID : string | Blob , userLoginId : string, userName : string, userCompanyName : string,
     userPhone : string, userMobile : string, userEmail : string, userDept : string,
@@ -42,6 +42,7 @@ export default function OutsourcingListBox ({
             alert(response?.data?.resultMsg)
         }
     }
+    
     useEffect(()=>{
         getList()
     }, [])
@@ -62,30 +63,33 @@ export default function OutsourcingListBox ({
             </tr>
             </thead>
             <tbody>
-                {list?.map((list:DataType, index:number) => (
-                    <tr key={index}>
-                        <td>{useCalCulateIndex((page), size, totalCount, index)}</td>
-                        <td>{list?.userCompanyName}</td>
-                        <td style={{textAlign: 'left'}}>{list?.userName}</td>
-                        <td>{list?.userMobile ? list?.userMobile : '-'}</td>
-                        <td>{list?.userPhone ? list?.userPhone : '-'}</td>
-                        <td>{list?.userEmail ? list?.userEmail : '-'}</td>
-                        <td>{list?.createDate ? list?.createDate : '-'}</td>
-                        <td>
-                            <label className="toggle_switch">
-                                <input 
-                                    type="checkbox"
-                                    checked={list?.activeStatus === 'Y'}
-                                    onChange={() => ChangeStatus(list?.ID, list?.activeStatus)}
-                                />
-                                <span className="slider"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <a style={{cursor : 'pointer'}} onClick={()=>router.push(`/outsourcing/${list?.ID}`)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
-                        </td>
-                    </tr>
-                ))}
+                {list?.map((list:DataType, index:number) => {
+                    const calculatedIndex = calCulateIndex(page, size, totalCnt, index);
+                    return(
+                        <tr key={index}>
+                            <td>{calculatedIndex}</td>
+                            <td>{list?.userCompanyName}</td>
+                            <td style={{textAlign: 'left'}}>{list?.userName}</td>
+                            <td>{list?.userMobile ? list?.userMobile : '-'}</td>
+                            <td>{list?.userPhone ? list?.userPhone : '-'}</td>
+                            <td>{list?.userEmail ? list?.userEmail : '-'}</td>
+                            <td>{list?.createDate ? list?.createDate : '-'}</td>
+                            <td>
+                                <label className="toggle_switch">
+                                    <input 
+                                        type="checkbox"
+                                        checked={list?.activeStatus === 'Y'}
+                                        onChange={() => ChangeStatus(list?.ID, list?.activeStatus)}
+                                    />
+                                    <span className="slider"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <a style={{cursor : 'pointer'}} onClick={()=>router.push(`/outsourcing/${list?.ID}`)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                            </td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
 

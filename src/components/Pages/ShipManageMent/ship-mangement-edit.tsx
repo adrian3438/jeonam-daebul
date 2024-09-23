@@ -24,14 +24,18 @@ export default function ShipManageMentEditBox ({id} : Props) {
                 setData((prev) => ({...prev , [name] : files[0]}))
                 setPreview(reader.result as string)
             }
-        }else if('checkbox'){
-
         }else{
             setData((prev) => ({...prev , [name] : value}))
         }
     }
+    async function getDetail () {
+        const response = await api.get(`/admin/setup/getShipTypeDetail.php?ID=${id}`)
+    }
     async function getPartnerCompany () {
-        const response = await api.get(`/admin/setup/getPartnerCompany.php`)
+        const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=userName&sortOrder=desc`)
+        if(response?.data?.result === true){
+            if(id !== '0') {getDetail()}
+        }
     }
     async function save () {
         const formData = new FormData()
