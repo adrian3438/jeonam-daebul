@@ -1,6 +1,7 @@
 import "@/app/assets/main.scss";
 import "@/app/assets/ship-manage.scss";
 import React from "react";
+import Image from "next/image";
 
 export default function SubsidaryRegist() {
     return (
@@ -10,6 +11,10 @@ export default function SubsidaryRegist() {
                     <div>
                         <h2>대조 대표 이미지 (<span>*</span>)</h2>
                         <input type="file"/>
+                        <p className="uploaded-img">
+                            <Image src="/images/@temp/uploaded-img-sample.jpg" alt="대조" width={81} height={23}/>
+                            <span>test-shi9p01.jpg</span>
+                        </p>
                     </div>
                     <div>
                         <h2>대조명 (<span>*</span>)</h2>

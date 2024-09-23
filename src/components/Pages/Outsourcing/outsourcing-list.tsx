@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import calCulateIndex from "@/components/calculateIndex";
 interface PartnerCompanyType {
-    ID : string | Blob, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
+    ID : string | Blob, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string,
     companyBizType : string, companyCeoMobile : string , companyCeoName : string, companyEmail : string, companyName : string,
     companyNotes : string, companyPhone : string, createDate : string
 }
@@ -48,24 +48,30 @@ export default function OutsourcingListBox ({
     }, [])
     return(
         <>
-        <table className="table">
-            <thead>
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">업체명</th>
-                <th scope="col">대표자명</th>
-                <th scope="col">사업자 등록번호</th>
-                <th scope="col">연락처</th>
-                <th scope="col">대표이메일</th>
-                <th scope="col">등록일자</th>
-                <th scope="col">상태</th>
-                <th scope="col">액션</th>
-            </tr>
-            </thead>
-            <tbody>
-                {list?.map((list:PartnerCompanyType, index : number) => {
+            <div className="search-bar-area">
+                <div className="search-bar">
+                    <input type="text" maxLength={50}/>
+                    <input type="button" value={"검색"} className="search-btn"/>
+                </div>
+            </div>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">업체명</th>
+                    <th scope="col">대표자명</th>
+                    <th scope="col">사업자 등록번호</th>
+                    <th scope="col">연락처</th>
+                    <th scope="col">대표이메일</th>
+                    <th scope="col">등록일자</th>
+                    <th scope="col">상태</th>
+                    <th scope="col">액션</th>
+                </tr>
+                </thead>
+                <tbody>
+                {list?.map((list: PartnerCompanyType, index: number) => {
                     const calculatedIndex = calCulateIndex(page, size, totalCnt, index);
-                    return(
+                    return (
                         <tr key={index}>
                             <td>{calculatedIndex}</td>
                             <td style={{textAlign: 'left'}}>{list?.companyName}</td>
@@ -76,7 +82,7 @@ export default function OutsourcingListBox ({
                             <td>{list?.createDate}</td>
                             <td>
                                 <label className="toggle_switch">
-                                    <input 
+                                    <input
                                         type="checkbox"
                                         checked={list?.activeStatus === 'Y'}
                                         onChange={() => ChangeStatus(list?.ID, list?.activeStatus)}
@@ -90,15 +96,15 @@ export default function OutsourcingListBox ({
                         </tr>
                     )
                 })}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <div className="pagination">
-            <Paginate page={page} size={size} totalCount={totalCount}/>
-            <div className='btns'>
-                <Link href='/outsourcing/regist'>등록</Link>
+            <div className="pagination">
+                <Paginate page={page} size={size} totalCount={totalCount}/>
+                <div className='btns'>
+                    <Link href='/outsourcing/regist'>등록</Link>
+                </div>
             </div>
-        </div>
         </>
     )
 }

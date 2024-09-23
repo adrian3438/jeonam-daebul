@@ -47,24 +47,30 @@ export default function PartnersListBox ({
     }, [])
     return(
         <>
-        <table className="table">
-            <thead>
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">업체명</th>
-                <th scope="col">담당자 이름</th>
-                <th scope="col">핸드폰</th>
-                <th scope="col">연락처</th>
-                <th scope="col">이메일</th>
-                <th scope="col">등록일자</th>
-                <th scope="col">상태</th>
-                <th scope="col">액션</th>
-            </tr>
-            </thead>
-            <tbody>
-                {list?.map((list:DataType, index:number) => {
+            <div className="search-bar-area">
+                <div className="search-bar">
+                    <input type="text" maxLength={50}/>
+                    <input type="button" value={"검색"} className="search-btn"/>
+                </div>
+            </div>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">업체명</th>
+                    <th scope="col">담당자 이름</th>
+                    <th scope="col">핸드폰</th>
+                    <th scope="col">연락처</th>
+                    <th scope="col">이메일</th>
+                    <th scope="col">등록일자</th>
+                    <th scope="col">상태</th>
+                    <th scope="col">액션</th>
+                </tr>
+                </thead>
+                <tbody>
+                {list?.map((list: DataType, index: number) => {
                     const calculatedIndex = calCulateIndex(page, size, totalCnt, index);
-                    return(
+                    return (
                         <tr key={index}>
                             <td>{calculatedIndex}</td>
                             <td>{list?.userCompanyName}</td>
@@ -75,7 +81,7 @@ export default function PartnersListBox ({
                             <td>{list?.createDate ? list?.createDate : '-'}</td>
                             <td>
                                 <label className="toggle_switch">
-                                    <input 
+                                    <input
                                         type="checkbox"
                                         checked={list?.activeStatus === 'Y'}
                                         onChange={() => ChangeStatus(list?.ID, list?.activeStatus)}
@@ -84,20 +90,20 @@ export default function PartnersListBox ({
                                 </label>
                             </td>
                             <td>
-                                <a style={{cursor : 'pointer'}} onClick={()=>router.push(`/partner/${list?.ID}`)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                <a style={{cursor: 'pointer'}} onClick={() => router.push(`/partner/${list?.ID}`)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                             </td>
                         </tr>
                     )
                 })}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <div className="pagination">
-            페이징 들어감
-            <div className='btns'>
-                <Link href='/partner/regist'>등록</Link>
+            <div className="pagination">
+                페이징 들어감
+                <div className='btns'>
+                    <Link href='/partner/regist'>등록</Link>
+                </div>
             </div>
-        </div>
         </>
     )
 }
