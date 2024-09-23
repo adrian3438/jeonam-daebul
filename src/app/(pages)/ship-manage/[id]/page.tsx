@@ -7,13 +7,14 @@ interface ParamsType {
     params : {id : string | Blob}
 }
 export default async function ShipBopManage({params : {id}} : ParamsType) {
-    // const response = await api.get(`/admin/setup/getShipAssembleList.php?shipTypeId=${id}`)
-    // console.log(response?.data)
+    const response = await api.get(`/admin/setup/getShipAssembleList.php?shipTypeId=${id}`)
+    const data = response?.data?.result === true ? response?.data?.List : []
+    console.log(response?.data)
     return (
         <>
         <ShipAssembleListBox
             id={id}
-            list={[]}
+            list={data}
         />
         </>
     )
