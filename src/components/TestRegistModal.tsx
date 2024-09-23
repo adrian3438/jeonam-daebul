@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
+import Dropzone from "@/components/Dropzone";
 
 const customStyles = {
     content: {
@@ -22,6 +23,10 @@ interface CustomModalProps {
 }
 
 const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+    const handleFileAccepted = (acceptedFiles: File[]) => {
+        console.log('Accepted files: ', acceptedFiles);
+    };
+
     return (
         <Modal
             isOpen={isOpen}
@@ -42,7 +47,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
 
                     <div className="change-reason2">
                         <h3>검사 사진 업로드</h3>
-                        <input type="file"/>
+                        <Dropzone onFileAccepted={handleFileAccepted}/>
                         <div className="picture-upload">
                             <p>
                                 <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
