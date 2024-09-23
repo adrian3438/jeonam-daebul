@@ -62,6 +62,8 @@ export default function ShipManageMentEditBox ({id} : Props) {
     }
     async function save () {
         const formData = new FormData()
+        if(!preview){alert('선종 대표 이미지를 등록해주세요.'); return;}
+        if(!data?.shipName) {alert('선종명을 입력해 주세요.'); return;}
         if(id !== '0') {formData.append('ID' , id)}
         formData.append('shipTypeNameKr' , data?.shipName)
         formData.append('shipTypePartners' , data?.company.join(','))

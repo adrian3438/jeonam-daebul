@@ -8,15 +8,16 @@ interface Props {
     id : string | Blob,
 }
 interface DataType {
-    loginId : string, name : string, pass : string, 
-    companyName : string, mobile : string, phone : string,
-    email : string, dept : string, position : string, note : string
+   companyName : string, ceoName : string, licenseNo : string, phone : string,
+   ceoEmail : string, ceoMobile : string, bizDivision : string, bizType : string,
+   address : string, notes : string
 }
 export default function OutsourcingEdit ({id} : Props) {
     const router = useRouter()
     const [data, setData] = useState<DataType>({
-        loginId : '', name : '', pass : '', companyName : '', mobile : '',
-        phone : '', email : '', dept : '', position : '', note : ''
+        companyName : '', ceoName : '', licenseNo : '', phone : '',
+        ceoEmail : '', ceoMobile : '', bizDivision : '', bizType : '',
+        address : '', notes : ''
     })
     function handleChange (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const {name , value} = e.target;
@@ -24,30 +25,37 @@ export default function OutsourcingEdit ({id} : Props) {
     }
     async function Save () {
         try{
+            if(!data?.companyName) {alert('업체명을 입력해 주세요.'); return;}
+            if(!data?.ceoName) {alert('대표자명을 입력해 주세요.');return;}
+            if(!data?.licenseNo) {alert('사업자 등록번호를 입력해 주세요.'); return;}
             const formData = new FormData()
             if(id !== 'regist') {formData.append('ID', id)}
-            formData.append('userLoginId', data?.loginId)
-            formData.append('userName', data?.name)
-            if(id === 'regist'){formData.append('userPass', data?.pass)}
-            formData.append('userCompanyName', data?.companyName)
-            formData.append('userMobile ', data?.mobile)
-            formData.append('userPhone', data?.phone)
-            formData.append('userEmail', data?.email)
-            formData.append('userDept', data?.dept)
-            formData.append('userPosition', data?.position)
-            formData.append('userNotes', data?.note)
+            formData.append('companyName', data?.companyName)
+            formData.append('companyCeoName', data?.ceoName)
+            formData.append('companyBisinessLicense', data?.licenseNo)
+            formData.append('companyPhone', data?.phone)
+            formData.append('companyCeoEmail', data?.ceoEmail)
+            formData.append('companyCeoMobile', data?.ceoMobile)
+            formData.append('companyBizType', data?.bizType)
+            formData.append('companyBizDivision', data?.bizDivision)
+            formData.append('companyAddr', data?.address)
+            formData.append('companyNotes', data?.notes)
             if(id === 'regist') {
-                const response = await api.post(`/admin/user/setUser.php`, formData)
+                const response = await api.post(`/admin/setup/setPartnerCompany.php`, formData)
                 if(response?.data?.result === true) {
-                    alert(response?.data?.resultMsg); 
-                    router.push(`/outsourcing`);
-                }else{alert(response?.data?.resultMsg)}
+                    alert(response?.data?.resultMsg)
+                    router.push(`/outsourcing`)
+                }else{
+                    alert(response?.data?.resultMsg)
+                }
             }else{
-                const response = await api.post(`/admin/user/updUser.php`, formData)
+                const response = await api.post(`/admin/setup/updPartnerCompany.php`, formData)
                 if(response?.data?.result === true) {
-                    alert(response?.data?.resultMsg);
-                    router.push(`/outsourcing`);
-                }else{alert(response?.data?.resultMsg)}
+                    alert(response?.data?.resultMsg)
+                    router.back()
+                }else{
+                    alert(response?.data?.resultMsg)
+                }
             }
         }catch{ alert('Server Error')
         }
@@ -55,14 +63,14 @@ export default function OutsourcingEdit ({id} : Props) {
     useEffect(()=> {
         async function getDetail () {
             if(id !== 'regist') {
-                const response = await api.get(`/admin/user/getUserDetail.php?ID=${id}`)
+                const response = await api.get(`/admin/setup/getPartnerCompanyDetail.php?ID=${id}`)
                 if(response?.data?.result === true) {
                     if(response?.data?.List?.length > 0) {
-                        const list = response?.data?.List[0];
-                        setData((prev) => ({ ...prev,
-                            loginId : list?.userLoginId, name : list?.userName, companyName : list?.userCompanyName,
-                            mobile : list?.userMobile, phone : list?.userPhone, email : list?.userEmail,
-                            dept : list?.userDept, position : list?.userPosition, note : list?.userNotes
+                        const result = response?.data?.List[0]
+                        setData((prev) => ({...prev, 
+                            companyName : result?.companyName, ceoName : result?.companyCeoName, licenseNo : result?.companyBisinessLicense, phone : result?.companyPhone,
+                            ceoEmail : result?.companyEmail, ceoMobile : result?.companyCeoMobile, bizDivision : result?.companyBizDivision, bizType : result?.companyBizType,
+                            address : result?.companyAddr, notes : result?.companyNotes
                         }))
                     }
                 }
@@ -72,51 +80,50 @@ export default function OutsourcingEdit ({id} : Props) {
     }, [])
     return(
         <>
-        <section>
-            <h2><span>01</span> 기본정보</h2>
-            <table className="table3">
-                <tbody>
-                <tr>
-                    <th scope="row">업체명</th>
-                    <td><input type="text" name="companyName" value={data?.companyName} onChange={handleChange}/></td>
-                    <th scope="row">담당자 이름</th>
-                    <td><input type="text" name="name" value={data?.name} onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <th scope="row">로그인 아이디</th>
-                    <td><input type="text" name="loginId" value={data?.loginId} onChange={handleChange}/></td>
-                    <th scope="row">임시 비밀번호</th>
-                    <td><input type="password" name="pass" value={data?.pass} onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <th scope="row">담당자 핸드폰</th>
-                    <td><input type="text" name="mobile" value={data?.mobile} onChange={handleChange}/></td>
-                    <th scope="row">담당자 연락처</th>
-                    <td><input type="text" name="phone" value={data?.phone} onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <th scope="row">부서</th>
-                    <td><input type="text" name="dept" value={data?.dept} onChange={handleChange}/></td>
-                    <th scope="row">직급</th>
-                    <td><input type="text" name="position" value={data?.position} onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <th scope="row">담당자 이메일</th>
-                    <td colSpan={3}><input type="text" name="email" value={data?.email} onChange={handleChange}/></td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-        <section>
-            <h2><span>02</span> 메모사항</h2>
-            <textarea name="note" value={data?.note} onChange={handleChange}>
-                
-            </textarea>
-        </section>
-
-        <div className="btns4">
-        <button onClick={() => router.back()}>이전으로</button>
-        <button onClick={Save}>{id === 'regist' ? '저장하기' : '수정하기'}</button>
+        <div className="partner">
+            <section>
+                <h2><span>01</span> 기본정보</h2>
+                <table className="table3">
+                    <tbody>
+                    <tr>
+                        <th scope="row">업체명(*)</th>
+                        <td><input type="text" name="companyName" value={data?.companyName} onChange={handleChange}/></td>
+                        <th scope="row">대표자명(*)</th>
+                        <td><input type="text" name="ceoName" value={data?.ceoName} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">사업자 등록번호(*)</th>
+                        <td><input type="text" name="licenseNo" value={data?.licenseNo} onChange={handleChange}/></td>
+                        <th scope="row">연락처</th>
+                        <td><input type="text" name="phone" value={data?.phone} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">대표자 이메일</th>
+                        <td><input type="text" name="ceoEmail" value={data?.ceoEmail} onChange={handleChange}/></td>
+                        <th scope="row">대표자 핸드폰</th>
+                        <td><input type="text" name="ceoMobile" value={data?.ceoMobile} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">업태</th>
+                        <td><input type="text" name="bizType" value={data?.bizType} onChange={handleChange}/></td>
+                        <th scope="row">업종</th>
+                        <td><input type="text" name="bizDivision" value={data?.bizDivision} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">주소</th>
+                        <td colSpan={3}><input type="text" name="address" value={data?.address} onChange={handleChange}/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2><span>02</span> 메모사항</h2>
+                <textarea name="notes" value={data?.notes} onChange={handleChange}>
+                </textarea>
+            </section>
+            <div className="btns4">
+                <button onClick={Save}>저장</button>
+            </div>
         </div>
 </>
 )

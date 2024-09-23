@@ -1,15 +1,14 @@
 'use client' 
-import Link from "next/link";
-import Image from "next/image";
-import Paginate from "@/components/Paginate/pagination";
-import api from "@/lib/api";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import calCulateIndex from "@/components/calculateIndex";
-interface PartnerCompanyType {
-    ID : string | Blob, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
-    companyBizType : string, companyCeoMobile : string , companyCeoName : string, companyEmail : string, companyName : string,
-    companyNotes : string, companyPhone : string, createDate : string
+import api from "@/lib/api";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+interface DataType {
+    ID : string | Blob , userLoginId : string, userName : string, userCompanyName : string,
+    userPhone : string, userMobile : string, userEmail : string, userDept : string,
+    userPosition : string, activeStatus : string, createDate : string
 }
 interface Props {
     data : []
@@ -19,14 +18,14 @@ interface Props {
     sortColumn : string
     sortOrder : string
 }
-export default function OutsourcingListBox ({
+export default function PartnersListBox ({
     data , totalCount, page , size, sortColumn, sortOrder
 } : Props) {
     const router = useRouter()
     const [list, setList] = useState<any>(data)
     const [totalCnt , setTotalCnt] = useState<number>(totalCount)
     async function getList () {
-        const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=${page || 1}&size=${size || 10}&sortColumn=${sortColumn || 'companyName'}&sortOrder=${sortOrder || 'desc'}`)
+        const response = await api.get(`/admin/user/getUserList.php?page=${page || 1}&size=${size || 10}&sortColumn=${sortColumn || 'userName'}&sortOrder=${sortOrder || 'desc'}`)
         if(response?.data?.result === true) {
             setList(response?.data?.List); setTotalCnt(response?.data?.totalCnt)
         }
@@ -35,7 +34,7 @@ export default function OutsourcingListBox ({
         const formData = new FormData()
         formData.append('ID' , id)
         formData.append('activeStatus' , status === 'Y' ? 'N' : 'Y')
-        const response = await api.post(`/admin/setup/updPartnerCompanyStatus.php`, formData)
+        const response = await api.post(`/admin/user/updUserStatus.php`, formData)
         if(response?.data?.result === true) {
             getList()
         }else{
@@ -53,27 +52,27 @@ export default function OutsourcingListBox ({
             <tr>
                 <th scope="col">No.</th>
                 <th scope="col">업체명</th>
-                <th scope="col">대표자명</th>
-                <th scope="col">사업자 등록번호</th>
+                <th scope="col">담당자 이름</th>
+                <th scope="col">핸드폰</th>
                 <th scope="col">연락처</th>
-                <th scope="col">대표이메일</th>
+                <th scope="col">이메일</th>
                 <th scope="col">등록일자</th>
                 <th scope="col">상태</th>
                 <th scope="col">액션</th>
             </tr>
             </thead>
             <tbody>
-                {list?.map((list:PartnerCompanyType, index : number) => {
+                {list?.map((list:DataType, index:number) => {
                     const calculatedIndex = calCulateIndex(page, size, totalCnt, index);
                     return(
                         <tr key={index}>
                             <td>{calculatedIndex}</td>
-                            <td style={{textAlign: 'left'}}>{list?.companyName}</td>
-                            <td>{list?.companyCeoName}</td>
-                            <td>{list?.companyBisinessLicense}</td>
-                            <td>{list?.companyPhone ? list?.companyPhone : '-'}</td>
-                            <td>{list?.companyEmail}</td>
-                            <td>{list?.createDate}</td>
+                            <td>{list?.userCompanyName}</td>
+                            <td style={{textAlign: 'left'}}>{list?.userName}</td>
+                            <td>{list?.userMobile ? list?.userMobile : '-'}</td>
+                            <td>{list?.userPhone ? list?.userPhone : '-'}</td>
+                            <td>{list?.userEmail ? list?.userEmail : '-'}</td>
+                            <td>{list?.createDate ? list?.createDate : '-'}</td>
                             <td>
                                 <label className="toggle_switch">
                                     <input 
@@ -85,7 +84,7 @@ export default function OutsourcingListBox ({
                                 </label>
                             </td>
                             <td>
-                                <a href={`/outsourcing/${list?.ID}`}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                <a style={{cursor : 'pointer'}} onClick={()=>router.push(`/partner/${list?.ID}`)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                             </td>
                         </tr>
                     )
@@ -94,9 +93,9 @@ export default function OutsourcingListBox ({
         </table>
 
         <div className="pagination">
-            <Paginate page={page} size={size} totalCount={totalCount}/>
+            페이징 들어감
             <div className='btns'>
-                <Link href='/outsourcing/regist'>등록</Link>
+                <Link href='/partner/regist'>등록</Link>
             </div>
         </div>
         </>

@@ -16,7 +16,7 @@ interface searchParamsType {
 export default async function OutsourcingList({searchParams : {
     page , size , sortColumn, sortOrder
 }} : searchParamsType) {
-    const response = await api.get(`/admin/user/getUserList.php?page=${page || 1}&size=${size || 10}&sortColumn=${sortColumn || 'userName'}&sortOrder=${sortOrder || 'desc'}`)
+    const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=${page || 1}&size=${size || 10}&sortColumn=${sortColumn || 'companyName'}&sortOrder=${sortOrder || 'desc'}`)
     const data = response?.data?.result === true ? response?.data?.List : [];
     const totalCount = response?.data?.result === true ? response?.data?.totalCnt : 0;
     // console.log(response?.data)
