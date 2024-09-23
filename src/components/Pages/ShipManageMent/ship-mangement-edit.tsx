@@ -7,7 +7,7 @@ interface Props {
 }
 interface DataType {
     mainImage : File |
-    Blob | null , shipName : string, company : string[] | Blob[]
+    Blob | null , shipName : string, company : string[]
 }
 interface PartnerCompanyType {
     ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
@@ -34,8 +34,24 @@ export default function ShipManageMentEditBox ({id} : Props) {
             setData((prev) => ({...prev , [name] : value}))
         }
     }
+     function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>, companyId: string) {
+        const isChecked = e.target.checked
+        setData((prev) => {
+            const updatedCompanies = isChecked
+                ? [...prev.company, companyId] // 체크된 경우 ID 추가
+                : prev.company.filter((id) => id !== companyId) // 체크 해제된 경우 ID 제거
+            return { ...prev, company: updatedCompanies }
+        })
+    }
     async function getDetail () {
         const response = await api.get(`/admin/setup/getShipTypeDetail.php?ID=${id}`)
+        if(response?.data?.result === true) {
+            if(response?.data?.List?.length > 0) {
+                const result = response?.data?.List[0]
+                setData((prev) => ({...prev, shipName : result?.shipTypeName, company : []}))
+                setPreview(result?.thumnailFile)
+            }
+        }
     }
     async function getPartnerCompany () {
         const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=companyName&sortOrder=desc`)
@@ -71,6 +87,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
                 <div>
                     <h2>선종 대표 이미지 (<span>*</span>)</h2>
                     <input type="file" name="mainImage" onChange={handleChange}/>
+                    <img src={preview}/>
                 </div>
                 <div>
                     <h2>선종명 (<span>*</span>)</h2>
@@ -82,7 +99,11 @@ export default function ShipManageMentEditBox ({id} : Props) {
                 <div>
                     {partnerCompany?.map((company : PartnerCompanyType, index:number) => (
                         <label key={index}>
-                            <input type="checkbox"/>
+                            <input 
+                                type="checkbox"
+                                onChange={(e)=>handleCheckboxChange(e, company?.ID)}
+                                checked={data?.company?.includes(company?.ID)}
+                            />
                             {company?.companyName}
                         </label>
                     ))}
@@ -91,7 +112,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
 
         </div>
         <div className="btns2">
-            <button onClick={()=>save()}>저장</button>
+            <button onClick={()=>save()}>{id === '0' ? '등록' : '수정'}</button>
         </div>
         </>
     )
