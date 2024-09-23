@@ -6,7 +6,7 @@ import './modeling_ctrl.css'
 export default function Main() {
     return (
         <>
-            <div style={{width : '100%', height : '890px'}}>
+            <div style={{width:"100%", height:"calc(100% - 163px)"}}>
                 <ModelingComponents
 
                 />

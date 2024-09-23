@@ -312,23 +312,27 @@ ul.dynatree-container, #tree, #assyTree_body {background:#FBFBFB !important;}
 /* 08-30 디자인 역번 시작 */
 #web3dPlayer_main{padding-top: 60px;}
 body {color:#000;}
-.modeling-header {position:fixed; width: 100%; z-index: 999; padding-left:320px; height:60px; background:#fff; border-bottom:1px solid #EEEEEE;}
+.modeling-header {display: flex;align-items: center;justify-content: space-between;}
+
+/*.modeling-header {position:fixed; width: 100%; z-index: 999; padding-left:320px; height:60px; background:#fff; border-bottom:1px solid #EEEEEE;}
 .modeling-header .h-section-1 {width: calc(100% - 800px); position:absolute; left: 25px; top:0; height:60px; display:flex;     align-content: center; justify-content: flex-start; align-items: center;}
 .modeling-header .h-section-1 .logoBox{position: relative; display: block; width: 30px; height: 30px; border-radius: 5px; border: 1px solid #EEEEEE;}
-.modeling-header .h-section-1 .logoBox img{max-width: 90%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
-.modeling-header .h-section-1 .logoTxt{overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; font-weight: 400; color: #555555; font-weight: 600; margin-left: 8px;}
+.modeling-header .h-section-1 .logoBox img{max-width: 90%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}*/
+.modeling-header .h-section-1 .logoTxt{overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; color: #555555; font-weight: 600; margin-left: 20px;}
 
 .modeling-header .h-section-1 a {margin-left:30px;}
-/* .modeling-header .h-section-1 a img {height:26px;} */
+.modeling-header .h-section-1 a img {height:26px;}
 .modeling-header .h-section-2 {display:flex; height:60px; align-content: center; justify-content: flex-start; align-items: center; border-left:1px solid #EEEEEE;}
 .modeling-header .h-section-2 button {margin-left:20px; border:none; outline:none; display:inline-block; border-radius:5px; background:#256DCB; color:#fff; font-size:15px; font-weight:600; height:37px; padding:0 19px;}
 .modeling-header .h-section-2 button i {margin-right:5px;}
-.modeling-header .h-section-3 {position:absolute; right:0; top:-1px; height:60px; display:flex;     align-content: center; justify-content: flex-end; align-items: center; border-left:1px solid #EEEEEE;} 
 
-.button-col {display:flex; border-right:1px solid #EEEEEE;}
+/*.modeling-header .h-section-3 {position:absolute; right:0; top:-1px; height:60px; display:flex;     align-content: center; justify-content: flex-end; align-items: center; border-left:1px solid #EEEEEE;} */
+
+.button-col {display:flex; /*border-right:1px solid #EEEEEE;*/}
 .button-col .view-button-box {display:flex;}
 .button-col .view-button-box li {height:60px; width:60px; margin:0; padding:0;     display: flex; justify-content: center; align-items: center; position:relative; z-index:1;}
-.button-col button {vertical-align: top; width:60px; height:60px; border:none; outline:none; background:#fff;}
+/*.button-col button {vertical-align: top; width:60px; height:60px; border:none; outline:none; background:#fff;}*/
+.button-col button {border:none;background:none}
 .button-col button.item-list-btn {border-left:1px solid #eee;}
 .button-col button.item-list-btn.on {background:#256DCB;}
 .button-col button.item-list-btn.on svg path {fill:#fff;}
