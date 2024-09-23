@@ -10,32 +10,32 @@ export default function PartnerRegist() {
                 <table className="table3">
                     <tbody>
                     <tr>
-                        <th scope="row">업체명</th>
-                        <td><input type="text" name="companyName"/></td>
-                        <th scope="row">담당자 이름</th>
-                        <td><input type="text" name="name"/></td>
+                        <th scope="row">업체명(*)</th>
+                        <td><input type="text"/></td>
+                        <th scope="row">대표자명(*)</th>
+                        <td><input type="text"/></td>
                     </tr>
                     <tr>
-                        <th scope="row">로그인 아이디</th>
-                        <td><input type="text" name="loginId"/></td>
-                        <th scope="row">임시 비밀번호</th>
-                        <td><input type="password" name="pass"/></td>
+                        <th scope="row">사업자 등록번호(*)</th>
+                        <td><input type="text"/></td>
+                        <th scope="row">연락처</th>
+                        <td><input type="text"/></td>
                     </tr>
                     <tr>
-                        <th scope="row">담당자 핸드폰</th>
-                        <td><input type="text" name="mobile"/></td>
-                        <th scope="row">담당자 연락처</th>
-                        <td><input type="text" name="phone"/></td>
+                        <th scope="row">대표자 이메일</th>
+                        <td><input type="text"/></td>
+                        <th scope="row">대표자 핸드폰</th>
+                        <td><input type="text"/></td>
                     </tr>
                     <tr>
-                        <th scope="row">부서</th>
-                        <td><input type="text" name="dept"/></td>
-                        <th scope="row">직급</th>
-                        <td><input type="text" name="position"/></td>
+                        <th scope="row">업태</th>
+                        <td><input type="text"/></td>
+                        <th scope="row">업종</th>
+                        <td><input type="text"/></td>
                     </tr>
                     <tr>
-                        <th scope="row">담당자 이메일</th>
-                        <td colSpan={3}><input type="text" name="email"/></td>
+                        <th scope="row">주소</th>
+                        <td colSpan={3}><input type="text"/></td>
                     </tr>
                     </tbody>
                 </table>

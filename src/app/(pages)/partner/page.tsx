@@ -12,10 +12,10 @@ export default function OutsourcingList() {
                 <tr>
                     <th scope="col">No.</th>
                     <th scope="col">업체명</th>
-                    <th scope="col">담당자 이름</th>
-                    <th scope="col">핸드폰</th>
+                    <th scope="col">대표자명</th>
+                    <th scope="col">사업자 등록번호</th>
                     <th scope="col">연락처</th>
-                    <th scope="col">이메일</th>
+                    <th scope="col">대표이메일</th>
                     <th scope="col">등록일자</th>
                     <th scope="col">상태</th>
                     <th scope="col">액션</th>
