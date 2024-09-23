@@ -3,7 +3,7 @@ import "@/app/assets/shipList.scss";
 import { cookies } from "next/headers";
 import api from "@/lib/api";
 import ShipTypeBox from "@/components/Pages/ShipType/ship-type-box";
-import ShipBopBox from "@/components/Pages/ShipType/ship-bop-box";
+import ShipAssembleBox from "@/components/Pages/ShipType/ship-assemble-box";
 interface MainProps {
     searchParams: {
       s?: string | string[] | undefined;
@@ -12,9 +12,13 @@ interface MainProps {
 export default async function Main({searchParams : {s}} : MainProps) {
     const cookie = cookies();
     const cookieValue : any = cookie.get('jdassid') || '';
+    // 선종 리스트
     const response = await api.get(`/admin/getAdminMainDashBoard.php?shipAssembleName=`)
     const data = response?.data?.result === true ? response?.data?.List : []
     const shipid = s || response?.data?.List[0]?.ID?.toString() || '';
+    // 대조리스트
+    const response2 = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${3}`)
+    // console.log(s)
     return (
         <div className="ship-list">
 
@@ -25,7 +29,7 @@ export default async function Main({searchParams : {s}} : MainProps) {
             />
             
             {/* 대조관리박스 */}
-            <ShipBopBox
+            <ShipAssembleBox
 
             />
         </div>

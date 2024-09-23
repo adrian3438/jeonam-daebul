@@ -1,6 +1,7 @@
 'use client'
 import api from "@/lib/api";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 interface Props {
     id : string | Blob
@@ -23,7 +24,7 @@ export default function ShipAssembleListBox ({
                 <li>
                     <div>
                         <div className="bop-image-area">
-                            이미지 영역
+                            <Image src={'/images/no-image.jpg'} alt="sample" width={100} height={100}/>
                         </div>
                         <div className="bop-info-area">
                             <p className="subsidary-regist">S11C <Link href="/ship-manage/1/regist-subsidary">수정</Link></p>
@@ -34,7 +35,7 @@ export default function ShipAssembleListBox ({
                 <li>
                     <div>
                         <div className="bop-image-area">
-                            이미지 영역
+                            <Image src={'/images/no-image.jpg'} alt="sample" width={100} height={100}/>
                         </div>
                         <div className="bop-info-area">
                             <p className="subsidary-regist">S11C <Link href="#">수정</Link></p>

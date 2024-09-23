@@ -1,7 +1,7 @@
 'use client' 
 import Link from "next/link";
 
-export default function ShipBopBox () {
+export default function ShipAssembleBox () {
 
     return(
         <>

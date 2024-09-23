@@ -54,6 +54,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
             }
         }
     }
+    console.log(data?.company)
     async function getPartnerCompany () {
         const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=companyName&sortOrder=desc`)
         if(response?.data?.result === true){
@@ -114,15 +115,14 @@ export default function ShipManageMentEditBox ({id} : Props) {
                         <label key={index}>
                             <input 
                                 type="checkbox"
-                                onChange={(e)=>handleCheckboxChange(e, company?.ID)}
-                                checked={data?.company?.includes(company?.ID)}
+                                onChange={(e)=>handleCheckboxChange(e, company?.ID?.toString())}
+                                checked={data?.company?.includes(company?.ID?.toString())}
                             />
                             {company?.companyName}
                         </label>
                     ))}
                 </div>
             </section>
-
         </div>
         <div className="btns2">
             <button onClick={()=>save()}>{id === '0' ? '등록' : '수정'}</button>
