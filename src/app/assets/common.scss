@@ -276,3 +276,21 @@
     border: 1px solid #ddd;
   }
 }
+
+/* Dropzone */
+.dropzone {
+  border: 2px dashed #cccccc;
+  padding: 60px 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  p {
+    padding: 15px 0 15px 70px;
+    margin:0 auto;
+    background: url('/images/upload-icon.svg') no-repeat 0 50%;
+    span {
+      color: #1F75CB;
+      font-weight: bold;
+    }
+  }
+}

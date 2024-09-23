@@ -1,16 +1,22 @@
+'use client';
 import "@/app/assets/main.scss";
 import "@/app/assets/ship-manage.scss";
 import React from "react";
 import Image from "next/image";
+import Dropzone from "@/components/Dropzone";
 
 export default function SubsidaryRegist() {
+    const handleFileAccepted = (acceptedFiles: File[]) => {
+        console.log('Accepted files: ', acceptedFiles);
+    };
+
     return (
         <>
             <div className="subsidary-manage-regist">
                 <section>
                     <div>
                         <h2>대조 대표 이미지 (<span>*</span>)</h2>
-                        <input type="file"/>
+                        <Dropzone onFileAccepted={handleFileAccepted} />
                         <p className="uploaded-img">
                             <Image src="/images/@temp/uploaded-img-sample.jpg" alt="대조" width={81} height={23}/>
                             <span>test-shi9p01.jpg</span>

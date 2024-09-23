@@ -3,6 +3,7 @@ import api from "@/lib/api"
 import { useRouter } from "next/navigation"
 import React, { useEffect, useState } from "react"
 import Image from "next/image";
+import Dropzone from "@/components/Dropzone";
 interface Props {
     id : string | Blob
 }
@@ -91,13 +92,18 @@ export default function ShipManageMentEditBox ({id} : Props) {
     useEffect(()=> {
         getPartnerCompany()
     }, [])
+
+    const handleFileAccepted = (acceptedFiles: File[]) => {
+        console.log('Accepted files: ', acceptedFiles);
+    };
     return(
         <>
         <div className="ship-manage-regist">
             <section>
                 <div>
                     <h2>선종 대표 이미지 (<span>*</span>)</h2>
-                    <input type="file" name="mainImage" onChange={handleChange}/>
+                    {/*<input type="file" name="mainImage" onChange={handleChange}/>*/}
+                    <Dropzone onFileAccepted={handleFileAccepted} />
                     <p className="uploaded-img">
                         <Image src={preview} alt="대조" width={81} height={23}/>
                         <span>{preview}</span>
