@@ -63,44 +63,44 @@ const TestListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, con
                         <table className="table">
                             <thead>
                             <tr>
-                                <th scope="col">파일명</th>
-                                <th scope="col">등록일자</th>
-                                <th scope="col">등록자</th>
-                                <th scope="col">변경사항</th>
+                                <th scope="col">검사이미지</th>
+                                <th scope="col">검사제목</th>
+                                <th scope="col">검사일자</th>
+                                <th scope="col">검사자</th>
+                                <th scope="col">검사결과</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td><a href="#" onClick={openModal1}>JA003-S11C-부재표-REV2</a></td>
+                                <td><Image src="/images/@temp/test-sample-img.jpg" alt="이미지" width={144} height={85}/></td>
+                                <td><a href="#" onClick={openModal1}>Pre-eletion 검사</a></td>
                                 <td>2024-07-15</td>
                                 <td>홍길동</td>
-                                <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
+                                <td>양호</td>
                                 <td className='action'>
-                                    <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
-                                    <label className="toggle_switch">
+                                    <label className="toggle_switch" style={{marginRight: '10px'}}>
                                         <input type="checkbox"/>
                                         <span className="slider"></span>
                                     </label>
+                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                 </td>
                             </tr>
                             <tr>
-                                <td><a href="#" onClick={openModal1}>JA003-S11C-부재표-REV2</a></td>
+                                <td><Image src="/images/@temp/test-sample-img.jpg" alt="이미지" width={144} height={85}/></td>
+                                <td><a href="#" onClick={openModal1}>Pre-eletion 검사</a></td>
                                 <td>2024-07-15</td>
                                 <td>홍길동</td>
-                                <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
+                                <td className="error">불량</td>
                                 <td className='action'>
-                                    <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
-                                    <label className="toggle_switch">
+                                    <label className="toggle_switch" style={{marginRight:'10px'}}>
                                         <input type="checkbox"/>
                                         <span className="slider"></span>
                                     </label>
+                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                 </td>
                             </tr>
+
                             {/* 리스트 없을 시 <tr>
                                 <td colSpan={5}>내용이 없습니다.</td>
                             </tr>*/}
@@ -116,8 +116,8 @@ const TestListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, con
                     </div>
                 </div>
             </Modal>
-            <TestDetailModal isOpen={modalIsOpen1} onRequestClose={closeModal} contentLabel="검사 리스트 상세" />
-            <TestRegistModal isOpen={modalIsOpen2} onRequestClose={closeModal} contentLabel="검사 리스트 등록" />
+            <TestDetailModal isOpen={modalIsOpen1} onRequestClose={closeModal} contentLabel="검사 리스트 상세"/>
+            <TestRegistModal isOpen={modalIsOpen2} onRequestClose={closeModal} contentLabel="검사 리스트 등록"/>
         </>
     );
 };

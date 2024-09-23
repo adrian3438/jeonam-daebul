@@ -12,8 +12,12 @@
   }
   tbody {
     td {
+      vertical-align: middle;
       padding: 15px 10px;
       text-align: center;
+      &.error {
+        color: #f00;
+      }
       &.change {
         white-space: nowrap;
         overflow: hidden;
