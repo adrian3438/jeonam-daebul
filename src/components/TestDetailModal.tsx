@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
+import Dropzone from "@/components/Dropzone";
 
 const customStyles = {
     content: {
@@ -35,28 +36,43 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                     <button onClick={onRequestClose} className="modal-close-button">Close</button>
                 </div>
                 <div className="modal-content">
-                    <table className="table2">
-                        <tbody>
-                        <tr>
-                            <th scope="row">파일명</th>
-                            <td>JA003-S11C-부재표-REV2 <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a></td>
-                            <th scope="row">Version</th>
-                            <td>version3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">등록자</th>
-                            <td>홍길동</td>
-                            <th scope="row">등록일자</th>
-                            <td>2024-08-31</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div className="change-reason2">
+                        <h3>검사 제목</h3>
+                        <p>검사 제목이 들어갑니다.</p>
+                    </div>
 
-                    <div className="change-reason">
-                        <h3>변경 사유</h3>
-                        <div>
-                            변경 사유가 들어갑니다.
+                    <div className="change-reason2">
+                        <h3>검사 사진 업로드</h3>
+                        <div className="picture-upload">
+                            <p>
+                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
+                            </p>
+                            <p>
+                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
+                            </p>
+                            <p>
+                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
+                            </p>
+                            <p>
+                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
+                            </p>
+                            <p>
+                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
+                            </p>
                         </div>
+                    </div>
+
+
+                    <div className="change-reason2">
+                        <h3>변경 사유</h3>
+                        <p>
+                            수정인 경우 내용이 있습니다.
+                        </p>
+                    </div>
+
+                    <div className="change-reason2">
+                        <h3>검사 결과</h3>
+                        <p>양호</p>
                     </div>
                 </div>
             </div>
