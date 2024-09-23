@@ -75,6 +75,13 @@ export default function ShipManageMentEditBox ({id} : Props) {
             }else{
                 alert(response?.data?.resultMsg)
             }
+        }else{
+            const response = await api.post(`/admin/setup/updShipType.php`, formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg); router.push(`/ship-manage`)
+            }else{
+                alert(response?.data?.resultMsg)
+            }
         }
     }
     useEffect(()=> {
