@@ -9,7 +9,7 @@ interface ParamsType {
 export default async function ShipBopManage({params : {id}} : ParamsType) {
     const response = await api.get(`/admin/setup/getShipAssembleList.php?shipTypeId=${id}`)
     const data = response?.data?.result === true ? response?.data?.List : []
-    console.log(response?.data)
+    // console.log(response?.data)
     return (
         <>
         <ShipAssembleListBox

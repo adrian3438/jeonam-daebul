@@ -35,8 +35,8 @@ export default function ShipAssembleListBox ({
                                 <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={100} height={100}/>
                             </div>
                             <div className="bop-info-area">
-                                <p className="subsidary-regist">{list?.shipAssembleName} <Link href="/ship-manage/1/regist-subsidary">수정</Link></p>
-                                <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-manage/1/bop/${list?.bopIdx}` : `/ship-manage/1/bop/regist`}>수정</Link></p>
+                                <p className="subsidary-regist">{list?.shipAssembleName} <Link href={`/ship-manage/${id}/regist-subsidary/${list?.ID}`}>수정</Link></p>
+                                <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`}>수정</Link></p>
                             </div>
                         </div>
                     </li>
@@ -46,7 +46,7 @@ export default function ShipAssembleListBox ({
 
         <div className="pagination">
             <div className='btns'>
-                <Link href="/ship-manage/1/regist-subsidary">등록</Link>
+                <Link href={`/ship-manage/${id}/regist-subsidary/regist`}>등록</Link>
             </div>
         </div>
         </>

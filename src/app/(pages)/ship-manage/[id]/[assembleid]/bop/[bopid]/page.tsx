@@ -5,15 +5,17 @@ import React from "react";
 
 interface ParamsType {
     params : {
-        id : any;
-        bopid : any;
+        id : string | Blob;
+        assembleid : string | Blob;
+        bopid : string | Blob
     }
 }
-export default function BopRegist({params : {id , bopid}} : ParamsType) {
+export default function BopRegist({params : {id , assembleid, bopid}} : ParamsType) {
     return (
         <>
         <BopEditBox
             id={id}
+            assembleid={assembleid}
             bopid={bopid}
         />
         </>

@@ -1,50 +1,133 @@
 'use client'
 import api from "@/lib/api";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 interface Props {
     id : string | Blob
-    bopid : any
+    assembleid : any
+    bopid : string |Blob
+}
+interface DataType {
+    mainImage : File | Blob | null , bopName : string , bopNotes : string, 
+    jsonFile : File | Blob | null , binFile : File | Blob | null, xvlFile : File | Blob | null
+}
+interface FileNameType { 
+    mainImage : string, jsonFile : string , binFile : string, xvlFile : string
 }
 export default function BopEditBox ({
-    id , bopid
+    // id : 선종 아이디 
+    // assembleid : 대조 아이디
+    id , assembleid, bopid
 } : Props) {
-    const [data , setData] = useState<any>([])
-
-    async function getDetail () {
-        const response = await api.get(`/admin/setup/getBopDetail.php?ID=${id}`)
-        if(response?.data?.result === true){
-            
+    const router = useRouter()
+    const [data , setData] = useState<DataType>({
+        mainImage : null, bopName : '', bopNotes : '',
+        jsonFile : null, binFile : null, xvlFile : null
+    })
+    const [preview , setPreview] = useState<string>('')
+    const [fileName , setFileName] = useState<FileNameType>({
+        mainImage : '', jsonFile : '', binFile : '', xvlFile : ''
+    })
+    function handleChange (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const {type , name , value} = e.target;
+        if(type === 'file' && e.target instanceof HTMLInputElement && e.target.files && e.target.files[0]) {
+            const files = e.target.files;
+            const reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            reader.onload = () => {
+                setData((prev) => ({...prev, [name] : files[0]}))
+                if(name === 'mainImage') {
+                    setPreview(reader.result as string)
+                    setFileName((prev) => ({...prev, mainImage : files[0].name as string}))
+                }else{
+                    setFileName((prev) => ({...prev, [name] : files[0].name as string}))
+                }
+            }
+        }else{
+            setData((prev) => ({...prev, [name] : value}))
         }
     }
+
+    async function Save () {
+        const formData = new FormData()
+        if(bopid === 'regist') {
+            formData.append('assembleId', assembleid)
+        }else{
+            formData.append('ID', bopid)
+        }
+        formData.append('bopNameKr', data?.bopName)
+        if(data?.mainImage){formData.append('thumnailImage', data?.mainImage)}
+        if(data?.jsonFile){formData.append('bopJsonFile', data?.jsonFile)}
+        if(data?.binFile){formData.append('bopBinFile', data?.binFile)}
+        if(data?.xvlFile){formData.append('bopXvlFile', data?.xvlFile)}
+        if(bopid === 'regist') {
+            const response = await api.post(`/admin/setup/setShipBop.php` , formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg);router.push(`/ship-manage/${id}`)
+            }else {alert(response?.data?.resultMsg)}
+        }else{
+            const response = await api.post(`/admin/setup/updShipBop.php` , formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg);router.push(`/ship-manage/${id}`)
+            }else {alert(response?.data?.resultMsg)}
+        }
+    }
+   
+    useEffect(()=>{
+        async function getDetail () {
+            if(bopid !== 'regist'){
+                const response = await api.get(`/admin/setup/getBopDetail.php?ID=${bopid}`)
+                if(response?.data?.result === true){
+                    if(response?.data?.List?.length > 0) {
+                        const result = response?.data?.List[0]
+                        setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : '',}))
+                        setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
+                        binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
+                        setPreview(result?.thumnailFile)
+                    }
+                }
+            }
+        }
+        getDetail()
+    },[])
     return(
         <>
         <div className="bop-manage-regist">
             <section>
                 <div>
                     <h2>BOP 대표 이미지 (<span>*</span>)</h2>
-                    <input type="file"/>
+                    <input type="file" name="mainImage" onChange={handleChange}/>
                     <p className="uploaded-img">
-                        <Image src="/images/@temp/uploaded-img-sample.jpg" alt="대조" width={81} height={23}/>
-                        <span>test-shi9p01.jpg</span>
+                        {preview && <Image src={preview} alt="대조" width={81} height={23}/>}
+                        <span>{fileName?.mainImage}</span>
                     </p>
                 </div>
                 <div>
                     <h2>BOP명 (<span>*</span>)</h2>
-                    <input type="text" className="ship-name"/>
+                    <input type="text" name="bopName" value={data?.bopName} onChange={handleChange} className="ship-name"/>
                 </div>
                 <div>
                     <h2>BOP 특이사항 (<span>*</span>)</h2>
-                    <textarea></textarea>
+                    <textarea name="bopNotes" value={data?.bopNotes} onChange={handleChange}></textarea>
                 </div>
             </section>
             <section>
                 <div>
                     <h2>모델링 파일</h2>
                     <div>
-                        <p><label>JSON</label><input type="file"/></p>
-                        <p><label>BIN</label><input type="file"/></p>
-                        <p><label>XVL</label><input type="file"/></p>
+                        <p>
+                            <label>JSON</label><input type="file" name="jsonFile" onChange={handleChange}/>
+                            {fileName?.jsonFile}
+                        </p>
+                        <p>
+                            <label>BIN</label><input type="file" name="binFile" onChange={handleChange}/>
+                            {fileName?.binFile}
+                        </p>
+                        <p>
+                            <label>XVL</label><input type="file" name="xvlFile" onChange={handleChange}/>
+                            {fileName?.xvlFile}
+                        </p>
                     </div>
                 </div>
                 <div>
@@ -52,7 +135,7 @@ export default function BopEditBox ({
             </section>
         </div>
         <div className="btns2">
-            <button>저장</button>
+            <button onClick={()=>Save()}>저장</button>
         </div>
         </>
     )
