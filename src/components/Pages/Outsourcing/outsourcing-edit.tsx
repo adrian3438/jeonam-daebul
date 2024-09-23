@@ -113,10 +113,11 @@ export default function OutsourcingEdit ({id} : Props) {
                 
             </textarea>
         </section>
-        <section>
-            <button onClick={()=>router.back()}>이전으로</button>
-            <button onClick={Save}>{id === 'regist' ? '저장하기' : '수정하기'}</button>
-        </section>
-        </>
-    )
+
+        <div className="btns4">
+        <button onClick={() => router.back()}>이전으로</button>
+        <button onClick={Save}>{id === 'regist' ? '저장하기' : '수정하기'}</button>
+        </div>
+</>
+)
 }
