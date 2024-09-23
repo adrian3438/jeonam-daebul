@@ -80,8 +80,8 @@ export default function ShipManageMentEditBox ({id} : Props) {
             <section>
                 <h2>협력업체</h2>
                 <div>
-                    {partnerCompany?.map((company : PartnerCompanyType) => (
-                        <label>
+                    {partnerCompany?.map((company : PartnerCompanyType, index:number) => (
+                        <label key={index}>
                             <input type="checkbox"/>
                             {company?.companyName}
                         </label>
