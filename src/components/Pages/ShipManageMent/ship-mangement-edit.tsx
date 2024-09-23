@@ -6,14 +6,20 @@ interface Props {
     id : string | Blob
 }
 interface DataType {
-    mainImage : File | Blob | null , shipName : string, company : string[] | Blob[]
+    mainImage : File |
+    Blob | null , shipName : string, company : string[] | Blob[]
+}
+interface PartnerCompanyType {
+    ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
+    companyBizType : string, companyCeoMobile : string , companyCeoName : string, companyEmail : string, companyName : string,
+    companyNotes : string, companyPhone : string, createDate : string
 }
 export default function ShipManageMentEditBox ({id} : Props) {
     const router = useRouter()
     const [data , setData] = useState<DataType>({
         mainImage : null, shipName : '', company : []
     })
-    const [partnerCompany , setPartnerCompany] = useState<string[]>([])
+    const [partnerCompany , setPartnerCompany] = useState<PartnerCompanyType[]>([])
     const [preview , setPreview] = useState<string>('')
     function handleChange (e : React.ChangeEvent<HTMLInputElement>) {
         const {type , name, value, files} = e.target;
@@ -32,8 +38,9 @@ export default function ShipManageMentEditBox ({id} : Props) {
         const response = await api.get(`/admin/setup/getShipTypeDetail.php?ID=${id}`)
     }
     async function getPartnerCompany () {
-        const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=userName&sortOrder=desc`)
+        const response = await api.get(`/admin/setup/getPartnerCompanyList.php?page=1&size=99&sortColumn=companyName&sortOrder=desc`)
         if(response?.data?.result === true){
+            setPartnerCompany(response?.data?.List)
             if(id !== '0') {getDetail()}
         }
     }
@@ -73,30 +80,12 @@ export default function ShipManageMentEditBox ({id} : Props) {
             <section>
                 <h2>협력업체</h2>
                 <div>
-                    <label>
-                        <input type="checkbox"/>
-                        태광산업
-                    </label>
-                    <label>
-                        <input type="checkbox"/>
-                        영진용접
-                    </label>
-                    <label>
-                        <input type="checkbox"/>
-                        대한조선
-                    </label>
-                    <label>
-                        <input type="checkbox"/>
-                        업체명
-                    </label>
-                    <label>
-                        <input type="checkbox"/>
-                        업체명
-                    </label>
-                    <label>
-                        <input type="checkbox"/>
-                        업체명
-                    </label>
+                    {partnerCompany?.map((company : PartnerCompanyType, index:number) => (
+                        <label key={index}>
+                            <input type="checkbox"/>
+                            {company?.companyName}
+                        </label>
+                    ))}
                 </div>
             </section>
 
