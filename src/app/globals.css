@@ -32,7 +32,7 @@ body {
   line-height: 1;
   font-family: var(--font-pretendard-sans);
   font-weight: 400;
-  min-width: 1400px;
+  min-width: 768px;
 }
 ol, ul {
   list-style: none;
