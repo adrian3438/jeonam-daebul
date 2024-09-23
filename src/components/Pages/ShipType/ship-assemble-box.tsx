@@ -15,8 +15,8 @@ export default function ShipAssembleBox ({data} : Props) {
         <>
         <section className="ship-type-bop">
             <ul>
-                {data?.map((list:DataType) => (
-                    <li>
+                {data?.map((list:DataType,index:number) => (
+                    <li key={index}>
                         <div>
                             <div className="bop-image-area">
                                 <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={100} height={100}/>
