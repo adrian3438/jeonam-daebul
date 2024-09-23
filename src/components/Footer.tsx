@@ -6,6 +6,7 @@ import RequiredListModal from "@/components/RequiredListModal";
 import { useState } from "react";
 import MachiningListModal from "@/components/MachiningListModal";
 import WorkListModal from "@/components/WorkListModal";
+import TestListModal from "@/components/TestListModal";
 
 export default function Footer() {
     const [activeItem, setActiveItem] = useState<number | null>(null);
@@ -22,6 +23,7 @@ export default function Footer() {
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
     const [modalIsOpen3, setModalIsOpen3] = useState(false);
     const [modalIsOpen4, setModalIsOpen4] = useState(false);
+    const [modalIsOpen5, setModalIsOpen5] = useState(false);
 
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -39,11 +41,16 @@ export default function Footer() {
         setModalIsOpen4(true);
     };
 
+    const openModal5 = () => {
+        setModalIsOpen5(true);
+    };
+
     const closeModal = () => {
         setModalIsOpen1(false);
         setModalIsOpen2(false);
         setModalIsOpen3(false);
         setModalIsOpen4(false);
+        setModalIsOpen5(false);
     };
 
     return (
@@ -72,13 +79,14 @@ export default function Footer() {
                     </ul>
                 </li>
                 <li className="camera">
-                    <button>검사 관리</button>
+                    <button onClick={openModal5}>검사 관리</button>
                 </li>
             </ul>
             <SubsidaryListModal isOpen={modalIsOpen1} onRequestClose={closeModal} contentLabel="부자재 리스트 관리"/>
             <RequiredListModal isOpen={modalIsOpen2} onRequestClose={closeModal} contentLabel="소요강재 리스트 관리"/>
             <MachiningListModal isOpen={modalIsOpen3} onRequestClose={closeModal} contentLabel="가공도 리스트 관리"/>
             <WorkListModal isOpen={modalIsOpen4} onRequestClose={closeModal} contentLabel="공작도 리스트 관리"/>
+            <TestListModal isOpen={modalIsOpen5} onRequestClose={closeModal} contentLabel="검사리스트"/>
         </footer>
     )
 }
