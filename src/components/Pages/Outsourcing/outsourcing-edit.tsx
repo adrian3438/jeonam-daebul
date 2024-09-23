@@ -6,14 +6,13 @@ import { useEffect, useState } from "react"
 
 interface Props {
     id : string | Blob,
-    list : any
 }
 interface DataType {
     loginId : string, name : string, pass : string, 
     companyName : string, mobile : string, phone : string,
     email : string, dept : string, position : string, note : string
 }
-export default function OutsourcingEdit ({id, list} : Props) {
+export default function OutsourcingEdit ({id} : Props) {
     const router = useRouter()
     const [data, setData] = useState<DataType>({
         loginId : '', name : '', pass : '', companyName : '', mobile : '',
@@ -54,13 +53,22 @@ export default function OutsourcingEdit ({id, list} : Props) {
         }
     }
     useEffect(()=> {
-        if(id !== 'regist') {
-            setData((prev) => ({ ...prev,
-                loginId : list?.userLoginId, name : list?.userName, companyName : list?.userCompanyName,
-                mobile : list?.userMobile, phone : list?.userPhone, email : list?.userEmail,
-                dept : list?.userDept, position : list?.userPosition, note : list?.userNotes
-            }))
+        async function getDetail () {
+            if(id !== 'regist') {
+                const response = await api.get(`/admin/user/getUserDetail.php?ID=${id}`)
+                if(response?.data?.result === true) {
+                    if(response?.data?.List?.length > 0) {
+                        const list = response?.data?.List[0];
+                        setData((prev) => ({ ...prev,
+                            loginId : list?.userLoginId, name : list?.userName, companyName : list?.userCompanyName,
+                            mobile : list?.userMobile, phone : list?.userPhone, email : list?.userEmail,
+                            dept : list?.userDept, position : list?.userPosition, note : list?.userNotes
+                        }))
+                    }
+                }
+            }
         }
+        getDetail()
     }, [])
     return(
         <>
@@ -106,7 +114,7 @@ export default function OutsourcingEdit ({id, list} : Props) {
             </textarea>
         </section>
         <section>
-            <button>이전으로</button>
+            <button onClick={()=>router.back()}>이전으로</button>
             <button onClick={Save}>{id === 'regist' ? '저장하기' : '수정하기'}</button>
         </section>
         </>

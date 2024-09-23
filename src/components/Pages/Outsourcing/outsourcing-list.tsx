@@ -65,13 +65,12 @@ export default function OutsourcingListBox ({
                 {list?.map((list:DataType, index:number) => (
                     <tr key={index}>
                         <td>{useCalCulateIndex((page), size, totalCount, index)}</td>
-                        <td>-</td>
-                        <td style={{textAlign: 'left'}}>{list?.userCompanyName}</td>
-                        <td>{list?.userName}</td>
+                        <td>{list?.userCompanyName}</td>
+                        <td style={{textAlign: 'left'}}>{list?.userName}</td>
                         <td>{list?.userMobile ? list?.userMobile : '-'}</td>
                         <td>{list?.userPhone ? list?.userPhone : '-'}</td>
                         <td>{list?.userEmail ? list?.userEmail : '-'}</td>
-                        <td>{list?.createDate}</td>
+                        <td>{list?.createDate ? list?.createDate : '-'}</td>
                         <td>
                             <label className="toggle_switch">
                                 <input 
