@@ -7,7 +7,7 @@ interface Props {
     page : number
     totalCount : number
     size : number
-    setPage : Function
+    setPage : any
 }
 export default function PopupPaginate ({
 

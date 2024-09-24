@@ -9,22 +9,18 @@ const AuthContext = createContext<AuthContextType | any>(null);
 
 export default function AuthProvider ({children} : any) {
     const [authData, setAuthData] = useState<any>(null);
-    const [part , setPartInfo] = useState<any>({
-        id : '', name : ''
-    })
+    const [part , setPartInfo] = useState<string>('')
     function login(data : any){ 
         setAuthData(data);
     }
     function logout () {
         setAuthData(null)
     }
-    function setPart (id : any, name : any) {
-        setPartInfo({
-            id : id , name : name
-        })
+    function setPart (name : any) {
+        setPartInfo(name)
     }
     return(
-        <AuthContext.Provider value={{authData, login, logout, setPart}}>
+        <AuthContext.Provider value={{authData, part, login, logout, setPart}}>
             {children}
         </AuthContext.Provider>
     )

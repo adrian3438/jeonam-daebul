@@ -52,8 +52,8 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
     const openModal2 = (id : string) => {
         if(id) {
             setListId(id)
-            setModalIsOpen2(true);
         }
+            setModalIsOpen2(true);
     };
 
     const closeModal = () => {

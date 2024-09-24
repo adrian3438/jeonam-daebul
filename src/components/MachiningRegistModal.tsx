@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -24,7 +24,7 @@ interface CustomModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
-    refetch : Function
+    refetch : () => void
 }
 
 interface DataType {
@@ -60,22 +60,46 @@ const MachiningRegistModal: React.FC<CustomModalProps> = ({ listId , assembleId 
             formData.append('managerId', authData?.data?.ID)
             formData.append('managerName', authData?.data?.name)
             if(data?.mdFile){
-                formData.append('rsFile', data?.mdFile)
+                formData.append('mdfile', data?.mdFile)
             }
-            formData.append('rsContents' , data?.mdContents)
+            formData.append('mdContents' , data?.mdContents)
             if(listId){
-                const response = await api.post(`/admin/projects/updRequiredSteel.php`, formData)
+                const response = await api.post(`/admin/projects/updMachiningDrawing.php`, formData)
                 if(response?.data?.result === true) {
                     alert(response?.data?.resultMsg); onRequestClose(); refetch()
                 }else{alert(response?.data?.resultMsg)}
             }else{
-                const response = await api.post(`/admin/projects/setRequiredSteel.php`, formData)
+                const response = await api.post(`/admin/projects/setMachiningDrawing.php`, formData)
                 if(response?.data?.result === true) {
                     alert(response?.data?.resultMsg); onRequestClose(); refetch()
                 }else{alert(response?.data?.resultMsg)}
             }
         }catch {alert('Server Error')}
     }
+
+    async function getDetail() {
+        if(listId && isOpen){
+            const response = await api.get(`/admin/projects/getMachiningDrawingDetail.php?ID=${listId}`)
+            if(response?.data?.result === true) {
+                if(response?.data?.List?.length > 0) {
+                    const result = response?.data?.List[0]
+                    setData((prev) => ({...prev , mdContents : result?.mdContents}))
+                    setPreview(result?.mdFile)
+                    setFileName(result?.mdFilename)
+                }
+            }
+        }
+    }
+
+    useEffect(()=> {
+        if(listId) {
+            getDetail()
+        }else{
+            setData({mdFile : null , mdContents : ''})
+            setFileName('')
+            setPreview('')
+        }
+    }, [isOpen])
 
     return (
         <Modal
@@ -93,18 +117,19 @@ const MachiningRegistModal: React.FC<CustomModalProps> = ({ listId , assembleId 
                     <div className="change-reason">
                         <Dropzone onFileAccepted={handleFileAccepted}/>
                         <p className="uploaded-img">
-                            <Image src="/images/@temp/uploaded-img-sample.jpg" alt="대조" width={81} height={23}/>
-                            <span>test-shi9p01.jpg</span>
+                            {preview && 
+                            <Image src={preview} alt="대조" width={81} height={23}/>
+                            }
+                            <span>{fileName}</span>
                         </p>
                     </div>
 
                     <div className="change-reason">
                         <h3>변경 사유</h3>
-                        <textarea>
-                            수정인 경우 내용이 있습니다.
+                        <textarea name='mdContents' value={data?.mdContents} onChange={handleChange}>
                         </textarea>
                         <div className='btns4'>
-                            <button>저장</button>
+                            <button onClick={Save}>저장</button>
                         </div>
                     </div>
                 </div>

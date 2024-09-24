@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -16,12 +17,34 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    listId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const WorkDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+interface DataType {
+    ID : string, activeStatus : string , 
+    createDate : string, maangerId : string,
+    managerName : string, wdContents : string,
+    wdFile : string , wdFilename : string
+}
+
+const WorkDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
+    const [data , setData] = useState<DataType>()
+    useEffect(() => {
+        async function getDetail() {
+            if(listId && isOpen){
+                const response = await api.get(`/admin/projects/getWorkDrawingDetail.php?ID=${listId}`)
+                if(response?.data?.result === true) {
+                    if(response?.data?.List?.length > 0) {
+                        setData(response?.data?.List[0])
+                    }
+                }
+            }
+        }
+        getDetail()
+    }, [listId, isOpen])
     return (
         <Modal
             isOpen={isOpen}

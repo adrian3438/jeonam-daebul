@@ -30,7 +30,7 @@ interface CustomModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
-    refetch : Function
+    refetch : () => void
 }
 
 const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpen, onRequestClose, contentLabel, refetch }) => {

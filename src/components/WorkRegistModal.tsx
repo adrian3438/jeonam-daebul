@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
+import { useAuth } from './Context/AuthContext';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -17,15 +19,88 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    listId : string
+    assembleId : string | Blob
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
+    refetch : () => void
 }
 
-const WorkRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+interface DataType {
+    wdFile : File | Blob | null
+    wdContents : string
+}
+
+const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpen, onRequestClose, contentLabel, refetch }) => {
+    const {authData} = useAuth()
+    const [data , setData] = useState<DataType>({
+        wdFile : null , wdContents : ''
+    }) 
+    const [fileName , setFileName] = useState<string>('')
+    const [preview , setPreview] = useState<string>('')
+    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
+        setData((prev) => ({...prev, [e.target.name] : e.target.value}))
+    }
     const handleFileAccepted = (acceptedFiles: File[]) => {
-        console.log('Accepted files: ', acceptedFiles);
+        const file = acceptedFiles[0]
+        const reader = new FileReader()
+        if(file) { reader.readAsDataURL(file)}
+        reader.onload = () => {
+            setData((prev) => ({...prev, wdFile : file}))
+            setFileName(file.name as string)
+            setPreview(reader.result as string)
+        }
     };
+
+    async function Save () {
+        try {
+            const formData = new FormData()
+            if(listId) {formData.append('ID', listId)}
+            formData.append('assembleId', assembleId)
+            formData.append('managerId', authData?.data?.ID)
+            formData.append('managerName', authData?.data?.name)
+            if(data?.wdFile){
+                formData.append('wdFile', data?.wdFile)
+            }
+            formData.append('wdContents' , data?.wdContents)
+            if(listId){
+                const response = await api.post(`/admin/projects/updWorkDrawing.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{alert(response?.data?.resultMsg)}
+            }else{
+                const response = await api.post(`/admin/projects/setWorkDrawing.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{alert(response?.data?.resultMsg)}
+            }
+        }catch {alert('Server Error')}
+    }
+
+    async function getDetail() {
+        if(listId && isOpen){
+            const response = await api.get(`/admin/projects/getWorkDrawingDetail.php?ID=${listId}`)
+            if(response?.data?.result === true) {
+                if(response?.data?.List?.length > 0) {
+                    const result = response?.data?.List[0]
+                    setData((prev) => ({...prev , wdContents : result?.wdContents}))
+                    setPreview(result?.wdFile)
+                    setFileName(result?.wdFilename)
+                }
+            }
+        }
+    }
+
+    useEffect(()=> {
+        if(listId) {
+            getDetail()
+        }else{
+            setData({wdFile : null , wdContents : ''})
+            setFileName('')
+            setPreview('')
+        }
+    }, [isOpen])
 
     return (
         <Modal
@@ -43,18 +118,19 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                     <div className="change-reason">
                         <Dropzone onFileAccepted={handleFileAccepted}/>
                         <p className="uploaded-img">
-                            <Image src="/images/@temp/uploaded-img-sample.jpg" alt="대조" width={81} height={23}/>
-                            <span>test-shi9p01.jpg</span>
+                            {preview && 
+                            <Image src={preview} alt="대조" width={81} height={23}/>
+                            }
+                            <span>{fileName}</span>
                         </p>
                     </div>
 
                     <div className="change-reason">
                         <h3>변경 사유</h3>
-                        <textarea>
-                            수정인 경우 내용이 있습니다.
+                        <textarea name='wdContents' value={data?.wdContents} onChange={handleChange}>
                         </textarea>
                         <div className='btns4'>
-                            <button>저장</button>
+                            <button onClick={Save}>저장</button>
                         </div>
                     </div>
                 </div>

@@ -53,8 +53,8 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
     const openModal2 = (id : string) => {
         if(id) {
             setListId(id)
-            setModalIsOpen2(true);
         }
+            setModalIsOpen2(true);
     };
 
     const closeModal = () => {

@@ -23,7 +23,7 @@ interface CustomModalProps {
     assembleId : string | Blob
     isOpen: boolean;
     onRequestClose: () => void;
-    refetch : Function;
+    refetch : () => void;
     contentLabel: string;
 }
 

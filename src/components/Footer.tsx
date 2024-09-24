@@ -7,13 +7,14 @@ import { useState } from "react";
 import MachiningListModal from "@/components/MachiningListModal";
 import WorkListModal from "@/components/WorkListModal";
 import TestListModal from "@/components/TestListModal";
+import { useAuth } from "./Context/AuthContext";
 interface Props {
     id : string | Blob
     type : string | Blob
 }
 export default function Footer({id , type} : Props) {
+    const {part} = useAuth()
     const [activeItem, setActiveItem] = useState<number | null>(null);
-
     const toggleActive = (index: number) => {
         if (activeItem === index) {
             setActiveItem(null);
@@ -107,7 +108,12 @@ export default function Footer({id , type} : Props) {
                 onRequestClose={closeModal} 
                 contentLabel="가공도 리스트 관리"
             />
-            <WorkListModal isOpen={modalIsOpen4} onRequestClose={closeModal} contentLabel="공작도 리스트 관리"/>
+            <WorkListModal 
+                assembleId={id}
+                isOpen={modalIsOpen4} 
+                onRequestClose={closeModal} 
+                contentLabel="공작도 리스트 관리"
+            />
             <TestListModal isOpen={modalIsOpen5} onRequestClose={closeModal} contentLabel="검사리스트"/>
         </footer>
     )

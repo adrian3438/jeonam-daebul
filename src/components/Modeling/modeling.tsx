@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import IFrameControlCompnent, { EventIFrameControl } from "../xvl/IFrameControl";
+import { useAuth } from "../Context/AuthContext";
 
 export default function ModelingComponents () {
+    const {setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
     
@@ -72,8 +74,11 @@ export default function ModelingComponents () {
     const handleReceive = (e:any) => {
         console.log("모델링 클릭할 때 발생 ")
         const item = e?.data?.data;
+        if(item?.selection?.length > 0) {
+            setPart(item?.selection[0])
+        }
         setPartsName(item?.selection)
-        // setPartsName('')
+        console.log(item)
     }
 
     useEffect(()=>{
