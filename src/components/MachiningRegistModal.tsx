@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
+import { useAuth } from './Context/AuthContext';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -17,15 +19,63 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    listId : string
+    assembleId : string | Blob
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
+    refetch : Function
 }
 
-const MachiningRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+interface DataType {
+    mdFile : File | Blob | null
+    mdContents : string
+}
+
+const MachiningRegistModal: React.FC<CustomModalProps> = ({ listId , assembleId , isOpen, onRequestClose, contentLabel, refetch }) => {
+    const {authData} = useAuth()
+    const [data , setData] = useState<DataType>({
+        mdFile : null , mdContents : ''
+    }) 
+    const [fileName , setFileName] = useState<string>('')
+    const [preview , setPreview] = useState<string>('')
+    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
+        setData((prev) => ({...prev, [e.target.name] : e.target.value}))
+    }
     const handleFileAccepted = (acceptedFiles: File[]) => {
-        console.log('Accepted files: ', acceptedFiles);
+        const file = acceptedFiles[0]
+        const reader = new FileReader()
+        if(file) { reader.readAsDataURL(file)}
+        reader.onload = () => {
+            setData((prev) => ({...prev, mdFile : file}))
+            setFileName(file.name as string)
+            setPreview(reader.result as string)
+        }
     };
+    async function Save () {
+        try {
+            const formData = new FormData()
+            if(listId) {formData.append('ID', listId)}
+            formData.append('assembleId', assembleId)
+            formData.append('managerId', authData?.data?.ID)
+            formData.append('managerName', authData?.data?.name)
+            if(data?.mdFile){
+                formData.append('rsFile', data?.mdFile)
+            }
+            formData.append('rsContents' , data?.mdContents)
+            if(listId){
+                const response = await api.post(`/admin/projects/updRequiredSteel.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{alert(response?.data?.resultMsg)}
+            }else{
+                const response = await api.post(`/admin/projects/setRequiredSteel.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{alert(response?.data?.resultMsg)}
+            }
+        }catch {alert('Server Error')}
+    }
 
     return (
         <Modal

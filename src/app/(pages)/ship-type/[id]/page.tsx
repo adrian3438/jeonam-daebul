@@ -3,7 +3,20 @@ import "@/app/assets/main.scss";
 import "@/app/assets/shipList.scss";
 import ModelingComponents from "@/components/Modeling/modeling";
 import './modeling_ctrl.css'
-export default function Main() {
+interface ParamsType {
+    params : {id : string | Blob},
+    searchParams : {
+        t : string | Blob
+        m : string | Blob
+    }
+}
+
+export default function Main({
+    params : {id} , searchParams : {t , m}
+} : ParamsType) {
+    // id : 대조 또는 bop 아이디
+    // t : 대조 인지 bop 인지 구분
+    // m : 모델링 명칭
     return (
         <>
             <div style={{width:"100%", height:"calc(100% - 163px)"}}>
@@ -11,7 +24,10 @@ export default function Main() {
 
                 />
             </div>
-            <Footer/>
+            <Footer
+                id={id}
+                type={t}
+            />
         </>
     )
 }

@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import MachiningDetailModal from "@/components/MachiningDetailModal";
 import MachiningRegistModal from "@/components/MachiningRegistModal";
+import api from '@/lib/api';
+import PopupPaginate from './Paginate/popup-paginate';
 
 const customStyles = {
     content: {
@@ -17,28 +19,71 @@ const customStyles = {
     },
 };
 
+interface DataType {
+    ID : string , activeStatus : string , 
+    createDate : string, maangerId : string,
+    managerName : string, rsContents : string,
+    rsFile : string , rsFilename : string
+}
+
 interface CustomModalProps {
+    assembleId : string | Blob;
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const MachiningListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
+
+    const [listId , setListId] = useState<string>('')
+    const [data , setData] = useState<DataType[]>([])
+    const [totalCount , setTotalCount] = useState<number>(0)
+    const [page , setPage] = useState<number>(1)
+
+
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
-    const openModal1 = () => {
+    const openModal1 = (id : string) => {
+        setListId(id)
         setModalIsOpen1(true);
     };
 
-    const openModal2 = () => {
-        setModalIsOpen2(true);
+    const openModal2 = (id : string) => {
+        if(id) {
+            setListId(id)
+            setModalIsOpen2(true);
+        }
     };
 
     const closeModal = () => {
+        setListId('')
+        setListId('')
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
+
+    async function getList () {
+        if(isOpen){
+            const response = await api.get(`/admin/projects/getMachiningDrawingList.php?assembleId=${assembleId}&mdfilename=&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
+            if(response?.data?.result === true) {
+                setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
+            }
+        }
+    }
+
+    async function changeStatus (id: string | Blob , status: string) {
+        const formData = new FormData()
+        formData.append('ID' , id)
+        formData.append('activeStatus' , status === 'Y' ? 'N' : 'Y')
+        const response = await api.post(`/admin/projects/updRequiredSteelStatus.php`, formData)
+        if(response?.data?.result === true) {getList()}
+        else{alert(response?.data?.resultMsg)}
+    }
+
+    useEffect(()=> {
+        getList()
+    }, [isOpen, page])
 
     return (
         <>
@@ -51,7 +96,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2>{contentLabel}
-                            <button onClick={openModal2}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
@@ -68,29 +113,14 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose
                             </thead>
                             <tbody>
                             <tr>
-                                <td><a href="#" onClick={openModal1}>JA003-S11C-부재표-REV2</a></td>
+                                <td>JA003-S11C-부재표-REV2</td>
                                 <td>2024-07-15</td>
                                 <td>홍길동</td>
                                 <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
                                 <td className='action'>
                                     <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
-                                    <label className="toggle_switch">
-                                        <input type="checkbox"/>
-                                        <span className="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" onClick={openModal1}>JA003-S11C-부재표-REV2</a></td>
-                                <td>2024-07-15</td>
-                                <td>홍길동</td>
-                                <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
-                                <td className='action'>
-                                    <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                    <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                    <a style={{cursor : 'pointer'}} onClick={() => openModal1('1')}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                    <a style={{cursor : 'pointer'}} onClick={()=>openModal2('1')}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                     <label className="toggle_switch">
                                         <input type="checkbox"/>
                                         <span className="slider"></span>
@@ -104,16 +134,29 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <a href="#">&lt; Prev</a>
-                        <a href="#" className="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next &gt;</a>
+                        <PopupPaginate
+                            page={page}
+                            setPage={setPage}
+                            size={10}
+                            totalCount={totalCount}
+                        />
                     </div>
                 </div>
             </Modal>
-            <MachiningDetailModal isOpen={modalIsOpen1} onRequestClose={closeModal} contentLabel="가공도 리스트 상세" />
-            <MachiningRegistModal isOpen={modalIsOpen2} onRequestClose={closeModal} contentLabel="가공도 등록" />
+            <MachiningDetailModal 
+                listId={listId}
+                isOpen={modalIsOpen1} 
+                onRequestClose={closeModal} 
+                contentLabel="가공도 리스트 상세" 
+            />
+            <MachiningRegistModal 
+                listId={listId}
+                assembleId={assembleId}
+                isOpen={modalIsOpen2} 
+                onRequestClose={closeModal} 
+                refetch={getList}
+                contentLabel="가공도 등록" 
+            />
         </>
     );
 };

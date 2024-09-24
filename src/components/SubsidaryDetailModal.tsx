@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -16,12 +17,21 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    subMaterialId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpen, onRequestClose, contentLabel }) => {
+    useEffect(() => {
+        async function getDetail () {
+            if(isOpen && subMaterialId){
+                const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${subMaterialId}`)
+            }
+        }
+        getDetail()
+    }, [isOpen && subMaterialId])
     return (
         <Modal
             isOpen={isOpen}

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -16,12 +17,34 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    listId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const MachiningDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+interface DataType {
+    ID : string, activeStatus : string , 
+    createDate : string, maangerId : string,
+    managerName : string, mdContents : string,
+    mdFile : string , mdFilename : string
+}
+
+const MachiningDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
+    const [data , setData] = useState<DataType>()
+    useEffect(() => {
+        async function getDetail() {
+            if(listId && isOpen){
+                const response = await api.get(`/admin/projects/getMachiningDrawingDetail.php?ID=${listId}`)
+                if(response?.data?.result === true) {
+                    if(response?.data?.List?.length > 0) {
+                        setData(response?.data?.List[0])
+                    }
+                }
+            }
+        }
+        getDetail()
+    }, [listId, isOpen])
     return (
         <Modal
             isOpen={isOpen}
@@ -39,15 +62,19 @@ const MachiningDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClo
                         <tbody>
                         <tr>
                             <th scope="row">파일명</th>
-                            <td>JA003-S11C-부재표-REV2 <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a></td>
+                            <td>{data?.mdFilename ? data?.mdFilename : '-'} 
+                                {data?.mdFile &&
+                                <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a>
+                                }
+                            </td>
                             <th scope="row">Version</th>
-                            <td>version3</td>
+                            <td>-</td>
                         </tr>
                         <tr>
                             <th scope="row">등록자</th>
-                            <td>홍길동</td>
+                            <td>{data?.managerName}</td>
                             <th scope="row">등록일자</th>
-                            <td>2024-08-31</td>
+                            <td>{data?.createDate}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -55,7 +82,7 @@ const MachiningDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClo
                     <div className="change-reason">
                         <h3>변경 사유</h3>
                         <div>
-                            변경 사유가 들어갑니다.
+                        {data?.mdContents}
                         </div>
                     </div>
                 </div>
