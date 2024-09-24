@@ -16,7 +16,7 @@ export default function Main({
 } : ParamsType) {
     // id : 대조 또는 bop 아이디
     // t : 대조 인지 bop 인지 구분
-    // m : 모델링 명칭
+    // m : 모델링 파일 명칭
     return (
         <>
             <div style={{width:"100%", height:"calc(100% - 163px)"}}>

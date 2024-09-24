@@ -17,6 +17,7 @@ export default function PopupPaginate ({
     const router = useRouter()
     const path = usePathname()
     const query = useSearchParams()
+    
     function handleChange (e:React.ChangeEvent<unknown>, pageNumber : number){
         setPage(pageNumber)
     }
