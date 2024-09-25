@@ -71,7 +71,7 @@
 .mail_box:hover > div,
 .logout_box:hover > div{display: block;}
 
-/* 
+/*
 .new-button-box button:before,
 .new-button-box a:before{display: none;}
 .new-button-box button:hover:before,
@@ -105,7 +105,7 @@
 
 .new-popup {position:fixed; right:83px; bottom:-100%; transition: bottom 0.5s ease-out; width:470px; height:650px; border-radius:20px; background:rgb(245 245 245); z-index:100;}
 .new-popup.on {bottom:30px;}
-.new-popup .popbox {padding:20px 40px;} 
+.new-popup .popbox {padding:20px 40px;}
 .new-popup .popbox .t1 {position: relative; color:#0068b7; font-size:18px; font-weight:700; color: #256DCB;}
 .new-popup .popbox .t2 {color:#666666; font-size:14px; line-height:18px; font-weight:500; margin-top:20px; position:relative; padding-bottom:40px;}
 .new-popup .popbox .t1:before{content: ''; position: absolute; border-radius: 5px; display: block; top: -5px; left: -20px; background-color: #256DCB; width: 4px; height: 34px;}
@@ -174,7 +174,7 @@
 #supplierList-modal ul li .t2 {margin-top:18px; font-size:14px; font-weight:500; line-height:18px; color:#999999; overflow:hidden;height:54px;}
 #supplierList-modal ul li .t3 {display:flex; justify-content: space-between; margin-top:20px;}
 #supplierList-modal ul li .t3 .left {color:#444444; font-size:14px; font-weight:500; display:flex;}
-#supplierList-modal ul li .t3 .right {color:#444444; font-size:12px; font-weight:500; display:flex;} 
+#supplierList-modal ul li .t3 .right {color:#444444; font-size:12px; font-weight:500; display:flex;}
 #supplierList-modal ul li .t3 .right span {margin-left:20px;}
 
 /*  #venderApply-modal .vender {} */
@@ -190,7 +190,7 @@
 
 /* 테이블 css 디케이락 참고 */
 .dataTables_filter { position: relative; }
-.dataTables_wrapper .dataTables_filter input {width:260px; height:32px; background:none; border-radius:5px; border:1px solid #CCCCCC; outline:none; padding-left:15px; font-size:14px;} 
+.dataTables_wrapper .dataTables_filter input {width:260px; height:32px; background:none; border-radius:5px; border:1px solid #CCCCCC; outline:none; padding-left:15px; font-size:14px;}
 /* .dataTables_filter input { width: 250px; height: 32px; background: #fcfcfc; border: 1px solid #aaa; border-radius: 5px; box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset; text-indent: 10px; } */
  .dataTables_filter .fa-search { position: absolute; top: 10px; left: auto; right: 10px; font-size:12px;}
 input::-ms-clear,input::-ms-reveal {display: none; width : 0; height: 0;}
@@ -312,7 +312,7 @@ ul.dynatree-container, #tree, #assyTree_body {background:#FBFBFB !important;}
 /* 08-30 디자인 역번 시작 */
 #web3dPlayer_main{padding-top: 60px;}
 body {color:#000;}
-.modeling-header {display: flex;align-items: center;justify-content: space-between;}
+.modeling-header {display: flex;align-items: center;justify-content: space-between;position: relative; z-index: 10}
 
 /*.modeling-header {position:fixed; width: 100%; z-index: 999; padding-left:320px; height:60px; background:#fff; border-bottom:1px solid #EEEEEE;}
 .modeling-header .h-section-1 {width: calc(100% - 800px); position:absolute; left: 25px; top:0; height:60px; display:flex;     align-content: center; justify-content: flex-start; align-items: center;}
@@ -535,7 +535,7 @@ body {color:#000;}
 
 
 #new-popup-spec.admin .buttonBox button{font-size: 12px;}
-#new-popup-spec.admin .buttonBox .cancleBtn{background-color: #DDDDDD;}  
+#new-popup-spec.admin .buttonBox .cancleBtn{background-color: #DDDDDD;}
 #new-popup-spec.admin .buttonBox .goSubmitBtn{background-color: #007CCC; margin-left: 10px;}
 #new-popup-spec.admin .popbox .section_2{padding: 70px 0 10px 0; box-sizing: border-box;}
 #new-popup-spec.admin .popbox .section_2 .readOnlyBox{height: 100%; padding: 0 40px; box-sizing: border-box; border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD;}
@@ -616,7 +616,7 @@ body {color:#000;}
 .dots-contents 박스에 .modelingBox 라는 class가 부여되면 적용되는 높이값 */
 
 .dots-contents.modelingBox .popup-box.active{left: 260px;}
-/* sideBar sideMenu에 active가 붙었을 때 
+/* sideBar sideMenu에 active가 붙었을 때
 .dots-contents.modelingBox .popup-box 에도 active 클래스 부여 */
 
 #root{height: 100%;}
@@ -637,9 +637,9 @@ body {color:#000;}
     .modeling-header .h-section-1{width: 200px;}
     .modeling-header .h-section-3{width: calc(100% - 200px);}
     .popup-box{width: 200px;}
-    
 
-    
+
+
     .mobileTreeBtn{display: block; position: fixed; right: 30px; bottom: 100px; z-index: 9999;}
 }
 

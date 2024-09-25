@@ -23,7 +23,7 @@ export default function Navigation() {
                             <ul>
                                 <li><Link href="/ship-manage" className={depth1Name === 'ship-manage' ? 'active' : ''}>선종 관리</Link></li>
                                 <li><Link href="/outsourcing" className={depth1Name === 'outsourcing' ? 'active' : ''}>외주협력사 관리</Link></li>
-                                <li><Link href="/partner" className={depth1Name === 'partner' ? 'active' : ''}>외주협력사 사용자 관리</Link></li>
+                                <li><Link href="/partner" className={depth1Name === 'partner' ? 'active' : ''}>사용자 관리</Link></li>
                                 <li><Link href="/setting" className={depth1Name === 'setting' ? 'active' : ''}>관리자 관리</Link></li>
                             </ul>
                         </li>

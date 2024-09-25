@@ -19,7 +19,7 @@ export default function Main({
     // m : 모델링 파일 명칭
     return (
         <>
-            <div style={{width:"100%", height:"calc(100% - 163px)"}}>
+            <div style={{width:"100%", height:"calc(100% - 59px)"}}>
                 <ModelingComponents
 
                 />
