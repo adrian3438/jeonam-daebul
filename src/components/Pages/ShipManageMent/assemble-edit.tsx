@@ -77,7 +77,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
         if(response?.data?.result === true){
             if(response?.data?.List?.length > 0) {
                 const result = response?.data?.List[0]
-                setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : '',}))
+                setData((prev) => ({...prev, assembleName : result?.shipAssembleName, assembleNotes : result?.shipAssembleNotes,}))
                 setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
                 binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                 setPreview(result?.thumnailFile)
@@ -94,11 +94,15 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
     }
 
     async function save () {
+        if(!fileName.mainImage) {alert('대조 대표 이미지를 업로드 해주세요.'); return;}
+        if(!data?.assembleName) {alert('대조명을 입력해 주세요.'); return;}
+        if(!data?.assembleNotes) {alert('대조 특이사항을 입력해 주세요.'); return;}
         const formData = new FormData()
         if(assembleid === 'regist') {formData.append('shipTypeId', id)}
         else {formData.append('ID', assembleid)}
         formData.append('shipAssembleNameKr', data?.assembleName)
         formData.append('shipAssemblePartners', data?.partners?.join(','))
+        formData.append('shipAssembleNotes', data?.assembleNotes)
         if(data?.mainImage){
             formData.append('thumnailImage' , data?.mainImage)
         }

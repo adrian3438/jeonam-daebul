@@ -7,6 +7,7 @@ import SubsidaryDetailModal from '@/components/SubsidaryDetailModal';
 import SubsidaryRegistModal from '@/components/SubsidaryRegistModal';
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -20,6 +21,7 @@ const customStyles = {
     },
 };
 
+
 interface CustomModalProps {
     assembleId : string | Blob;
     isOpen: boolean;
@@ -27,8 +29,15 @@ interface CustomModalProps {
     contentLabel: string;
 }
 
+interface DataType {
+    ID : string, activeStatus : string , createDate : string ,
+    managerId : string, managerName : string , smContents : string , 
+    smFile : string, smFilename : string
+}
+
 const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
 
+    const [data , setData] = useState<DataType[]>([])
     const [subMaterialId , setSubMaterialId] = useState<string>('')
     const [totalCount , setTotalCount] = useState<number>(0)
     const [page , setPage] = useState<number>(0)
@@ -41,7 +50,10 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
         if(subMaterialId){setModalIsOpen1(true);}
     };
 
-    const openModal2 = () => {
+    const openModal2 = (subMaterialId : string) => {
+        if(subMaterialId){
+            setSubMaterialId(subMaterialId)
+        }
         setModalIsOpen2(true);
     };
 
@@ -54,9 +66,19 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
     async function getList () {
         if(isOpen){
             const response = await api.get(`/admin/projects/getSubsidaryMaterialList.php?assembleId=${assembleId}&smfilename=&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
-            
+            setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
         }
     }
+
+    async function changeStatus (id: string , status: string) {
+        const formData = new FormData()
+        formData.append('ID' , id)
+        formData.append('activeStatus' , status === 'Y' ? 'N' : 'Y')
+        const response = await api.post(`/admin/projects/updSubsidaryMaterialStatus.php`, formData)
+        if(response?.data?.result === true) {getList()}
+        else{alert(response?.data?.resultMsg)}
+    }
+
     useEffect(() => {
         getList()
     }, [isOpen, page])
@@ -71,7 +93,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2>{contentLabel}
-                            <button onClick={openModal2}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
                         <div className="modal-search">
                             <input type="text" maxLength={50}/>
@@ -91,27 +113,44 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>JA003-S11C-부재표-REV2</td>
-                                <td>2024-07-15</td>
-                                <td>홍길동</td>
-                                <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
+                            {data?.length > 0 ? 
+                            <>
+                            {data?.map((list:DataType, index:number) => (
+                            <tr key={index}>
+                                <td>{list?.smFilename ? list?.smFilename : '-'}</td>
+                                <td>{list?.createDate}</td>
+                                <td>{list?.managerName}</td>
+                                <td className="change">{list?.smContents}</td>
                                 <td className='action'>
                                     {/* 다운로드 */}
-                                    <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
+                                    <FileDownLoadBtn
+                                        file={list?.smFile}
+                                        fileName={list?.smFilename}
+                                    />
                                     {/* 상세보기 */}
-                                    <a style={{cursor : 'pointer'}} onClick={() => openModal1('1')}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                    <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                     {/* 수정하기 */}
-                                    <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                    <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                     <label className="toggle_switch">
-                                        <input type="checkbox"/>
+                                        <input 
+                                            type="checkbox"
+                                            checked={list?.activeStatus === 'Y'}
+                                            onChange={()=>changeStatus(list?.ID, list?.activeStatus)}
+                                        />
                                         <span className="slider"></span>
                                     </label>
                                 </td>
                             </tr>
-                            {/* 리스트 없을 시 <tr>
+                            ))}
+                            </>
+                            :
+                            <>
+                            <tr>
                                 <td colSpan={5}>내용이 없습니다.</td>
-                            </tr>*/}
+                            </tr>
+                            </>
+                            }
+                            
                             </tbody>
                         </table>
                     </div>
@@ -132,6 +171,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
             contentLabel="부자재 리스트 상세" 
             />
             <SubsidaryRegistModal
+            subMaterialId={subMaterialId}
             assembleId={assembleId}
             isOpen={modalIsOpen2}
             onRequestClose={closeModal}

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import api from '@/lib/api';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -23,11 +24,23 @@ interface CustomModalProps {
     contentLabel: string;
 }
 
+interface DataType {
+    ID : string, activeStatus : string , createDate : string ,
+    managerId : string, managerName : string , smContents : string , 
+    smFile : string, smFilename : string
+}
+
 const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpen, onRequestClose, contentLabel }) => {
+    const [data, setData] = useState<DataType>()
     useEffect(() => {
         async function getDetail () {
             if(isOpen && subMaterialId){
                 const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${subMaterialId}`)
+                if(response?.data?.result === true) {
+                    if(response?.data?.List.length > 0){
+                        setData(response?.data?.List[0])
+                    }
+                }
             }
         }
         getDetail()
@@ -49,15 +62,22 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                         <tbody>
                         <tr>
                             <th scope="row">파일명</th>
-                            <td>JA003-S11C-부재표-REV2 <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a></td>
+                            <td>{data?.smFilename ? data?.smFilename : '-'}
+                            {data?.smFile &&
+                                <FileDownLoadBtn
+                                    file={data?.smFile}
+                                    fileName={data?.smFilename}
+                                />
+                            }
+                            </td>
                             <th scope="row">Version</th>
-                            <td>version3</td>
+                            <td>-</td>
                         </tr>
                         <tr>
                             <th scope="row">등록자</th>
-                            <td>홍길동</td>
+                            <td>{data?.managerName}</td>
                             <th scope="row">등록일자</th>
-                            <td>2024-08-31</td>
+                            <td>{data?.createDate}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -65,7 +85,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                     <div className="change-reason">
                         <h3>변경 사유</h3>
                         <div>
-                            변경 사유가 들어갑니다.
+                            {data?.smContents}
                         </div>
                     </div>
                 </div>

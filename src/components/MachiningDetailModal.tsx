@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import api from '@/lib/api';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -64,7 +65,10 @@ const MachiningDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
                             <th scope="row">파일명</th>
                             <td>{data?.mdFilename ? data?.mdFilename : '-'} 
                                 {data?.mdFile &&
-                                <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a>
+                                <FileDownLoadBtn
+                                    file={data?.mdFile}
+                                    fileName={data?.mdFilename}
+                                />
                                 }
                             </td>
                             <th scope="row">Version</th>

@@ -8,6 +8,7 @@ import RequiredRegistModal from "@/components/RequiredRegistModal";
 import api from '@/lib/api';
 import Paginate from './Paginate/pagination';
 import PopupPaginate from './Paginate/popup-paginate';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -121,7 +122,10 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.rsContents}</td>
                                     <td className='action'>
-                                        <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
+                                        <FileDownLoadBtn
+                                            file={list?.rsFile}
+                                            fileName={list?.rsFilename}
+                                        />
                                         <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                         <label className="toggle_switch">

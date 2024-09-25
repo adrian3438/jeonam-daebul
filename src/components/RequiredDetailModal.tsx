@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import api from '@/lib/api';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -63,9 +64,12 @@ const RequiredDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRe
                         <tr>
                             <th scope="row">파일명</th>
                             <td>{data?.rsFilename ? data?.rsFilename : '-'} 
-                                {data?.rsFile &&
-                                <a href="#"><Image src="/images/download.svg" alt="다운로드" width={25} height={25}/></a>
-                                }
+                            {data?.rsFile &&
+                                <FileDownLoadBtn
+                                    file={data?.rsFile}
+                                    fileName={data?.rsFilename}
+                                />
+                            }
                             </td>
                             <th scope="row">Version</th>
                             <td>-</td>

@@ -57,6 +57,9 @@ export default function BopEditBox ({
     };
 
     async function Save () {
+        if(!fileName?.mainImage) {alert('BOP 대표 이미지를 업로드 해주세요.'); return;}
+        if(!data?.bopName) {alert('BOP 명을 입력해 주세요.'); return;}
+        if(!data?.bopNotes) {alert('BOP 특이사항을 입력해 주세요.'); return;}
         const formData = new FormData()
         if(bopid === 'regist') {
             formData.append('assembleId', assembleid)
@@ -64,6 +67,7 @@ export default function BopEditBox ({
             formData.append('ID', bopid)
         }
         formData.append('bopNameKr', data?.bopName)
+        formData.append('bopFeatures', data?.bopNotes)
         if(data?.mainImage){formData.append('thumnailImage', data?.mainImage)}
         if(data?.jsonFile){formData.append('bopJsonFile', data?.jsonFile)}
         if(data?.binFile){formData.append('bopBinFile', data?.binFile)}
@@ -88,7 +92,7 @@ export default function BopEditBox ({
                 if(response?.data?.result === true){
                     if(response?.data?.List?.length > 0) {
                         const result = response?.data?.List[0]
-                        setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : '',}))
+                        setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : result?.bopFeatures,}))
                         setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
                         binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                         setPreview(result?.thumnailFile)

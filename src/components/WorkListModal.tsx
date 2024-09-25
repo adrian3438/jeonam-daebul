@@ -6,6 +6,7 @@ import WorkDetailModal from "@/components/WorkDetailModal";
 import WorkRegistModal from "@/components/WorkRegistModal";
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -120,7 +121,10 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.wdContents}</td>
                                     <td className='action'>
-                                        <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
+                                        <FileDownLoadBtn
+                                            file={list?.wdFile}
+                                            fileName={list?.wdFilename}
+                                        />
                                         <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                         <label className="toggle_switch">

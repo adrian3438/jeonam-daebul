@@ -6,6 +6,7 @@ import MachiningDetailModal from "@/components/MachiningDetailModal";
 import MachiningRegistModal from "@/components/MachiningRegistModal";
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
+import FileDownLoadBtn from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -21,9 +22,9 @@ const customStyles = {
 
 interface DataType {
     ID : string , activeStatus : string , 
-    createDate : string, maangerId : string,
-    managerName : string, rsContents : string,
-    rsFile : string , rsFilename : string
+    createDate : string, managerId : string,
+    managerName : string, mdContents : string,
+    mdFile : string , mdFilename : string
 }
 
 interface CustomModalProps {
@@ -76,7 +77,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
         const formData = new FormData()
         formData.append('ID' , id)
         formData.append('activeStatus' , status === 'Y' ? 'N' : 'Y')
-        const response = await api.post(`/admin/projects/updRequiredSteelStatus.php`, formData)
+        const response = await api.post(`/admin/projects/updMachiningDrawingStatus.php`, formData)
         if(response?.data?.result === true) {getList()}
         else{alert(response?.data?.resultMsg)}
     }
@@ -112,24 +113,38 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             </tr>
                             </thead>
                             <tbody>
+                            {data?.length > 0 ? 
+                            <>
+                            {data?.map((list:DataType, index:number) => (
+                                <tr key={index}>
+                                    <td>{list?.mdFilename ? list?.mdFilename : '-'}</td>
+                                    <td>{list?.createDate}</td>
+                                    <td>{list?.managerName}</td>
+                                    <td className="change">{list?.mdContents}</td>
+                                    <td className='action'>
+                                        <FileDownLoadBtn
+                                            file={list?.mdFile}
+                                            fileName={list?.mdFilename}
+                                        />
+                                        <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                        <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                        <label className="toggle_switch">
+                                            <input 
+                                                type="checkbox"
+                                                checked={list?.activeStatus === 'Y'}
+                                                onChange={()=>changeStatus(list?.ID, list?.activeStatus)}
+                                            />
+                                            <span className="slider"></span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            ))}
+                            </>
+                            :
                             <tr>
-                                <td>JA003-S11C-부재표-REV2</td>
-                                <td>2024-07-15</td>
-                                <td>홍길동</td>
-                                <td className="change">텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.텍스트가 들어갑니다.</td>
-                                <td className='action'>
-                                    <a href={"#"}><Image src="/images/download.svg" alt="다운로드" width={20} height={20}/></a>
-                                    <a style={{cursor : 'pointer'}} onClick={() => openModal1('1')}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                    <a style={{cursor : 'pointer'}} onClick={()=>openModal2('1')}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
-                                    <label className="toggle_switch">
-                                        <input type="checkbox"/>
-                                        <span className="slider"></span>
-                                    </label>
-                                </td>
-                            </tr>
-                            {/* 리스트 없을 시 <tr>
                                 <td colSpan={5}>내용이 없습니다.</td>
-                            </tr>*/}
+                            </tr>
+                            }
                             </tbody>
                         </table>
                     </div>

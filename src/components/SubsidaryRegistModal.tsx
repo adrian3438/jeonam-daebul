@@ -20,6 +20,7 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    subMaterialId : string
     assembleId : string | Blob
     isOpen: boolean;
     onRequestClose: () => void;
@@ -32,7 +33,7 @@ interface DataType {
     smContents : string
 }
 
-const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, refetch, onRequestClose, contentLabel }) => {
+const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assembleId, isOpen, refetch, onRequestClose, contentLabel }) => {
     const {authData} = useAuth()
 
     const [data , setData] = useState<DataType>({
@@ -56,6 +57,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, 
     async function Save () {
         try {
             const formData = new FormData()
+            if(subMaterialId) {formData.append('ID', subMaterialId)}
             formData.append('assembleId', assembleId)
             formData.append('managerId', authData?.data?.ID)
             formData.append('managerName', authData?.data?.name)
@@ -63,17 +65,46 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, 
                 formData.append('smFile', data?.smFile)
             }
             formData.append('smContents' , data?.smContents)
-            const response = await api.post(`/admin/projects/setSubsidaryMaterial.php`, formData)
-            if(response?.data?.result === true) {
-                alert(response?.data?.resultMsg); onRequestClose(); refetch()
+            if(subMaterialId){
+                const response = await api.post(`/admin/projects/updSubsidaryMaterial.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{
+                    alert(response?.data?.resultMsg)
+                }
+            }else{
+                const response = await api.post(`/admin/projects/setSubsidaryMaterial.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg); onRequestClose(); refetch()
+                }else{
+                    alert(response?.data?.resultMsg)
+                }
             }
         }catch {alert('Server Error')}
     }
 
+    async function getDetail () {
+        if(isOpen && subMaterialId){
+            const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${subMaterialId}`)
+            if(response?.data?.result === true) {
+                if(response?.data?.List.length > 0){
+                    const result = response?.data?.List[0]
+                    setData((prev) => ({...prev, smContents : result?.smContents}))
+                    setPreview(result?.smFile)
+                    setFileName(result?.smFilename)
+                }
+            }
+        }
+    }
+
     useEffect(()=> {
-        setData({smFile : null , smContents : ''})
-        setFileName('')
-        setPreview('')
+        if(subMaterialId) {
+            getDetail()
+        }else{
+            setData({smFile : null , smContents : ''})
+            setFileName('')
+            setPreview('')
+        }
     }, [isOpen])
 
     
