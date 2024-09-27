@@ -242,6 +242,24 @@
   }
 }
 
+.btns6 {
+  position: absolute;
+  bottom:0;
+  right: 25px;
+  button {
+    margin-left:10px;
+    border: 1px solid #1F75CB;
+    background-color: #1F75CB;
+    color: #fff;
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+}
+
 
 /* Search Bar */
 .search-bar-area {

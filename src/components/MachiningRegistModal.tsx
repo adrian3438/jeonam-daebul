@@ -36,7 +36,7 @@ const MachiningRegistModal: React.FC<CustomModalProps> = ({ listId , assembleId 
     const {authData} = useAuth()
     const [data , setData] = useState<DataType>({
         mdFile : null , mdContents : ''
-    }) 
+    })
     const [fileName , setFileName] = useState<string>('')
     function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
         setData((prev) => ({...prev, [e.target.name] : e.target.value}))
@@ -121,7 +121,7 @@ const MachiningRegistModal: React.FC<CustomModalProps> = ({ listId , assembleId 
                         <h3>변경 사유</h3>
                         <textarea name='mdContents' value={data?.mdContents} onChange={handleChange}>
                         </textarea>
-                        <div className='btns4'>
+                        <div className='btns6'>
                             <button onClick={Save}>저장</button>
                         </div>
                     </div>
