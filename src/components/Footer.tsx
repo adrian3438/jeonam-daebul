@@ -14,6 +14,7 @@ interface Props {
 }
 export default function Footer({id , type} : Props) {
     const {part} = useAuth()
+    console.log(part)
     const [activeItem, setActiveItem] = useState<number | null>(null);
     const toggleActive = (index: number) => {
         if (activeItem === index) {
@@ -46,7 +47,11 @@ export default function Footer({id , type} : Props) {
     };
 
     const openModal5 = () => {
-        setModalIsOpen5(true);
+        if(part){
+            setModalIsOpen5(true);
+        }else{
+            alert('부품을 선택해 주세요.'); return;
+        }
     };
 
     const closeModal = () => {

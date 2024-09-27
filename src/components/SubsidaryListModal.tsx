@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -36,11 +36,12 @@ interface DataType {
 }
 
 const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
-
+    const keywordRef = useRef<any>(null)
     const [data , setData] = useState<DataType[]>([])
     const [subMaterialId , setSubMaterialId] = useState<string>('')
     const [totalCount , setTotalCount] = useState<number>(0)
     const [page , setPage] = useState<number>(0)
+    const [keyword , setKeyword] = useState<string>('')
 
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
@@ -63,9 +64,16 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
         setModalIsOpen2(false);
     };
 
+    function Search () {
+        setKeyword(keywordRef.current.value)
+    }
+    function Enter (e:React.KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter') {Search()}
+    }
+
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getSubsidaryMaterialList.php?assembleId=${assembleId}&smfilename=&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
+            const response = await api.get(`/admin/projects/getSubsidaryMaterialList.php?assembleId=${assembleId}&smfilename=${keyword}&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
             setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
         }
     }
@@ -81,7 +89,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
 
     useEffect(() => {
         getList()
-    }, [isOpen, page])
+    }, [isOpen, page, keyword])
     return (
         <>
             <Modal
@@ -96,8 +104,8 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
                         <div className="modal-search">
-                            <input type="text" maxLength={50}/>
-                            <input type="button" value={"검색"} className="search-btn"/>
+                            <input ref={keywordRef} onKeyDown={(e)=>Enter(e)} type="text" maxLength={50}/>
+                            <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
                         </div>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>

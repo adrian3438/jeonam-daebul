@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -37,12 +37,12 @@ interface DataType {
 }
 
 const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
-    
+    const keywordRef = useRef<any>(null)
     const [listId , setListId] = useState<string>('')
     const [data , setData] = useState<DataType[]>([])
     const [totalCount , setTotalCount] = useState<number>(0)
     const [page , setPage] = useState<number>(1)
-
+    const [keyword , setKeyword] = useState<string>('')
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
@@ -65,9 +65,16 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
         setModalIsOpen2(false);
     };
 
+    function Search () {
+        setKeyword(keywordRef.current.value)
+    }
+    function Enter (e:React.KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter') {Search()}
+    }
+
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getRequiredSteelList.php?assembleId=${assembleId}&rsfilename=&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
+            const response = await api.get(`/admin/projects/getRequiredSteelList.php?assembleId=${assembleId}&rsfilename=${keyword}&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
             if(response?.data?.result === true) {
                 setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
             }
@@ -85,7 +92,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
 
     useEffect(()=> {
         getList()
-    }, [isOpen, page])
+    }, [isOpen, page, keyword])
     return (
         <>
             <Modal
@@ -99,6 +106,10 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                         <h2>{contentLabel}
                             <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
+                        <div className="modal-search">
+                            <input ref={keywordRef} onKeyDown={(e)=>Enter(e)} type="text" maxLength={50}/>
+                            <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
+                        </div>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
                     <div className="modal-content">

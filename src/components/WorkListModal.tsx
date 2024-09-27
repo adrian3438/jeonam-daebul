@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -35,7 +35,8 @@ interface DataType {
 }
 
 const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
-
+    const keywordRef = useRef<any>(null)
+    const [keyword , setKeyword] = useState<string>('')
     const [listId , setListId] = useState<string>('')
     const [data , setData] = useState<DataType[]>([])
     const [totalCount , setTotalCount] = useState<number>(0)
@@ -62,7 +63,12 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
-
+    function Search () {
+        setKeyword(keywordRef.current.value)
+    }
+    function Enter (e:React.KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter') {Search()}
+    }
     async function getList () {
         if(isOpen){
             const response = await api.get(`/admin/projects/getWorkDrawingList.php?assembleId=${assembleId}&mdfilename=&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
@@ -83,7 +89,7 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
 
     useEffect(()=> {
         getList()
-    }, [isOpen, page])
+    }, [isOpen, page, keyword])
 
     return (
         <>
@@ -98,6 +104,10 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                         <h2>{contentLabel}
                             <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
+                        <div className="modal-search">
+                            <input ref={keywordRef} onKeyDown={(e)=>Enter(e)} type="text" maxLength={50}/>
+                            <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
+                        </div>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
                     <div className="modal-content">

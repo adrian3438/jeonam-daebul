@@ -76,6 +76,8 @@ export default function ModelingComponents () {
         const item = e?.data?.data;
         if(item?.selection?.length > 0) {
             setPart(item?.selection[0])
+        }else{
+            setPart('')
         }
         setPartsName(item?.selection)
         console.log(item)
