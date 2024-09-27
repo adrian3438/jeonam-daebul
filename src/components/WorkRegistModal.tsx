@@ -38,7 +38,6 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
         wdFile : null , wdContents : ''
     }) 
     const [fileName , setFileName] = useState<string>('')
-    const [preview , setPreview] = useState<string>('')
     function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
         setData((prev) => ({...prev, [e.target.name] : e.target.value}))
     }
@@ -49,7 +48,6 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
         reader.onload = () => {
             setData((prev) => ({...prev, wdFile : file}))
             setFileName(file.name as string)
-            setPreview(reader.result as string)
         }
     };
 
@@ -85,7 +83,6 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
                 if(response?.data?.List?.length > 0) {
                     const result = response?.data?.List[0]
                     setData((prev) => ({...prev , wdContents : result?.wdContents}))
-                    setPreview(result?.wdFile)
                     setFileName(result?.wdFilename)
                 }
             }
@@ -98,7 +95,6 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
         }else{
             setData({wdFile : null , wdContents : ''})
             setFileName('')
-            setPreview('')
         }
     }, [isOpen])
 
@@ -116,11 +112,8 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
                 </div>
                 <div className="modal-content">
                     <div className="change-reason">
-                        <Dropzone onFileAccepted={handleFileAccepted}/>
+                        <Dropzone onFileAccepted={handleFileAccepted} fileType='pdf'/>
                         <p className="uploaded-img">
-                            {preview && 
-                            <Image src={preview} alt="대조" width={81} height={23}/>
-                            }
                             <span>{fileName}</span>
                         </p>
                     </div>

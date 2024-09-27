@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import api from '@/lib/api';
-import FileDownLoadBtn from './FileDownLoadBtn';
+import {FileDownLoadBtn} from './FileDownLoadBtn';
 
 const customStyles = {
     content: {

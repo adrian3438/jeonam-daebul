@@ -7,7 +7,7 @@ import SubsidaryDetailModal from '@/components/SubsidaryDetailModal';
 import SubsidaryRegistModal from '@/components/SubsidaryRegistModal';
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
-import FileDownLoadBtn from './FileDownLoadBtn';
+import { FileDownLoadBtn, FileDownLoadLink } from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -117,7 +117,10 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             <>
                             {data?.map((list:DataType, index:number) => (
                             <tr key={index}>
-                                <td>{list?.smFilename ? list?.smFilename : '-'}</td>
+                                <FileDownLoadLink
+                                    file={list?.smFile}
+                                    fileName={list?.smFilename}
+                                />
                                 <td>{list?.createDate}</td>
                                 <td>{list?.managerName}</td>
                                 <td className="change">{list?.smContents}</td>

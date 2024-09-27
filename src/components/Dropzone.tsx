@@ -4,9 +4,25 @@ import { useDropzone, FileRejection, Accept } from 'react-dropzone';
 interface DropzoneProps {
     onFileAccepted: (acceptedFiles: File[]) => void;
     accept?: Accept;
+    fileType : string
 }
 
-const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept }) => {
+const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept, fileType }) => {
+    const getAccept = (fileType: string): Accept => {
+        switch (fileType) {
+            case 'image':
+                return {
+                    'image/png': [],
+                    'image/jpeg': [],
+                };
+            case 'pdf':
+                return {
+                    'application/pdf': [],
+                };
+            default:
+                return {};
+        }
+    };
     const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
         // 받아들여진 파일들을 처리
         if (acceptedFiles.length > 0) {
@@ -21,7 +37,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept }) => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept,
+        accept: getAccept(fileType),
     });
 
     return (

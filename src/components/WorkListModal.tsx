@@ -6,7 +6,7 @@ import WorkDetailModal from "@/components/WorkDetailModal";
 import WorkRegistModal from "@/components/WorkRegistModal";
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
-import FileDownLoadBtn from './FileDownLoadBtn';
+import { FileDownLoadBtn, FileDownLoadLink } from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -116,7 +116,10 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                             <>
                             {data?.map((list:DataType ,index:number) => (
                                 <tr key={index}>
-                                    <td>{list?.wdFilename ? list?.wdFilename : '-'}</td>
+                                    <FileDownLoadLink
+                                        file={list?.wdFile}
+                                        fileName={list?.wdFilename}
+                                    />
                                     <td>{list?.createDate}</td>
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.wdContents}</td>

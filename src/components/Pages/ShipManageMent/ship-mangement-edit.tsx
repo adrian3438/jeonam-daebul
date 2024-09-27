@@ -110,7 +110,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
                 <div>
                     <h2>선종 대표 이미지 (<span>*</span>)</h2>
                     {/*<input type="file" name="mainImage" onChange={handleChange}/>*/}
-                    <Dropzone onFileAccepted={handleFileAccepted} />
+                    <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
                     <p className="uploaded-img">
                         {preview && 
                         <>

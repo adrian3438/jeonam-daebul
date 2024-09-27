@@ -8,7 +8,7 @@ import RequiredRegistModal from "@/components/RequiredRegistModal";
 import api from '@/lib/api';
 import Paginate from './Paginate/pagination';
 import PopupPaginate from './Paginate/popup-paginate';
-import FileDownLoadBtn from './FileDownLoadBtn';
+import { FileDownLoadBtn, FileDownLoadLink } from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -117,7 +117,10 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                             <>
                             {data?.map((list:DataType ,index:number) => (
                                 <tr key={index}>
-                                    <td>{list?.rsFilename ? list?.rsFilename : '-'}</td>
+                                    <FileDownLoadLink
+                                        file={list?.rsFile}
+                                        fileName={list?.rsFilename}
+                                    />
                                     <td>{list?.createDate}</td>
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.rsContents}</td>

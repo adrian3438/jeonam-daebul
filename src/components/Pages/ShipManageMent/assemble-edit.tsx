@@ -133,6 +133,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
                     <h2>대조 대표 이미지 (<span>*</span>)</h2>
                     <Dropzone 
                         onFileAccepted={handleFileAccepted} 
+                        fileType='image'
                     />
                     <p className="uploaded-img">
                         {preview && <Image src={preview} alt="대조" width={81} height={23}/>}

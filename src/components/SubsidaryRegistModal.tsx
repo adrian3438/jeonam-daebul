@@ -125,7 +125,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
                         <input type="file"/>
                     </div>*/}
                     <div className="change-reason">
-                        <Dropzone onFileAccepted={handleFileAccepted}/>
+                        <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
                         <p className="uploaded-img">
                             {preview && 
                             <Image src={preview} alt="대조" width={81} height={23}/>

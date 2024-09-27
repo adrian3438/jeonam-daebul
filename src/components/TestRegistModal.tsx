@@ -47,7 +47,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
 
                     <div className="change-reason2">
                         <h3>검사 사진 업로드</h3>
-                        <Dropzone onFileAccepted={handleFileAccepted}/>
+                        <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
                         <div className="picture-upload">
                             <p>
                                 <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>

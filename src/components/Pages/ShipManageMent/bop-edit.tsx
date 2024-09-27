@@ -109,7 +109,7 @@ export default function BopEditBox ({
                 <div>
                     <h2>BOP 대표 이미지 (<span>*</span>)</h2>
                     {/* <input type="file" name="mainImage" onChange={handleChange}/> */}
-                    <Dropzone onFileAccepted={handleFileAccepted} />
+                    <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
                     <p className="uploaded-img">
                         {preview && <Image src={preview} alt="대조" width={81} height={23}/>}
                         <span>{fileName?.mainImage}</span>

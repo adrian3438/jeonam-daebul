@@ -6,7 +6,7 @@ import MachiningDetailModal from "@/components/MachiningDetailModal";
 import MachiningRegistModal from "@/components/MachiningRegistModal";
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
-import FileDownLoadBtn from './FileDownLoadBtn';
+import { FileDownLoadBtn, FileDownLoadLink } from './FileDownLoadBtn';
 
 const customStyles = {
     content: {
@@ -117,7 +117,10 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             <>
                             {data?.map((list:DataType, index:number) => (
                                 <tr key={index}>
-                                    <td>{list?.mdFilename ? list?.mdFilename : '-'}</td>
+                                    <FileDownLoadLink
+                                        file={list?.mdFile}
+                                        fileName={list?.mdFilename}
+                                    />
                                     <td>{list?.createDate}</td>
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.mdContents}</td>
