@@ -37,7 +37,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
     const {authData} = useAuth()
     const [data , setData] = useState<DataType>({
         rsFile : null , rsContents : ''
-    }) 
+    })
     const [fileName , setFileName] = useState<string>('')
     const [preview , setPreview] = useState<string>('')
     function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
@@ -118,7 +118,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
                     <div className="change-reason">
                         <Dropzone onFileAccepted={handleFileAccepted} fileType='xlsx'/>
                         <p className="uploaded-img">
-                            {preview && 
+                            {preview &&
                             <Image src={preview} alt="대조" width={81} height={23}/>
                             }
                             <span>{fileName}</span>
@@ -128,9 +128,9 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
                     <div className="change-reason">
                         <h3>변경 사유</h3>
                         <textarea  name='rsContents' value={data?.rsContents} onChange={handleChange}>
-                            
+
                         </textarea>
-                        <div className='btns4'>
+                        <div className='btns6'>
                             <button onClick={Save}>저장</button>
                         </div>
                     </div>

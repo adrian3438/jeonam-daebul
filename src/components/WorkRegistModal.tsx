@@ -36,7 +36,7 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
     const {authData} = useAuth()
     const [data , setData] = useState<DataType>({
         wdFile : null , wdContents : ''
-    }) 
+    })
     const [fileName , setFileName] = useState<string>('')
     function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
         setData((prev) => ({...prev, [e.target.name] : e.target.value}))
@@ -122,7 +122,7 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
                         <h3>변경 사유</h3>
                         <textarea name='wdContents' value={data?.wdContents} onChange={handleChange}>
                         </textarea>
-                        <div className='btns4'>
+                        <div className='btns6'>
                             <button onClick={Save}>저장</button>
                         </div>
                     </div>
