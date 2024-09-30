@@ -26,7 +26,7 @@ interface CustomModalProps {
 
 interface DataType {
     ID : string, activeStatus : string , createDate : string ,
-    managerId : string, managerName : string , smContents : string , 
+    managerId : string, managerName : string , smContents : string ,
     smFile : string, smFilename : string
 }
 
@@ -58,7 +58,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                     <button onClick={onRequestClose} className="modal-close-button">Close</button>
                 </div>
                 <div className="modal-content">
-                    <table className="table2">
+                    <table className="table3">
                         <tbody>
                         <tr>
                             <th scope="row">파일명</th>
@@ -82,7 +82,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                         </tbody>
                     </table>
 
-                    <div className="change-reason">
+                    <div className="change-reason change-reason3">
                         <h3>변경 사유</h3>
                         <div>
                             {data?.smContents}

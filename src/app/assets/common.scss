@@ -63,14 +63,14 @@
       border-bottom: 1px solid #aaa;
       background-color: #D9D9D9;
       text-align: left;
-      padding: 15px 20px;
+      padding: 10px 20px;
       width: 15%;
       vertical-align: middle;
       font-size: 18px;
     }
     td {
       border-bottom: 1px solid #aaa;
-      padding: 15px 20px;
+      padding: 10px 20px;
       width: 35%;
       vertical-align: middle;
       font-size: 18px;
@@ -92,7 +92,7 @@
       border-bottom: 1px solid #aaa;
       text-align: left;
       padding: 15px 20px;
-      width: 35%;
+      width: 37%;
       vertical-align: middle;
       font-size: 18px;
       font-weight: bold;
@@ -110,6 +110,7 @@
         border: 1px solid #ddd;
         font-size: 18px;
         padding: 5px 10px;
+        box-sizing: border-box;
       }
     }
   }
@@ -208,7 +209,7 @@
 }
 
 .btns4 {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: right;
   button {
     margin-left:10px;
@@ -216,6 +217,7 @@
     background-color: #1F75CB;
     color: #fff;
     transition: 0.15s ease-in-out;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
     line-height: 16px;
@@ -225,9 +227,9 @@
 }
 
 .btns5 {
-  margin-top:20px;
-  padding-bottom: 30px;
-  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   button {
     margin-left:10px;
     border: 1px solid #1F75CB;
@@ -239,6 +241,7 @@
     line-height: 16px;
     padding: 10px 20px;
     box-sizing: border-box;
+    border-radius: 20px;
   }
 }
 
@@ -257,6 +260,26 @@
     line-height: 16px;
     padding: 10px 20px;
     box-sizing: border-box;
+    border-radius: 20px;
+  }
+}
+
+.btns7 {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  button {
+    margin-left:10px;
+    border: 1px solid #1F75CB;
+    background-color: #1F75CB;
+    color: #fff;
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
   }
 }
 
@@ -267,6 +290,25 @@
   margin-bottom:30px;
   justify-content: right;
 }
+
+.search-bar-area2 {
+  display: flex;
+  margin-bottom:30px;
+  justify-content: space-between;
+  align-items: center;
+  .btns {
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background-color: #1F75CB;
+      font-size: 18px;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+  }
+}
+
 .search-bar {
   background-color: #E4E7F5;
   border-radius: 5px;

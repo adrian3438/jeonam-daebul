@@ -5,7 +5,7 @@ import React from "react";
 interface ParamType {params : {id : string | Blob}}
 export default function PartnerRegist({params : {id}} : ParamType) {
     return (
-        <div className="partner">
+        <div className="partner partner-modify">
             <PartnersEditBox
                 id={id}
             />

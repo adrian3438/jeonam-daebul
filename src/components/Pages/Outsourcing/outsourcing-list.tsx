@@ -1,4 +1,4 @@
-'use client' 
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import Paginate from "@/components/Paginate/pagination";
@@ -30,7 +30,7 @@ export default function OutsourcingListBox ({
         if(response?.data?.result === true) {
             setList(response?.data?.List); setTotalCnt(response?.data?.totalCnt)
         }
-    } 
+    }
     async function ChangeStatus (id : string | Blob, status : string) {
         const formData = new FormData()
         formData.append('ID' , id)
@@ -42,13 +42,16 @@ export default function OutsourcingListBox ({
             alert(response?.data?.resultMsg)
         }
     }
-    
+
     useEffect(()=>{
         getList()
     }, [])
     return(
         <>
-            <div className="search-bar-area">
+            <div className="search-bar-area2">
+                <div className='btns'>
+                    <Link href='/outsourcing/regist'>등록</Link>
+                </div>
                 <div className="search-bar">
                     <input type="text" maxLength={50}/>
                     <input type="button" value={"검색"} className="search-btn"/>
@@ -101,9 +104,6 @@ export default function OutsourcingListBox ({
 
             <div className="pagination">
                 <Paginate page={page} size={size} totalCount={totalCount}/>
-                <div className='btns'>
-                    <Link href='/outsourcing/regist'>등록</Link>
-                </div>
             </div>
         </>
     )

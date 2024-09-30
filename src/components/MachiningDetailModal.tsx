@@ -25,7 +25,7 @@ interface CustomModalProps {
 }
 
 interface DataType {
-    ID : string, activeStatus : string , 
+    ID : string, activeStatus : string ,
     createDate : string, maangerId : string,
     managerName : string, mdContents : string,
     mdFile : string , mdFilename : string
@@ -59,11 +59,11 @@ const MachiningDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
                     <button onClick={onRequestClose} className="modal-close-button">Close</button>
                 </div>
                 <div className="modal-content">
-                    <table className="table2">
+                    <table className="table3">
                         <tbody>
                         <tr>
                             <th scope="row">파일명</th>
-                            <td>{data?.mdFilename ? data?.mdFilename : '-'} 
+                            <td>{data?.mdFilename ? data?.mdFilename : '-'}
                                 {data?.mdFile &&
                                 <FileDownLoadBtn
                                     file={data?.mdFile}
@@ -83,7 +83,7 @@ const MachiningDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
                         </tbody>
                     </table>
 
-                    <div className="change-reason">
+                    <div className="change-reason change-reason3">
                         <h3>변경 사유</h3>
                         <div>
                         {data?.mdContents}

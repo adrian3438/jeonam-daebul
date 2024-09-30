@@ -102,6 +102,9 @@
           .bop-image-area {
             border-bottom: 1px solid #eee;
             height: 200px;
+            &:hover {
+              cursor: pointer;
+            }
             > img {
               width: 100% !important;
               height: auto !important;

@@ -6,7 +6,7 @@ import React from "react";
 interface ParamType {params : {id : string | Blob}}
 export default async function OutsourcingRegist({params : {id}} : ParamType) {
     return (
-        <div className="outsourcing">
+        <div className="outsourcing outsourcing-modify">
             <OutsourcingEdit
                 id={id}
             />

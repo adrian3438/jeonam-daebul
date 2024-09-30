@@ -78,19 +78,19 @@
 
   .modal-content {
     height: calc(100% - 120px);
-    overflow-y: scroll;
+    overflow-y: auto;
     .change-reason {
-      padding: 20px;
+      padding: 0 20px 20px;
       h3 {
         font-weight: bold;
-        margin:40px 0 20px;
+        margin:0 0 20px;
         font-size: 20px;
       }
       textarea {
         resize: none;
         width: 100%;
         border: 1px solid #ddd;
-        height: 300px;
+        height: 185px;
         padding: 20px;
         font-family: var(--font-pretendard-sans);
         font-size: 16px;
@@ -138,6 +138,9 @@
         font-family: var(--font-pretendard-sans);
         font-size: 16px;
       }
+    }
+    .change-reason3 {
+      margin-top: 60px;
     }
   }
 

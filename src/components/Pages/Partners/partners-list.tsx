@@ -1,4 +1,4 @@
-'use client' 
+'use client'
 import calCulateIndex from "@/components/calculateIndex";
 import api from "@/lib/api";
 import Image from "next/image";
@@ -29,7 +29,7 @@ export default function PartnersListBox ({
         if(response?.data?.result === true) {
             setList(response?.data?.List); setTotalCnt(response?.data?.totalCnt)
         }
-    } 
+    }
     async function ChangeStatus (id : string | Blob, status : string) {
         const formData = new FormData()
         formData.append('ID' , id)
@@ -41,13 +41,16 @@ export default function PartnersListBox ({
             alert(response?.data?.resultMsg)
         }
     }
-    
+
     useEffect(()=>{
         getList()
     }, [])
     return(
         <>
-            <div className="search-bar-area">
+            <div className="search-bar-area2">
+                <div className='btns'>
+                    <Link href='/partner/regist'>등록</Link>
+                </div>
                 <div className="search-bar">
                     <input type="text" maxLength={50}/>
                     <input type="button" value={"검색"} className="search-btn"/>
@@ -100,9 +103,6 @@ export default function PartnersListBox ({
 
             <div className="pagination">
                 페이징 들어감
-                <div className='btns'>
-                    <Link href='/partner/regist'>등록</Link>
-                </div>
             </div>
         </>
     )

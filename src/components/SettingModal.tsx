@@ -89,7 +89,7 @@ const SettingModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, cont
                         </tbody>
                     </table>
                 </div>
-                <div className='btns4'>
+                <div className='btns7'>
                     <button>저장</button>
                 </div>
             </div>

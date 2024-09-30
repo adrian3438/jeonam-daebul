@@ -102,6 +102,9 @@
         .bop-image-area {
           border-bottom: 1px solid #eee;
           height: 200px;
+          &:hover {
+            cursor: pointer;
+          }
           > img {
             width: 100% !important;
             height: auto !important;
@@ -173,11 +176,12 @@
 .subsidary-manage-regist {
   padding: 60px;
   display: flex;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 270px);
   > section {
     width: 50%;
     padding: 20px;
     border-left: 1px solid #ddd;
+    height: 100%;
     h2 {
       font-size: 20px;
       font-weight: bold;
@@ -190,13 +194,14 @@
       resize: none;
       width: 100%;
       border: 1px solid #ddd;
-      height: 200px;
+      height: 150px;
       padding: 20px;
       box-sizing: border-box;
       font-family: var(--font-pretendard-sans);
       font-size: 16px;
     }
     &:first-child {
+      border-left: none;
       > div {
         margin-bottom: 40px;
         .ship-name {
@@ -258,11 +263,12 @@
 .bop-manage-regist {
   padding: 60px;
   display: flex;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 130px);
   > section {
     width: 50%;
     padding: 20px;
     border-left: 1px solid #ddd;
+    height: 100%;
     h2 {
       font-size: 20px;
       font-weight: bold;
@@ -275,13 +281,14 @@
       resize: none;
       width: 100%;
       border: 1px solid #ddd;
-      height: 200px;
+      height: 150px;
       padding: 20px;
       box-sizing: border-box;
       font-family: var(--font-pretendard-sans);
       font-size: 16px;
     }
     &:first-child {
+      border-left: none;
       > div {
         margin-bottom: 40px;
         .ship-name {
@@ -342,7 +349,7 @@
 .ship-manage-regist {
   padding: 60px;
   display: flex;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 270px);
   > section {
     width: 50%;
     padding: 20px;
@@ -356,6 +363,7 @@
       }
     }
     &:first-child {
+      border-left: none;
       > div {
         margin-bottom: 40px;
         .ship-name {
