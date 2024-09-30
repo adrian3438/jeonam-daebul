@@ -71,7 +71,7 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
     }
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getWorkDrawingList.php?assembleId=${assembleId}&mdfilename=&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
+            const response = await api.get(`/admin/projects/getWorkDrawingList.php?assembleId=${assembleId}&wdfilename=${keyword}&page=${page}&size=10&sortColumn=wdFilename&sortOrder=desc`)
             if(response?.data?.result === true) {
                 setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
             }

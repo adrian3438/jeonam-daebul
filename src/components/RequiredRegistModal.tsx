@@ -116,7 +116,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
                 </div>
                 <div className="modal-content">
                     <div className="change-reason">
-                        <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
+                        <Dropzone onFileAccepted={handleFileAccepted} fileType='xlsx'/>
                         <p className="uploaded-img">
                             {preview && 
                             <Image src={preview} alt="대조" width={81} height={23}/>

@@ -19,6 +19,10 @@ const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept, fileType })
                 return {
                     'application/pdf': [],
                 };
+            case 'xlsx':
+                return {
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [],
+                }
             default:
                 return {};
         }

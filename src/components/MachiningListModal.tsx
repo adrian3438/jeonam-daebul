@@ -73,7 +73,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
 
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getMachiningDrawingList.php?assembleId=${assembleId}&mdfilename=&page=${page}&size=10&sortColumn=rsFilename&sortOrder=desc`)
+            const response = await api.get(`/admin/projects/getMachiningDrawingList.php?assembleId=${assembleId}&mdfilename=&page=${page}&size=10&sortColumn=mdFileName&sortOrder=desc`)
             if(response?.data?.result === true) {
                 setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
             }
