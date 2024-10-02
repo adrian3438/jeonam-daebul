@@ -7,7 +7,7 @@ interface ParamsType {
     params : {id : string | Blob},
     searchParams : {
         t : string | Blob
-        m : string | Blob
+        m : string
     }
 }
 
@@ -21,7 +21,7 @@ export default function Main({
         <>
             <div style={{width:"100%", height:"calc(100% - 59px)"}}>
                 <ModelingComponents
-
+                    modelingUrl={m}
                 />
             </div>
             <Footer

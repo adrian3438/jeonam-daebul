@@ -11,7 +11,7 @@ interface Props {
 interface DataType {
     ID : string | Blob, thumnailFile : string, thumnailFilename : string,
     shipAssembleName : string, bopIdx : string | number , bopExist : boolean,
-    createDate : string
+    createDate : string, modelingUrl : string
 }
 export default function ShipAssembleBox ({ shipId , initId } : Props) {
     const router = useRouter()
@@ -32,19 +32,24 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
         <>
         <section className="ship-type-bop">
             <ul>
-                {data?.map((list:DataType,index:number) => (
+                {data?.map((list:DataType,index:number) => {
+                    const modelingNameParts = list?.modelingUrl ? list?.modelingUrl.split('/') : [];
+                    let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
+                    modelingNameLastPart = modelingNameLastPart.replace('.html', '');
+                    return(
                     <li key={index}>
                         <div>
                             <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>router.push(`/ship-type/${list?.ID}?t=assemble&m=FGSS`)} alt="sample" width={500} height={322}/>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>router.push(`/ship-type/${list?.ID}?t=assemble&m=${modelingNameLastPart}`)} alt="sample" width={500} height={322}/>
                             </div>
                             <div className="bop-info-area">
                                 <p>{list?.shipAssembleName}</p>
-                                <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-type/${list?.bopIdx}?t=bop&m=FGSS` : '#'} onClick={()=>isBop(list?.bopExist)}>수정</Link></p>
+                                <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-type/${list?.bopIdx}?t=bop&m=${modelingNameLastPart}` : '#'} onClick={()=>isBop(list?.bopExist)}>수정</Link></p>
                             </div>
                         </div>
                     </li>
-                ))}
+                    )
+                })}
                 {/* <li>
                     <div>
                         <div className="bop-image-area">

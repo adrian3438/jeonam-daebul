@@ -61,7 +61,7 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
   if( props.path == undefined ) {
     // iframeSrc = `../ModelingCtrl/index.html?assetId=${props.modelingId}&modelingName=${props.modelingName}`;
     // iframeSrc = `https://alink3d.com/ModelingCtrl/modeling_view_FGSS_SHIP.html`
-    iframeSrc = `/ModelingCtrl/index.html`
+    iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/${props.iframePath}.html`
   }
   else {
     // iframeSrc = `../ModelingCtrl/index.html?path=${props.path}&modelingName=${props.modelingName}`;

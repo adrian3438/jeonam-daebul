@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import IFrameControlCompnent, { EventIFrameControl } from "../xvl/IFrameControl";
 import { useAuth } from "../Context/AuthContext";
-
-export default function ModelingComponents () {
+interface Props {
+    modelingUrl : string
+}
+export default function ModelingComponents ({modelingUrl} : Props) {
     const {setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
@@ -149,7 +151,7 @@ export default function ModelingComponents () {
         </div>
         <div style={{width : '100%' , height : '100%', marginTop: '-56px'}}>
             {/* <button className='mobileTreeBtn'>treeBtn</button> */}
-            <IFrameControlCompnent ref={refIframeCtrl} iframePath={''}/>
+            <IFrameControlCompnent ref={refIframeCtrl} iframePath={modelingUrl}/>
         </div>
         </>
     )
