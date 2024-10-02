@@ -2,19 +2,32 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import api from "@/lib/api";
 interface Props {
-    data : DataType[]
+    shipId : string | string[] | undefined
+    initId : string | string[] | undefined
 }
 interface DataType {
     ID : string | Blob, thumnailFile : string, thumnailFilename : string,
     shipAssembleName : string, bopIdx : string | number , bopExist : boolean,
     createDate : string
 }
-export default function ShipAssembleBox ({data} : Props) {
+export default function ShipAssembleBox ({ shipId , initId } : Props) {
     const router = useRouter()
+    const [data , setData] = useState<DataType[]>([])
     function isBop (bopExist : boolean) {
         if(!bopExist) {alert('BOP 등록을 해주시기 바랍니다.'); return;}
     }
+    async function getList () {
+        const response = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${shipId || initId}`)
+        if(response?.data?.result === true) {
+            setData(response?.data?.List)
+        }
+    }
+    useEffect(() => {
+        getList()
+    }, [shipId])
     return(
         <>
         <section className="ship-type-bop">

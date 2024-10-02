@@ -1,15 +1,27 @@
 'use client'
+import api from "@/lib/api";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 interface ShipType {
     ID : number | string , thumnailFile : string, thumnailFilename : string , shipTypeName : string, activeStatus : string, createDate : string
 }
-interface Props { data : [], shipid : string | undefined }
-export default function ShipTypeBox ({data, shipid} : Props) {
+interface Props { shipid : string | undefined }
+export default function ShipTypeBox ({shipid} : Props) {
     const router = useRouter()
+    const [data , setData] = useState<ShipType[]>([])
     function SelectShip (id : string) {
         router.push(`/ship-type?s=${id}`)
     }
+    async function getList () {
+        const response = await api.get(`/admin/getAdminMainDashBoard.php?shipAssembleName=`)
+        if(response?.data?.result === true) {
+            setData(response?.data?.List)
+        }
+    }
+    useEffect(()=> {
+        getList()
+    }, [])
     return(
         <>
         <section className="ship-type">
