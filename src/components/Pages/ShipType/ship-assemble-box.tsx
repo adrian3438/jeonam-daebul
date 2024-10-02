@@ -9,7 +9,7 @@ interface Props {
     initId : string | string[] | undefined
 }
 interface DataType {
-    ID : string | Blob, thumnailFile : string, thumnailFilename : string,
+    ID : string, thumnailFile : string, thumnailFilename : string,
     shipAssembleName : string, bopIdx : string | number , bopExist : boolean,
     createDate : string, modelingUrl : string
 }
@@ -23,6 +23,16 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
         const response = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${shipId || initId}`)
         if(response?.data?.result === true) {
             setData(response?.data?.List)
+        }
+    }
+    function handleModlingPage (id : string , url : string) {
+        if(url){
+            const modelingNameParts = url ? url.split('/') : [];
+            let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
+            modelingNameLastPart = modelingNameLastPart.replace('.html', '');
+            router.push(`/ship-type/${id}?t=assemble&m=${modelingNameLastPart}`)
+        }else{
+            alert('등록된 모델링이 없습니다.');  return;
         }
     }
     useEffect(() => {
@@ -40,7 +50,7 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
                     <li key={index}>
                         <div>
                             <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>router.push(`/ship-type/${list?.ID}?t=assemble&m=${modelingNameLastPart}`)} alt="sample" width={500} height={322}/>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>handleModlingPage(list?.ID , list?.modelingUrl)} alt="sample" width={500} height={322}/>
                             </div>
                             <div className="bop-info-area">
                                 <p>{list?.shipAssembleName}</p>
