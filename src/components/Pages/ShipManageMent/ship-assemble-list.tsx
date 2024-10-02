@@ -34,21 +34,21 @@ export default function ShipAssembleListBox ({
                     <li key={index}>
                         <div>
                             <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={100} height={100}/>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={359} height={200}/>
                             </div>
                             <div className="bop-info-area">
-                                <p 
-                                    className="subsidary-regist" 
+                                <p
+                                    className="subsidary-regist"
                                     style={{cursor : 'pointer'}}
                                     onClick={()=>router.push(`/ship-manage/${id}/regist-subsidary/${list?.ID}`)}>
-                                    {list?.shipAssembleName} 
+                                    {list?.shipAssembleName}
                                     <Link href={`/ship-manage/${id}/regist-subsidary/${list?.ID}`}>수정</Link>
                                 </p>
-                                <p 
-                                    className={list?.bopExist ? 'registed' : 'no-registed'} 
+                                <p
+                                    className={list?.bopExist ? 'registed' : 'no-registed'}
                                     style={{cursor : 'pointer'}}
                                     onClick={()=>router.push(list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`)}>
-                                        BOP 
+                                        BOP
                                     <Link href={list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`}>수정</Link>
                                 </p>
                             </div>

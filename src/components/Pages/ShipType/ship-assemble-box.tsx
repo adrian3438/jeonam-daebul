@@ -1,4 +1,4 @@
-'use client' 
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ export default function ShipAssembleBox ({data} : Props) {
                     <li key={index}>
                         <div>
                             <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>router.push(`/ship-type/${list?.ID}?t=assemble&m=FGSS`)} alt="sample" width={100} height={100}/>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>router.push(`/ship-type/${list?.ID}?t=assemble&m=FGSS`)} alt="sample" width={348} height={200}/>
                             </div>
                             <div className="bop-info-area">
                                 <p>{list?.shipAssembleName}</p>

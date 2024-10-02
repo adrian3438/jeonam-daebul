@@ -48,7 +48,7 @@ export default function ShipManagementListBox ({list, keyword} : Props) {
                     {data?.map((list: DataType, index: number) => (
                         <li className="active" key={index}>
                             <button>
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={100} height={100}/>
+                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={373} height={280}/>
                             </button>
                             <div>
                                 <p>{list?.shipTypeName}</p>

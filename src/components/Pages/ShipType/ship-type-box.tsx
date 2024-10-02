@@ -15,13 +15,13 @@ export default function ShipTypeBox ({data, shipid} : Props) {
         <section className="ship-type">
             <ul>
                 {data?.map((list : ShipType, index : number) => (
-                <li 
+                <li
                     key={index}
                     className={shipid === list?.ID.toString() ? 'active' : ''}
                     onClick={() => SelectShip(list?.ID?.toString())}
                 >
                     <button>
-                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={50} height={50}/>
+                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={264} height={198}/>
                     </button>
                     <p>{list?.shipTypeName}</p>
                 </li>
