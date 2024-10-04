@@ -30,7 +30,7 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
             const modelingNameParts = url ? url.split('/') : [];
             let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
             modelingNameLastPart = modelingNameLastPart.replace('.html', '');
-            router.push(`/ship-type/${id}?s=${shipId}&t=assemble&name=${name}&m=${modelingNameLastPart}`)
+            router.push(`/ship-type/${id}?s=${shipId || initId}&t=assemble&name=${name}&m=${modelingNameLastPart}`)
         }else{
             alert('등록된 모델링이 없습니다.');  return;
         }

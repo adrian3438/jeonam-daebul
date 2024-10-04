@@ -12,8 +12,9 @@ import NoteListModal from "@/components/NoteListModal";
 interface Props {
     id : string | Blob
     type : string | Blob
+    shipId : string
 }
-export default function Footer({id , type} : Props) {
+export default function Footer({id , type, shipId} : Props) {
     const {part} = useAuth()
     const [activeItem, setActiveItem] = useState<number | null>(null);
     const toggleActive = (index: number) => {
