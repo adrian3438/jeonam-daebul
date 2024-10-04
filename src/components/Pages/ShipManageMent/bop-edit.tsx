@@ -11,7 +11,8 @@ interface Props {
 }
 interface DataType {
     mainImage : File | Blob | null , bopName : string , bopNotes : string,
-    jsonFile : File | Blob | null , binFile : File | Blob | null, xvlFile : File | Blob | null
+    jsonFile : File | Blob | null , binFile : File | Blob | null, xvlFile : File | Blob | null,
+    modelingUrl : string
 }
 interface FileNameType {
     mainImage : string, jsonFile : string , binFile : string, xvlFile : string
@@ -24,7 +25,7 @@ export default function BopEditBox ({
     const router = useRouter()
     const [data , setData] = useState<DataType>({
         mainImage : null, bopName : '', bopNotes : '',
-        jsonFile : null, binFile : null, xvlFile : null
+        jsonFile : null, binFile : null, xvlFile : null, modelingUrl : ''
     })
     const [preview , setPreview] = useState<string>('')
     const [fileName , setFileName] = useState<FileNameType>({
@@ -68,6 +69,7 @@ export default function BopEditBox ({
         }
         formData.append('bopNameKr', data?.bopName)
         formData.append('bopFeatures', data?.bopNotes)
+        formData.append('modelingUrl', data?.modelingUrl)
         if(data?.mainImage){formData.append('thumnailImage', data?.mainImage)}
         if(data?.jsonFile){formData.append('bopJsonFile', data?.jsonFile)}
         if(data?.binFile){formData.append('bopBinFile', data?.binFile)}
@@ -144,7 +146,7 @@ export default function BopEditBox ({
                 </div>
                 <div className="url-regist">
                     <h2>모델링 URL</h2>
-                    <input type="text"/>
+                    <input type="text" name="modelingUrl" value={data?.modelingUrl} onChange={handleChange}/>
                 </div>
             </section>
         </div>

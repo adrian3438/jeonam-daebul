@@ -22,6 +22,8 @@ import axios from "axios";
 import ToggleBlock from 'editorjs-toggle-block';
 import Title from "title-editorjs";
 import List from "@editorjs/list";
+import FontSizeTool from 'editorjs-inline-font-size-tool';
+import FontFamily from 'editorjs-inline-font-family-tool';
 // const FontSizeTool = require('editorjs-inline-font-size-tool');
 // const FontFamily = require('editorjs-inline-font-family-tool');
 // const ColorPlugin = require('editorjs-text-color-plugin');
@@ -49,6 +51,7 @@ export default function Editorjs ({isEdit} : Props) {
     // }
     useEffect(()=>{
         // if(!initData) return;
+        if(!editorRef.current) return;
         const editor = new EditorJS({
             readOnly : false,
             holder: editorRef.current,
@@ -63,8 +66,8 @@ export default function Editorjs ({isEdit} : Props) {
                 //         defaultLevel : 1,
                 //     }
                 // },
-                // fontFamily : FontFamily,
-                // fontSize : FontSizeTool,
+                fontFamily : FontFamily,
+                fontSize : FontSizeTool,
                 underline: Underline,
                 Strikethrough : Strikethrough,
                 annotation: {
@@ -118,7 +121,7 @@ export default function Editorjs ({isEdit} : Props) {
                                     const formData = new FormData()
                                     const timeStamp = new Date().getTime()
                                         formData.append('file', file, `${timeStamp}_${file.name}`)
-                                    fetch('http://dkloknext.cafe24.com/api/controller/admin/setToastFileUpload.php', {
+                                    fetch('https://marineplaza.org/dim-api/controller/admin/setToastFileUpload.php', {
                                     // fetch('/api/editor/setUpload', {
                                         method : 'post', body : formData
                                     })
@@ -162,7 +165,7 @@ export default function Editorjs ({isEdit} : Props) {
             },
             onReady : () => {
                 new Undo({editor});
-                new DragDrop(editor);
+                new DragDrop(editor); 
             },
             onChange : async () => {
                 const savedData = await editor.save()

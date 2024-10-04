@@ -11,7 +11,7 @@ interface Props {
 interface DataType {
     mainImage : File | Blob | null , assembleName : string, assembleNotes : string,
     jsonFile : File | Blob | null , binFile : File | Blob | null, xvlFile : File | Blob | null,
-    partners : string[]
+    partners : string[], modelingUrl : string
 }
 interface PartnerCompanyType {
     ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string,
@@ -27,7 +27,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
     const [data ,setData] = useState<DataType>({
         mainImage : null , assembleName : '', assembleNotes : '',
         jsonFile : null, binFile : null, xvlFile : null,
-        partners : []
+        partners : [], modelingUrl : ''
     })
     const [preview , setPreview] = useState<string>('')
     const [fileName , setFileName] = useState<FileNameType>({
@@ -103,6 +103,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
         formData.append('shipAssembleNameKr', data?.assembleName)
         formData.append('shipAssemblePartners', data?.partners?.join(','))
         formData.append('shipAssembleNotes', data?.assembleNotes)
+        formData.append('modelingUrl', data?.modelingUrl)
         if(data?.mainImage){
             formData.append('thumnailImage' , data?.mainImage)
         }
@@ -175,7 +176,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
                 </div>
                 <div className="url-regist">
                     <h2>모델링 URL</h2>
-                    <input type="text"/>
+                    <input type="text" name="modelingUrl" value={data?.modelingUrl} onChange={handleChange}/>
                 </div>
                 <div>
                     <h2>협력업체</h2>

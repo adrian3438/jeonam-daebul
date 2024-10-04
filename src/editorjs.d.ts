@@ -29,3 +29,4 @@ declare module '@editorjs/nested-list';
 declare module '@editorjs/list';
 declare module '@editorjs/attaches';
 declare module 'editorjs-inline-font-size-tool'
+declare module 'editorjs-inline-font-family-tool'
