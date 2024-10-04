@@ -192,7 +192,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                 isOpen={modalIsOpen2}
                 refetch={getList}
                 onRequestClose={closeModal}
-                contentLabel="소요강재 등록"
+                contentLabel={listId ? '소요강재 수정' : '소요강재 등록'}
             />
         </>
     );

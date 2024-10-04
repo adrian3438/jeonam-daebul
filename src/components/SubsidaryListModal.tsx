@@ -195,7 +195,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
             isOpen={modalIsOpen2}
             onRequestClose={closeModal}
             refetch={getList}
-            contentLabel="부자재 등록"
+            contentLabel={subMaterialId ? '부자재 수정' : '부자재 등록'}
             />
         </>
     );

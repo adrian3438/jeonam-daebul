@@ -5,8 +5,9 @@ import IFrameControlCompnent, { EventIFrameControl } from "../xvl/IFrameControl"
 import { useAuth } from "../Context/AuthContext";
 interface Props {
     modelingUrl : string
+    name : string
 }
-export default function ModelingComponents ({modelingUrl} : Props) {
+export default function ModelingComponents ({modelingUrl, name} : Props) {
     const {setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
@@ -109,7 +110,7 @@ export default function ModelingComponents ({modelingUrl} : Props) {
                 <span className="logoBox">
                     {/* <img src={``} alt="로고이미지" /> */}
                 </span>
-                <span className='logoTxt'>주식회사 000</span>
+                <span className='logoTxt'>{name} {partsName && `(${partsName})`}</span>
             </div>
             <div className='h-section-3'>
                 <div className='button-col'>

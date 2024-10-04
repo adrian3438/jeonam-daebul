@@ -184,7 +184,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                 isOpen={modalIsOpen2} 
                 onRequestClose={closeModal} 
                 refetch={getList}
-                contentLabel="가공도 등록" 
+                contentLabel={listId ? '가공도 수정' : '가공도 등록'}
             />
         </>
     );

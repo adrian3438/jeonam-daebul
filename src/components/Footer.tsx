@@ -56,7 +56,11 @@ export default function Footer({id , type} : Props) {
     };
 
     const openModal6 = () => {
-        setModalIsOpen6(true);
+        if(part) {
+            setModalIsOpen6(true);
+        }else{
+            alert('부품을 선택해 주세요.'); return;
+        }
     };
 
     const closeModal = () => {

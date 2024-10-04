@@ -8,11 +8,12 @@ interface ParamsType {
     searchParams : {
         t : string | Blob
         m : string
+        name : string
     }
 }
 
 export default function Main({
-    params : {id} , searchParams : {t , m}
+    params : {id} , searchParams : {t , m, name}
 } : ParamsType) {
     // id : 대조 또는 bop 아이디
     // t : 대조 인지 bop 인지 구분
@@ -22,6 +23,7 @@ export default function Main({
             <div style={{width:"100%", height:"calc(100% - 59px)"}}>
                 <ModelingComponents
                     modelingUrl={m}
+                    name={name}
                 />
             </div>
             <Footer

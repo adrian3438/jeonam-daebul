@@ -182,7 +182,7 @@ const WorkListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                 isOpen={modalIsOpen2} 
                 onRequestClose={closeModal} 
                 refetch={getList}
-                contentLabel="공작도 등록" 
+                contentLabel={listId ? '공작도 수정' : '공작도 등록'} 
             />
         </>
     );

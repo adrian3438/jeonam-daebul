@@ -25,12 +25,12 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
             setData(response?.data?.List)
         }
     }
-    function handleModlingPage (id : string , url : string) {
+    function handleModlingPage (id : string , url : string, name : string) {
         if(url){
             const modelingNameParts = url ? url.split('/') : [];
             let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
             modelingNameLastPart = modelingNameLastPart.replace('.html', '');
-            router.push(`/ship-type/${id}?t=assemble&m=${modelingNameLastPart}`)
+            router.push(`/ship-type/${id}?s=${shipId}&t=assemble&name=${name}&m=${modelingNameLastPart}`)
         }else{
             alert('등록된 모델링이 없습니다.');  return;
         }
@@ -56,7 +56,7 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
                             <li key={index}>
                                 <div>
                                     <div className="bop-image-area">
-                                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={() => handleModlingPage(list?.ID, list?.modelingUrl)} alt="sample" width={500} height={322}/>
+                                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={() => handleModlingPage(list?.ID, list?.modelingUrl, list?.shipAssembleName)} alt="sample" width={500} height={322}/>
                                     </div>
                                     <div className="bop-info-area">
                                         <p>{list?.shipAssembleName}</p>
