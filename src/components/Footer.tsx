@@ -15,7 +15,6 @@ interface Props {
 }
 export default function Footer({id , type} : Props) {
     const {part} = useAuth()
-    console.log(part)
     const [activeItem, setActiveItem] = useState<number | null>(null);
     const toggleActive = (index: number) => {
         if (activeItem === index) {
@@ -129,6 +128,7 @@ export default function Footer({id , type} : Props) {
                 onRequestClose={closeModal}
                 contentLabel="공작도 리스트 관리"
             />
+
             <TestListModal isOpen={modalIsOpen5} onRequestClose={closeModal} contentLabel="검사리스트"/>
 
             <NoteListModal

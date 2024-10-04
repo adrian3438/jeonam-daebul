@@ -15,14 +15,12 @@ const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept, fileType })
                     'image/png': [],
                     'image/jpeg': [],
                 };
-            case 'pdf':
+            case 'pdf&xlsx&xls':
                 return {
-                    'application/pdf': [],
+                    'application/pdf': ['.pdf'],
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+                    'application/vnd.ms-excel': ['.xls'],
                 };
-            case 'xlsx':
-                return {
-                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [],
-                }
             default:
                 return {};
         }
@@ -36,6 +34,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ onFileAccepted, accept, fileType })
         // 거절된 파일들을 처리 (옵션)
         if (rejectedFiles.length > 0) {
             console.error('Rejected files: ', rejectedFiles);
+            alert(`${fileType}만 업로드 가능합니다.`)
         }
     }, [onFileAccepted]);
 

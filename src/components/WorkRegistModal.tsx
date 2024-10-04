@@ -112,7 +112,7 @@ const WorkRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpe
                 </div>
                 <div className="modal-content">
                     <div className="change-reason">
-                        <Dropzone onFileAccepted={handleFileAccepted} fileType='pdf'/>
+                        <Dropzone onFileAccepted={handleFileAccepted} fileType='pdf&xlsx&xls'/>
                         <p className="uploaded-img">
                             <span>{fileName}</span>
                         </p>
