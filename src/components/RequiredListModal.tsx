@@ -136,7 +136,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.rsContents}</td>
                                     <td className='action'>
-                                        <a href="#"><Image src="/images/upload-icon.svg" alt="링크" width={20} height={20}/></a>
+                                        <a href="#"><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
                                         <FileDownLoadBtn
                                             file={list?.rsFile}
                                             fileName={list?.rsFilename}

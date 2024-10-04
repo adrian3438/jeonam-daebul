@@ -133,7 +133,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                                 <td>{list?.managerName}</td>
                                 <td className="change">{list?.smContents}</td>
                                 <td className='action'>
-                                    <a href="#"><Image src="/images/upload-icon.svg" alt="링크" width={20} height={20}/></a>
+                                    <a href="#"><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
                                     {/* 다운로드 */}
                                     <FileDownLoadBtn
                                         file={list?.smFile}
