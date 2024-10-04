@@ -25,7 +25,10 @@ import List from "@editorjs/list";
 // const FontSizeTool = require('editorjs-inline-font-size-tool');
 // const FontFamily = require('editorjs-inline-font-family-tool');
 // const ColorPlugin = require('editorjs-text-color-plugin');
-export default function Editorjs () {
+interface Props {
+    isEdit?:boolean
+}
+export default function Editorjs ({isEdit} : Props) {
     const editorRef = useRef<any>(null)
     const [text, setText] = useState<any>(null)
     const [initData, setInitData] = useState<any>()
@@ -177,15 +180,10 @@ export default function Editorjs () {
     }, [initData])
     return(
         <>
-        <Head>
-            <script src="https://cdn.jsdelivr.net/npm/editorjs-layout@latest"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@calumk/editorjs-columns@latest"></script>
-            <script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin/dist/bundle.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest"></script>
-        </Head>
-        <div className="editor-container" id="editor" ref={editorRef} style={{marginLeft : '100px'}}></div>
+        
+        <div className="editor-container" id="editor" ref={editorRef}></div>
         {/* <button onClick={()=>handleSave()}>Save</button> */}
-        <pre>{JSON.stringify(text, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(text, null, 2)}</pre> */}
         </>
     )
 }

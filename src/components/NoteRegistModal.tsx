@@ -6,6 +6,8 @@ import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
 import { useAuth } from './Context/AuthContext';
 import api from '@/lib/api';
+import dynamic from 'next/dynamic';
+const Editorjs = dynamic(() => import('@/components/EditorJs'), {ssr : false})
 
 const customStyles = {
     content: {
@@ -125,9 +127,9 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assembleId
                         <input type="file"/>
                     </div>*/}
                     <div className="change-reason4">
-                        <textarea name='smContents' value={data?.smContents} onChange={handleChange}>
-
-                        </textarea>
+                        <Editorjs 
+                            isEdit={true}
+                        />
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>
                         </div>

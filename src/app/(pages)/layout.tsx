@@ -27,10 +27,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest"></script>
         </head> */}
         <body className={`${pretendard.variable}`}>
-        {/* <Script src="https://cdn.jsdelivr.net/npm/editorjs-layout@latest" strategy="afterInteractive"></Script>
+        <Script src="https://cdn.jsdelivr.net/npm/editorjs-layout@latest" strategy="afterInteractive"></Script>
         <Script src="https://cdn.jsdelivr.net/npm/@calumk/editorjs-columns@latest" strategy="afterInteractive"></Script>
         <Script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin/dist/bundle.js" strategy="afterInteractive"></Script>
-        <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" strategy="afterInteractive"></Script> */}
+        <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" strategy="afterInteractive"></Script>
         <AuthProvider>
             <Container info={response?.data}>
                 {children}

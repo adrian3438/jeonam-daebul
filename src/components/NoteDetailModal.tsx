@@ -4,6 +4,8 @@ import Image from "next/image";
 import '@/app/assets/modal.scss';
 import api from '@/lib/api';
 import {FileDownLoadBtn} from './FileDownLoadBtn';
+import dynamic from 'next/dynamic';
+const Editorjs = dynamic(() => import('@/components/EditorJs'), {ssr : false})
 
 const customStyles = {
     content: {
@@ -60,7 +62,9 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                 <div className="modal-content">
                     <div className="change-reason4">
                         <div>
-                            노트 내용이 들어갑니다.<br/>
+                        <Editorjs 
+                            isEdit={false}
+                        />
                         </div>
                         <div className='btns7'>
                             <button>수정</button>

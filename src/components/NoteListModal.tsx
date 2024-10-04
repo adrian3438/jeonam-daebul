@@ -117,7 +117,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                                         <p>2024.08.30</p>
                                         <p>홍길동</p>
                                     </div>
-                                    <button onClick={() => openModal1(1)}>상세보기</button>
+                                    <button onClick={() => openModal1('1')}>상세보기</button>
                                 </div>
                             </li>
                             <li>
