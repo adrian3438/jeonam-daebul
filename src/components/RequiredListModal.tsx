@@ -33,7 +33,7 @@ interface DataType {
     ID : string , activeStatus : string ,
     createDate : string, maangerId : string,
     managerName : string, rsContents : string,
-    rsFile : string , rsFilename : string
+    rsFile : string , rsFilename : string, googleUrl : string
 }
 
 const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
@@ -90,6 +90,13 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
         else{alert(response?.data?.resultMsg)}
     }
 
+    function handleGoogleLink ( e: React.MouseEvent, url : string ) {
+        e.preventDefault()
+        if(url) {
+            window.open(url)
+        }else {alert('URL이 등록되지 않았습니다.'); return;}
+    } 
+
     useEffect(()=> {
         getList()
     }, [isOpen, page, keyword])
@@ -136,7 +143,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.rsContents}</td>
                                     <td className='action'>
-                                        <a href="#"><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
+                                        <a href="#" onClick={(e)=>handleGoogleLink(e, list?.googleUrl)}><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
                                         <FileDownLoadBtn
                                             file={list?.rsFile}
                                             fileName={list?.rsFilename}

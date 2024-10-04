@@ -32,7 +32,7 @@ interface CustomModalProps {
 interface DataType {
     ID : string, activeStatus : string , createDate : string ,
     managerId : string, managerName : string , smContents : string ,
-    smFile : string, smFilename : string
+    smFile : string, smFilename : string, googleUrl : string
 }
 
 const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
@@ -87,6 +87,13 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
         else{alert(response?.data?.resultMsg)}
     }
 
+    function handleGoogleLink ( e: React.MouseEvent, url : string ) {
+        e.preventDefault()
+        if(url) {
+            window.open(url)
+        }else {alert('URL이 등록되지 않았습니다.'); return;}
+    } 
+
     useEffect(() => {
         getList()
     }, [isOpen, page, keyword])
@@ -133,7 +140,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                                 <td>{list?.managerName}</td>
                                 <td className="change">{list?.smContents}</td>
                                 <td className='action'>
-                                    <a href="#"><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
+                                    <a href="#" onClick={(e) => handleGoogleLink(e , list?.googleUrl)}><Image src="/images/google-drive.svg" alt="링크" width={20} height={20}/></a>
                                     {/* 다운로드 */}
                                     <FileDownLoadBtn
                                         file={list?.smFile}

@@ -28,7 +28,7 @@ interface DataType {
     ID : string | Blob, activeStatus : string ,
     createDate : string, maangerId : string,
     managerName : string, rsContents : string,
-    rsFile : string , rsFilename : string
+    rsFile : string , rsFilename : string, googleUrl : string
 }
 
 const RequiredDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRequestClose, contentLabel }) => {
@@ -86,7 +86,7 @@ const RequiredDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRe
                     <div className="change-reason change-reason3">
                         <h3>구글 Link</h3>
                         <div>
-                            <a href="#">https://www.naver.com</a>
+                            {data?.googleUrl && <a href={data?.googleUrl} target='_blank'>{data?.googleUrl}</a>}
                         </div>
                     </div>
 

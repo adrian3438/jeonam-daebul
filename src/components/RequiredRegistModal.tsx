@@ -22,6 +22,7 @@ const customStyles = {
 interface DataType {
     rsFile : File | Blob | null
     rsContents : string
+    googleUrl : string
 }
 
 interface CustomModalProps {
@@ -36,11 +37,11 @@ interface CustomModalProps {
 const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, isOpen, onRequestClose, contentLabel, refetch }) => {
     const {authData} = useAuth()
     const [data , setData] = useState<DataType>({
-        rsFile : null , rsContents : ''
+        rsFile : null , rsContents : '', googleUrl : ''
     })
     const [fileName , setFileName] = useState<string>('')
     const [preview , setPreview] = useState<string>('')
-    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
+    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
         setData((prev) => ({...prev, [e.target.name] : e.target.value}))
     }
     const handleFileAccepted = (acceptedFiles: File[]) => {
@@ -64,6 +65,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
                 formData.append('rsFile', data?.rsFile)
             }
             formData.append('rsContents' , data?.rsContents)
+            formData.append('googleUrl', data?.googleUrl)
             if(listId){
                 const response = await api.post(`/admin/projects/updRequiredSteel.php`, formData)
                 if(response?.data?.result === true) {
@@ -84,7 +86,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
             if(response?.data?.result === true) {
                 if(response?.data?.List?.length > 0) {
                     const result = response?.data?.List[0]
-                    setData((prev) => ({...prev , rsContents : result?.rsContents}))
+                    setData((prev) => ({...prev , rsContents : result?.rsContents, googleUrl : result?.googleUrl}))
                     setPreview(result?.rsFile)
                     setFileName(result?.rsFilename)
                 }
@@ -96,7 +98,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
         if(listId) {
             getDetail()
         }else{
-            setData({rsFile : null , rsContents : ''})
+            setData({rsFile : null , rsContents : '', googleUrl : ''})
             setFileName('')
             setPreview('')
         }
@@ -127,7 +129,7 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
 
                     <div className="change-reason">
                         <h3>구글 Link</h3>
-                        <input type="text" className="input-google-link"/>
+                        <input type="text" name='googleUrl' value={data?.googleUrl} onChange={handleChange} className="input-google-link"/>
                     </div>
 
                     <div className="change-reason">
