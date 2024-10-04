@@ -10,14 +10,14 @@ interface Props {
     bopid : string |Blob
 }
 interface DataType {
-    mainImage : File | Blob | null , bopName : string , bopNotes : string, 
+    mainImage : File | Blob | null , bopName : string , bopNotes : string,
     jsonFile : File | Blob | null , binFile : File | Blob | null, xvlFile : File | Blob | null
 }
-interface FileNameType { 
+interface FileNameType {
     mainImage : string, jsonFile : string , binFile : string, xvlFile : string
 }
 export default function BopEditBox ({
-    // id : 선종 아이디 
+    // id : 선종 아이디
     // assembleid : 대조 아이디
     id , assembleid, bopid
 } : Props) {
@@ -84,7 +84,7 @@ export default function BopEditBox ({
             }else {alert(response?.data?.resultMsg)}
         }
     }
-   
+
     useEffect(()=>{
         async function getDetail () {
             if(bopid !== 'regist'){
@@ -93,7 +93,7 @@ export default function BopEditBox ({
                     if(response?.data?.List?.length > 0) {
                         const result = response?.data?.List[0]
                         setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : result?.bopFeatures,}))
-                        setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
+                        setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename,
                         binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                         setPreview(result?.thumnailFile)
                     }
@@ -128,18 +128,18 @@ export default function BopEditBox ({
                 <div>
                     <h2>모델링 파일</h2>
                     <div>
-                        <p>
-                            <label>JSON</label><input type="file" name="jsonFile" onChange={handleChange}/>
-                            {fileName?.jsonFile}
-                        </p>
-                        <p>
-                            <label>BIN</label><input type="file" name="binFile" onChange={handleChange}/>
-                            {fileName?.binFile}
-                        </p>
-                        <p>
-                            <label>XVL</label><input type="file" name="xvlFile" onChange={handleChange}/>
-                            {fileName?.xvlFile}
-                        </p>
+                        <div>
+                            <p><label>JSON</label><input type="file" name="jsonFile" onChange={handleChange}/></p>
+                            <p>{fileName?.jsonFile}</p>
+                        </div>
+                        <div>
+                            <p><label>BIN</label><input type="file" name="binFile" onChange={handleChange}/></p>
+                            <p>{fileName?.binFile}</p>
+                        </div>
+                        <div>
+                            <p><label>XVL</label><input type="file" name="xvlFile" onChange={handleChange}/></p>
+                            <p>{fileName?.xvlFile}</p>
+                        </div>
                     </div>
                 </div>
                 <div>

@@ -40,27 +40,33 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
     }, [shipId])
     return(
         <>
-        <section className="ship-type-bop">
-            <ul>
-                {data?.map((list:DataType,index:number) => {
-                    const modelingNameParts = list?.modelingUrl ? list?.modelingUrl.split('/') : [];
-                    let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
-                    modelingNameLastPart = modelingNameLastPart.replace('.html', '');
-                    return(
-                    <li key={index}>
-                        <div>
-                            <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={()=>handleModlingPage(list?.ID , list?.modelingUrl)} alt="sample" width={500} height={322}/>
-                            </div>
-                            <div className="bop-info-area">
-                                <p>{list?.shipAssembleName}</p>
-                                <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-type/${list?.bopIdx}?t=bop&m=${modelingNameLastPart}` : '#'} onClick={()=>isBop(list?.bopExist)}>수정</Link></p>
-                            </div>
-                        </div>
-                    </li>
-                    )
-                })}
-                {/* <li>
+            <section className="ship-type-bop">
+                <div className="search-bar-area">
+                    <div className="search-bar">
+                        <input type="text" maxLength={50}/>
+                        <input type="button" className="search-btn"/>
+                    </div>
+                </div>
+                <ul>
+                    {data?.map((list: DataType, index: number) => {
+                        const modelingNameParts = list?.modelingUrl ? list?.modelingUrl.split('/') : [];
+                        let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
+                        modelingNameLastPart = modelingNameLastPart.replace('.html', '');
+                        return (
+                            <li key={index}>
+                                <div>
+                                    <div className="bop-image-area">
+                                        <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} onClick={() => handleModlingPage(list?.ID, list?.modelingUrl)} alt="sample" width={500} height={322}/>
+                                    </div>
+                                    <div className="bop-info-area">
+                                        <p>{list?.shipAssembleName}</p>
+                                        <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-type/${list?.bopIdx}?t=bop&m=${modelingNameLastPart}` : '#'} onClick={() => isBop(list?.bopExist)}>수정</Link></p>
+                                    </div>
+                                </div>
+                            </li>
+                        )
+                    })}
+                    {/* <li>
                     <div>
                         <div className="bop-image-area">
                             이미지 영역
@@ -71,8 +77,8 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
                         </div>
                     </div>
                 </li> */}
-            </ul>
-        </section>
+                </ul>
+            </section>
         </>
     )
 }

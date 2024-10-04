@@ -12,7 +12,7 @@ interface DataType {
     Blob | null , shipName : string, company : string[]
 }
 interface PartnerCompanyType {
-    ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
+    ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string,
     companyBizType : string, companyCeoMobile : string , companyCeoName : string, companyEmail : string, companyName : string,
     companyNotes : string, companyPhone : string, createDate : string
 }
@@ -112,7 +112,7 @@ export default function ShipManageMentEditBox ({id} : Props) {
                     {/*<input type="file" name="mainImage" onChange={handleChange}/>*/}
                     <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
                     <p className="uploaded-img">
-                        {preview && 
+                        {preview &&
                         <>
                         <Image src={preview} alt="대조" width={81} height={23}/>
                         <span>{fileName}</span>
@@ -127,10 +127,10 @@ export default function ShipManageMentEditBox ({id} : Props) {
             </section>
             <section>
                 <h2>협력업체</h2>
-                <div>
+                <div className="partners">
                     {partnerCompany?.map((company : PartnerCompanyType, index:number) => (
                         <label key={index}>
-                            <input 
+                            <input
                                 type="checkbox"
                                 onChange={(e)=>handleCheckboxChange(e, company?.ID?.toString())}
                                 checked={data?.company?.includes(company?.ID?.toString())}

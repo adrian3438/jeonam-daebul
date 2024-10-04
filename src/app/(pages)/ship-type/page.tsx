@@ -18,7 +18,7 @@ export default async function Main({searchParams : {s}} : MainProps) {
     const initDataId=response?.data?.List[0]?.ID?.toString()
     // 선종 아이디
     const shipid = s || response?.data?.List[0]?.ID?.toString() || '';
-    
+
     // 대조리스트
     const response2 = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${s || response?.data?.List[0]?.ID?.toString()}`)
     const data2 = response2?.data?.result === true ? response2?.data?.List : []
@@ -30,7 +30,7 @@ export default async function Main({searchParams : {s}} : MainProps) {
             <ShipTypeBox
                 shipid={shipid}
             />
-            
+
             {/* 대조관리박스 */}
             <ShipAssembleBox
                 shipId={s}

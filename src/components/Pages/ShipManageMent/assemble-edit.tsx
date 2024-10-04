@@ -14,11 +14,11 @@ interface DataType {
     partners : string[]
 }
 interface PartnerCompanyType {
-    ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string, 
+    ID : string, activeStatus : string, companyAddr : string, companyBisinessLicense : string, companyBizDivision : string,
     companyBizType : string, companyCeoMobile : string , companyCeoName : string, companyEmail : string, companyName : string,
     companyNotes : string, companyPhone : string, createDate : string
 }
-interface FileNameType { 
+interface FileNameType {
     mainImage : string, jsonFile : string , binFile : string, xvlFile : string
 }
 
@@ -28,7 +28,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
         mainImage : null , assembleName : '', assembleNotes : '',
         jsonFile : null, binFile : null, xvlFile : null,
         partners : []
-    }) 
+    })
     const [preview , setPreview] = useState<string>('')
     const [fileName , setFileName] = useState<FileNameType>({
         mainImage : '', jsonFile : '', binFile : '', xvlFile : ''
@@ -78,7 +78,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
             if(response?.data?.List?.length > 0) {
                 const result = response?.data?.List[0]
                 setData((prev) => ({...prev, assembleName : result?.shipAssembleName, assembleNotes : result?.shipAssembleNotes, partners : result?.shipAssemblePartners ? result?.shipAssemblePartners?.split(',') : []}))
-                setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
+                setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename,
                 binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                 setPreview(result?.thumnailFile)
             }
@@ -131,8 +131,8 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
             <section>
                 <div>
                     <h2>대조 대표 이미지 (<span>*</span>)</h2>
-                    <Dropzone 
-                        onFileAccepted={handleFileAccepted} 
+                    <Dropzone
+                        onFileAccepted={handleFileAccepted}
                         fileType='image'
                     />
                     <p className="uploaded-img">
@@ -153,18 +153,24 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
                 <div>
                     <h2>모델링 파일</h2>
                     <div>
-                        <p>
-                            <label>JSON</label><input type="file" name="jsonFile" onChange={handleChange}/>
-                            {fileName?.jsonFile}
-                        </p>
-                        <p>
-                            <label>BIN</label><input type="file" name="binFile" onChange={handleChange}/>
-                            {fileName?.binFile}
-                        </p>
-                        <p>
-                            <label>XVL</label><input type="file" name="xvlFile" onChange={handleChange}/>
-                            {fileName?.xvlFile}
-                        </p>
+                        <div>
+                            <p>
+                                <label>JSON</label><input type="file" name="jsonFile" onChange={handleChange}/>
+                            </p>
+                            <p>{fileName?.jsonFile}</p>
+                        </div>
+                        <div>
+                            <p>
+                                <label>BIN</label><input type="file" name="binFile" onChange={handleChange}/>
+                            </p>
+                            <p>{fileName?.binFile}</p>
+                        </div>
+                        <div>
+                            <p>
+                                <label>XVL</label><input type="file" name="xvlFile" onChange={handleChange}/>
+                            </p>
+                            <p>{fileName?.xvlFile}</p>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -172,7 +178,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
                     <div>
                     {partners?.map((company : PartnerCompanyType, index:number) => (
                         <label key={index}>
-                            <input 
+                            <input
                                 type="checkbox"
                                 onChange={(e)=>handleCheckboxChange(e, company?.ID?.toString())}
                                 checked={data?.partners?.includes(company?.ID?.toString())}

@@ -28,41 +28,44 @@ export default function ShipAssembleListBox ({
     }, [])
     return(
         <>
-        <section className="ship-bop-manage-list">
-            <ul>
-                {data?.map((list:DataType , index : number) => (
-                    <li key={index}>
+            <section className="ship-bop-manage-list">
+                <div className="search-bar-area2">
+                    <div className='btns'>
+                        <Link href={`/ship-manage/${id}/regist-subsidary/regist`}>등록</Link>
+                    </div>
+                    <div className="search-bar">
+                        <input type="text" maxLength={50}/>
+                        <input type="button" className="search-btn"/>
+                    </div>
+                </div>
+                <ul>
+                    {data?.map((list: DataType, index: number) => (
+                        <li key={index}>
                         <div>
-                            <div className="bop-image-area">
-                                <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={359} height={200}/>
-                            </div>
-                            <div className="bop-info-area">
-                                <p
-                                    className="subsidary-regist"
-                                    style={{cursor : 'pointer'}}
-                                    onClick={()=>router.push(`/ship-manage/${id}/regist-subsidary/${list?.ID}`)}>
-                                    {list?.shipAssembleName}
-                                    <Link href={`/ship-manage/${id}/regist-subsidary/${list?.ID}`}>수정</Link>
-                                </p>
-                                <p
-                                    className={list?.bopExist ? 'registed' : 'no-registed'}
-                                    style={{cursor : 'pointer'}}
-                                    onClick={()=>router.push(list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`)}>
+                                <div className="bop-image-area">
+                                    <Image src={list?.thumnailFile ? list?.thumnailFile : '/images/no-image.jpg'} alt="sample" width={359} height={200}/>
+                                </div>
+                                <div className="bop-info-area">
+                                    <p
+                                        className="subsidary-regist"
+                                        style={{cursor: 'pointer'}}
+                                        onClick={() => router.push(`/ship-manage/${id}/regist-subsidary/${list?.ID}`)}>
+                                        {list?.shipAssembleName}
+                                        <Link href={`/ship-manage/${id}/regist-subsidary/${list?.ID}`}>수정</Link>
+                                    </p>
+                                    <p
+                                        className={list?.bopExist ? 'registed' : 'no-registed'}
+                                        style={{cursor: 'pointer'}}
+                                        onClick={() => router.push(list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`)}>
                                         BOP
-                                    <Link href={list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`}>수정</Link>
-                                </p>
+                                        <Link href={list?.bopExist ? `/ship-manage/${id}/${list?.ID}/bop/${list?.bopIdx}` : `/ship-manage/${id}/${list?.ID}/bop/regist`}>수정</Link>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </section>
-
-        <div className="pagination">
-            <div className='btns'>
-                <Link href={`/ship-manage/${id}/regist-subsidary/regist`}>등록</Link>
-            </div>
-        </div>
+                        </li>
+                    ))}
+                </ul>
+            </section>
         </>
     )
 }

@@ -37,9 +37,12 @@ export default function ShipManagementListBox ({list, keyword} : Props) {
     }, [keyword])
     return(
         <>
-            <div className="search-bar-area">
+            <div className="search-bar-area2">
+                <div className='btns'>
+                    <Link href="/ship-manage/regist?id=0">등록</Link>
+                </div>
                 <div className="search-bar">
-                    <input type="text" onKeyDown={(e)=>SearchKeyword(e)} defaultValue={keyword} maxLength={50}/>
+                    <input type="text" onKeyDown={(e) => SearchKeyword(e)} defaultValue={keyword} maxLength={50}/>
                     <input type="button" className="search-btn"/>
                 </div>
             </div>
@@ -59,14 +62,7 @@ export default function ShipManagementListBox ({list, keyword} : Props) {
                             </div>
                         </li>
                     ))}
-
                 </ul>
-            </div>
-
-            <div className="pagination">
-                <div className='btns'>
-                    <Link href="/ship-manage/regist?id=0">등록</Link>
-                </div>
             </div>
         </>
     )
