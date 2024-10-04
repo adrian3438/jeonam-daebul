@@ -142,12 +142,14 @@ export default function BopEditBox ({
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="url-regist">
+                    <h2>모델링 URL</h2>
+                    <input type="text"/>
                 </div>
             </section>
         </div>
-        <div className="btns2">
-            <button onClick={()=>Save()}>저장</button>
+            <div className="btns2">
+                <button onClick={() =>Save()}>저장</button>
         </div>
         </>
     )

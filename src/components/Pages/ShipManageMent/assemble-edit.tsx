@@ -173,26 +173,30 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
                         </div>
                     </div>
                 </div>
+                <div className="url-regist">
+                    <h2>모델링 URL</h2>
+                    <input type="text"/>
+                </div>
                 <div>
                     <h2>협력업체</h2>
                     <div>
-                    {partners?.map((company : PartnerCompanyType, index:number) => (
-                        <label key={index}>
-                            <input
-                                type="checkbox"
-                                onChange={(e)=>handleCheckboxChange(e, company?.ID?.toString())}
-                                checked={data?.partners?.includes(company?.ID?.toString())}
-                            />
-                            {company?.companyName}
-                        </label>
-                    ))}
+                        {partners?.map((company: PartnerCompanyType, index: number) => (
+                            <label key={index}>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => handleCheckboxChange(e, company?.ID?.toString())}
+                                    checked={data?.partners?.includes(company?.ID?.toString())}
+                                />
+                                {company?.companyName}
+                            </label>
+                        ))}
                     </div>
                 </div>
             </section>
         </div>
-        <div className="btns2">
-            <button onClick={save}>저장</button>
-        </div>
+            <div className="btns2">
+                <button onClick={save}>저장</button>
+            </div>
         </>
     )
 }

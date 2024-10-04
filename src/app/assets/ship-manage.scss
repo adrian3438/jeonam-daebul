@@ -214,6 +214,18 @@
       }
     }
     &:last-child {
+      > .url-regist {
+        h2 {
+          margin-bottom: 20px;
+        }
+        input {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          padding: 5px 10px;
+        }
+      }
       h2 {
         margin-bottom: 30px;
       }
@@ -221,8 +233,6 @@
         margin-bottom: 40px;
         &:first-child {
           margin-bottom: 50px;
-          padding-bottom: 50px;
-
           > div {
             > div {
               margin-top: 25px;
@@ -310,6 +320,18 @@
       }
     }
     &:last-child {
+      > .url-regist {
+        h2 {
+          margin-bottom: 20px;
+        }
+        input {
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          padding: 5px 10px;
+        }
+      }
       h2 {
         margin-bottom: 30px;
       }
@@ -317,8 +339,6 @@
         margin-bottom: 40px;
         &:first-child {
           margin-bottom: 50px;
-          padding-bottom: 50px;
-
           > div {
             > div {
               margin-top: 25px;
