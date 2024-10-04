@@ -8,6 +8,7 @@ import Table from '@editorjs/table';
 import Embed from '@editorjs/embed';
 import DragDrop from 'editorjs-drag-drop';
 import Head from "next/head";
+import LinkTool from '@editorjs/link';
 import Paragraph from '@editorjs/paragraph';
 import AlignmentTuneTool from 'editorjs-text-alignment-blocktune';
 import IndentTune from 'editorjs-indent-tune';
@@ -145,6 +146,12 @@ export default function Editorjs ({isEdit} : Props) {
                     }
                 },
                 embed : { class : Embed, config : {services : {youtube : true}} },
+                linkTool: {
+                    class: LinkTool,
+                    config: {
+                        endpoint: '/api/getLink',
+                    }
+                },
                 // 텍스트 정렬
                 anyTuneName: { class:AlignmentTuneTool,
                     config:{
