@@ -92,11 +92,18 @@
         margin:0 0 20px;
         font-size: 20px;
       }
+      .input-google-link {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        font-size: 18px;
+        padding: 5px 10px;
+      }
       textarea {
         resize: none;
         width: 100%;
         border: 1px solid #ddd;
-        height: 185px;
+        height: 140px;
         padding: 20px;
         font-family: var(--font-pretendard-sans);
         font-size: 16px;

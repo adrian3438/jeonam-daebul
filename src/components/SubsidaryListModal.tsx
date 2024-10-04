@@ -31,7 +31,7 @@ interface CustomModalProps {
 
 interface DataType {
     ID : string, activeStatus : string , createDate : string ,
-    managerId : string, managerName : string , smContents : string , 
+    managerId : string, managerName : string , smContents : string ,
     smFile : string, smFilename : string
 }
 
@@ -121,7 +121,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             </tr>
                             </thead>
                             <tbody>
-                            {data?.length > 0 ? 
+                            {data?.length > 0 ?
                             <>
                             {data?.map((list:DataType, index:number) => (
                             <tr key={index}>
@@ -133,20 +133,21 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                                 <td>{list?.managerName}</td>
                                 <td className="change">{list?.smContents}</td>
                                 <td className='action'>
+                                    <a href="#"><Image src="/images/upload-icon.svg" alt="링크" width={20} height={20}/></a>
                                     {/* 다운로드 */}
                                     <FileDownLoadBtn
                                         file={list?.smFile}
                                         fileName={list?.smFilename}
                                     />
                                     {/* 상세보기 */}
-                                    <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                    <a style={{cursor: 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                     {/* 수정하기 */}
-                                    <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                    <a style={{cursor: 'pointer'}} onClick={() => openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                     <label className="toggle_switch">
-                                        <input 
+                                        <input
                                             type="checkbox"
                                             checked={list?.activeStatus === 'Y'}
-                                            onChange={()=>changeStatus(list?.ID, list?.activeStatus)}
+                                            onChange={() => changeStatus(list?.ID, list?.activeStatus)}
                                         />
                                         <span className="slider"></span>
                                     </label>
@@ -161,7 +162,7 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             </tr>
                             </>
                             }
-                            
+
                             </tbody>
                         </table>
                     </div>
@@ -175,11 +176,11 @@ const SubsidaryListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                     </div>
                 </div>
             </Modal>
-            <SubsidaryDetailModal 
+            <SubsidaryDetailModal
             subMaterialId={subMaterialId}
-            isOpen={modalIsOpen1} 
-            onRequestClose={closeModal} 
-            contentLabel="부자재 리스트 상세" 
+            isOpen={modalIsOpen1}
+            onRequestClose={closeModal}
+            contentLabel="부자재 리스트 상세"
             />
             <SubsidaryRegistModal
             subMaterialId={subMaterialId}

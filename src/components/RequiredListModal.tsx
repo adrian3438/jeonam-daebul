@@ -30,7 +30,7 @@ interface CustomModalProps {
 }
 
 interface DataType {
-    ID : string , activeStatus : string , 
+    ID : string , activeStatus : string ,
     createDate : string, maangerId : string,
     managerName : string, rsContents : string,
     rsFile : string , rsFilename : string
@@ -124,7 +124,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                             </tr>
                             </thead>
                             <tbody>
-                            {data?.length > 0 ? 
+                            {data?.length > 0 ?
                             <>
                             {data?.map((list:DataType ,index:number) => (
                                 <tr key={index}>
@@ -136,6 +136,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                                     <td>{list?.managerName}</td>
                                     <td className="change">{list?.rsContents}</td>
                                     <td className='action'>
+                                        <a href="#"><Image src="/images/upload-icon.svg" alt="링크" width={20} height={20}/></a>
                                         <FileDownLoadBtn
                                             file={list?.rsFile}
                                             fileName={list?.rsFilename}
@@ -143,7 +144,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                                         <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                         <label className="toggle_switch">
-                                            <input 
+                                            <input
                                                 type="checkbox"
                                                 checked={list?.activeStatus === 'Y'}
                                                 onChange={()=>changeStatus(list?.ID, list?.activeStatus)}
@@ -172,19 +173,19 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                     </div>
                 </div>
             </Modal>
-            <RequiredDetailModal 
+            <RequiredDetailModal
                 listId={listId}
-                isOpen={modalIsOpen1} 
-                onRequestClose={closeModal} 
-                contentLabel="소요강재 리스트 상세" 
+                isOpen={modalIsOpen1}
+                onRequestClose={closeModal}
+                contentLabel="소요강재 리스트 상세"
             />
             <RequiredRegistModal
                 listId={listId}
                 assembleId={assembleId}
-                isOpen={modalIsOpen2} 
+                isOpen={modalIsOpen2}
                 refetch={getList}
-                onRequestClose={closeModal} 
-                contentLabel="소요강재 등록" 
+                onRequestClose={closeModal}
+                contentLabel="소요강재 등록"
             />
         </>
     );

@@ -63,12 +63,12 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                         <tr>
                             <th scope="row">파일명</th>
                             <td>{data?.smFilename ? data?.smFilename : '-'}
-                            {data?.smFile &&
-                                <FileDownLoadBtn
-                                    file={data?.smFile}
-                                    fileName={data?.smFilename}
-                                />
-                            }
+                                {data?.smFile &&
+                                    <FileDownLoadBtn
+                                        file={data?.smFile}
+                                        fileName={data?.smFilename}
+                                    />
+                                }
                             </td>
                             <th scope="row">Version</th>
                             <td>-</td>
@@ -81,6 +81,13 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                         </tr>
                         </tbody>
                     </table>
+
+                    <div className="change-reason change-reason3">
+                        <h3>구글 Link</h3>
+                        <div>
+                            <a href="#">https://www.naver.com</a>
+                        </div>
+                    </div>
 
                     <div className="change-reason change-reason3">
                         <h3>변경 사유</h3>

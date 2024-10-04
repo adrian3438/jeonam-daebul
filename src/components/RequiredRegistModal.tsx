@@ -126,8 +126,13 @@ const RequiredRegistModal: React.FC<CustomModalProps> = ({ listId, assembleId, i
                     </div>
 
                     <div className="change-reason">
+                        <h3>구글 Link</h3>
+                        <input type="text" className="input-google-link"/>
+                    </div>
+
+                    <div className="change-reason">
                         <h3>변경 사유</h3>
-                        <textarea  name='rsContents' value={data?.rsContents} onChange={handleChange}>
+                        <textarea name='rsContents' value={data?.rsContents} onChange={handleChange}>
 
                         </textarea>
                         <div className='btns6'>

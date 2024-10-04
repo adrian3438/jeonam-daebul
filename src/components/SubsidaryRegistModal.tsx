@@ -135,6 +135,11 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
                     </div>
 
                     <div className="change-reason">
+                        <h3>구글 Link</h3>
+                        <input type="text" className="input-google-link"/>
+                    </div>
+
+                    <div className="change-reason">
                         <h3>변경 사유</h3>
                         <textarea name='smContents' value={data?.smContents} onChange={handleChange}>
 

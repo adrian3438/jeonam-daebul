@@ -64,12 +64,12 @@ const RequiredDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRe
                         <tr>
                             <th scope="row">파일명</th>
                             <td>{data?.rsFilename ? data?.rsFilename : '-'}
-                            {data?.rsFile &&
-                                <FileDownLoadBtn
-                                    file={data?.rsFile}
-                                    fileName={data?.rsFilename}
-                                />
-                            }
+                                {data?.rsFile &&
+                                    <FileDownLoadBtn
+                                        file={data?.rsFile}
+                                        fileName={data?.rsFilename}
+                                    />
+                                }
                             </td>
                             <th scope="row">Version</th>
                             <td>-</td>
@@ -82,6 +82,13 @@ const RequiredDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRe
                         </tr>
                         </tbody>
                     </table>
+
+                    <div className="change-reason change-reason3">
+                        <h3>구글 Link</h3>
+                        <div>
+                            <a href="#">https://www.naver.com</a>
+                        </div>
+                    </div>
 
                     <div className="change-reason change-reason3">
                         <h3>변경 사유</h3>
