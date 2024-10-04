@@ -127,9 +127,9 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
                     <div className="change-reason">
                         <Dropzone onFileAccepted={handleFileAccepted} fileType='xlsx'/>
                         <p className="uploaded-img">
-                            {preview &&
+                            {/* {preview &&
                             <Image src={preview} alt="대조" width={81} height={23}/>
-                            }
+                            } */}
                             <span>{fileName}</span>
                         </p>
                     </div>

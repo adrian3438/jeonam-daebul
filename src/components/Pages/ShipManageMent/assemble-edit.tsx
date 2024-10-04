@@ -77,7 +77,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
         if(response?.data?.result === true){
             if(response?.data?.List?.length > 0) {
                 const result = response?.data?.List[0]
-                setData((prev) => ({...prev, assembleName : result?.shipAssembleName, assembleNotes : result?.shipAssembleNotes,}))
+                setData((prev) => ({...prev, assembleName : result?.shipAssembleName, assembleNotes : result?.shipAssembleNotes, partners : result?.shipAssemblePartners ? result?.shipAssemblePartners?.split(',') : []}))
                 setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename, 
                 binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                 setPreview(result?.thumnailFile)
