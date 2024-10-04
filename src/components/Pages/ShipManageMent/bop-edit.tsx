@@ -94,7 +94,7 @@ export default function BopEditBox ({
                 if(response?.data?.result === true){
                     if(response?.data?.List?.length > 0) {
                         const result = response?.data?.List[0]
-                        setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : result?.bopFeatures,}))
+                        setData((prev) => ({...prev, bopName : result?.bopName, bopNotes : result?.bopFeatures, modelingUrl : result?.modelingUrl}))
                         setFileName((prev) => ({...prev , mainImage: result?.thumnailFilename, jsonFile : result?.jsonFilename,
                         binFile : result?.binFilename, xvlFile : result?.xvlFilename}))
                         setPreview(result?.thumnailFile)
