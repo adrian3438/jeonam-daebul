@@ -31,17 +31,18 @@ interface CustomModalProps {
 interface DataType {
     smFile : File | Blob | null
     smContents : string
+    googleUrl : string
 }
 
 const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assembleId, isOpen, refetch, onRequestClose, contentLabel }) => {
     const {authData} = useAuth()
 
     const [data , setData] = useState<DataType>({
-        smFile : null , smContents : ''
+        smFile : null , smContents : '', googleUrl : ''
     })
     const [fileName , setFileName] = useState<string>('')
     const [preview , setPreview] = useState<string>('')
-    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement>) {
+    function handleChange (e:React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
         setData((prev) => ({...prev, [e.target.name] : e.target.value}))
     }
     const handleFileAccepted = (acceptedFiles: File[]) => {
@@ -65,6 +66,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
                 formData.append('smFile', data?.smFile)
             }
             formData.append('smContents' , data?.smContents)
+            formData.append('googleUrl' , data?.googleUrl)
             if(subMaterialId){
                 const response = await api.post(`/admin/projects/updSubsidaryMaterial.php`, formData)
                 if(response?.data?.result === true) {
@@ -89,7 +91,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
             if(response?.data?.result === true) {
                 if(response?.data?.List.length > 0){
                     const result = response?.data?.List[0]
-                    setData((prev) => ({...prev, smContents : result?.smContents}))
+                    setData((prev) => ({...prev, smContents : result?.smContents, googleUrl : result?.googleUrl}))
                     setPreview(result?.smFile)
                     setFileName(result?.smFilename)
                 }
@@ -101,7 +103,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
         if(subMaterialId) {
             getDetail()
         }else{
-            setData({smFile : null , smContents : ''})
+            setData({smFile : null , smContents : '', googleUrl : ''})
             setFileName('')
             setPreview('')
         }
@@ -136,7 +138,7 @@ const SubsidaryRegistModal: React.FC<CustomModalProps> = ({ subMaterialId, assem
 
                     <div className="change-reason">
                         <h3>구글 Link</h3>
-                        <input type="text" className="input-google-link"/>
+                        <input type="text" name='googleUrl' value={data?.googleUrl} onChange={handleChange} className="input-google-link"/>
                     </div>
 
                     <div className="change-reason">

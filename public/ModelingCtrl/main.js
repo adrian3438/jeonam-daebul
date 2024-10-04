@@ -152,7 +152,6 @@
     }
 
     function changeDisplay( data ) {
-
         var Parameters = [],
             groups = [],
             currentState;

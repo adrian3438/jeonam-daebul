@@ -2239,7 +2239,7 @@ function partChange( changedPartId ) {
 
             item.appendChild(button);
             list.appendChild(item);
-            console.log(liId);
+            // console.log(liId);
             $("#"+liId).append(clickModel[0].elementId);
             // $(document.getElementById('itemId')).append(customBtn);        
             

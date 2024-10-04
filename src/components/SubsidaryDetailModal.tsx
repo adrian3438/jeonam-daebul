@@ -27,7 +27,7 @@ interface CustomModalProps {
 interface DataType {
     ID : string, activeStatus : string , createDate : string ,
     managerId : string, managerName : string , smContents : string ,
-    smFile : string, smFilename : string
+    smFile : string, smFilename : string, googleUrl : string
 }
 
 const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpen, onRequestClose, contentLabel }) => {
@@ -85,7 +85,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
                     <div className="change-reason change-reason3">
                         <h3>구글 Link</h3>
                         <div>
-                            <a href="#">https://www.naver.com</a>
+                            {data?.googleUrl && <a href={data?.googleUrl} target='_blank'>{data?.googleUrl}</a>}
                         </div>
                     </div>
 
