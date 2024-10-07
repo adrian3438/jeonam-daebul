@@ -140,7 +140,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
 
 
                     <div className="change-reason2">
-                        <h3>변경 사유</h3>
+                        <h3>검사 의견</h3>
                         <textarea placeholder='변경사유를 입력해 주세요.' name='reason' value={data?.reason} onChange={handleChange}>
 
                         </textarea>

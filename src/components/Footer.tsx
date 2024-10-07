@@ -179,10 +179,10 @@ export default function Footer({id , type, name, shipId} : Props) {
                 shipId={shipId}
                 isOpen={modalIsOpen8}
                 onRequestClose={closeModal}
-                contentLabel="검사 리스트 등록" 
-                listId={""} 
-                assembleId={id} 
-                refetch={undefined} 
+                contentLabel="검사 등록"
+                listId={""}
+                assembleId={id}
+                refetch={undefined}
             />
 
             <NoteListModal
@@ -198,7 +198,7 @@ export default function Footer({id , type, name, shipId} : Props) {
                 shipId={shipId}
                 assembleId={id}
                 isOpen={modalIsOpen7}
-                refetch={undefined} 
+                refetch={undefined}
                 onRequestClose={closeModal}
                 contentLabel="노트 등록"
             />

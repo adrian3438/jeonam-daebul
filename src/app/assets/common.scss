@@ -16,6 +16,9 @@
       padding: 15px 10px;
       text-align: center;
       color: #666;
+      > a {
+        text-decoration: none;
+      }
       &.error {
         color: #f00;
       }
