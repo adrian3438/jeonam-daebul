@@ -51,7 +51,7 @@ export default function AssembleEditBox ({id, assembleid} : Props) {
     }
 
     const handleFileAccepted = (acceptedFiles: File[]) => {
-        console.log('Accepted files: ', acceptedFiles);
+        // console.log('Accepted files: ', acceptedFiles);
         const file = acceptedFiles[0];
         const reader = new FileReader()
         if(file) { reader.readAsDataURL(file) }

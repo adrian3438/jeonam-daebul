@@ -35,12 +35,12 @@ export default function Editorjs ({isEdit} : Props) {
     const editorRef = useRef<any>(null)
     const [text, setText] = useState<any>(null)
     const [initData, setInitData] = useState<any>()
-    async function getEditor () {
-        const res = await axios.get(`/api/editor/getEditor?id=1`)
-        if(res){
-            setInitData(res?.data[0])
-        }
-    }
+    // async function getEditor () {
+    //     const res = await axios.get(`/api/editor/getEditor?id=1`)
+    //     if(res){
+    //         setInitData(res?.data[0])
+    //     }
+    // }
     // useEffect(()=>{getEditor()}, [])
     // async function handleSave () {
     //     const res = await axios.post(`/api/editor/setEditor`, {

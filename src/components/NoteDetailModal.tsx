@@ -20,7 +20,7 @@ const customStyles = {
 };
 
 interface CustomModalProps {
-    subMaterialId : string
+    listId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
@@ -32,12 +32,12 @@ interface DataType {
     smFile : string, smFilename : string
 }
 
-const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpen, onRequestClose, contentLabel }) => {
+const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
     const [data, setData] = useState<DataType>()
     useEffect(() => {
         async function getDetail () {
-            if(isOpen && subMaterialId){
-                const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${subMaterialId}`)
+            if(isOpen && listId){
+                const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${listId}`)
                 if(response?.data?.result === true) {
                     if(response?.data?.List.length > 0){
                         setData(response?.data?.List[0])
@@ -46,7 +46,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
             }
         }
         getDetail()
-    }, [isOpen && subMaterialId])
+    }, [isOpen && listId])
     return (
         <Modal
             isOpen={isOpen}

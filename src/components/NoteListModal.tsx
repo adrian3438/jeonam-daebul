@@ -23,6 +23,7 @@ const customStyles = {
 
 
 interface CustomModalProps {
+    shipId : string | undefined
     assembleId : string | Blob;
     isOpen: boolean;
     onRequestClose: () => void;
@@ -35,10 +36,10 @@ interface DataType {
     smFile : string, smFilename : string
 }
 
-const NoteListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onRequestClose, contentLabel }) => {
+const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen, onRequestClose, contentLabel }) => {
     const keywordRef = useRef<any>(null)
     const [data , setData] = useState<DataType[]>([])
-    const [subMaterialId , setSubMaterialId] = useState<string>('')
+    const [listId , setListId] = useState<string>('')
     const [totalCount , setTotalCount] = useState<number>(0)
     const [page , setPage] = useState<number>(0)
     const [keyword , setKeyword] = useState<string>('')
@@ -46,20 +47,20 @@ const NoteListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
-    const openModal1 = (subMaterialId : string) => {
-        setSubMaterialId(subMaterialId)
-        if(subMaterialId){setModalIsOpen1(true);}
+    const openModal1 = (listId : string) => {
+        setListId(listId)
+        if(listId){setModalIsOpen1(true);}
     };
 
     const openModal2 = (subMaterialId : string) => {
         if(subMaterialId){
-            setSubMaterialId(subMaterialId)
+            setListId(subMaterialId)
         }
         setModalIsOpen2(true);
     };
 
     const closeModal = () => {
-        setSubMaterialId('')
+        setListId('')
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
@@ -137,13 +138,14 @@ const NoteListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onReque
                 </div>
             </Modal>
             <NoteDetailModal
-                subMaterialId={subMaterialId}
+                listId={listId}
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
                 contentLabel="노트 리스트 상세"
             />
             <NoteRegistModal
-                subMaterialId={subMaterialId}
+                shipId={shipId}
+                listId={listId}
                 assembleId={assembleId}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}

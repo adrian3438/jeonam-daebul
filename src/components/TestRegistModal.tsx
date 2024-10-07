@@ -24,7 +24,7 @@ interface CustomModalProps {
 
 const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
     const handleFileAccepted = (acceptedFiles: File[]) => {
-        console.log('Accepted files: ', acceptedFiles);
+        // console.log('Accepted files: ', acceptedFiles);
     };
 
     return (
