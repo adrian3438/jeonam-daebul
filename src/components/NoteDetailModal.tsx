@@ -105,6 +105,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
             />
 
             <NoteReplyRegistModal
+                listId={listId}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
                 contentLabel=""

@@ -6,6 +6,7 @@ import Dropzone from "@/components/Dropzone";
 import api from '@/lib/api';
 import Editorjs from './EditorJs';
 import { json } from 'stream/consumers';
+import TestReplyRegistModal from './TestReplyRegistModal';
 
 const customStyles = {
     content: {
@@ -128,13 +129,14 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
                 contentLabel="답글 리스트"
-            />
+            /> */}
 
             <TestReplyRegistModal
+                listId={listId}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
                 contentLabel=""
-            /> */}
+            />
         </>
     );
 };
