@@ -163,7 +163,7 @@ export default function Editorjs ({isEdit , initData , setData} : Props) {
             onChange : async () => {
                 const savedData = await editor.save()
                 // setText(savedData)
-                setData((prev : any) => ({...prev, note : savedData}))
+                setData(savedData)
             },
 
         });

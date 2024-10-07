@@ -60,15 +60,15 @@ export default function Footer({id , type, shipId} : Props) {
     };
 
     const openModal6 = () => {
-        if(part) {
-            setModalIsOpen6(true);
-        }else{
-            alert('부품을 선택해 주세요.'); return;
-        }
+        setModalIsOpen6(!modalIsOpen6);
     };
 
     const openModal7 = () => {
-        setModalIsOpen7(true);
+        if(part) {
+            setModalIsOpen7(!modalIsOpen7);
+        }else{
+            alert('부품을 선택해 주세요.'); return;
+        }
     };
 
     const closeModal = () => {
@@ -78,6 +78,7 @@ export default function Footer({id , type, shipId} : Props) {
         setModalIsOpen4(false);
         setModalIsOpen5(false);
         setModalIsOpen6(false);
+        setModalIsOpen7(false)
     };
 
     return (
@@ -160,6 +161,8 @@ export default function Footer({id , type, shipId} : Props) {
             />
 
             <NoteRegistModal
+                shipId={shipId}
+                assembleId={id}
                 isOpen={modalIsOpen7}
                 onRequestClose={closeModal}
                 contentLabel="노트 등록"

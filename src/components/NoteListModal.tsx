@@ -8,6 +8,7 @@ import NoteRegistModal from '@/components/NoteRegistModal';
 import api from '@/lib/api';
 import PopupPaginate from './Paginate/popup-paginate';
 import { FileDownLoadBtn, FileDownLoadLink } from './FileDownLoadBtn';
+import { useAuth } from './Context/AuthContext';
 
 const customStyles = {
     content: {
@@ -31,12 +32,12 @@ interface CustomModalProps {
 }
 
 interface DataType {
-    ID : string, activeStatus : string , createDate : string ,
-    managerId : string, managerName : string , smContents : string ,
-    smFile : string, smFilename : string
+    ID : string, assembleName : string, assembleNotes : object, assemblePart : string,
+    createDate : string, replyCnt : string, shipTypeId : string
 }
 
 const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen, onRequestClose, contentLabel }) => {
+    const {part} = useAuth()
     const keywordRef = useRef<any>(null)
     const [data , setData] = useState<DataType[]>([])
     const [listId , setListId] = useState<string>('')
@@ -74,23 +75,16 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
 
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getAssembleNoteList.php?assembleId=${assembleId}&smfilename=${keyword}&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
-            setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
+            const response = await api.get(`/admin/projects/getAssembleNoteList.php?shipTypeId=${shipId}&assembleId=${assembleId}&assembleParts=${part}&page=1&size=10`)
+            if(response?.data?.result === true) {
+                setData(response?.data?.List)
+            }
         }
-    }
-
-    async function changeStatus (id: string , status: string) {
-        const formData = new FormData()
-        formData.append('ID' , id)
-        formData.append('activeStatus' , status === 'Y' ? 'N' : 'Y')
-        const response = await api.post(`/admin/projects/updSubsidaryMaterialStatus.php`, formData)
-        if(response?.data?.result === true) {getList()}
-        else{alert(response?.data?.resultMsg)}
     }
 
     useEffect(() => {
         getList()
-    }, [isOpen, page, keyword])
+    }, [isOpen])
     return (
         <>
             <Modal
@@ -106,33 +100,24 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                     </div>
                     <div className="modal-content">
                         <ul className="note-list">
-                            <li>
-                                <div className="note-list-detail">
-                                    텍스트<br/>
-                                    텍스트<br/>
-                                    텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트
-                                    텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트텍스트
-                                </div>
-                                <div className="note-date">
-                                    <div>
-                                        <p>2024.08.30</p>
-                                        <p>홍길동</p>
-                                    </div>
-                                    <button onClick={() => openModal1('1')}>상세보기</button>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="note-list-detail">
-                                    텍스트
-                                </div>
-                                <div className="note-date">
-                                    <div>
-                                        <p>2024.08.30</p>
-                                        <p>홍길동</p>
-                                    </div>
-                                    <button>상세보기</button>
-                                </div>
-                            </li>
+                            {data?.map((list:DataType, index:number) => {
+                                return(
+                                    <>
+                                    <li>
+                                        <div className="note-list-detail">
+                                           타이틀
+                                        </div>
+                                        <div className="note-date">
+                                            <div>
+                                                <p>{list?.createDate}</p>
+                                                <p>관리자</p>
+                                            </div>
+                                            <button onClick={() => openModal1('1')}>상세보기</button>
+                                        </div>
+                                    </li>
+                                    </>
+                                )
+                            })}
                         </ul>
                     </div>
                 </div>
@@ -149,7 +134,6 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                 assembleId={assembleId}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
-                refetch={getList}
                 contentLabel="노트"
             />
         </>
