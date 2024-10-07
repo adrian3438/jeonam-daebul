@@ -73,7 +73,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
             >
                 <div className="modal-wrapper">
                     <div className="modal-header">
-                        <h2>{`${contentLabel} (${data?.assembleName})`}</h2>
+                        <h2>{`${contentLabel} (${data?.assemblePart})`}</h2>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
                     <div className="modal-content modal-content2">

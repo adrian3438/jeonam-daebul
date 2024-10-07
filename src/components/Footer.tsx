@@ -15,8 +15,9 @@ interface Props {
     id : string
     type : string | Blob
     shipId : string
+    name : string
 }
-export default function Footer({id , type, shipId} : Props) {
+export default function Footer({id , type, name, shipId} : Props) {
     const {part} = useAuth()
     // const parts = sessionStorage.getItem('parts') || '';
     const [activeItem, setActiveItem] = useState<number | null>(null);
@@ -170,6 +171,7 @@ export default function Footer({id , type, shipId} : Props) {
                 shipId={shipId}
                 assembleId={id}
                 isOpen={modalIsOpen5}
+                name={name}
                 onRequestClose={closeModal}
                 contentLabel="검사리스트"
             />
@@ -184,6 +186,7 @@ export default function Footer({id , type, shipId} : Props) {
             />
 
             <NoteListModal
+                name={name}
                 shipId={shipId} // 선종 ID
                 assembleId={id} // 대조 아이디
                 isOpen={modalIsOpen6}

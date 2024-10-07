@@ -24,6 +24,7 @@ const customStyles = {
 
 
 interface CustomModalProps {
+    name : string
     shipId : string
     assembleId : string
     isOpen: boolean;
@@ -32,7 +33,7 @@ interface CustomModalProps {
 }
 
 
-const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen, onRequestClose, contentLabel }) => {
+const NoteListModal: React.FC<CustomModalProps> = ({ name, shipId, assembleId, isOpen, onRequestClose, contentLabel }) => {
     const {part} = useAuth()
     const keywordRef = useRef<any>(null)
     const [data , setData] = useState<any>([])
@@ -110,7 +111,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
             >
                 <div className="modal-wrapper">
                     <div className="modal-header">
-                        <h2>{contentLabel} - S11C-DK1A <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button></h2>
+                        <h2>{contentLabel} - {name} <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button></h2>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
                     <div className="modal-content">
@@ -122,7 +123,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                                             <div>
                                                 <div className="note-list-detail">
                                                     <p>{list?.assembleNoteSubject}</p>
-                                                    <p>{list?.assembleName}</p>
+                                                    <p>{list?.assemblePart}</p>
                                                 </div>
                                                 <div className="note-date">
                                                     <div className="write-info">

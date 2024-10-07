@@ -20,6 +20,7 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    name :string 
     shipId : string
     assembleId : string
     isOpen: boolean;
@@ -33,7 +34,7 @@ interface DataType {
     managerName : string, userName : string
 }
 
-const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpen, onRequestClose, contentLabel }) => {
+const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId , isOpen, onRequestClose, contentLabel }) => {
     const {part} = useAuth()
     const [data , setData] = useState<DataType[]>([])
     const [listId, setListId] = useState<string>('')
@@ -51,8 +52,16 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
 
     const openModal2 = (e:React.MouseEvent, listId: string) => {
         e.preventDefault()
-        setListId(listId)
-        setModalIsOpen2(true);
+        if(listId){
+            setListId(listId)
+            setModalIsOpen2(true);
+        }else{
+            if(part) {
+                setModalIsOpen2(true);
+            }else{
+                alert('부품을 선택해 주세요.')
+            }
+        }
     };
 
     const closeModal = () => {
@@ -88,7 +97,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 {/* <iframe src="https://marineplaza.org/dim-api/controller/ModelingCtrl/bop-a11c.html" width={'100%'} height={'100%'}/> */}
                 <div className="modal-wrapper">
                     <div className="modal-header">
-                        <h2><span>S11C-GR0A</span> {contentLabel}
+                        <h2><span>{name}</span> {contentLabel}
                             <button onClick={(e)=>openModal2(e, '')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
                         <div className="modal-search">

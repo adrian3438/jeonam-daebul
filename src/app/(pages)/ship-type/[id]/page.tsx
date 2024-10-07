@@ -29,6 +29,7 @@ export default function Main({
             </div>
             <Footer
                 id={id}
+                name={name}
                 type={t}
                 shipId={s}
                 
