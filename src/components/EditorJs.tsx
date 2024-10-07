@@ -33,8 +33,9 @@ interface Props {
     isEdit?:boolean
     initData?:any
     setData?:any
+    setInitData:any
 }
-export default function Editorjs ({isEdit , initData , setData} : Props) {
+export default function Editorjs ({isEdit , initData , setInitData , setData} : Props) {
     const editorRef = useRef<any>(null)
     useEffect(()=>{
         // if(!initData) return;

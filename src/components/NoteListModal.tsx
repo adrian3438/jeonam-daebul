@@ -103,7 +103,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                             {data?.map((list:DataType, index:number) => {
                                 return(
                                     <>
-                                    <li>
+                                    <li key={index}>
                                         <div className="note-list-detail">
                                            타이틀
                                         </div>

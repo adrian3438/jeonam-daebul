@@ -84,6 +84,7 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
                         <Editorjs 
                             isEdit={true}
                             initData={initData}
+                            setInitData={setInitData}
                             setData={setEditor}
                         />
                         <div className='btns7'>
