@@ -40,7 +40,7 @@ interface CustomModalProps {
 
 const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleId, refetch, isOpen, onRequestClose, contentLabel }) => {
     const {authData, part} = useAuth()
-    
+
     const [data, setData] = useState<DataType>({
         subject : ''
     })
@@ -106,27 +106,28 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
                     <button onClick={onRequestClose} className="modal-close-button">Close</button>
                 </div>
                 <div className="modal-content">
-                    <div>
-                        <input type="text" value={data?.subject} onChange={(e)=>setData((prev) => ({...prev, subject: e.target.value}))} placeholder='제목을 입력하세요.'/>
+                    <div className="change-reason2">
+                        <h3>검사 제목</h3>
+                        <input type="text" value={data?.subject} onChange={(e) => setData((prev) => ({...prev, subject: e.target.value}))} placeholder='제목을 입력하세요.'/>
                     </div>
                     <div className="change-reason4">
-                        {initData &&
-                        <Editorjs 
-                            isEdit={true}
-                            initData={initData}
-                            setInitData={setInitData}
-                            setData={setEditor}
-                            placeholder={'노트 내용을 입력해 주세요.'}
-                        />
+                    {initData &&
+                            <Editorjs
+                                isEdit={true}
+                                initData={initData}
+                                setInitData={setInitData}
+                                setData={setEditor}
+                                placeholder={'노트 내용을 입력해 주세요.'}
+                            />
                         }
                         {!initData &&
-                        <Editorjs 
-                            isEdit={true}
-                            initData={null}
-                            setInitData={setInitData}
-                            setData={setEditor}
-                            placeholder={'노트 내용을 입력해 주세요.'}
-                        />
+                            <Editorjs
+                                isEdit={true}
+                                initData={null}
+                                setInitData={setInitData}
+                                setData={setEditor}
+                                placeholder={'노트 내용을 입력해 주세요.'}
+                            />
                         }
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>

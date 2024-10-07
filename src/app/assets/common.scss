@@ -391,3 +391,17 @@
     }
   }
 }
+
+
+
+/* Editor JS Customize */
+.ce-toolbar__content {
+  max-width: 100% !important;
+}
+.ce-toolbar__actions {
+  right: auto !important;
+  left: 0;
+}
+.ce-block__content {
+  max-width: calc(100% - 120px) !important;
+}
