@@ -37,11 +37,12 @@ interface Props {
     placeholder : string
 }
 export default function Editorjs ({isEdit , initData , setInitData , setData, placeholder} : Props) {
+    const editorInstance = useRef<EditorJS | null>(null);
     const editorRef = useRef<any>(null)
     useEffect(()=>{
-        // if(!initData) return;
+        if(!initData) return;
         if(!editorRef.current) return;
-        const editor = new EditorJS({
+        editorInstance.current = new EditorJS({
             placeholder : placeholder,
             readOnly : false,
             holder: editorRef.current,
@@ -160,24 +161,27 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 // },
             },
             onReady : () => {
-                new Undo({editor});
-                new DragDrop(editor); 
+                new Undo({ editor: editorInstance.current! });
+                new DragDrop(editorInstance.current!);
             },
-            onChange : async () => {
-                const savedData = await editor.save()
-                // setText(savedData)
-                setData(savedData)
-            },
+            onChange: async () => {
+                if (editorInstance.current) {
+                    const savedData = await editorInstance.current.save();
+                    setData(savedData);
+                }
+            }
 
         });
 
-        return () => {
-            editor.isReady
-            .then(() => {
-                editor.destroy()
-            })
-        }
-    }, [initData])
+       return () => {
+            if (editorInstance.current) {
+                editorInstance.current.isReady
+                    .then(() => editorInstance.current?.destroy())
+                    .catch(error => console.error('Failed to destroy editor instance', error));
+                editorInstance.current = null;
+            }
+        };
+    }, [initData, isEdit])
     return(
         <>
         

@@ -5,6 +5,7 @@ import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
 import api from '@/lib/api';
 import Editorjs from './EditorJs';
+import { json } from 'stream/consumers';
 
 const customStyles = {
     content: {
@@ -28,7 +29,7 @@ interface CustomModalProps {
 interface DataType {
     ID : string, activeStatus : string, assembleId : string, assembleName : string, assembleNotes : object, assemblePart : string,
     createDate : string, replyCnt : string, shipTypeId : string, inspectionResult : string, inspectionSubject : string,
-    managerName : string, userName : string
+    managerName : string, userName : string, inspectionContents : any
 }
 
 const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRequestClose, contentLabel }) => {
@@ -42,6 +43,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                 if(response?.data?.result === true) {
                     if(response?.data?.List.length > 0){
                         setData(response?.data?.List[0])
+                        setInitData(response?.data?.List[0]?.inspectionContents)
                     }
                 }
             }
@@ -70,10 +72,10 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                         <h3>검사 내용</h3>
                         <Editorjs
                             isEdit={false}
-                            initData={initData}
+                            initData={initData && initData}
                             setInitData={setInitData}
                             setData={setEditor}
-                            placeholder={'내용 없음'}
+                            placeholder={''}
                         />
                     </div>
 

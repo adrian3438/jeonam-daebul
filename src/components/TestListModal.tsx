@@ -49,11 +49,14 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
         setModalIsOpen1(true);
     };
 
-    const openModal2 = () => {
+    const openModal2 = (e:React.MouseEvent, listId: string) => {
+        e.preventDefault()
+        setListId(listId)
         setModalIsOpen2(true);
     };
 
     const closeModal = () => {
+        setListId('')
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
@@ -85,7 +88,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2><span>S11C-GR0A</span> {contentLabel}
-                            <button onClick={openModal2}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={(e)=>openModal2(e, '')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
                         <div className="modal-search">
                             <input type="text" maxLength={50}/>
@@ -125,7 +128,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                                                 />
                                                 <span className="slider"></span>
                                             </label>
-                                            <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                            <a href={"#"} onClick={(e) => openModal2(e, list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         </td>
                                     </tr>
                                     </>
@@ -153,6 +156,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 contentLabel="검사 리스트 상세"
             />
             <TestRegistModal 
+                listId={listId}
                 shipId={shipId}
                 assembleId={assembleId}
                 refetch={getList}

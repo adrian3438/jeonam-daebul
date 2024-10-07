@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -26,6 +26,7 @@ interface DataType {
 }
 
 interface CustomModalProps {
+    listId : string
     shipId : string
     assembleId : string
     refetch  :any
@@ -34,7 +35,7 @@ interface CustomModalProps {
     contentLabel: string;
 }
 
-const TestRegistModal: React.FC<CustomModalProps> = ({ shipId , assembleId, refetch, isOpen, onRequestClose, contentLabel }) => {
+const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembleId, refetch, isOpen, onRequestClose, contentLabel }) => {
     const {authData , part} = useAuth()
     const [initData , setInitData] = useState<any>()
     const [editor , setEditor] = useState<any>(null)
@@ -49,6 +50,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ shipId , assembleId, refe
         try {
             if(!data?.subject) {alert('검사 제목을 입력해 주세요.'); return;}
             const formData = new FormData()
+            if(listId) {formData.append('ID', listId)}
             formData.append('shipTypeId', shipId)
             formData.append('assembleId' , assembleId)
             formData.append('managerId', authData?.data?.ID)
@@ -57,14 +59,44 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ shipId , assembleId, refe
             formData.append('inspectionContents', JSON.stringify(editor))
             formData.append('inspectionOpinion', data?.reason)
             formData.append('inspectionResult', data?.result)
-            const response = await api.post(`/admin/projects/setInspection.php`, formData)
-            if(response?.data?.result === true) {
-                alert(response?.data?.resultMsg)
-                onRequestClose()
-                refetch()
+            if(listId) {
+                const response = await api.post(`/admin/projects/updInspection.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg)
+                    onRequestClose()
+                    refetch()
+                }
+            }else{
+                const response = await api.post(`/admin/projects/setInspection.php`, formData)
+                if(response?.data?.result === true) {
+                    alert(response?.data?.resultMsg)
+                    onRequestClose()
+                    refetch()
+                }
             }
         }catch {alert('Server Error')}
     }
+    async function getDetail () {
+        if(isOpen && listId){
+            const response = await api.get(`/admin/projects/getInspectionDetail.php?ID=${listId}`)
+            if(response?.data?.result === true) {
+                if(response?.data?.List.length > 0){
+                    const result = response?.data?.List[0];
+                    setData((prev) => ({...prev, subject : result?.inspectionSubject, reason : result?.inspectionOpinion,
+                        result : result?.inspectionResult
+                    }))
+                    setInitData(result?.inspectionContents)
+                }
+            }
+        }
+    }
+    useEffect(() => {
+        if(listId){getDetail()}
+        else{
+            setData({subject : '', reason : '', result : 'Y'})
+            setInitData(null)
+        }
+    }, [isOpen])
     return (
         <Modal
             isOpen={isOpen}
