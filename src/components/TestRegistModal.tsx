@@ -47,6 +47,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ shipId , assembleId, refe
     }
     async function Save () {
         try {
+            if(!data?.subject) {alert('검사 제목을 입력해 주세요.'); return;}
             const formData = new FormData()
             formData.append('shipTypeId', shipId)
             formData.append('assembleId' , assembleId)

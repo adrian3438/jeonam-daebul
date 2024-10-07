@@ -27,14 +27,25 @@ interface CustomModalProps {
     contentLabel: string;
 }
 
+interface DataType {
+    ID : string, activeStatus : string, assembleId : string, assembleName : string, assembleNotes : object, assemblePart : string,
+    createDate : string, replyCnt : string, shipTypeId : string, inspectionResult : string, inspectionSubject : string,
+    managerName : string, userName : string
+}
+
 const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpen, onRequestClose, contentLabel }) => {
     const {part} = useAuth()
-    const [data , setData] = useState<string[]>([])
+    const [data , setData] = useState<DataType[]>([])
+    const [listId, setListId] = useState<string>('')
     console.log(part)
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
-    const openModal1 = () => {
+    const openModal1 = (e : React.MouseEvent, listId : string) => {
+        e.preventDefault()
+        if(listId) {
+            setListId(listId)
+        }
         setModalIsOpen1(true);
     };
 
@@ -94,19 +105,32 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#" onClick={openModal1}>Pre-eletion 검사</a></td>
-                                <td>2024-07-15</td>
-                                <td>홍길동</td>
-                                <td>양호</td>
-                                <td className='action'>
-                                    <label className="toggle_switch" style={{marginRight: '10px'}}>
-                                        <input type="checkbox"/>
-                                        <span className="slider"></span>
-                                    </label>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                </td>
-                            </tr>
+                            {data?.map((list:DataType, index:number) => {
+                                return(
+                                    <>
+                                    <tr key={index}>
+                                        <td><a href="#" onClick={(e) => openModal1(e, list?.ID)}>{list?.inspectionSubject}</a></td>
+                                        <td>{list?.createDate}</td>
+                                        <td>{list?.managerName}</td>
+                                        <td>
+                                            {list?.inspectionResult === 'Y' && '양호'}
+                                            {list?.inspectionResult === 'N' && '불량'}
+                                            {list?.inspectionResult === 'R' && '재제작'}
+                                        </td>
+                                        <td className='action'>
+                                            <label className="toggle_switch" style={{marginRight: '10px'}}>
+                                                <input 
+                                                type="checkbox"
+                                                checked={list?.activeStatus === 'Y'}
+                                                />
+                                                <span className="slider"></span>
+                                            </label>
+                                            <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                        </td>
+                                    </tr>
+                                    </>
+                                )
+                            })}
                             {/* 리스트 없을 시 <tr>
                                 <td colSpan={5}>내용이 없습니다.</td>
                             </tr>*/}
@@ -123,6 +147,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 </div>
             </Modal>
             <TestDetailModal 
+                listId={listId}
                 isOpen={modalIsOpen1} 
                 onRequestClose={closeModal} 
                 contentLabel="검사 리스트 상세"

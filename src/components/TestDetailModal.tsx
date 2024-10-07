@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
+import api from '@/lib/api';
+import Editorjs from './EditorJs';
 
 const customStyles = {
     content: {
@@ -17,12 +19,35 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    listId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const TestDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+interface DataType {
+    ID : string, activeStatus : string, assembleId : string, assembleName : string, assembleNotes : object, assemblePart : string,
+    createDate : string, replyCnt : string, shipTypeId : string, inspectionResult : string, inspectionSubject : string,
+    managerName : string, userName : string
+}
+
+const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRequestClose, contentLabel }) => {
+    const [data , setData] = useState<DataType>()
+    const [initData , setInitData] = useState<any>()
+    const [editor , setEditor] = useState<any>(null)
+    useEffect(() => {
+        async function getDetail () {
+            if(isOpen && listId){
+                const response = await api.get(`/admin/projects/getInspectionDetail.php?ID=${listId}`)
+                if(response?.data?.result === true) {
+                    if(response?.data?.List.length > 0){
+                        setData(response?.data?.List[0])
+                    }
+                }
+            }
+        }
+        getDetail()
+    }, [isOpen && listId])
     return (
         <Modal
             isOpen={isOpen}
@@ -38,28 +63,18 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                 <div className="modal-content">
                     <div className="change-reason2">
                         <h3>검사 제목</h3>
-                        <p>검사 제목이 들어갑니다.</p>
+                        <p>{data?.inspectionSubject}</p>
                     </div>
 
                     <div className="change-reason2">
-                        <h3>검사 사진 업로드</h3>
-                        <div className="picture-upload">
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                            </p>
-                        </div>
+                        <h3>검사 내용</h3>
+                        <Editorjs
+                            isEdit={false}
+                            initData={initData}
+                            setInitData={setInitData}
+                            setData={setEditor}
+                            placeholder={'내용 없음'}
+                        />
                     </div>
 
 
@@ -72,7 +87,11 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
 
                     <div className="change-reason2">
                         <h3>검사 결과</h3>
-                        <p>양호</p>
+                        <p>
+                            {data?.inspectionResult === 'Y' && '양호'}
+                            {data?.inspectionResult === 'N' && '불량'}
+                            {data?.inspectionResult === 'R' && '재제작'}
+                        </p>
                     </div>
                 </div>
             </div>
