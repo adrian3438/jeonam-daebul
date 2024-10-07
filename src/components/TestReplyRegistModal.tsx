@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -29,39 +29,22 @@ interface DataType {
 }
 
 interface CustomModalProps {
-    shipId : string
-    listId?: string
-    assembleId : string
+    listId: string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const TestReplyRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleId, isOpen, onRequestClose, contentLabel }) => {
-    const {authData, part} = useAuth()
-    const [data, setData] = useState<DataType>({
-        subject : ''
-    })
-    const [initData , setInitData] = useState<any>()
-    const [editor , setEditor] = useState<any>(null)
-    console.log(editor)
+const TestReplyRegistModal: React.FC<CustomModalProps> = ({  listId, isOpen, onRequestClose, contentLabel }) => {
+    const {authData} = useAuth()
+    const replyRef = useRef<any>(null)
     async function Save () {
-        try {
-            const formData = new FormData()
-            formData.append('shipTypeId' , shipId)
-            formData.append('assembleId', assembleId)
-            formData.append('managerId', authData?.data?.ID)
-            formData.append('assembleParts', part)
-            formData.append('assembleNoteSubject', data?.subject)
-            formData.append('assembleNotes', JSON.stringify(editor))
-            const response = await api.post(`/admin/projects/setAssembleNotes.php`, formData)
-            if(response?.data?.result === true) {
-                alert(response?.data?.resultMsg);
-                onRequestClose()
-            }
-        }catch {
-            alert('Server Error')
-        }
+        if(!replyRef?.current?.value) { alert('답글을 입력해주세요.'); return; }
+        const formData = new FormData()
+        formData.append('inspectionId', listId)
+        formData.append('managerId', authData?.data?.ID)
+        formData.append('inspectionReply', replyRef.current.value)
+        const response = await api.post(`/admin/projects/setInspection.php` , formData)
     }
 
     return (
@@ -78,7 +61,7 @@ const TestReplyRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, asse
                 </div>
                 <div className="modal-content">
                     <div className="change-reason4">
-                        <textarea style={{height: '200px'}}></textarea>
+                        <textarea ref={replyRef} style={{height: '200px'}}></textarea>
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>
                         </div>

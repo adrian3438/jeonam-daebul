@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
@@ -29,16 +29,27 @@ interface DataType {
 }
 
 interface CustomModalProps {
-    listId?: string
+    listId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
 const NoteReplyRegistModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
-    
+    const {authData} = useAuth()
+    const replyRef = useRef<any>(null)
     async function Save () {
-        
+        if(!replyRef?.current?.value) { alert('답글을 입력해주세요.'); return; }
+        const formData = new FormData()
+        formData.append('noteId', listId)
+        formData.append('managerId', authData?.data?.ID)
+        formData.append('noteReply', replyRef.current.value)
+        const response = await api.post(`/admin/projects/setAssembleNoteReply.php` , formData)
+        if(response?.data?.result === true) {
+            // refetch 들어와야함
+            onRequestClose()
+            alert(response?.data?.resultMsg)
+        }
     }
 
     return (
@@ -55,7 +66,7 @@ const NoteReplyRegistModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
                 </div>
                 <div className="modal-content">
                     <div className="change-reason4">
-                        <textarea style={{height: '200px'}}></textarea>
+                        <textarea ref={replyRef} style={{height: '200px'}}></textarea>
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>
                         </div>
