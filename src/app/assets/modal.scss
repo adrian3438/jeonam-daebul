@@ -85,6 +85,66 @@
   .modal-content {
     height: calc(100% - 120px);
     overflow-y: auto;
+
+    > .reply-list-modal {
+      > li {
+        padding-top: 25px;
+        position: relative;
+        &:first-child {
+          padding-top: 0;
+          .bar {
+            display: none;
+          }
+        }
+        > .bar {
+          position: absolute;
+          top:0;
+          left:50%;
+          transform: translateX(-50%);
+          width: 1px;
+          height: 25px;
+          background: #D9D9D9;
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -9px;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 16px;
+            background: #D9D9D9;
+            transform: translateX(-50%);
+          }
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 16px;
+            background: #D9D9D9;
+            transform: translateX(-50%);
+          }
+        }
+        > div {
+          padding: 25px 30px;
+          border-radius: 5px;
+          border: 1px solid #e0e0e0;
+          .reply-info {
+            display: flex;
+            margin-bottom: 27px;
+            gap: 10px;
+            > p {
+              font-weight: normal;
+            }
+          }
+        }
+      }
+    }
+
     .change-reason {
       padding: 0 20px 20px;
       h3 {
@@ -169,56 +229,148 @@
 
     .note-list {
       > li {
-        border: 1px solid #e0e0e0;
         border-radius: 5px;
         margin: 20px 0 1px;
-        padding: 25px 30px 12px;
-        box-sizing: border-box;
+        > div {
+          border: 1px solid #e0e0e0;
+          padding: 25px 30px 25px;
+          box-sizing: border-box;
+          &:hover {
+            background-color: #F3F3F3;
+            transition: all 0.2s;
+          }
+        }
         &:first-child {
           margin-top: 0;
         }
-        &:hover {
-          background-color: #F3F3F3;
-          transition: all 0.2s;
-        }
         .note-list-detail {
-          height: 64px;
+          padding-bottom: 10px;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 4;
           line-height: 16px;
-          margin-bottom: 10px;
+          margin-bottom: 27px;
+          border-bottom: 1px solid #e0e0e0;
+          display: flex;
+          justify-content: space-between;
+          font-size: 16px;
         }
         .note-date {
           display: flex;
           justify-content: space-between;
           align-items: center;
           > div {
+            font-weight: normal;
             display: flex;
+            align-items: center;
             p {
               margin-left: 25px;
               color: #666;
+              font-weight: normal;
               &:first-child {
                 margin-left: 0;
               }
             }
           }
-          button {
-            font-size: 16px;
-            color: #666;
-            height: 40px;
-            background: #fff;
-            border: 1px solid rgba(203, 200, 200, 0.20);
-            box-sizing: border-box;
-            padding: 0 16px;
-            line-height: 40px;
-            cursor: pointer;
+          > .write-info {
+            button {
+              color: #666;
+              border: none;
+              background: none;
+              margin-left: 10px;
+              font-size: 15px;
+              padding: 0;
+              cursor: pointer;
+              border-bottom: 1px solid #767676;
+              margin-top: -3px;
+            }
+          }
+          > .note-btns {
+            button {
+              margin-left: 14px;
+              font-size: 14px;
+              color: #666;
+              height: 40px;
+              background: #fff;
+              border: 1px solid rgba(203, 200, 200, 0.20);
+              box-sizing: border-box;
+              padding: 0 16px;
+              line-height: 40px;
+              cursor: pointer;
+              &:first-child {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+        .reply-list {
+          display: none;
+          &.active {
+            display: block;
+          }
+          > li {
+            padding-top: 25px;
+            position: relative;
+            > .bar {
+              position: absolute;
+              top:0;
+              left:50%;
+              transform: translateX(-50%);
+              width: 1px;
+              height: 25px;
+              background: #D9D9D9;
+              &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                top: -9px;
+                left: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 16px;
+                background: #D9D9D9;
+                transform: translateX(-50%);
+              }
+              &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: -9px;
+                left: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 16px;
+                background: #D9D9D9;
+                transform: translateX(-50%);
+              }
+            }
+            > div {
+              padding: 25px 30px;
+              border-radius: 5px;
+              border: 1px solid #e0e0e0;
+              .reply-info {
+                display: flex;
+                margin-bottom: 27px;
+                gap: 10px;
+                > p {
+                  font-weight: normal;
+                }
+              }
+            }
           }
         }
       }
     }
+  }
+
+  .modal-content2 {
+    height: calc(100% - 150px);
+  }
+
+  .modal-content3 {
+    height: calc(100% - 80px);
   }
 
   .modal-footer {
