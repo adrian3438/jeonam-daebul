@@ -40,11 +40,11 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
     const editorInstance = useRef<EditorJS | null>(null);
     const editorRef = useRef<any>(null)
     useEffect(()=>{
-        if(!initData) return;
+        // if(!initData) return;
         if(!editorRef.current) return;
         editorInstance.current = new EditorJS({
             placeholder : placeholder,
-            readOnly : false,
+            readOnly : isEdit ? false : true,
             holder: editorRef.current,
             inlineToolbar : true,
             data : initData,

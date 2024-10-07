@@ -62,7 +62,11 @@ export default function Footer({id , type, shipId} : Props) {
     };
 
     const openModal8 = () => {
-        setModalIsOpen8(true);
+        if(part) {
+            setModalIsOpen8(!modalIsOpen8);
+        }else{
+            alert('부품을 선택해 주세요.'); return;
+        }
     };
 
     const openModal6 = () => {
@@ -76,6 +80,7 @@ export default function Footer({id , type, shipId} : Props) {
             alert('부품을 선택해 주세요.'); return;
         }
     };
+
 
     const closeModal = () => {
         setModalIsOpen1(false);
@@ -176,7 +181,10 @@ export default function Footer({id , type, shipId} : Props) {
                 shipId={shipId}
                 isOpen={modalIsOpen8}
                 onRequestClose={closeModal}
-                contentLabel="검사 리스트 등록"
+                contentLabel="검사 리스트 등록" 
+                listId={""} 
+                assembleId={id} 
+                refetch={undefined} 
             />
 
             <NoteListModal
@@ -191,6 +199,7 @@ export default function Footer({id , type, shipId} : Props) {
                 shipId={shipId}
                 assembleId={id}
                 isOpen={modalIsOpen7}
+                refetch={undefined} 
                 onRequestClose={closeModal}
                 contentLabel="노트 등록"
             />

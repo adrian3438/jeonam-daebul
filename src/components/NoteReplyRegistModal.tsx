@@ -29,39 +29,16 @@ interface DataType {
 }
 
 interface CustomModalProps {
-    shipId : string
     listId?: string
-    assembleId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const NoteReplyRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleId, isOpen, onRequestClose, contentLabel }) => {
-    const {authData, part} = useAuth()
-    const [data, setData] = useState<DataType>({
-        subject : ''
-    })
-    const [initData , setInitData] = useState<any>()
-    const [editor , setEditor] = useState<any>(null)
-    console.log(editor)
+const NoteReplyRegistModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
+    
     async function Save () {
-        try {
-            const formData = new FormData()
-            formData.append('shipTypeId' , shipId)
-            formData.append('assembleId', assembleId)
-            formData.append('managerId', authData?.data?.ID)
-            formData.append('assembleParts', part)
-            formData.append('assembleNoteSubject', data?.subject)
-            formData.append('assembleNotes', JSON.stringify(editor))
-            const response = await api.post(`/admin/projects/setAssembleNotes.php`, formData)
-            if(response?.data?.result === true) {
-                alert(response?.data?.resultMsg);
-                onRequestClose()
-            }
-        }catch {
-            alert('Server Error')
-        }
+        
     }
 
     return (

@@ -48,12 +48,12 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
         setModalIsOpen2(false);
     };
 
-
     const [data , setData] = useState<DataType>()
-    const [initData , setInitData] = useState<any>()
+    const [initData , setInitData] = useState<any>(null)
     const [editor , setEditor] = useState<any>(null)
     useEffect(() => {
         async function getDetail () {
+            setInitData(null);
             if(isOpen && listId){
                 const response = await api.get(`/admin/projects/getInspectionDetail.php?ID=${listId}`)
                 if(response?.data?.result === true) {
@@ -66,6 +66,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
         }
         getDetail()
     }, [isOpen && listId])
+    
     return (
         <>
             <Modal
@@ -87,13 +88,15 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
 
                     <div className="change-reason2">
                         <h3>검사 내용</h3>
+                        {initData &&
                         <Editorjs
                             isEdit={false}
-                            initData={initData && initData}
+                            initData={initData}
                             setInitData={setInitData}
                             setData={setEditor}
                             placeholder={''}
                         />
+                        }
                     </div>
 
 
@@ -121,7 +124,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                 </div>
             </Modal>
 
-            <TestReplyListModal
+            {/* <TestReplyListModal
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
                 contentLabel="답글 리스트"
@@ -131,7 +134,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
                 contentLabel=""
-            />
+            /> */}
         </>
     );
 };

@@ -56,7 +56,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
             formData.append('managerId', authData?.data?.ID)
             formData.append('assembleParts', part)
             formData.append('inspectionSubject', data?.subject)
-            formData.append('inspectionContents', JSON.stringify(editor))
+            formData.append('inspectionContents', editor ? JSON.stringify(editor) : '')
             formData.append('inspectionOpinion', data?.reason)
             formData.append('inspectionResult', data?.result)
             if(listId) {
@@ -74,7 +74,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
                     refetch()
                 }
             }
-        }catch {alert('Server Error')}
+        }catch {}
     }
     async function getDetail () {
         if(isOpen && listId){
@@ -117,6 +117,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
 
                     <div className="change-reason2">
                         <h3>검사 내용</h3>
+                        {initData &&
                         <Editorjs
                             isEdit={true}
                             initData={initData}
@@ -124,6 +125,16 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
                             setData={setEditor}
                             placeholder={'검사 내용을 입력해 주세요.'}
                         />
+                        }
+                        {!initData &&
+                        <Editorjs
+                            isEdit={true}
+                            initData={null}
+                            setInitData={setInitData}
+                            setData={setEditor}
+                            placeholder={'검사 내용을 입력해 주세요.'}
+                        />
+                        }
                     </div>
 
 

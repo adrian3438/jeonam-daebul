@@ -7,9 +7,10 @@ import ShipAssembleBox from "@/components/Pages/ShipType/ship-assemble-box";
 interface MainProps {
     searchParams: {
       s?: string | string[] | undefined;
+      keyword : string
     };
   }
-export default async function Main({searchParams : {s}} : MainProps) {
+export default async function Main({searchParams : {s ,keyword}} : MainProps) {
     const cookie = cookies();
     const cookieValue : any = cookie.get('jdassid') || '';
     // 선종 리스트

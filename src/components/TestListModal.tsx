@@ -85,6 +85,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 style={customStyles}
                 contentLabel={contentLabel}
             >
+                {/* <iframe src="https://marineplaza.org/dim-api/controller/ModelingCtrl/bop-a11c.html" width={'100%'} height={'100%'}/> */}
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2><span>S11C-GR0A</span> {contentLabel}
@@ -121,8 +122,8 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                                             {list?.inspectionResult === 'R' && '재제작'}
                                         </td>
                                         <td className='action'>
-                                            <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                            <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
+                                            <a href={"#"} onClick={(e) => openModal1(e, list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                            <a href={"#"} onClick={(e) => openModal2(e, list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                             <label className="toggle_switch" style={{marginRight: '10px'}}>
                                                 <input
                                                     type="checkbox"
@@ -130,7 +131,6 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                                                 />
                                                 <span className="slider"></span>
                                             </label>
-                                            <a href={"#"} onClick={(e) => openModal2(e, list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         </td>
                                     </tr>
                                     </>
@@ -164,7 +164,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 refetch={getList}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
-                contentLabel="검사 리스트 등록"
+                contentLabel={listId ? '검사 리스트 수정' : '검사 리스트 등록'}
             />
         </>
     );

@@ -28,12 +28,6 @@ interface CustomModalProps {
     contentLabel: string;
 }
 
-interface DataType {
-    ID : string, activeStatus : string , createDate : string ,
-    managerId : string, managerName : string , smContents : string ,
-    smFile : string, smFilename : string
-}
-
 const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
@@ -50,14 +44,19 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
         setModalIsOpen2(false);
     };
 
-    const [data, setData] = useState<DataType>()
+    const [initData , setInitData] = useState<any>()
+    const [editor , setEditor] = useState<any>(null)
+
+    const [data, setData] = useState<any>()
     useEffect(() => {
         async function getDetail () {
+            setInitData(null);
             if(isOpen && listId){
-                const response = await api.get(`/admin/projects/getSubsidaryMaterialDetail.php?ID=${listId}`)
+                const response = await api.get(`/admin/projects/getAssembleNoteDetail.php?ID=${listId}`)
                 if(response?.data?.result === true) {
                     if(response?.data?.List.length > 0){
                         setData(response?.data?.List[0])
+                        setInitData(response?.data?.List[0]?.assembleNotes)
                     }
                 }
             }
@@ -74,18 +73,24 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
             >
                 <div className="modal-wrapper">
                     <div className="modal-header">
-                        <h2>{contentLabel}</h2>
+                        <h2>{`${contentLabel} (${data?.assembleName})`}</h2>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
                     <div className="modal-content modal-content2">
                         <div className="change-reason4">
                             <div>
-                            {/* <Editorjs
-                                isEdit={false}
-                            /> */}
+                                {initData &&
+                                <Editorjs
+                                    isEdit={false}
+                                    initData={initData}
+                                    setInitData={setInitData}
+                                    setData={setEditor}
+                                    placeholder={''}
+                                />
+                                }
                             </div>
                             <div className='btns8'>
-                                <button className="reply-list" onClick={() => openModal1()}>답변글 : 3</button>
+                                <button className="reply-list" onClick={() => openModal1()}>답변글 : {data?.replyCnt}</button>
                                 <button className="reply-write" onClick={() => openModal2()}>댓글달기</button>
                             </div>
                         </div>
@@ -96,7 +101,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
             <NoteReplyListModal
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
-                contentLabel="답글 리스트"
+                contentLabel="답글 리스트" 
             />
 
             <NoteReplyRegistModal
