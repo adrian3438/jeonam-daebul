@@ -15,13 +15,14 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
 interface DataType {
-    ID : string , activeStatus : string , 
+    ID : string , activeStatus : string ,
     createDate : string, managerId : string,
     managerName : string, mdContents : string,
     mdFile : string , mdFilename : string
@@ -104,13 +105,20 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2>{contentLabel}
-                            <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
-                        <div className="modal-search">
+                        <div className="search-bar-area2" style={{marginBottom: 0}}>
+                            <div className="search-bar">
+                                <input ref={keywordRef} onKeyDown={(e) => Enter(e)} type="text" maxLength={50}/>
+                                <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
+                            </div>
+                            <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        </div>
+                        {/*<div className="modal-search">
                             <input ref={keywordRef} onKeyDown={(e)=>Enter(e)} type="text" maxLength={50}/>
                             <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
                         </div>
-                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        <button onClick={onRequestClose} className="modal-close-button">Close</button>*/}
                     </div>
                     <div className="modal-content">
                         <table className="table">
@@ -124,7 +132,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                             </tr>
                             </thead>
                             <tbody>
-                            {data?.length > 0 ? 
+                            {data?.length > 0 ?
                             <>
                             {data?.map((list:DataType, index:number) => (
                                 <tr key={index}>
@@ -143,7 +151,7 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                                         <a style={{cursor : 'pointer'}} onClick={() => openModal1(list?.ID)}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                         <a style={{cursor : 'pointer'}} onClick={()=>openModal2(list?.ID)}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                         <label className="toggle_switch">
-                                            <input 
+                                            <input
                                                 type="checkbox"
                                                 checked={list?.activeStatus === 'Y'}
                                                 onChange={()=>changeStatus(list?.ID, list?.activeStatus)}
@@ -172,17 +180,17 @@ const MachiningListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, on
                     </div>
                 </div>
             </Modal>
-            <MachiningDetailModal 
+            <MachiningDetailModal
                 listId={listId}
-                isOpen={modalIsOpen1} 
-                onRequestClose={closeModal} 
-                contentLabel="가공도 리스트 상세" 
+                isOpen={modalIsOpen1}
+                onRequestClose={closeModal}
+                contentLabel="가공도 리스트 상세"
             />
-            <MachiningRegistModal 
+            <MachiningRegistModal
                 listId={listId}
                 assembleId={assembleId}
-                isOpen={modalIsOpen2} 
-                onRequestClose={closeModal} 
+                isOpen={modalIsOpen2}
+                onRequestClose={closeModal}
                 refetch={getList}
                 contentLabel={listId ? '가공도 수정' : '가공도 등록'}
             />

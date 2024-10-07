@@ -58,7 +58,7 @@ export default function ShipAssembleBox ({ shipId , initId , keyword } : Props) 
             alert('BOP 등록을 해주시기 바랍니다.')
         }
     }
-    
+
     useEffect(() => {
         getList()
     }, [shipId, keyword])
@@ -67,7 +67,7 @@ export default function ShipAssembleBox ({ shipId , initId , keyword } : Props) 
             <section className="ship-type-bop">
                 <div className="search-bar-area">
                     <div className="search-bar">
-                        <input type="text" defaultValue={keyword} onKeyDown={(e) => handleKeyword(e)} maxLength={50}/>
+                        <input type="text" defaultValue={keyword} onKeyDown={(e) => handleKeyword(e)} maxLength={50} placeholder="대조명으로 검색 바랍니다."/>
                         <input type="button" className="search-btn"/>
                     </div>
                 </div>

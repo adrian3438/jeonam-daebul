@@ -7,7 +7,7 @@
     border-bottom: 1px solid #ddd;
     th {
       padding: 15px 10px;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   tbody {
@@ -15,6 +15,7 @@
       vertical-align: middle;
       padding: 15px 10px;
       text-align: center;
+      color: #666;
       &.error {
         color: #f00;
       }
@@ -66,14 +67,14 @@
       padding: 10px 20px;
       width: 15%;
       vertical-align: middle;
-      font-size: 18px;
+      font-size: 16px;
     }
     td {
       border-bottom: 1px solid #aaa;
       padding: 10px 20px;
       width: 35%;
       vertical-align: middle;
-      font-size: 18px;
+      font-size: 16px;
       input {
         width: 250px;
         border: 1px solid #ddd;
@@ -329,6 +330,7 @@
   margin-bottom:30px;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   .btns {
     a {
       display: inline-block;

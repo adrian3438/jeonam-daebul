@@ -126,7 +126,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: #9f9f9f 3px 1px 4px;
+  box-shadow: #ededed 1px 1px 27px;
   .header-title {
     display: flex;
     align-items: center;
@@ -145,7 +145,7 @@ footer {
   border:1px solid #e1e1e1;
   border-bottom: none;
   border-radius: 50px 50px 0 0;
-  padding:20px 80px 20px 100px;
+  padding: 15px 80px 15px 100px;
   transform: translateX(-50%);
   min-width: 720px;
   button {
@@ -162,7 +162,7 @@ footer {
       > button {
         height: 26px;
         line-height: 26px;
-        font-size:18px;
+        font-size: 16px;
         padding:0 20px 0 60px;
         border-right: 1px solid #ddd;
       }
