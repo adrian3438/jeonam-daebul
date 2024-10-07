@@ -122,7 +122,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                                             <div>
                                                 <div className="note-list-detail">
                                                     <p>{list?.assembleNoteSubject}</p>
-                                                    <p>S11C-TB11</p>
+                                                    <p>{list?.assembleName}</p>
                                                 </div>
                                                 <div className="note-date">
                                                     <div className="write-info">
