@@ -73,14 +73,14 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         console.log("모델링 클릭할 때 발생 ");
         const item = e?.data?.data;
     
-        if (item?.selection?.length > 0) {
+        if (item?.selection?.length !== 0) {
             if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
                 setPart(item.selection[0]);
             }
         } else {
-            // if (part !== '') { // 상태가 변경되었을 때만 업데이트
+            if (part !== '' || item?.selection?.length === 0) { // 상태가 변경되었을 때만 업데이트
                 setPart('');
-            // }
+            }
         }
     
         // if (JSON.stringify(partsName) !== JSON.stringify(item?.selection)) { // partsName이 변경되었을 때만 업데이트
@@ -88,6 +88,23 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         // }
     }
 
+     // 바깥 영역 클릭 핸들러
+     const handleClickOutside = (event: MouseEvent) => {
+        // 클릭한 요소가 현재 컴포넌트의 내부 요소가 아닐 경우
+        if (!document.getElementById('myComponent')?.contains(event.target as Node)) {
+            setPart(''); // 상태를 비우기
+        }
+    };
+
+    useEffect(() => {
+        // 바깥 클릭 이벤트 리스너 추가
+        document.addEventListener('mousedown', handleClickOutside);
+        
+        return () => {
+            // 컴포넌트 언마운트 시 리스너 제거
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     
     useEffect(() => {
         window.addEventListener("message", handleCallTreeClick);
