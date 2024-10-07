@@ -95,14 +95,14 @@
         width: 25%;
         margin: 20px 0;
         box-sizing: border-box;
-        padding: 0 40px;
+        padding: 0 10px;
         > div {
           //box-shadow: #ddd 0 2px 7px;
           border: 1px solid #ddd;
           border-radius: 15px;
           .bop-image-area {
             border-bottom: 1px solid #eee;
-            height: 180px;
+            height: auto;
             &:hover {
               cursor: pointer;
             }
