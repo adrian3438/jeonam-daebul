@@ -8,7 +8,7 @@ interface Props {
     name : string
 }
 export default function ModelingComponents ({modelingUrl, name} : Props) {
-    const {setPart} = useAuth()
+    const {part , setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
     console.log(partsName)
@@ -82,10 +82,8 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         const item = e?.data?.data;
         if(item?.selection?.length > 0) {
             setPart(item?.selection[0])
-            sessionStorage.setItem('parts', item?.selection[0])
         }else{
             setPart('')
-            sessionStorage.setItem('parts', '')
         }
         setPartsName(item?.selection)
     }
@@ -108,7 +106,7 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
                 <span className="logoBox">
                     {/* <img src={``} alt="로고이미지" /> */}
                 </span>
-                <span className='logoTxt'>{name} {partsName && `(${partsName})`}</span>
+                <span className='logoTxt'>{name} {part && `(${part})`}</span>
             </div>
             <div className='h-section-3'>
                 <div className='button-col'>

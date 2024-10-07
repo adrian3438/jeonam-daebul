@@ -150,7 +150,13 @@ export default function Footer({id , type, shipId} : Props) {
                 contentLabel="공작도 리스트 관리"
             />
 
-            <TestListModal isOpen={modalIsOpen5} onRequestClose={closeModal} contentLabel="검사리스트"/>
+            <TestListModal 
+                shipId={shipId}
+                assembleId={id}
+                isOpen={modalIsOpen5} 
+                onRequestClose={closeModal} 
+                contentLabel="검사리스트"
+            />
 
             <NoteListModal
                 shipId={shipId} // 선종 ID

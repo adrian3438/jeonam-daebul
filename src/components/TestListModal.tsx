@@ -18,12 +18,14 @@ const customStyles = {
 };
 
 interface CustomModalProps {
+    shipId : string
+    assembleId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const TestListModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpen, onRequestClose, contentLabel }) => {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 

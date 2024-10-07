@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
+import Editorjs from './EditorJs';
 
 const customStyles = {
     content: {
@@ -23,9 +24,8 @@ interface CustomModalProps {
 }
 
 const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
-    const handleFileAccepted = (acceptedFiles: File[]) => {
-        // console.log('Accepted files: ', acceptedFiles);
-    };
+    const [initData , setInitData] = useState<any>()
+    const [editor , setEditor] = useState<any>(null)
 
     return (
         <Modal
@@ -46,30 +46,13 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                     </div>
 
                     <div className="change-reason2">
-                        <h3>검사 사진 업로드</h3>
-                        <Dropzone onFileAccepted={handleFileAccepted} fileType='image'/>
-                        <div className="picture-upload">
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                                <button><Image src="/images/close-button.png" alt="삭제" width={20} height={20}/></button>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                                <button><Image src="/images/close-button.png" alt="삭제" width={20} height={20}/></button>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                                <button><Image src="/images/close-button.png" alt="삭제" width={20} height={20}/></button>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                                <button><Image src="/images/close-button.png" alt="삭제" width={20} height={20}/></button>
-                            </p>
-                            <p>
-                                <Image src="/images/@temp/upload-sample.jpg" alt="사진" width={122} height={96}/>
-                                <button><Image src="/images/close-button.png" alt="삭제" width={20} height={20}/></button>
-                            </p>
-                        </div>
+                        <h3>검사 내용</h3>
+                        <Editorjs
+                            isEdit={true}
+                            initData={initData}
+                            setInitData={setInitData}
+                            setData={setEditor}
+                        />
                     </div>
 
 
