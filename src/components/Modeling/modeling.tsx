@@ -88,23 +88,23 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         // }
     }
 
-     // 바깥 영역 클릭 핸들러
-     const handleClickOutside = (event: MouseEvent) => {
-        // 클릭한 요소가 현재 컴포넌트의 내부 요소가 아닐 경우
-        if (!document.getElementById('myComponent')?.contains(event.target as Node)) {
-            setPart(''); // 상태를 비우기
-        }
-    };
+    //  // 바깥 영역 클릭 핸들러
+    //  const handleClickOutside = (event: MouseEvent) => {
+    //     // 클릭한 요소가 현재 컴포넌트의 내부 요소가 아닐 경우
+    //     if (!document.getElementById('myComponent')?.contains(event.target as Node)) {
+    //         setPart(''); // 상태를 비우기
+    //     }
+    // };
 
-    useEffect(() => {
-        // 바깥 클릭 이벤트 리스너 추가
-        document.addEventListener('mousedown', handleClickOutside);
+    // useEffect(() => {
+    //     // 바깥 클릭 이벤트 리스너 추가
+    //     document.addEventListener('mousedown', handleClickOutside);
         
-        return () => {
-            // 컴포넌트 언마운트 시 리스너 제거
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+    //     return () => {
+    //         // 컴포넌트 언마운트 시 리스너 제거
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, []);
     
     useEffect(() => {
         window.addEventListener("message", handleCallTreeClick);
