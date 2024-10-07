@@ -25,31 +25,17 @@ import Title from "title-editorjs";
 import List from "@editorjs/list";
 import FontSizeTool from 'editorjs-inline-font-size-tool';
 import FontFamily from 'editorjs-inline-font-family-tool';
+import { useAuth } from "./Context/AuthContext";
 // const FontSizeTool = require('editorjs-inline-font-size-tool');
 // const FontFamily = require('editorjs-inline-font-family-tool');
 // const ColorPlugin = require('editorjs-text-color-plugin');
 interface Props {
     isEdit?:boolean
+    initData?:any
+    setData?:any
 }
-export default function Editorjs ({isEdit} : Props) {
+export default function Editorjs ({isEdit , initData , setData} : Props) {
     const editorRef = useRef<any>(null)
-    const [text, setText] = useState<any>(null)
-    const [initData, setInitData] = useState<any>()
-    // async function getEditor () {
-    //     const res = await axios.get(`/api/editor/getEditor?id=1`)
-    //     if(res){
-    //         setInitData(res?.data[0])
-    //     }
-    // }
-    // useEffect(()=>{getEditor()}, [])
-    // async function handleSave () {
-    //     const res = await axios.post(`/api/editor/setEditor`, {
-    //         block : text
-    //     })
-    //     if(res.data.result === true){
-    //         alert('success')
-    //     }
-    // }
     useEffect(()=>{
         // if(!initData) return;
         if(!editorRef.current) return;
@@ -57,7 +43,7 @@ export default function Editorjs ({isEdit} : Props) {
             readOnly : false,
             holder: editorRef.current,
             inlineToolbar : true,
-            data : initData?.ed_block,
+            data : initData,
             tools : {
                 paragraph: { class: Paragraph, inlineToolbar : true, tunes: ['anyTuneName', 'indentTune'], },
                 title: Title,
@@ -176,7 +162,8 @@ export default function Editorjs ({isEdit} : Props) {
             },
             onChange : async () => {
                 const savedData = await editor.save()
-                setText(savedData)
+                // setText(savedData)
+                setData((prev : any) => ({...prev, note : savedData}))
             },
 
         });

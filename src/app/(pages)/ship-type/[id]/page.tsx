@@ -4,7 +4,7 @@ import "@/app/assets/shipList.scss";
 import ModelingComponents from "@/components/Modeling/modeling";
 import './modeling_ctrl.css'
 interface ParamsType {
-    params : {id : string | Blob}, // 대조 또는 BOP 아이디
+    params : {id : string}, // 대조 또는 BOP 아이디
     searchParams : {
         t : string | Blob // 대조냐 BOP 냐 구분 짓는 문자열
         m : string  // 모델링 이름

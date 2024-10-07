@@ -11,9 +11,9 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
     const {setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
+    console.log(partsName)
     const display = () => {
         console.log('리스트')
-        // refIframeCtrl.current?.setObjectVisible
     }
     // Pan 클릭
     const setViewPan = () => {
@@ -82,16 +82,13 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         const item = e?.data?.data;
         if(item?.selection?.length > 0) {
             setPart(item?.selection[0])
+            sessionStorage.setItem('parts', item?.selection[0])
         }else{
             setPart('')
+            sessionStorage.setItem('parts', '')
         }
         setPartsName(item?.selection)
-        console.log(item)
     }
-
-    useEffect(()=>{
-        console.log("로드됨");
-    }, [])
 
     // 통신 테스트용 : 부품 명이 변할 때마다 getPartSpec API 호출
     useEffect(()=>{
@@ -99,6 +96,7 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
     },[partsName])
 
     useEffect(() => {
+        console.log("로드됨");
         window.addEventListener("message", handleReceive, false);
     }, [])
 

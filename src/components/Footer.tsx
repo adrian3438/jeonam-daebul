@@ -10,12 +10,13 @@ import TestListModal from "@/components/TestListModal";
 import NoteListModal from "@/components/NoteListModal";
 
 interface Props {
-    id : string | Blob
+    id : string
     type : string | Blob
     shipId : string
 }
 export default function Footer({id , type, shipId} : Props) {
     const {part} = useAuth()
+    // const parts = sessionStorage.getItem('parts') || '';
     const [activeItem, setActiveItem] = useState<number | null>(null);
     const toggleActive = (index: number) => {
         if (activeItem === index) {

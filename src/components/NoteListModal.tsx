@@ -23,8 +23,8 @@ const customStyles = {
 
 
 interface CustomModalProps {
-    shipId : string | undefined
-    assembleId : string | Blob;
+    shipId : string
+    assembleId : string
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
@@ -52,9 +52,9 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
         if(listId){setModalIsOpen1(true);}
     };
 
-    const openModal2 = (subMaterialId : string) => {
-        if(subMaterialId){
-            setListId(subMaterialId)
+    const openModal2 = (listId : string) => {
+        if(listId){
+            setListId(listId)
         }
         setModalIsOpen2(true);
     };
@@ -74,7 +74,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
 
     async function getList () {
         if(isOpen){
-            const response = await api.get(`/admin/projects/getSubsidaryMaterialList.php?assembleId=${assembleId}&smfilename=${keyword}&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
+            const response = await api.get(`/admin/projects/getAssembleNoteList.php?assembleId=${assembleId}&smfilename=${keyword}&page=1&size=10&sortColumn=smFilename&sortOrder=desc`)
             setData(response?.data?.List); setTotalCount(response?.data?.totalCnt)
         }
     }

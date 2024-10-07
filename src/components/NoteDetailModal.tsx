@@ -62,9 +62,9 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
                 <div className="modal-content">
                     <div className="change-reason4">
                         <div>
-                        <Editorjs 
+                        {/* <Editorjs 
                             isEdit={false}
-                        />
+                        /> */}
                         </div>
                         <div className='btns7'>
                             <button>수정</button>

@@ -7,7 +7,9 @@ import Dropzone from "@/components/Dropzone";
 import { useAuth } from './Context/AuthContext';
 import api from '@/lib/api';
 import dynamic from 'next/dynamic';
-const Editorjs = dynamic(() => import('@/components/EditorJs'), {ssr : false})
+import zIndex from '@mui/material/styles/zIndex';
+// const Editorjs = dynamic(() => import('@/components/EditorJs'), {ssr : true})
+import Editorjs from './EditorJs';
 
 const customStyles = {
     content: {
@@ -18,13 +20,18 @@ const customStyles = {
         width: '100vh',
         height: '70vh',
         transform: 'translate(0, -50%)',
+        zIndex : '9999'
     },
 };
+
+interface DataType {
+    subject: string
+}
 
 interface CustomModalProps {
     shipId : string
     listId : string
-    assembleId : string | Blob
+    assembleId : string
     isOpen: boolean;
     onRequestClose: () => void;
     refetch : () => void;
@@ -32,16 +39,30 @@ interface CustomModalProps {
 }
 
 const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleId, isOpen, refetch, onRequestClose, contentLabel }) => {
-    const {authData} = useAuth()
-
-    const [data, setData] = useState<any>({
-        subject : '', note : null
+    const {authData, part} = useAuth()
+    const [data, setData] = useState<DataType>({
+        subject : ''
     })
-
-    function Save () {
-
+    const [initData , setInitData] = useState<any>()
+    const [editor , setEditor] = useState<any>(null)
+    async function Save () {
+        try {
+            const formData = new FormData()
+            formData.append('shipTypeId' , shipId)
+            formData.append('assembleId', assembleId)
+            formData.append('managerId', authData?.data?.ID)
+            formData.append('assembleParts', part)
+            formData.append('assembleNoteSubject', data?.subject)
+            formData.append('assembleNotes', editor)
+            const response = await api.post(`/admin/projects/setAssembleNotes.php`, formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg)
+            }
+        }catch {
+            alert('Server Error')
+        }
     }
-    
+
     return (
         <Modal
             isOpen={isOpen}
@@ -56,11 +77,13 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
                 </div>
                 <div className="modal-content">
                     <div>
-                        <input type="text" placeholder='제목을 입력하세요.'/>
+                        <input type="text" value={data?.subject} onChange={(e)=>setData((prev) => ({...prev, subject: e.target.value}))} placeholder='제목을 입력하세요.'/>
                     </div>
                     <div className="change-reason4">
                         <Editorjs 
                             isEdit={true}
+                            initData={initData}
+                            setData={setEditor}
                         />
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>

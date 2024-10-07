@@ -7,17 +7,10 @@ import { useAuth } from "./Context/AuthContext"
 import api from "@/lib/api"
 interface Props {info : any}
 export default function Container ({children , info} : any) {
-    // console.log(info?.list?.length > 0 ? info?.list[0] : '')
     const router = useRouter()
     const pathname = usePathname()
     const splitPath = pathname.split('/')
     const {login} = useAuth()
-    // useEffect(()=>{
-    //     async function getList () {
-    //         const response = await api.get(`/admin/setup/getShipTypeList.php?shipTypeName=`)
-    //     }
-    //     getList()
-    // }, [])
     useEffect(()=> {
         if(info?.result) {
             if(info?.list?.length > 0) {

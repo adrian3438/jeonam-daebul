@@ -4,6 +4,7 @@ interface AuthContextType {
     authData : any;
     login : (data : any) => void;
     logout : () => void;
+    setPart : () => void;
 }
 const AuthContext = createContext<AuthContextType | any>(null);
 
