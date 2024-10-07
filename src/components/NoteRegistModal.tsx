@@ -107,7 +107,7 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
                 </div>
                 <div className="modal-content">
                     <div className="change-reason2">
-                        <h3>검사 제목</h3>
+                        <h3>노트 제목</h3>
                         <input type="text" value={data?.subject} onChange={(e) => setData((prev) => ({...prev, subject: e.target.value}))} placeholder='제목을 입력하세요.'/>
                     </div>
                     <div className="change-reason4">
