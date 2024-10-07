@@ -10,7 +10,7 @@ interface Props {
 }
 interface DataType {
     ID : string, thumnailFile : string, thumnailFilename : string,
-    shipAssembleName : string, bopIdx : string | number , bopExist : boolean,
+    shipAssembleName : string, bopIdx : string , bopExist : boolean,
     createDate : string, modelingUrl : string, bopModelingUrl : string
 }
 export default function ShipAssembleBox ({ shipId , initId } : Props) {
@@ -75,7 +75,7 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
                                     </div>
                                     <div className="bop-info-area">
                                         <p>{list?.shipAssembleName}</p>
-                                        <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <a href={'#'} onClick={(e) => handleBopModlingPage(e, list?.ID, list?.bopModelingUrl, list?.shipAssembleName, list?.bopExist)}>수정</a></p>
+                                        <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <a href={'#'} onClick={(e) => handleBopModlingPage(e, list?.bopIdx, list?.bopModelingUrl, list?.shipAssembleName, list?.bopExist)}>수정</a></p>
                                     </div>
                                 </div>
                             </li>
