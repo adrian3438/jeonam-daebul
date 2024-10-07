@@ -1,24 +1,33 @@
 'use client'
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 interface Props {
     shipId : string | string[] | undefined
     initId : string | string[] | undefined
+    keyword : string
 }
 interface DataType {
     ID : string, thumnailFile : string, thumnailFilename : string,
     shipAssembleName : string, bopIdx : string , bopExist : boolean,
     createDate : string, modelingUrl : string, bopModelingUrl : string
 }
-export default function ShipAssembleBox ({ shipId , initId } : Props) {
+export default function ShipAssembleBox ({ shipId , initId , keyword } : Props) {
     const router = useRouter()
+    const path = usePathname()
+    const query = useSearchParams()
     const [data , setData] = useState<DataType[]>([])
-    
+    function handleKeyword (e:any) {
+        if(e.key === 'Enter'){
+            const newParams = new URLSearchParams(query.toString())
+            newParams.set('keyword', e.target.value)
+            router.push(`${path}?${newParams?.toString()}`)
+        }
+    }
     async function getList () {
-        const response = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${shipId || initId}`)
+        const response = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${shipId || initId}&assembleName=${keyword || ''}`)
         if(response?.data?.result === true) {
             setData(response?.data?.List)
         }
@@ -52,13 +61,13 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
     
     useEffect(() => {
         getList()
-    }, [shipId])
+    }, [shipId, keyword])
     return(
         <>
             <section className="ship-type-bop">
                 <div className="search-bar-area">
                     <div className="search-bar">
-                        <input type="text" maxLength={50}/>
+                        <input type="text" defaultValue={keyword} onKeyDown={(e) => handleKeyword(e)} maxLength={50}/>
                         <input type="button" className="search-btn"/>
                     </div>
                 </div>
