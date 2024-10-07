@@ -77,15 +77,23 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
     };
     }, []);
 
-    const handleReceive = (e:any) => {
-        console.log("모델링 클릭할 때 발생 ")
+    const handleReceive = (e: any) => {
+        console.log("모델링 클릭할 때 발생 ");
         const item = e?.data?.data;
-        if(item?.selection?.length > 0) {
-            setPart(item?.selection[0])
-        }else{
-            setPart('')
+    
+        if (item?.selection?.length > 0) {
+            if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
+                setPart(item.selection[0]);
+            }
+        } else {
+            if (part !== '') { // 상태가 변경되었을 때만 업데이트
+                setPart('');
+            }
         }
-        setPartsName(item?.selection)
+    
+        if (JSON.stringify(partsName) !== JSON.stringify(item?.selection)) { // partsName이 변경되었을 때만 업데이트
+            setPartsName(item?.selection);
+        }
     }
 
     // 통신 테스트용 : 부품 명이 변할 때마다 getPartSpec API 호출
@@ -96,7 +104,7 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
     useEffect(() => {
         console.log("로드됨");
         window.addEventListener("message", handleReceive, false);
-    }, [])
+    }, [partsName])
 
     return(
         <>
