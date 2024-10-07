@@ -11,14 +11,12 @@ interface Props {
 interface DataType {
     ID : string, thumnailFile : string, thumnailFilename : string,
     shipAssembleName : string, bopIdx : string | number , bopExist : boolean,
-    createDate : string, modelingUrl : string
+    createDate : string, modelingUrl : string, bopModelingUrl : string
 }
 export default function ShipAssembleBox ({ shipId , initId } : Props) {
     const router = useRouter()
     const [data , setData] = useState<DataType[]>([])
-    function isBop (bopExist : boolean) {
-        if(!bopExist) {alert('BOP 등록을 해주시기 바랍니다.'); return;}
-    }
+    
     async function getList () {
         const response = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${shipId || initId}`)
         if(response?.data?.result === true) {
@@ -35,6 +33,23 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
             alert('등록된 모델링이 없습니다.');  return;
         }
     }
+
+    function handleBopModlingPage (e:React.MouseEvent, id : string , url : string, name : string , bopExist : boolean) {
+        e.preventDefault()
+        if(bopExist) {
+            if(url){
+                const modelingNameParts = url ? url.split('/') : [];
+                let modelingNameLastPart = modelingNameParts.length > 0 ? modelingNameParts[modelingNameParts.length - 1] : '';
+                modelingNameLastPart = modelingNameLastPart.replace('.html', '');
+                router.push(`/ship-type/${id}?s=${shipId || initId}&t=assemble&name=${name}&m=${modelingNameLastPart}`)
+            }else{
+                alert('등록된 모델링이 없습니다.');  return;
+            }
+        }else{
+            alert('BOP 등록을 해주시기 바랍니다.')
+        }
+    }
+    
     useEffect(() => {
         getList()
     }, [shipId])
@@ -60,7 +75,7 @@ export default function ShipAssembleBox ({ shipId , initId } : Props) {
                                     </div>
                                     <div className="bop-info-area">
                                         <p>{list?.shipAssembleName}</p>
-                                        <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <Link href={list?.bopExist ? `/ship-type/${list?.bopIdx}?t=bop&m=${modelingNameLastPart}` : '#'} onClick={() => isBop(list?.bopExist)}>수정</Link></p>
+                                        <p className={list?.bopExist ? 'registed' : 'no-registed'}>BOP <a href={'#'} onClick={(e) => handleBopModlingPage(e, list?.ID, list?.bopModelingUrl, list?.shipAssembleName, list?.bopExist)}>수정</a></p>
                                     </div>
                                 </div>
                             </li>
