@@ -33,6 +33,22 @@ interface DataType {
 }
 
 const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRequestClose, contentLabel }) => {
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
+    const [modalIsOpen2, setModalIsOpen2] = useState(false);
+
+    const openModal1 = () => {
+        setModalIsOpen1(true);
+    };
+    const openModal2 = () => {
+        setModalIsOpen2(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen1(false);
+        setModalIsOpen2(false);
+    };
+
+
     const [data , setData] = useState<DataType>()
     const [initData , setInitData] = useState<any>()
     const [editor , setEditor] = useState<any>(null)
@@ -51,22 +67,23 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
         getDetail()
     }, [isOpen && listId])
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            style={customStyles}
-            contentLabel={contentLabel}
-        >
-            <div className="modal-wrapper">
-                <div className="modal-header">
-                    <h2>{contentLabel}</h2>
-                    <button onClick={onRequestClose} className="modal-close-button">Close</button>
-                </div>
-                <div className="modal-content">
-                    <div className="change-reason2">
-                        <h3>검사 제목</h3>
-                        <p>{data?.inspectionSubject}</p>
+        <>
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={onRequestClose}
+                style={customStyles}
+                contentLabel={contentLabel}
+            >
+                <div className="modal-wrapper">
+                    <div className="modal-header">
+                        <h2>{contentLabel}</h2>
+                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
+                    <div className="modal-content modal-content2">
+                        <div className="change-reason2">
+                            <h3>검사 제목</h3>
+                            <p>{data?.inspectionSubject}</p>
+                        </div>
 
                     <div className="change-reason2">
                         <h3>검사 내용</h3>
@@ -80,24 +97,42 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                     </div>
 
 
-                    <div className="change-reason2">
-                        <h3>변경 사유</h3>
-                        <p>
-                            수정인 경우 내용이 있습니다.
-                        </p>
-                    </div>
+                        <div className="change-reason2">
+                            <h3>변경 사유</h3>
+                            <p>
+                                수정인 경우 내용이 있습니다.
+                            </p>
+                        </div>
 
-                    <div className="change-reason2">
-                        <h3>검사 결과</h3>
-                        <p>
-                            {data?.inspectionResult === 'Y' && '양호'}
-                            {data?.inspectionResult === 'N' && '불량'}
-                            {data?.inspectionResult === 'R' && '재제작'}
-                        </p>
+                        <div className="change-reason2">
+                            <h3>검사 결과</h3>
+                            <p>
+                                {data?.inspectionResult === 'Y' && '양호'}
+                                {data?.inspectionResult === 'N' && '불량'}
+                                {data?.inspectionResult === 'R' && '재제작'}
+                            </p>
+                        </div>
+
+                        <div className='btns8'>
+                            <button className="reply-list" onClick={() => openModal1()}>답변글 : 3</button>
+                            <button className="reply-write" onClick={() => openModal2()}>댓글달기</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Modal>
+            </Modal>
+
+            <TestReplyListModal
+                isOpen={modalIsOpen1}
+                onRequestClose={closeModal}
+                contentLabel="답글 리스트"
+            />
+
+            <TestReplyRegistModal
+                isOpen={modalIsOpen2}
+                onRequestClose={closeModal}
+                contentLabel=""
+            />
+        </>
     );
 };
 

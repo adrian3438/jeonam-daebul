@@ -48,6 +48,9 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
+    const [replyIndex, setReplyIndex] = useState<number>();
+    const [replyOpen, setReplyOpen] = useState<boolean>(false);
+
     const openModal1 = (listId : string) => {
         setListId(listId)
         if(listId){setModalIsOpen1(true);}
@@ -65,6 +68,15 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
+
+    const openReply = (index:number) => {
+        setReplyIndex(index);
+        if(replyOpen) {
+            setReplyOpen(false);
+        } else {
+            setReplyOpen(true);
+        }
+    }
 
     function Search () {
         setKeyword(keywordRef.current.value)
@@ -100,21 +112,54 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                     </div>
                     <div className="modal-content">
                         <ul className="note-list">
-                            {data?.map((list:DataType, index:number) => {
-                                return(
+                            {data?.map((list: DataType, index: number) => {
+                                return (
                                     <>
-                                    <li key={index}>
-                                        <div className="note-list-detail">
-                                           타이틀
-                                        </div>
-                                        <div className="note-date">
+                                        <li key={index}>
                                             <div>
-                                                <p>{list?.createDate}</p>
-                                                <p>관리자</p>
+                                                <div className="note-list-detail">
+                                                    <p>타이틀</p>
+                                                    <p>S11C-TB11</p>
+                                                </div>
+                                                <div className="note-date">
+                                                    <div className="write-info">
+                                                        <p>{list?.createDate}</p>
+                                                        <p>관리자</p>
+                                                        <button onClick={() => openReply(index)}>답변글 : 2</button>
+                                                    </div>
+                                                    <div className="note-btns">
+                                                        <button onClick={() => openModal2('')}>수정</button>
+                                                        <button onClick={() => openModal1('1')}>상세보기</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <button onClick={() => openModal1('1')}>상세보기</button>
-                                        </div>
-                                    </li>
+                                            <ul className={`reply-list ${replyIndex === index && replyOpen ? 'active' : ''}`}>
+                                                <li>
+                                                    <span className="bar"></span>
+                                                    <div className="reply">
+                                                        <div className="reply-info">
+                                                            <p className="reply-wirter">홍길동</p>
+                                                            <p className="reply-date">2024-10-07</p>
+                                                        </div>
+                                                        <div className="reply-detail">
+                                                            댓글이 들어갑니다.
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <span className="bar"></span>
+                                                    <div className="reply">
+                                                        <div className="reply-info">
+                                                            <p className="reply-wirter">홍길동</p>
+                                                            <p className="reply-date">2024-10-07</p>
+                                                        </div>
+                                                        <div className="reply-detail">
+                                                            댓글이 들어갑니다.
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
                                     </>
                                 )
                             })}
@@ -126,7 +171,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ shipId, assembleId, isOpen,
                 listId={listId}
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
-                contentLabel="노트 리스트 상세"
+                contentLabel="노트 상세 내용 (S11C-R)"
             />
             <NoteRegistModal
                 shipId={shipId}

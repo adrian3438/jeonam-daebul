@@ -5,6 +5,8 @@ import '@/app/assets/modal.scss';
 import api from '@/lib/api';
 import {FileDownLoadBtn} from './FileDownLoadBtn';
 import dynamic from 'next/dynamic';
+import NoteReplyRegistModal from "@/components/NoteReplyRegistModal";
+import NoteReplyListModal from "@/components/NoteReplyListModal";
 const Editorjs = dynamic(() => import('@/components/EditorJs'), {ssr : false})
 
 const customStyles = {
@@ -33,6 +35,21 @@ interface DataType {
 }
 
 const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRequestClose, contentLabel }) => {
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
+    const [modalIsOpen2, setModalIsOpen2] = useState(false);
+
+    const openModal1 = () => {
+        setModalIsOpen1(true);
+    };
+    const openModal2 = () => {
+        setModalIsOpen2(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen1(false);
+        setModalIsOpen2(false);
+    };
+
     const [data, setData] = useState<DataType>()
     useEffect(() => {
         async function getDetail () {
@@ -48,31 +65,46 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
         getDetail()
     }, [isOpen && listId])
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            style={customStyles}
-            contentLabel={contentLabel}
-        >
-            <div className="modal-wrapper">
-                <div className="modal-header">
-                    <h2>{contentLabel}</h2>
-                    <button onClick={onRequestClose} className="modal-close-button">Close</button>
-                </div>
-                <div className="modal-content">
-                    <div className="change-reason4">
-                        <div>
-                        {/* <Editorjs 
-                            isEdit={false}
-                        /> */}
-                        </div>
-                        <div className='btns7'>
-                            <button>수정</button>
+        <>
+            <Modal
+                isOpen={isOpen}
+                onRequestClose={onRequestClose}
+                style={customStyles}
+                contentLabel={contentLabel}
+            >
+                <div className="modal-wrapper">
+                    <div className="modal-header">
+                        <h2>{contentLabel}</h2>
+                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                    </div>
+                    <div className="modal-content modal-content2">
+                        <div className="change-reason4">
+                            <div>
+                            {/* <Editorjs
+                                isEdit={false}
+                            /> */}
+                            </div>
+                            <div className='btns8'>
+                                <button className="reply-list" onClick={() => openModal1()}>답변글 : 3</button>
+                                <button className="reply-write" onClick={() => openModal2()}>댓글달기</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </Modal>
+            </Modal>
+
+            <NoteReplyListModal
+                isOpen={modalIsOpen1}
+                onRequestClose={closeModal}
+                contentLabel="답글 리스트"
+            />
+
+            <NoteReplyRegistModal
+                isOpen={modalIsOpen2}
+                onRequestClose={closeModal}
+                contentLabel=""
+            />
+        </>
     );
 };
 

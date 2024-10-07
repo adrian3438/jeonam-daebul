@@ -121,10 +121,12 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                                             {list?.inspectionResult === 'R' && '재제작'}
                                         </td>
                                         <td className='action'>
+                                            <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
+                                            <a href={"#"}><Image src="/images/write.svg" alt="작성" width={20} height={20}/></a>
                                             <label className="toggle_switch" style={{marginRight: '10px'}}>
-                                                <input 
-                                                type="checkbox"
-                                                checked={list?.activeStatus === 'Y'}
+                                                <input
+                                                    type="checkbox"
+                                                    checked={list?.activeStatus === 'Y'}
                                                 />
                                                 <span className="slider"></span>
                                             </label>
@@ -141,7 +143,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                         </table>
                     </div>
                     <div className="modal-footer">
-                        <a href="#">&lt; Prev</a>
+                    <a href="#">&lt; Prev</a>
                         <a href="#" className="active">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
@@ -149,10 +151,10 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                     </div>
                 </div>
             </Modal>
-            <TestDetailModal 
+            <TestDetailModal
                 listId={listId}
-                isOpen={modalIsOpen1} 
-                onRequestClose={closeModal} 
+                isOpen={modalIsOpen1}
+                onRequestClose={closeModal}
                 contentLabel="검사 리스트 상세"
             />
             <TestRegistModal 
@@ -160,8 +162,8 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                 shipId={shipId}
                 assembleId={assembleId}
                 refetch={getList}
-                isOpen={modalIsOpen2} 
-                onRequestClose={closeModal} 
+                isOpen={modalIsOpen2}
+                onRequestClose={closeModal}
                 contentLabel="검사 리스트 등록"
             />
         </>
