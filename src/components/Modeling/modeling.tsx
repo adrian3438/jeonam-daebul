@@ -70,13 +70,6 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         setPartsName(title);
     };
 
-    useEffect(() => {
-    window.addEventListener("message", handleCallTreeClick);
-    return () => {
-        window.removeEventListener("message", handleCallTreeClick);
-    };
-    }, []);
-
     const handleReceive = (e: any) => {
         console.log("모델링 클릭할 때 발생 ");
         const item = e?.data?.data;
@@ -96,15 +89,23 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         }
     }
 
-    // 통신 테스트용 : 부품 명이 변할 때마다 getPartSpec API 호출
-    useEffect(()=>{
-        // getPartSpec()
-    },[partsName])
-
+    
     useEffect(() => {
-        console.log("로드됨");
-        window.addEventListener("message", handleReceive, false);
-    }, [partsName])
+        window.addEventListener("message", handleCallTreeClick);
+        return () => {
+            window.removeEventListener("message", handleCallTreeClick);
+        };
+    }, []);
+    
+    useEffect(() => {
+        window.addEventListener("message", handleReceive);
+        return () => {
+            window.removeEventListener("message", handleReceive); // 해제
+        };
+    }, []);
+    // useEffect(() => {
+    //     window.addEventListener("message", handleReceive, false);
+    // }, [])
 
     return(
         <>
