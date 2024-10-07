@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Modal from 'react-modal';
 import Image from "next/image";
 import '@/app/assets/modal.scss';
 import TestDetailModal from '@/components/TestDetailModal';
 import TestRegistModal from '@/components/TestRegistModal';
+import api from '@/lib/api';
+import { useAuth } from './Context/AuthContext';
 
 const customStyles = {
     content: {
@@ -26,6 +28,9 @@ interface CustomModalProps {
 }
 
 const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpen, onRequestClose, contentLabel }) => {
+    const {part} = useAuth()
+    const [data , setData] = useState<string[]>([])
+    console.log(part)
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 
@@ -41,6 +46,22 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
         setModalIsOpen1(false);
         setModalIsOpen2(false);
     };
+
+    async function getList () {
+        try {
+            if(isOpen) {
+                const encodedPart = encodeURIComponent(part);
+                const response = await api.get(`/admin/projects/getInspectionList.php?shipTypeId=${shipId}&assembleId=${assembleId}&assembleParts=${encodedPart}&page=1&size=10`)
+                if(response?.data?.result === true) {
+                    setData(response?.data?.List)
+                }
+            }
+        }catch{alert('Server Error')}
+    }
+
+    useEffect(() => {
+        getList()
+    }, [isOpen])
 
     return (
         <>
@@ -65,7 +86,6 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                         <table className="table">
                             <thead>
                             <tr>
-                                <th scope="col">검사이미지</th>
                                 <th scope="col">검사제목</th>
                                 <th scope="col">검사일자</th>
                                 <th scope="col">검사자</th>
@@ -75,7 +95,6 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                             </thead>
                             <tbody>
                             <tr>
-                                <td><Image src="/images/@temp/test-sample-img.jpg" alt="이미지" width={144} height={85}/></td>
                                 <td><a href="#" onClick={openModal1}>Pre-eletion 검사</a></td>
                                 <td>2024-07-15</td>
                                 <td>홍길동</td>
@@ -88,21 +107,6 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                                     <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><Image src="/images/@temp/test-sample-img.jpg" alt="이미지" width={144} height={85}/></td>
-                                <td><a href="#" onClick={openModal1}>Pre-eletion 검사</a></td>
-                                <td>2024-07-15</td>
-                                <td>홍길동</td>
-                                <td className="error">불량</td>
-                                <td className='action'>
-                                    <label className="toggle_switch" style={{marginRight:'10px'}}>
-                                        <input type="checkbox"/>
-                                        <span className="slider"></span>
-                                    </label>
-                                    <a href={"#"}><Image src="/images/file-import.svg" alt="파일 삽입" width={20} height={20}/></a>
-                                </td>
-                            </tr>
-
                             {/* 리스트 없을 시 <tr>
                                 <td colSpan={5}>내용이 없습니다.</td>
                             </tr>*/}
@@ -118,8 +122,19 @@ const TestListModal: React.FC<CustomModalProps> = ({ shipId , assembleId , isOpe
                     </div>
                 </div>
             </Modal>
-            <TestDetailModal isOpen={modalIsOpen1} onRequestClose={closeModal} contentLabel="검사 리스트 상세"/>
-            <TestRegistModal isOpen={modalIsOpen2} onRequestClose={closeModal} contentLabel="검사 리스트 등록"/>
+            <TestDetailModal 
+                isOpen={modalIsOpen1} 
+                onRequestClose={closeModal} 
+                contentLabel="검사 리스트 상세"
+            />
+            <TestRegistModal 
+                shipId={shipId}
+                assembleId={assembleId}
+                refetch={getList}
+                isOpen={modalIsOpen2} 
+                onRequestClose={closeModal} 
+                contentLabel="검사 리스트 등록"
+            />
         </>
     );
 };

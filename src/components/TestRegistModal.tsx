@@ -4,6 +4,8 @@ import Image from "next/image";
 import '@/app/assets/modal.scss';
 import Dropzone from "@/components/Dropzone";
 import Editorjs from './EditorJs';
+import { useAuth } from './Context/AuthContext';
+import api from '@/lib/api';
 
 const customStyles = {
     content: {
@@ -17,16 +19,51 @@ const customStyles = {
     },
 };
 
+interface DataType {
+    subject: string
+    reason : string
+    result : string
+}
+
 interface CustomModalProps {
+    shipId : string
+    assembleId : string
+    refetch  :any
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
 }
 
-const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+const TestRegistModal: React.FC<CustomModalProps> = ({ shipId , assembleId, refetch, isOpen, onRequestClose, contentLabel }) => {
+    const {authData , part} = useAuth()
     const [initData , setInitData] = useState<any>()
     const [editor , setEditor] = useState<any>(null)
-
+    const [data, setData] = useState<DataType>({
+        subject : '', reason : '', result : 'Y'
+    })
+    function handleChange (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const {name , value} = e.target;
+        setData((prev) => ({...prev, [name] : value}))
+    }
+    async function Save () {
+        try {
+            const formData = new FormData()
+            formData.append('shipTypeId', shipId)
+            formData.append('assembleId' , assembleId)
+            formData.append('managerId', authData?.data?.ID)
+            formData.append('assembleParts', part)
+            formData.append('inspectionSubject', data?.subject)
+            formData.append('inspectionContents', JSON.stringify(editor))
+            formData.append('inspectionOpinion', data?.reason)
+            formData.append('inspectionResult', data?.result)
+            const response = await api.post(`/admin/projects/setInspection.php`, formData)
+            if(response?.data?.result === true) {
+                alert(response?.data?.resultMsg)
+                onRequestClose()
+                refetch()
+            }
+        }catch {alert('Server Error')}
+    }
     return (
         <Modal
             isOpen={isOpen}
@@ -42,7 +79,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                 <div className="modal-content">
                     <div className="change-reason2">
                         <h3>검사 제목</h3>
-                        <input type="text"/>
+                        <input type="text" name='subject' value={data?.subject} onChange={handleChange}/>
                     </div>
 
                     <div className="change-reason2">
@@ -52,28 +89,29 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, c
                             initData={initData}
                             setInitData={setInitData}
                             setData={setEditor}
+                            placeholder={'검사 내용을 입력해 주세요.'}
                         />
                     </div>
 
 
                     <div className="change-reason2">
                         <h3>변경 사유</h3>
-                        <textarea>
-                            수정인 경우 내용이 있습니다.
+                        <textarea placeholder='변경사유를 입력해 주세요.' name='reason' value={data?.reason} onChange={handleChange}>
+                            
                         </textarea>
                     </div>
 
                     <div className="change-reason2">
                         <h3>검사 결과</h3>
                         <div className="result-choice">
-                            <label><input type="radio" name="result" checked={true} id="radio1"/> 양호</label>
-                            <label><input type="radio" name="result" id="radio2"/> 불량</label>
-                            <label><input type="radio" name="result" id="radio3"/> 재제작 필요</label>
+                            <label><input type="radio" onChange={handleChange} value={'Y'} name="result" checked={data?.result === 'Y'} id="radio1"/> 양호</label>
+                            <label><input type="radio" onChange={handleChange} value={'N'} name="result" checked={data?.result === 'N'} id="radio2"/> 불량</label>
+                            <label><input type="radio" onChange={handleChange} value={'R'} name="result" checked={data?.result === 'R'} id="radio3"/> 재제작 필요</label>
                         </div>
                     </div>
 
                     <div className='btns5'>
-                        <button>저장</button>
+                        <button onClick={Save}>저장</button>
                     </div>
                 </div>
             </div>

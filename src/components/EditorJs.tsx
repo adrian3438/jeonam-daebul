@@ -34,13 +34,15 @@ interface Props {
     initData?:any
     setData?:any
     setInitData:any
+    placeholder : string
 }
-export default function Editorjs ({isEdit , initData , setInitData , setData} : Props) {
+export default function Editorjs ({isEdit , initData , setInitData , setData, placeholder} : Props) {
     const editorRef = useRef<any>(null)
     useEffect(()=>{
         // if(!initData) return;
         if(!editorRef.current) return;
         const editor = new EditorJS({
+            placeholder : placeholder,
             readOnly : false,
             holder: editorRef.current,
             inlineToolbar : true,

@@ -44,7 +44,6 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
     })
     const [initData , setInitData] = useState<any>()
     const [editor , setEditor] = useState<any>(null)
-    console.log(editor)
     async function Save () {
         try {
             const formData = new FormData()
@@ -86,6 +85,7 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
                             initData={initData}
                             setInitData={setInitData}
                             setData={setEditor}
+                            placeholder={'노트 내용을 입력해 주세요.'}
                         />
                         <div className='btns7'>
                             <button onClick={Save}>저장</button>

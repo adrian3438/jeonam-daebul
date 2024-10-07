@@ -11,9 +11,8 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
     const {part , setPart} = useAuth()
     const [partsName, setPartsName] = useState<any>([]);
     const refIframeCtrl = useRef<EventIFrameControl>(null);
-    console.log(partsName)
     const display = () => {
-        console.log('리스트')
+        // console.log('리스트')
     }
     // Pan 클릭
     const setViewPan = () => {
@@ -75,18 +74,18 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         const item = e?.data?.data;
     
         if (item?.selection?.length > 0) {
-            if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
+            // if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
                 setPart(item.selection[0]);
-            }
+            // }
         } else {
             if (part !== '') { // 상태가 변경되었을 때만 업데이트
                 setPart('');
             }
         }
     
-        if (JSON.stringify(partsName) !== JSON.stringify(item?.selection)) { // partsName이 변경되었을 때만 업데이트
-            setPartsName(item?.selection);
-        }
+        // if (JSON.stringify(partsName) !== JSON.stringify(item?.selection)) { // partsName이 변경되었을 때만 업데이트
+        //     setPartsName(item?.selection);
+        // }
     }
 
     
