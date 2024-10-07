@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "./Context/AuthContext";
 import SubsidaryListModal from "@/components/SubsidaryListModal";
 import RequiredListModal from "@/components/RequiredListModal";
@@ -8,6 +8,7 @@ import MachiningListModal from "@/components/MachiningListModal";
 import WorkListModal from "@/components/WorkListModal";
 import TestListModal from "@/components/TestListModal";
 import NoteListModal from "@/components/NoteListModal";
+import NoteRegistModal from "@/components/NoteRegistModal";
 
 interface Props {
     id : string | Blob
@@ -31,6 +32,7 @@ export default function Footer({id , type, shipId} : Props) {
     const [modalIsOpen4, setModalIsOpen4] = useState(false);
     const [modalIsOpen5, setModalIsOpen5] = useState(false);
     const [modalIsOpen6, setModalIsOpen6] = useState(false);
+    const [modalIsOpen7, setModalIsOpen7] = useState(false);
 
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -62,6 +64,10 @@ export default function Footer({id , type, shipId} : Props) {
         }else{
             alert('부품을 선택해 주세요.'); return;
         }
+    };
+
+    const openModal7 = () => {
+        setModalIsOpen7(true);
     };
 
     const closeModal = () => {
@@ -105,8 +111,16 @@ export default function Footer({id , type, shipId} : Props) {
                 <li className="camera">
                     <button onClick={openModal5}>검사 관리</button>
                 </li>
-                <li className="note">
-                    <button onClick={openModal6}>노트</button>
+                <li className={`note ${activeItem === 2 ? 'active' : ''}`}>
+                    <button onClick={() => toggleActive(2)}>노트</button>
+                    <ul>
+                        <li>
+                            <button onClick={openModal6}>노트리스트</button>
+                        </li>
+                        <li>
+                            <button onClick={openModal7}>노트등록</button>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <SubsidaryListModal
@@ -142,6 +156,12 @@ export default function Footer({id , type, shipId} : Props) {
                 isOpen={modalIsOpen6}
                 onRequestClose={closeModal}
                 contentLabel="노트 리스트"
+            />
+
+            <NoteRegistModal
+                isOpen={modalIsOpen7}
+                onRequestClose={closeModal}
+                contentLabel="노트 등록"
             />
         </footer>
     )
