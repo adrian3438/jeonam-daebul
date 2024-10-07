@@ -54,11 +54,7 @@ export default function Footer({id , type, shipId} : Props) {
     };
 
     const openModal5 = () => {
-        if(part){
-            setModalIsOpen5(true);
-        }else{
-            alert('부품을 선택해 주세요.'); return;
-        }
+        setModalIsOpen5(true);
     };
 
     const openModal8 = () => {

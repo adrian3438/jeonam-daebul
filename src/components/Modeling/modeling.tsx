@@ -74,9 +74,9 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         const item = e?.data?.data;
     
         if (item?.selection?.length > 0) {
-            // if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
+            if (part !== item.selection[0]) { // 상태가 변경되었을 때만 업데이트
                 setPart(item.selection[0]);
-            // }
+            }
         } else {
             // if (part !== '') { // 상태가 변경되었을 때만 업데이트
                 setPart('');
