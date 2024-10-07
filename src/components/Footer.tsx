@@ -9,6 +9,7 @@ import WorkListModal from "@/components/WorkListModal";
 import TestListModal from "@/components/TestListModal";
 import NoteListModal from "@/components/NoteListModal";
 import NoteRegistModal from "@/components/NoteRegistModal";
+import TestRegistModal from "@/components/TestRegistModal";
 
 interface Props {
     id : string
@@ -34,6 +35,7 @@ export default function Footer({id , type, shipId} : Props) {
     const [modalIsOpen5, setModalIsOpen5] = useState(false);
     const [modalIsOpen6, setModalIsOpen6] = useState(false);
     const [modalIsOpen7, setModalIsOpen7] = useState(false);
+    const [modalIsOpen8, setModalIsOpen8] = useState(false);
 
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -59,6 +61,10 @@ export default function Footer({id , type, shipId} : Props) {
         }
     };
 
+    const openModal8 = () => {
+        setModalIsOpen8(true);
+    };
+
     const openModal6 = () => {
         setModalIsOpen6(!modalIsOpen6);
     };
@@ -78,7 +84,8 @@ export default function Footer({id , type, shipId} : Props) {
         setModalIsOpen4(false);
         setModalIsOpen5(false);
         setModalIsOpen6(false);
-        setModalIsOpen7(false)
+        setModalIsOpen7(false);
+        setModalIsOpen8(false);
     };
 
     return (
@@ -110,8 +117,16 @@ export default function Footer({id , type, shipId} : Props) {
                         </li>
                     </>
                 }
-                <li className="camera">
-                    <button onClick={openModal5}>검사 관리</button>
+                <li className={`camera ${activeItem === 3 ? 'active' : ''}`}>
+                    <button onClick={() => toggleActive(3)}>검사 관리</button>
+                    <ul>
+                        <li>
+                            <button onClick={openModal5}>검사리스트</button>
+                        </li>
+                        <li>
+                            <button onClick={openModal8}>검사등록</button>
+                        </li>
+                    </ul>
                 </li>
                 <li className={`note ${activeItem === 2 ? 'active' : ''}`}>
                     <button onClick={() => toggleActive(2)}>노트</button>
@@ -150,12 +165,18 @@ export default function Footer({id , type, shipId} : Props) {
                 contentLabel="공작도 리스트 관리"
             />
 
-            <TestListModal 
+            <TestListModal
                 shipId={shipId}
                 assembleId={id}
-                isOpen={modalIsOpen5} 
-                onRequestClose={closeModal} 
+                isOpen={modalIsOpen5}
+                onRequestClose={closeModal}
                 contentLabel="검사리스트"
+            />
+            <TestRegistModal
+                shipId={shipId}
+                isOpen={modalIsOpen8}
+                onRequestClose={closeModal}
+                contentLabel="검사 리스트 등록"
             />
 
             <NoteListModal
