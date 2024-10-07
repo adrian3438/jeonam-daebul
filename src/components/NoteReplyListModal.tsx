@@ -73,16 +73,11 @@ const NoteReplyListModal: React.FC<CustomModalProps> = ({ shipId, listId, assemb
         >
             <div className="modal-wrapper">
                 <div className="modal-header">
-                    <h2><span>{contentLabel}</span></h2>
-                    <div>
-                        <div className="search-bar-area2">
-                            <div className='btns'>
-                                test
-                            </div>
-                            <div className="search-bar">
-                                <input type="text" maxLength={50}/>
-                                <input type="button" className="search-btn"/>
-                            </div>
+                    <h2><span style={{color: "black"}}>{contentLabel}</span></h2>
+                    <div className="search-bar-area2" style={{marginBottom: 0}}>
+                        <div className="search-bar">
+                            <input type="text" maxLength={50}/>
+                            <input type="button" className="search-btn"/>
                         </div>
                         <button onClick={onRequestClose} className="modal-close-button">Close</button>
                     </div>
