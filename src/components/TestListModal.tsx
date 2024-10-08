@@ -182,7 +182,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
                 refetch={getList}
                 isOpen={modalIsOpen2}
                 onRequestClose={closeModal}
-                contentLabel={listId ? '검사 리스트 수정' : '검사 리스트 등록'}
+                contentLabel={listId ? '검사 수정' : '검사 등록'}
             />
         </>
     );

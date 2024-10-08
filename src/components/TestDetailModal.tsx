@@ -31,7 +31,7 @@ interface CustomModalProps {
 interface DataType {
     ID : string, activeStatus : string, assembleId : string, assembleName : string, assembleNotes : object, assemblePart : string,
     createDate : string, replyCnt : string, shipTypeId : string, inspectionResult : string, inspectionSubject : string,
-    managerName : string, userName : string, inspectionContents : any
+    managerName : string, userName : string, inspectionContents : any, inspectionOpinion : string
 }
 
 const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onRequestClose, contentLabel }) => {
@@ -105,7 +105,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
                         <div className="change-reason2">
                             <h3>변경 사유</h3>
                             <p>
-                                수정인 경우 내용이 있습니다.
+                                {data?.inspectionOpinion}
                             </p>
                         </div>
 
