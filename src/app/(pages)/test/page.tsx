@@ -25,7 +25,7 @@ import Title from "title-editorjs";
 import List from "@editorjs/list";
 import FontSizeTool from 'editorjs-inline-font-size-tool';
 import FontFamily from 'editorjs-inline-font-family-tool';
-import { useAuth } from "./Context/AuthContext";
+import api from "@/lib/api";
 // const FontSizeTool = require('editorjs-inline-font-size-tool');
 // const FontFamily = require('editorjs-inline-font-family-tool');
 // const ColorPlugin = require('editorjs-text-color-plugin');
@@ -36,16 +36,28 @@ interface Props {
     setInitData:any
     placeholder : string
 }
-export default function Editorjs ({isEdit , initData , setInitData , setData, placeholder} : Props) {
+export default function Editorjs ({} : Props) {
     const editorInstance = useRef<EditorJS | null>(null);
     const editorRef = useRef<any>(null)
-    
+    const [initData , setInitData] = useState<any>()
+    const [data , setData] = useState<any>(null)
+    async function getDetail () {
+        const response = await api.get(`/admin/projects/getInspectionDetail.php?ID=8`)
+        if(response?.data?.result === true) {
+            if(response?.data?.List?.length > 0) {
+                setInitData(response?.data?.List[0]?.inspectionContents)
+            }
+        }
+    }
+    useEffect(() => {
+        getDetail()
+    }, [])
     useEffect(()=>{
         // if(!initData) return;
         if(!editorRef.current) return;
         editorInstance.current = new EditorJS({
-            placeholder : placeholder,
-            readOnly : isEdit ? false : true,
+            placeholder : '',
+            readOnly : false,
             holder: editorRef.current,
             inlineToolbar : true,
             data : initData,
@@ -58,17 +70,17 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 //         defaultLevel : 1,
                 //     }
                 // },
-                fontFamily : FontFamily,
-                fontSize : FontSizeTool,
+                // fontFamily : FontFamily,
+                // fontSize : FontSizeTool,
                 underline: Underline,
                 Strikethrough : Strikethrough,
                 annotation: {
                     class : Annotation,
                 },
-                toggle: {
-                    class: ToggleBlock,
-                    inlineToolbar: true,
-                },
+                // toggle: {
+                //     class: ToggleBlock,
+                //     inlineToolbar: true,
+                // },
                 tooltip: {
                     class: Tooltip,
                     inlineToolbar : true,
@@ -182,7 +194,7 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 editorInstance.current = null;
             }
         };
-    }, [initData, isEdit])
+    }, [initData])
     return(
         <>
         
