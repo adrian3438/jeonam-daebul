@@ -23,7 +23,7 @@
     h2 {
       display: flex;
       align-items: center;
-      font-size: 25px;
+      font-size: 18px;
       font-weight: 600;
 
       button {
@@ -150,7 +150,7 @@
       h3 {
         font-weight: bold;
         margin:0 0 20px;
-        font-size: 20px;
+        font-size: 16px;
       }
       .input-google-link {
         width: 100%;
@@ -174,7 +174,7 @@
       h3 {
         font-weight: bold;
         margin:0 0 20px;
-        font-size: 20px;
+        font-size: 16px;
       }
       .picture-upload {
         margin-top:20px;
@@ -393,3 +393,7 @@
   }
 }
 
+/* React Model Customize */
+.ReactModal__Overlay--after-open {
+  background-color: rgba(0,0,0,0.6) !important;
+}

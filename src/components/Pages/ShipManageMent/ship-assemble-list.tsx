@@ -34,7 +34,7 @@ export default function ShipAssembleListBox ({
                         <Link href={`/ship-manage/${id}/regist-subsidary/regist`}>등록</Link>
                     </div>
                     <div className="search-bar">
-                        <input type="text" maxLength={50}/>
+                        <input type="text" maxLength={50} placeholder="대조명으로 검색 바랍니다."/>
                         <input type="button" className="search-btn"/>
                     </div>
                 </div>

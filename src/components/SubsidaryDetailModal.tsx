@@ -12,8 +12,9 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
@@ -91,7 +92,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ subMaterialId, isOpe
 
                     <div className="change-reason change-reason3">
                         <h3>변경 사유</h3>
-                        <div>
+                        <div style={{color:'#666'}}>
                             {data?.smContents}
                         </div>
                     </div>

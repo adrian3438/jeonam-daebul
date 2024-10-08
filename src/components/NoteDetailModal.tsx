@@ -16,8 +16,9 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
@@ -101,7 +102,7 @@ const SubsidaryDetailModal: React.FC<CustomModalProps> = ({ listId, isOpen, onRe
             <NoteReplyListModal
                 isOpen={modalIsOpen1}
                 onRequestClose={closeModal}
-                contentLabel="답글 리스트" 
+                contentLabel="답글 리스트"
             />
 
             <NoteReplyRegistModal

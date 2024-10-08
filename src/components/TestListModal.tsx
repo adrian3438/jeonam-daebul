@@ -14,13 +14,14 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
 interface CustomModalProps {
-    name :string 
+    name :string
     shipId : string
     assembleId : string
     isOpen: boolean;
@@ -98,13 +99,21 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2><span>{name}</span> {contentLabel}
-                            <button onClick={(e)=>openModal2(e, '')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={(e) => openModal2(e, '')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
-                        <div className="modal-search">
+
+                        <div className="search-bar-area2" style={{marginBottom: 0}}>
+                            <div className="search-bar">
+                                <input type="text" maxLength={50}/>
+                                <input type="button" value={"검색"} className="search-btn"/>
+                            </div>
+                            <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        </div>
+                        {/*<div className="modal-search">
                             <input type="text" maxLength={50}/>
                             <input type="button" value={"검색"} className="search-btn"/>
                         </div>
-                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        <button onClick={onRequestClose} className="modal-close-button">Close</button>*/}
                     </div>
                     <div className="modal-content">
                         <table className="table">
@@ -166,7 +175,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
                 onRequestClose={closeModal}
                 contentLabel="검사 리스트 상세"
             />
-            <TestRegistModal 
+            <TestRegistModal
                 listId={listId}
                 shipId={shipId}
                 assembleId={assembleId}

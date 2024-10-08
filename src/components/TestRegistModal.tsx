@@ -14,8 +14,9 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
@@ -141,7 +142,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
                     <div className="change-reason2">
                         <h3>검사 의견</h3>
                         <textarea placeholder='변경사유를 입력해 주세요.' name='reason' value={data?.reason} onChange={handleChange}>
-                            
+
                         </textarea>
                     </div>
 

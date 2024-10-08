@@ -17,8 +17,9 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
@@ -94,7 +95,7 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
         if(url) {
             window.open(url)
         }else {alert('URL이 등록되지 않았습니다.'); return;}
-    } 
+    }
 
     useEffect(()=> {
         getList()
@@ -110,13 +111,20 @@ const RequiredListModal: React.FC<CustomModalProps> = ({ assembleId, isOpen, onR
                 <div className="modal-wrapper">
                     <div className="modal-header">
                         <h2>{contentLabel}
-                            <button onClick={()=>openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                            <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
                         </h2>
-                        <div className="modal-search">
-                            <input ref={keywordRef} onKeyDown={(e)=>Enter(e)} type="text" maxLength={50}/>
+                        <div className="search-bar-area2" style={{marginBottom: 0}}>
+                            <div className="search-bar">
+                                <input ref={keywordRef} onKeyDown={(e) => Enter(e)} type="text" maxLength={50}/>
+                                <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
+                            </div>
+                            <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        </div>
+                        {/*<div className="modal-search">
+                            <input ref={keywordRef} onKeyDown={(e) => Enter(e)} type="text" maxLength={50}/>
                             <input type="button" value={"검색"} onClick={Search} className="search-btn"/>
                         </div>
-                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        <button onClick={onRequestClose} className="modal-close-button">Close</button>*/}
                     </div>
                     <div className="modal-content">
                         <table className="table">

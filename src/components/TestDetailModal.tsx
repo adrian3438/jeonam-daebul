@@ -15,8 +15,9 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
+        padding: '40px 50px'
     },
 };
 
@@ -67,7 +68,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
         }
         getDetail()
     }, [isOpen && listId])
-    
+
     return (
         <>
             <Modal

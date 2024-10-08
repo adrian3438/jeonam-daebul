@@ -18,9 +18,10 @@ const customStyles = {
         right: '10px',
         bottom: 'auto',
         width: '100vh',
-        height: '70vh',
+        height: '95vh',
         transform: 'translate(0, -50%)',
-        zIndex : '9999'
+        zIndex : '9999',
+        padding: '40px 50px'
     },
 };
 
