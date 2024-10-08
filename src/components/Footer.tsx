@@ -183,10 +183,6 @@ export default function Footer({id , type, name, shipId} : Props) {
                 listId={""} 
                 assembleId={id} 
                 refetch={undefined} 
-                contentLabel="검사 등록"
-                listId={""}
-                assembleId={id}
-                refetch={undefined}
             />
 
             <NoteListModal
