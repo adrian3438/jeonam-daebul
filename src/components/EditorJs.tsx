@@ -87,10 +87,10 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 Marker : {
                     class : Marker,
                 },
-                // list : {
-                //     class : List, inlineToolbar : true, 
-                //     config : {defaultStyle : 'ordered'}
-                // },
+                list : {
+                    class : List, inlineToolbar : true, 
+                    config : {defaultStyle : 'ordered'}
+                },
                 Checklist : { class : Checklist, inlineToolbar : true },
                 imageTool : {
                     class : ImageTool,
