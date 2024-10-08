@@ -64,10 +64,10 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 annotation: {
                     class : Annotation,
                 },
-                toggle: {
-                    class: ToggleBlock,
-                    inlineToolbar: true,
-                },
+                // toggle: {
+                //     class: ToggleBlock,
+                //     inlineToolbar: true,
+                // },
                 tooltip: {
                     class: Tooltip,
                     inlineToolbar : true,
@@ -87,10 +87,10 @@ export default function Editorjs ({isEdit , initData , setInitData , setData, pl
                 Marker : {
                     class : Marker,
                 },
-                list : {
-                    class : List, inlineToolbar : true, 
-                    config : {defaultStyle : 'unordered'}
-                },
+                // list : {
+                //     class : List, inlineToolbar : true, 
+                //     config : {defaultStyle : 'ordered'}
+                // },
                 Checklist : { class : Checklist, inlineToolbar : true },
                 imageTool : {
                     class : ImageTool,
