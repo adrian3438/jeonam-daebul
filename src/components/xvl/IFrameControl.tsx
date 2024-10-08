@@ -62,7 +62,7 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
     // iframeSrc = `../ModelingCtrl/index.html?assetId=${props.modelingId}&modelingName=${props.modelingName}`;
     iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/${props.iframePath}.html`
     // iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/bop-a11c.html`;
-    // iframeSrc = `/ModelingCtrl/index.html`
+    // iframeSrc = `/ModelingCtrl/modeling_view_TM-Engine.html`
   }
   else {
     // iframeSrc = `../ModelingCtrl/index.html?path=${props.path}&modelingName=${props.modelingName}`;
