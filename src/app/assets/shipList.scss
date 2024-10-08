@@ -103,6 +103,8 @@
           .bop-image-area {
             border-bottom: 1px solid #eee;
             height: auto;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
             &:hover {
               cursor: pointer;
             }

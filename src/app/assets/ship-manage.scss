@@ -97,18 +97,21 @@
       width: calc(25% - 30px);
       box-sizing: border-box;
       > div {
-        box-shadow: #ddd 0 2px 7px;
+        //box-shadow: #ddd 0 2px 7px;
+        border: 1px solid #ddd;
         border-radius: 15px;
         .bop-image-area {
           border-bottom: 1px solid #eee;
-          height: 200px;
+          height: auto;
+          overflow: hidden;
+          border-radius: 15px 15px 0 0;
           &:hover {
             cursor: pointer;
           }
           > img {
             width: 100% !important;
             height: auto !important;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 500 / 322;
             object-fit: cover;
             max-height: 100%;
           }
