@@ -117,7 +117,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ name, shipId, assembleId, i
                         </h2>
                         <div className="search-bar-area2" style={{marginBottom: 0}}>
                             <div className="search-bar">
-                                <input type="text" maxLength={50}/>
+                                <input type="text" placeholder='노트 제목과 구성품번으로 검색하시기 바랍니다.' maxLength={50}/>
                                 <input type="button" value={"검색"} className="search-btn"/>
                             </div>
                             <button onClick={onRequestClose} className="modal-close-button">Close</button>

@@ -104,6 +104,7 @@ const TestRegistModal: React.FC<CustomModalProps> = ({ listId , shipId , assembl
             onRequestClose={onRequestClose}
             style={customStyles}
             contentLabel={contentLabel}
+            shouldCloseOnEsc={false}
         >
             <div className="modal-wrapper">
                 <div className="modal-header">

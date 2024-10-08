@@ -104,7 +104,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
 
                         <div className="search-bar-area2" style={{marginBottom: 0}}>
                             <div className="search-bar">
-                                <input type="text" maxLength={50}/>
+                                <input type="text" maxLength={50} placeholder='검사 제목과 구성품번으로 검색하시기 바랍니다.'/>
                                 <input type="button" value={"검색"} className="search-btn"/>
                             </div>
                             <button onClick={onRequestClose} className="modal-close-button">Close</button>
@@ -120,6 +120,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
                             <thead>
                             <tr>
                                 <th scope="col">검사제목</th>
+                                <th scope="col">검사품명</th>
                                 <th scope="col">검사일자</th>
                                 <th scope="col">검사자</th>
                                 <th scope="col">검사결과</th>
@@ -132,6 +133,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
                                     <>
                                     <tr key={index}>
                                         <td><a href="#" onClick={(e) => openModal1(e, list?.ID)}>{list?.inspectionSubject}</a></td>
+                                        <td>{list?.assemblePart}</td>
                                         <td>{list?.createDate}</td>
                                         <td>{list?.managerName}</td>
                                         <td>

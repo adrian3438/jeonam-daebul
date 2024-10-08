@@ -100,6 +100,7 @@ const NoteRegistModal: React.FC<CustomModalProps> = ({ shipId, listId, assembleI
             onRequestClose={onRequestClose}
             style={customStyles}
             contentLabel={contentLabel}
+            shouldCloseOnEsc={false}
         >
             <div className="modal-wrapper">
                 <div className="modal-header">
