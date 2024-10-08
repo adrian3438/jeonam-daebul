@@ -112,8 +112,17 @@ const NoteListModal: React.FC<CustomModalProps> = ({ name, shipId, assembleId, i
             >
                 <div className="modal-wrapper">
                     <div className="modal-header">
-                        <h2>{contentLabel} - {name} <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button></h2>
-                        <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        <h2>{contentLabel} - {name}
+                            <button onClick={() => openModal2('')}><Image src="/images/register-button.png" alt="리스트 추가" width={20} height={20}/></button>
+                        </h2>
+                        <div className="search-bar-area2" style={{marginBottom: 0}}>
+                            <div className="search-bar">
+                                <input type="text" maxLength={50}/>
+                                <input type="button" value={"검색"} className="search-btn"/>
+                            </div>
+                            <button onClick={onRequestClose} className="modal-close-button">Close</button>
+                        </div>
+                        {/*<button onClick={onRequestClose} className="modal-close-button">Close</button>*/}
                     </div>
                     <div className="modal-content">
                         <ul className="note-list">
@@ -123,7 +132,7 @@ const NoteListModal: React.FC<CustomModalProps> = ({ name, shipId, assembleId, i
                                         <li key={index}>
                                             <div>
                                                 <div className="note-list-detail">
-                                                    <p>{list?.assembleNoteSubject}</p>
+                                                <p>{list?.assembleNoteSubject}</p>
                                                     <p>{list?.assemblePart}</p>
                                                 </div>
                                                 <div className="note-date">

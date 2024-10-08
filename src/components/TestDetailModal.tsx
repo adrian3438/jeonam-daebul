@@ -103,7 +103,7 @@ const TestDetailModal: React.FC<CustomModalProps> = ({ listId , isOpen, onReques
 
 
                         <div className="change-reason2">
-                            <h3>변경 사유</h3>
+                            <h3>검사 의견</h3>
                             <p>
                                 {data?.inspectionOpinion}
                             </p>
