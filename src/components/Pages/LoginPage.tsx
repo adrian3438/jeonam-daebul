@@ -10,7 +10,13 @@ import Cookies from 'js-cookie'
 import { useAuth } from "../Context/AuthContext";
 import '../../app/assets/login.scss'
 interface Props {
-    param : {id : string , pass : string , fetch : string , setCookie : string, delCookie : string}
+    param : {
+        id : string
+        pass : string
+        fetch : string
+        setCookie : string
+        delCookie : string
+    }
 }
 interface LoginType {email:string,password:string}
 export default function LoginPage ({param} : Props) {
