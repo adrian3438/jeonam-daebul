@@ -19,6 +19,8 @@
     home_initPosition = [],
     home_initColorTransparencies = [];
 
+    var treeList = [];
+
     // 기획에 따라 메시지 이름이 정해져야 함
     // 패킷 번호
     const iFrameMsgType_Home = 10000;
@@ -32,6 +34,8 @@
     const iFrameMsgType_Wire = 20006;
     const iFrameMsgType_Line = 20007;
     const iFrameMsgType_WireAndLine = 20008;
+
+    const iFrameMsgType_TreeList = 20010;
     
     window.addEventListener('message',function(e){
         const msgCode = e.data.msgCode;
@@ -44,36 +48,48 @@
             case iFrameMsgType_ObjectSelection:     // 오브젝트 선택
                 break;
             case iFrameMsgType_ObjectVisible:
+                console.log("1")
                 setObjectVisible(data);
                 break;
             case iFrameMsgType_ObjectSelectionTransparentMode:      
+                console.log("2")
                 setSelectionTransparentMode(data);
                 break;
             case iFrameMsgType_ViewMode:
+                console.log("3")
                 setOperationMode(data);
                 break;
             case iFrameMsgType_ViewModeTransparentMode:
+                console.log("4")
                 setTransparentMode(data);
                 break;
             case iFrameMsgType_ViewModeChangeDisplay:
+                console.log("5")
                 changeDisplay(data);
                 break;
             case iFrameMsgType_Home:
+                console.log("6")
                 home(data);
                 break;
             case iFrameMsgType_FixUp:
+                console.log("7")
                 fixUp(data);
                 break;
             case iFrameMsgType_Wire:
+                console.log("8")
                 modelingWire(data);
                 break;
             case iFrameMsgType_Line:
+                console.log("9")
                 modelingSurface(data);
                 break;
             case iFrameMsgType_WireAndLine:
+                console.log("10")
                 modelingWireSurface(data);           
                 break;
-            
+            case iFrameMsgType_TreeList:
+                console.log('11 , treeList' , treeList);
+                // treeList;
             default:
                 break;
         }
@@ -124,6 +140,7 @@
         }
     }
 
+
     function setTransparentMode( data ) {
 
         console.log('setTransparentMode');
@@ -149,26 +166,6 @@
                 }
                 break;
         }
-    }
-
-    function changeDisplay( data ) {
-        var Parameters = [],
-            groups = [],
-            currentState;
-
-        groups = player.model.getSelections();
-        if(groups.length > 0){
-            if(groups[0].visibility){
-                player.model.hideGroups(groups);
-            } else {
-                player.model.showGroups(groups);
-            }
-        }
-        currentState = player.model.getGroupVisibilities();
-
-        Parameters.updateType = "VISIBILITY_UPDATE_ALL";
-        Parameters.updateTagetElems = currentState;
-        controller.notify(Parameters);
     }
 
     function home( data ) {
@@ -382,12 +379,12 @@
         window.alert(strError);
 	}
 	
-
+    
     // 부품 선택
+    let data = [];
     function onChangedSelection(event){
         console.log("선택변경됨");
-
-        let data = [];
+        // let data = [];
         for (const group of event.selectedGroups) {
             data.push(group.elementId);
         }
@@ -402,6 +399,60 @@
        
         window.parent.postMessage(message,'*');
     }
+    // 보이고 안보이고
+    function changeDisplay( ) {
+        var groups = [];
+        var divRef = null;
+        groups = player.model.getSelections();
+        console.log(groups[0])
+        if(groups.length > 0){
+            if(groups[0].visibility){
+                // 숨기는 처리
+                console.log("숨기기")
+                player.model.hideGroups(groups);
+            } else {
+                // 다시 보여주는 처리   
+                console.log("다시 보여주기")
+                player.model.showGroups(groups);
+            }
+        }
+        console.log(groups[0].elementId)
+
+        // $(".item-list-btn").addClass("on");
+        // $(".hide-list").show();
+        // var itemId = 'selections-' + data[0].elementId;
+        // var liId = itemId.replaceAll(" ","");
+        // var list = document.getElementById('itemId');
+        // var item = document.createElement('li');
+
+        // item.id = liId;
+        // var button = document.createElement('button');
+        // // button.innerText = data[0].elementId;
+        // var customBtn = "<i class=\"fa-solid fa-eye-slash\"></i>";
+        // button.innerHTML = customBtn;
+        // button.value = data[0].elementId;
+        
+        // button.onclick = function () {
+        //     // 다시 보여줄 것
+        //     // var selection = player.model.getGroupsByElementIds([this.innerText]);
+        //     var selection = player.model.getGroupsByElementIds([this.value]);
+        //     player.model.showGroups(selection);
+
+        //     // var removeId = 'selections-' + this.innerText;
+        //     var removeId = 'selections-' + this.value;
+        //     var removeLiId = removeId.replaceAll(" ","");
+        //     document.getElementById(removeLiId).remove();
+        // }            
+
+        // item.appendChild(button);
+        // list.appendChild(item);
+        // console.log(liId);
+        // $("#"+liId).append(data[0].elementId);
+        // // $(document.getElementById('itemId')).append(customBtn);        
+        
+        // player.model.hideGroups(data);
+        // data = null;
+    }
 
     var param = {};
     param.elementId = 'web3dPlayer_main';
@@ -415,7 +466,7 @@
     player.addEventListener('ltDownloadProgress', loadModelProgress);
     player.addEventListener('ltLoadError', loadError);
     player.addEventListener('ltSelectChange', onChangedSelection);
-    
+                            
     //
     // View 3D
     //
@@ -427,7 +478,6 @@
 	var $div = $('#' + COMPONENT_ID_ASSY_TREE);
 	$div.css('width', convertInt($div.css('width')) + 'px');
 	$div.css('height', convertInt($div.css('height')) + 'px');
-	
 	createDivComponent(COMPONENT_ID_ASSY_TREE);
 	$('#assyTree_body').append($('<div id="tree"></div>'));
 	$('#tree').dynatree({
@@ -440,6 +490,17 @@
 		noLink: false,
 		debugLevel: 0,
 		additionalSelection: 'NONE',
+        onPostInit: function(isReloading, isError) {
+            console.log("Dynatree initialized. isReloading:", isReloading, "isError:", isError);
+            const rootNode = $("#tree").dynatree("getRoot");
+            if (rootNode) {
+                // console.log("Root node found:", rootNode);
+                treeList = rootNode;
+                // console.log(treeList)
+            } else {
+                console.log("Root node not found.");
+            }
+        }
 	});   
     
     assyTreeParam.player = player;
@@ -451,7 +512,7 @@
 	assyTreeParam.altNameFormat = '${XVL_NAME}';
 	
     assyTree = new Assytree(assyTreeParam);
-    
+
     // toolbarParam.player = player;
     // toolbar = new Toolbar(toolbarParam);
     // toolbar.loadingModel = false;
@@ -483,7 +544,7 @@
     // 이 부분에서 모델링 경로가 정해진다.
 	function loadModel() {
         player.view.enableRedraw = false;
-        // toolbar.loadingModel = true;        
+        // toolbar.loadingModel = true;
         dispProgress = true;
         console.log("경로확인");
         console.log(url);
@@ -554,6 +615,4 @@
 		});
 	};	
 
-    
-    
 }());

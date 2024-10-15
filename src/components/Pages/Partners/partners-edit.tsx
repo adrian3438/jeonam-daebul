@@ -27,7 +27,7 @@ export default function PartnersEditBox ({id} : Props) {
             if(id !== 'regist') {formData.append('ID', id)}
             formData.append('userLoginId', data?.loginId)
             formData.append('userName', data?.name)
-            if(id === 'regist'){formData.append('userPass', data?.pass)}
+            formData.append('userPass', data?.pass)
             formData.append('userCompanyName', data?.companyName)
             formData.append('userMobile', data?.mobile)
             formData.append('userPhone', data?.phone)

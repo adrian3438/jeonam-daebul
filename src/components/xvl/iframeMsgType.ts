@@ -14,5 +14,6 @@ export enum iframeMsgType {
     Wire = 20006,   // wire 처리
     Line = 20007,   // line 처리
     WireAndLine = 20008,     // wire & line 처리
-    HideList = 20009
+    HideList = 20009,
+    TreeList = 20010
 }

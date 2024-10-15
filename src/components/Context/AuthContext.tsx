@@ -1,7 +1,16 @@
 'use client'
 import { createContext, useState, useContext } from 'react';
+interface AuthDataType {
+    isAdmin : boolean,
+    data : {
+        ID : number 
+        uuid : string
+        email : string
+        name : string
+    }
+}
 interface AuthContextType {
-    authData : any;
+    authData : AuthDataType;
     login : (data : any) => void;
     logout : () => void;
     setPart : () => void;

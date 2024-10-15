@@ -2209,8 +2209,6 @@ function partChange( changedPartId ) {
         if(clickModel==null){
             alert("선택해주세요.");
         }else{
-
-            
             $(".item-list-btn").addClass("on");
             $(".hide-list").show();
             var itemId = 'selections-' + clickModel[0].elementId;

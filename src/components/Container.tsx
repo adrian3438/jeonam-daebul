@@ -1,15 +1,22 @@
 'use client'
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { ReactNode, useEffect } from "react"
 import Navigation from "./Navigation"
 import Header from "./Header"
 import { useAuth } from "./Context/AuthContext"
-import api from "@/lib/api"
-interface Props {info : any}
-export default function Container ({children , info} : any) {
+
+interface InfoType {
+    result : boolean,
+    list : [{
+        ID : number , uuid : string , email : string , name : string
+    }]
+}
+interface Props {children: ReactNode, info : InfoType}
+export default function Container ({children , info} : Props) {
+    console.log(info)
     const router = useRouter()
     const pathname = usePathname()
-    const splitPath = pathname.split('/')
+    const splitPath = pathname.split('/');
     const {login} = useAuth()
     useEffect(()=> {
         if(info?.result) {

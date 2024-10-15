@@ -20,7 +20,8 @@ export interface EventIFrameControl {
     setWire : () => void,
     setLine : () => void,
     setWireLine : () => void,
-    setHideList : () => void
+    setHideList : () => void,
+    TreeList : () => void,
 }
 
 // IFrameControlCompnent를 위한 props
@@ -53,7 +54,8 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
         setWire : setWire,
         setLine : setLine,
         setWireLine : setWireLine,
-        setHideList : setHideList
+        setHideList : setHideList,
+        TreeList : TreeList
 	}));
 
   
@@ -72,6 +74,10 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
   console.log("아이프레임 링크 : ",iframeSrc)
   const getSelection = () => {
     return selectionGroups;
+  }
+
+  const TreeList = () => {
+    postContentMessage( iframeMsgType.TreeList,{ } );
   }
 
   const selectMainEngine = () => {
@@ -159,17 +165,16 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
   }
 
   const postContentMessage = ( msgCode : iframeMsgType, data : any ) => {
+    if(!iframeRef.current) {
+        return ;
+    }
 
-      if(!iframeRef.current) {
-          return ;
-      }
+    const packet : xvlFrameMessage = {
+        msgCode : msgCode,
+        data : data,
+    }
 
-      const packet : xvlFrameMessage = {
-          msgCode : msgCode,
-          data : data,
-      }
-
-      iframeRef.current.contentWindow?.postMessage( packet, "*");
+    iframeRef.current.contentWindow?.postMessage( packet, "*");
   }
 
   useEffect(() => {
