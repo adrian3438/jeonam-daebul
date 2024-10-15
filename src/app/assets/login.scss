@@ -4,6 +4,9 @@
   > section {
     min-height:100%;
     &.bg-section {
+      &.user-bg-section {
+        background:url('/images/login/user-login-bg.jpg') no-repeat 50% 50% fixed;
+      }
       position: relative;
       background:url('/images/login/login-bg.jpg') no-repeat 50% 50% fixed;
       background-size: cover;

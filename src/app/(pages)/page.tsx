@@ -4,7 +4,7 @@ import '../assets/login.scss'
 export default function Home() {
   return (
     <div className="login">
-      <section className="bg-section">
+      <section className="bg-section user-bg-section">
         <div>
           <p className="login-p-1">스마트 제조 혁신</p>
           <h1>도면 및 검사관리 솔루션 V1.0</h1>
