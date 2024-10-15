@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import UserLoginForm from "@/components/Pages/UserLoginPage";
 import LoginPage from "@/components/Pages/LoginPage";
 export default function Home() {
   return (

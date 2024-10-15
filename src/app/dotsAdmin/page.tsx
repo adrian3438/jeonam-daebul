@@ -1,4 +1,3 @@
-import AdminLoginPage from '@/components/Pages/AdminLoginPage';
 import '../assets/login.scss'
 import api from "@/lib/api";
 import LoginPage from '@/components/Pages/LoginPage';
