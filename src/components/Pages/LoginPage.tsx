@@ -41,8 +41,8 @@ export default function LoginPage ({param} : Props) {
         if(response?.data?.result === true) {
           Cookies.set(param.setCookie, response?.data?.uuid , { expires: 7, path : '/' });
           Cookies.remove(param.delCookie, {path : '/'})
-        //   router.push('/ship-type');
-          login({isAdmin : true , data : response?.data})
+          router.push('/ship-type');
+          login({isAdmin : false , data : response?.data})
         }else {
             alert(response?.data?.resultMsg);
             setData((prev) => ({...prev, password : ''}))

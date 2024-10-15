@@ -26,7 +26,9 @@ export default async function AdminLayout({
       
       <body className={`${pretendard.variable}`}>
       <AuthProvider>
-        <Container info={response?.data}>
+        <Container 
+          info={response?.data}
+        >
           {children}
         </Container>
       </AuthProvider>

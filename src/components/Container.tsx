@@ -19,19 +19,19 @@ export default function Container ({children , info} : Props) {
     const splitPath = pathname.split('/');
     const {login} = useAuth()
     useEffect(()=> {
-        if(info?.result) {
-            if(info?.list?.length > 0) {
-                if(splitPath[1] === 'dotsAdmin'){
-                    router.push(`/ship-type`)
-                }
-                login({isAdmin : true , data : info?.list[0]})
-            }
-        }else{
-            if(splitPath[1] !== '' && splitPath[1] !== 'dotsAdmin'){
-                alert('로그인이 필요합니다.');
-                router.push('/dotsAdmin')
-            }
-        }
+        // if(info?.result) {
+        //     if(info?.list?.length > 0) {
+        //         if(splitPath[1] === 'dotsAdmin'){
+        //             router.push(`/ship-type`)
+        //         }
+        //         login({isAdmin : true , data : info?.list[0]})
+        //     }
+        // }else{
+        //     if(splitPath[1] !== '' && splitPath[1] !== 'dotsAdmin'){
+        //         alert('로그인이 필요합니다.');
+        //         router.push('/dotsAdmin')
+        //     }
+        // }
     }, [info])
     return(
         <>
