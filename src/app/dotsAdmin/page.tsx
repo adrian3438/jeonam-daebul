@@ -1,6 +1,7 @@
 import AdminLoginPage from '@/components/Pages/AdminLoginPage';
 import '../assets/login.scss'
 import api from "@/lib/api";
+import LoginPage from '@/components/Pages/LoginPage';
 
 export default function AdminLogin() {
   return (
@@ -14,8 +15,16 @@ export default function AdminLogin() {
             </p>
           </div>
         </section>
-        <AdminLoginPage
-
+        <LoginPage
+          param={
+            {
+              id : 'managerLoginId',
+              pass : 'managerPass',
+              fetch : '/admin/adminLogin2',
+              setCookie : 'jdassid',
+              delCookie : 'jdssid'
+            }
+          }
         />
       </div>
   );

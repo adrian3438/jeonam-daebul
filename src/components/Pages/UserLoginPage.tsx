@@ -1,19 +1,18 @@
 'use client'
-import api from "@/lib/api";
-// import { useAppDispatch } from "@/store/hooks";
-// import { setAccount } from "@/store/slices/accountInfoSlice";
+
 import Image from "next/image";
 import Link from "next/link";
+import '../../app/assets/login.scss';
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Cookies from 'js-cookie'
 import { useAuth } from "../Context/AuthContext";
+import Cookies from 'js-cookie'
+import api from "@/lib/api";
 interface LoginType {email:string,password:string}
-export default function AdminLoginPage () {
+export default function UserLoginForm () {
     const router = useRouter()
     const {login} = useAuth()
-    // const dispatch = useAppDispatch()
-    const [data, setData] = useState<LoginType>({
+    const [data , setData] = useState<LoginType>({
         email : '', password : ''
     })
     function handleChange (e:React.ChangeEvent<HTMLInputElement>){
@@ -25,12 +24,12 @@ export default function AdminLoginPage () {
         if(!data?.email) {alert('이메일을 입력해 주세요.'); return;}
         if(!data?.password) {alert('비밀번호를 입력해 주세요.'); return;}
         const formData = new FormData()
-        formData.append('managerLoginId', data?.email)
-        formData.append('managerPass', data?.password)
-        const response = await api.post(`/admin/adminLogin2.php`, formData)
+        formData.append('userLoginId', data?.email)
+        formData.append('userPass', data?.password)
+        const response = await api.post(`/user/userLogin.php`, formData)
         if(response?.data?.result === true) {
-          Cookies.set('jdassid', response?.data?.uuid , { expires: 7, path : '/' });
-          Cookies.remove('jdssid', {path : '/'})
+          Cookies.set('jdssid', response?.data?.uuid , { expires: 7, path : '/' });
+          Cookies.remove('jdassid', {path : '/'})
           router.push('/ship-type');
           login({isAdmin : true , data : response?.data})
         }else {
@@ -41,7 +40,6 @@ export default function AdminLoginPage () {
     function Enter (e : React.KeyboardEvent<HTMLInputElement>) {
         if(e.key === 'Enter') Login(e)
     }
-    
     return(
         <>
         <section className="login-section">

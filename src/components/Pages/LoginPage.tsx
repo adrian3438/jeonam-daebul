@@ -8,8 +8,12 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 import { useAuth } from "../Context/AuthContext";
+import '../../app/assets/login.scss'
+interface Props {
+    param : {id : string , pass : string , fetch : string , setCookie : string, delCookie : string}
+}
 interface LoginType {email:string,password:string}
-export default function AdminLoginPage () {
+export default function LoginPage ({param} : Props) {
     const router = useRouter()
     const {login} = useAuth()
     // const dispatch = useAppDispatch()
@@ -25,13 +29,13 @@ export default function AdminLoginPage () {
         if(!data?.email) {alert('이메일을 입력해 주세요.'); return;}
         if(!data?.password) {alert('비밀번호를 입력해 주세요.'); return;}
         const formData = new FormData()
-        formData.append('managerLoginId', data?.email)
-        formData.append('managerPass', data?.password)
-        const response = await api.post(`/admin/adminLogin2.php`, formData)
+        formData.append(param?.id, data?.email)
+        formData.append(param?.pass, data?.password)
+        const response = await api.post(`${param?.fetch}.php`, formData)
         if(response?.data?.result === true) {
-          Cookies.set('jdassid', response?.data?.uuid , { expires: 7, path : '/' });
-          Cookies.remove('jdssid', {path : '/'})
-          router.push('/ship-type');
+          Cookies.set(param.setCookie, response?.data?.uuid , { expires: 7, path : '/' });
+          Cookies.remove(param.delCookie, {path : '/'})
+        //   router.push('/ship-type');
           login({isAdmin : true , data : response?.data})
         }else {
             alert(response?.data?.resultMsg);
