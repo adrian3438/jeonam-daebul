@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server/server.js",
+    "start": "cross-env NODE_ENV=production node server/server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "editor-font-family": "^1.0.1",
     "editorjs-annotation": "^1.0.1",
     "editorjs-change-case": "^0.0.3",
