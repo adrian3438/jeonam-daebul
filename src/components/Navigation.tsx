@@ -1,11 +1,13 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import { useAuth } from "./Context/AuthContext";
 
 export default function Navigation() {
     const pathName = usePathname();
     const depth1Name = pathName.split("/")[1];
-
+    const {authData} = useAuth()
     return (
         <>
             <h1><Image src="/images/login/img_logo.svg" alt="전남대불산학융합원" width={189} height={24}/></h1>
@@ -16,6 +18,7 @@ export default function Navigation() {
                         <li className={`ship-type ${depth1Name === 'ship-type' ? 'active' : ''}`}><Link href="/ship-type">선종</Link></li>
                     </ul>
                 </section>
+                {authData?.isAdmin &&
                 <section className="settings">
                     <p>OTHERS</p>
                     <ul>
@@ -29,6 +32,7 @@ export default function Navigation() {
                         </li>
                     </ul>
                 </section>
+                }
             </div>
             <div className="help">
                 <p><Link href="#">Help</Link></p>
