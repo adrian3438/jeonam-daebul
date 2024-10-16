@@ -4,35 +4,31 @@ import { ReactNode, useEffect } from "react"
 import Navigation from "./Navigation"
 import Header from "./Header"
 import { useAuth } from "./Context/AuthContext"
+import api from "@/lib/api"
 
-interface InfoType {
-    result : boolean,
-    list : [{
-        ID : number , uuid : string , email : string , name : string
-    }]
-}
-interface Props {children: ReactNode, info : InfoType}
-export default function Container ({children , info} : Props) {
-    console.log(info)
+
+interface Props {children: ReactNode, cookie : any}
+export default function Container ({children , cookie} : Props) {
     const router = useRouter()
     const pathname = usePathname()
     const splitPath = pathname.split('/');
     const {login} = useAuth()
-    useEffect(()=> {
-        // if(info?.result) {
-        //     if(info?.list?.length > 0) {
-        //         if(splitPath[1] === 'dotsAdmin'){
-        //             router.push(`/ship-type`)
-        //         }
-        //         login({isAdmin : true , data : info?.list[0]})
-        //     }
-        // }else{
-        //     if(splitPath[1] !== '' && splitPath[1] !== 'dotsAdmin'){
-        //         alert('로그인이 필요합니다.');
-        //         router.push('/dotsAdmin')
-        //     }
-        // }
-    }, [info])
+    const cookieValue = cookie && JSON.parse(cookie.value).id;
+    const cookieBranch = cookie && JSON.parse(cookie.value).branch;
+    console.log(cookieValue)
+    useEffect(() =>{
+        async function getInfo () {
+            const formData = new FormData()
+            if(cookie && cookieBranch === 'user') {
+                formData.append('userUuid' , cookieValue)
+                const response = await api.post(`/user/userInfo.php`, formData)
+            }else if(cookie && cookieBranch === 'admin') {
+                formData.append('managerUuid' , cookieValue)
+                const response = await api.post('/admin/adminInfo.php', formData)
+            }
+        }
+        getInfo()
+    }), [cookieBranch]
     return(
         <>
             {splitPath[1] === '' || splitPath[1] === 'dotsAdmin' ?
@@ -47,7 +43,9 @@ export default function Container ({children , info} : Props) {
                     <Navigation/>
                 </div>
                 <main>
-                <Header info={info?.list?.length > 0 ? info?.list[0] : null}/>
+                <Header 
+                
+                />
                     {children}
                 </main>
             </>

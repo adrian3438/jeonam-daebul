@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LoginPage from "@/components/Pages/LoginPage";
+import '../assets/login.scss'
 export default function Home() {
   return (
     <div className="login">
@@ -16,11 +17,11 @@ export default function Home() {
       <LoginPage
         param={
           {
-          id : 'userLoginId',
-          pass : 'userPass',
-          fetch : '/user/userLogin',
-          setCookie : 'jdssid',
-          delCookie : 'jdassid'
+            id : 'userLoginId',
+            pass : 'userPass',
+            fetch : '/user/userLogin',
+            setCookie : 'jdssid',
+            branch : 'user'
           }
         }
       />

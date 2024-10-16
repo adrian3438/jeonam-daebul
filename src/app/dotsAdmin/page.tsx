@@ -20,8 +20,8 @@ export default function AdminLogin() {
               id : 'managerLoginId',
               pass : 'managerPass',
               fetch : '/admin/adminLogin2',
-              setCookie : 'jdassid',
-              delCookie : 'jdssid'
+              setCookie : 'jdssid',
+              branch : 'admin'
             }
           }
         />

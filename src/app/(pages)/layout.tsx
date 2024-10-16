@@ -13,11 +13,8 @@ const pretendard = localFont({
 });
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     const cookie = cookies();
-    const cookieValue : any = cookie.get('jdassid') || '';
-    // const parseCookie = cookieValue && JSON.parse(cookieValue.value);
-    const formData = new FormData()
-    formData.append('managerUuid', cookieValue.value) 
-    const response = await api.post(`/admin/adminInfo.php`, formData)
+    const cookieValue : any = (cookie.get('jdssid')) || null;
+    
     return (
         <html lang="ko">  
         {/* <head>
@@ -32,7 +29,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <Script src="https://cdn.jsdelivr.net/npm/editorjs-text-color-plugin/dist/bundle.js" strategy="afterInteractive"></Script>
         <Script src="https://cdn.jsdelivr.net/npm/editorjs-style@latest" strategy="afterInteractive"></Script>
         <AuthProvider>
-            <Container info={response?.data}>
+            <Container 
+                cookie={cookieValue}
+            >
                 {children}
             </Container>
         </AuthProvider>

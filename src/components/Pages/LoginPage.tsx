@@ -15,7 +15,7 @@ interface Props {
         pass : string
         fetch : string
         setCookie : string
-        delCookie : string
+        branch : string
     }
 }
 interface LoginType {email:string,password:string}
@@ -39,10 +39,10 @@ export default function LoginPage ({param} : Props) {
         formData.append(param?.pass, data?.password)
         const response = await api.post(`${param?.fetch}.php`, formData)
         if(response?.data?.result === true) {
-          Cookies.set(param.setCookie, response?.data?.uuid , { expires: 7, path : '/' });
-          Cookies.remove(param.delCookie, {path : '/'})
-          router.push('/ship-type');
-          login({isAdmin : false , data : response?.data})
+          const value = {id : response?.data?.uuid , branch : param.branch}
+          Cookies.set(param.setCookie, JSON.stringify(value) , { expires: 7, path : '/' });
+          location.href = '/ship-type';
+          login({isAdmin : param.branch === 'user' ? false : true , data : response?.data})
         }else {
             alert(response?.data?.resultMsg);
             setData((prev) => ({...prev, password : ''}))
@@ -51,12 +51,17 @@ export default function LoginPage ({param} : Props) {
     function Enter (e : React.KeyboardEvent<HTMLInputElement>) {
         if(e.key === 'Enter') Login(e)
     }
+    async function getTest () {
+      const formData = new FormData()
+      formData.append('userUuid', '670f1a2b21918')
+      const response = await api.post(`/user/userInfo.php`, formData)
+    } 
     
     return(
         <>
         <section className="login-section">
           <div>
-            <h2>로그인</h2>
+            <h2 onClick={getTest}>로그인</h2>
             <form id="login">
               <fieldset className="input-email">
                 <label htmlFor="email">이메일</label>
