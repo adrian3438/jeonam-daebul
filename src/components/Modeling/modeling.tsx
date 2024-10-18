@@ -16,7 +16,8 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         // console.log('리스트')
     }
 
-    const TreeList = () => {
+    const TreeList = (e:any) => {
+        console.log(e.data)
         refIframeCtrl.current?.TreeList()
     }
     // Pan 클릭
@@ -43,7 +44,8 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
         refIframeCtrl.current?.setTransparentNoSelect()
     }
     // 선택한 부품 완전 투명화 처리
-    const setChangeDisplay = () => {
+    const setChangeDisplay = (e:any) => {
+        console.log(e.data)
         refIframeCtrl.current?.changeDisplay()
         listRef.current.classList.add('on')
     }
@@ -117,7 +119,7 @@ export default function ModelingComponents ({modelingUrl, name} : Props) {
             window.removeEventListener("message", handleCallTreeClick);
         };
     }, []);
-    
+
     useEffect(() => {
         window.addEventListener("message", handleReceive);
         return () => {

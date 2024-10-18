@@ -20,15 +20,19 @@ interface CustomModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     contentLabel: string;
+    id : number
 }
 
-const SettingModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel }) => {
+const SettingModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, contentLabel , id }) => {
+    const [data, setData] = useState<any>({
+        
+    })
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             style={customStyles}
-            contentLabel={contentLabel}
+            contentLabel={id ? '관리자 수정' : '관리자 신규 등록'}
         >
             <div className="modal-wrapper">
                 <div className="modal-header">

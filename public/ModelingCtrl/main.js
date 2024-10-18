@@ -1,4 +1,5 @@
 ﻿
+
 (function () {
     'use strict';
 
@@ -88,8 +89,10 @@
                 modelingWireSurface(data);           
                 break;
             case iFrameMsgType_TreeList:
-                console.log('11 , treeList' , treeList);
-                // treeList;
+                // console.log('11 , treeList' , treeList);
+                // // treeList;
+                treeList();
+                break;
             default:
                 break;
         }
@@ -391,6 +394,10 @@
         postParentMessage( iFrameMsgType_ObjectSelection, { selection : data } );
     }
 
+    function treeList (event) {
+        console.log('treelist 클릭')
+    }
+
     function postParentMessage( msgCode, data ) {
         const message = {
             msgCode : msgCode,
@@ -400,9 +407,8 @@
         window.parent.postMessage(message,'*');
     }
     // 보이고 안보이고
-    function changeDisplay( ) {
+    function changeDisplay(groups) {
         var groups = [];
-        var divRef = null;
         groups = player.model.getSelections();
         console.log(groups[0])
         if(groups.length > 0){
@@ -416,7 +422,7 @@
                 player.model.showGroups(groups);
             }
         }
-        console.log(groups[0].elementId)
+        // console.log(groups[0].elementId)
 
         // $(".item-list-btn").addClass("on");
         // $(".hide-list").show();

@@ -62,9 +62,9 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
   let iframeSrc = "";
   if( props.path == undefined ) {
     // iframeSrc = `../ModelingCtrl/index.html?assetId=${props.modelingId}&modelingName=${props.modelingName}`;
-    iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/${props.iframePath}.html`
+    // iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/${props.iframePath}.html`
     // iframeSrc = `https://marineplaza.org/dim-api/controller/ModelingCtrl/bop-a11c.html`;
-    // iframeSrc = `/ModelingCtrl/modeling_view_TM-Engine.html`
+    iframeSrc = `/ModelingCtrl/modeling_view_FGSS-LP-BUFFER-TANK-SKID.html`
   }
   else {
     // iframeSrc = `../ModelingCtrl/index.html?path=${props.path}&modelingName=${props.modelingName}`;
@@ -111,7 +111,8 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
   }
 
   const changeDisplay = () => {
-      postContentMessage( iframeMsgType.ViewModeChangeDisplay, { } );        
+    const groups : any = [];
+    postContentMessage( iframeMsgType.ViewModeChangeDisplay, {} );        
   }
 
   const home = () => {
@@ -150,7 +151,6 @@ const IFrameControlCompnent = forwardRef<EventIFrameControl, PropsIFrameControl>
       // if(e.data.msgCode && e.data.data) {
       //     // dispatch(checkData({id:e.data?.data?.selection[0]}))
       // }
-
       switch (e.data.msgCode) {
           case iframeMsgType.ObjectSelection:
               const groups = e.data.data as xvlObjectSelection;
