@@ -9,7 +9,7 @@ interface Props {cookieBranch : string}
 export default function Header({cookieBranch} : Props) {
     const router = useRouter()
     const {authData, logout} = useAuth()
-    console.log(authData)
+    // console.log(authData)
     function Logout (e : React.MouseEvent) {
         e.preventDefault()
         if(cookieBranch === 'admin') {

@@ -44,7 +44,7 @@ const TestReplyListModal: React.FC<CustomModalProps> = ({ shipId, listId, assemb
     })
     const [initData , setInitData] = useState<any>()
     const [editor , setEditor] = useState<any>(null)
-    console.log(editor)
+    // console.log(editor)
     async function Save () {
         try {
             const formData = new FormData()

@@ -15,7 +15,7 @@ export default function Container ({children , cookie} : Props) {
     const {login} = useAuth()
     const cookieValue = cookie && JSON.parse(cookie.value).id;
     const cookieBranch = cookie && JSON.parse(cookie.value).branch;
-    console.log(cookieBranch)
+    // console.log(cookieBranch)
     // 유저 정보 호출
     async function getUserInfo () {
         if(cookie && cookieBranch === 'user') {

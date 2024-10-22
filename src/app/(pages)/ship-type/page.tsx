@@ -23,7 +23,7 @@ export default async function Main({searchParams : {s ,keyword}} : MainProps) {
     // 대조리스트
     const response2 = await api.get(`/admin/getShipAssembleListByShipType.php?shipTypeId=${s || response?.data?.List[0]?.ID?.toString()}&assembleName=${'123'}`)
     const data2 = response2?.data?.result === true ? response2?.data?.List : []
-    console.log(response2?.data)
+    // console.log(response2?.data)
     return (
         <div className="ship-list">
 

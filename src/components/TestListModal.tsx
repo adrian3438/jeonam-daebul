@@ -39,7 +39,7 @@ const TestListModal: React.FC<CustomModalProps> = ({ name, shipId , assembleId ,
     const {part} = useAuth()
     const [data , setData] = useState<DataType[]>([])
     const [listId, setListId] = useState<string>('')
-    console.log(part)
+    // console.log(part)
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
 

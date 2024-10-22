@@ -89,7 +89,7 @@ const SettingModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, cont
             }
         }
     }
-    console.log(data)
+    // console.log(data)
     useEffect(() => {
         async function getDetail () {
             if(id !== 0) {
